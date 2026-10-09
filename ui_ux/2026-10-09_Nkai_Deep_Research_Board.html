@@ -614,6 +614,7 @@
         <button class="header-btn" onclick="adjustZoom(0.05)">A+</button>
       </div>
       <button id="header-mute-btn" class="header-btn green" onclick="toggleAudioMute()" title="Master Audio Haptics Mute Toggle">🔊 Sound: ON</button>
+      <button id="resequenceFlightsBtn" class="header-btn purple" onclick="triggerReorderItinerary(this)" title="Re-sequence Flights via 2-Pass Convergence Gate (Pro Synthesis)">🔄 Re-sequence</button>
       <button class="header-btn" onclick="forceReloadCanvas(this)" title="Force Refresh">🔄</button>
     </div>
   </header>
@@ -716,229 +717,192 @@
   </div>
 
     <!-- Slide-Over Audit Itinerary Drawer -->
-  <div class="slide-drawer" id="itinerary-drawer" style="width: 440px;">
+    <!-- Slide-Over Drawer: Sequenced Audit Itinerary (9-Flight Consolidated 2-Pass Plan) -->
+  <div class="slide-drawer" id="itinerary-drawer" style="width: 450px;">
     <div class="drawer-header">
       <div class="drawer-title">📅 System Sanity Audit Itinerary</div>
       <button class="close-btn" onclick="closeAllDrawers()">✕</button>
     </div>
 
-    <div style="font-size:11px; color:var(--text-muted); line-height:1.5; margin-bottom:14px; border-bottom:1px solid rgba(48,54,61,0.6); padding-bottom:10px;">
-      Topologically sorted dependency itinerary. Foundational hosting &amp; container boundaries precede layout topology, which precedes view modes, content, and contextual tools.
+    <div style="margin: 8px 0 12px 0;">
+      <button id="drawerResequenceBtn" class="interactive-btn purple" style="width: 100%; font-size: 11px; font-weight: 600; padding: 7px 10px; display: flex; align-items: center; justify-content: center; gap: 6px;" onclick="triggerReorderItinerary(this)">
+        <span>🔄 Re-sequence Flights (2-Pass Gate)</span>
+      </button>
     </div>
 
-    <!-- Phase 1: Foundations & Paradigms -->
-        <!-- Phase 1: The Base State (Data & Persistence) -->
+    <div style="font-size:11px; color:var(--text-muted); line-height:1.5; margin-bottom:14px; border-bottom:1px solid rgba(48,54,61,0.6); padding-bottom:10px;">
+      Topologically consolidated 9-flight dependency graph. Bedrock State &amp; IPC precede Routing &amp; AI Harnesses, which precede UI Surfaces &amp; Views, concluding with Meta Governance &amp; Packaging.
+    </div>
+
+    <!-- Phase 1: Bedrock Foundations (Tier 1 Pro High) -->
     <div style="margin-bottom:16px;">
       <div style="font-size:10px; font-family:var(--font-mono); color:var(--accent-purple); font-weight:700; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.05em; border-bottom:1px solid rgba(187,128,255,0.3); padding-bottom:4px;">
-        Phase 1: The Base State (Data &amp; Persistence Prerequisite)
+        Phase 1: Bedrock Foundations (State &amp; IPC) — ⚠️ Tier 1 Pro High
       </div>
 
-      <!-- Flight 1: 6.16 Backend Persistence -->
-      <div class="flight-card" id="flight-item-t16" style="display:flex; justify-content:space-between; align-items:flex-start; padding:8px 10px; border-radius:6px; background:rgba(88,166,255,0.1); border:1px solid var(--accent-blue); margin-bottom:6px;">
+      <!-- Flight 1: 6.16 + 6.7 Canonical State -->
+      <div class="flight-card" id="flight-item-t16" style="display:flex; justify-content:space-between; align-items:flex-start; padding:8px 10px; border-radius:6px; background:rgba(255,171,112,0.12); border:1px solid var(--accent-amber); margin-bottom:6px;">
         <div style="flex:1;">
           <div style="font-size:11px; font-weight:600; color:var(--text-main);">
-            <span style="color:var(--accent-blue); font-weight:700;">F1.</span> Backend Persistence &amp; State (was 6.16)
-          </div>
-          <div style="font-size:10px; color:var(--accent-amber); margin-top:2px;">
-            ⚠️ <em>Root Prerequisite: Canonical state location (Markdown vs SQLite vs LocalStorage) before concurrent writes.</em>
-          </div>
-        </div>
-        <button class="interactive-btn blue" style="font-size:10px; padding:3px 7px;" onclick="loadItineraryTopic('t16')">★ Active</button>
-      </div>
-
-      <!-- Flight 2: 6.7 Context Clues -->
-      <div class="flight-card" id="flight-item-t7" style="display:flex; justify-content:space-between; align-items:flex-start; padding:8px 10px; border-radius:6px; background:rgba(255,255,255,0.02); border:1px solid rgba(48,54,61,0.5); margin-bottom:6px;">
-        <div style="flex:1;">
-          <div style="font-size:11px; font-weight:600; color:var(--text-main);">
-            <span style="color:var(--text-muted); font-weight:700;">F2.</span> Context Clues Architecture (was 6.7)
+            <span style="color:var(--accent-amber); font-family:var(--font-mono);">F1.</span> 6.16 + 6.7: Canonical State &amp; Factory Handoff
           </div>
           <div style="font-size:10px; color:var(--text-muted); margin-top:2px;">
-            Flat Structured Markdown vs SQLite Vector DB for LLM semantic memory.
+            Hybrid Markdown Frontmatter + Client-Side LocalStorage + JSON Catalog. Zero binary DB corruption, instant human Git diffs.
+          </div>
+          <div style="margin-top:4px;">
+            <button class="interactive-btn amber" style="font-size:9px; padding:2px 6px;" onclick="setWorkshopTopic('t16'); closeAllDrawers();">[ 🛠️ Load in Workshop ]</button>
           </div>
         </div>
-        <button class="interactive-btn" style="font-size:10px; padding:3px 7px;" onclick="loadItineraryTopic('t7')">Load</button>
+        <span class="badge badge-amber" style="font-size:9px; margin-left:6px;">ACTIVE</span>
       </div>
 
-      <!-- Flight 3: 6.15 SOTA Precedents -->
-      <div class="flight-card" id="flight-item-t15" style="display:flex; justify-content:space-between; align-items:flex-start; padding:8px 10px; border-radius:6px; background:rgba(255,255,255,0.02); border:1px solid rgba(48,54,61,0.5); margin-bottom:6px;">
+      <!-- Flight 2: 6.17 + 6.18 Execution Bridge -->
+      <div class="flight-card" id="flight-item-t17" style="display:flex; justify-content:space-between; align-items:flex-start; padding:8px 10px; border-radius:6px; background:rgba(63,185,80,0.1); border:1px solid var(--accent-green); margin-bottom:6px;">
         <div style="flex:1;">
           <div style="font-size:11px; font-weight:600; color:var(--text-main);">
-            <span style="color:var(--text-muted); font-weight:700;">F3.</span> Industry Precedents &amp; Teardowns (was 6.15)
+            <span style="color:var(--accent-green); font-family:var(--font-mono);">F2.</span> 6.17 + 6.18: Execution Bridge &amp; Async Workers
           </div>
           <div style="font-size:10px; color:var(--text-muted); margin-top:2px;">
-            Benchmarking Claude Artifacts, Playwright/Vitest UI to lock sidecar model.
+            Zero-copy loopback (:4040) click-to-agent IPC, delegating deep research and builds to parallel background subagents.
+          </div>
+          <div style="margin-top:4px;">
+            <button class="interactive-btn green" style="font-size:9px; padding:2px 6px;" onclick="setWorkshopTopic('t17'); closeAllDrawers();">[ 🛠️ Inspect Flight ]</button>
           </div>
         </div>
-        <button class="interactive-btn" style="font-size:10px; padding:3px 7px;" onclick="loadItineraryTopic('t15')">Load</button>
+        <span class="badge badge-green" style="font-size:9px; margin-left:6px;">APPROVED ✓</span>
       </div>
     </div>
 
-    <!-- Phase 2: The Engine (Execution & IPC) -->
-    <div style="margin-bottom:16px;">
-      <div style="font-size:10px; font-family:var(--font-mono); color:var(--accent-neon); font-weight:700; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.05em; border-bottom:1px solid rgba(63,185,80,0.3); padding-bottom:4px;">
-        Phase 2: The Engine (Execution &amp; IPC)
-      </div>
-
-      <!-- Flight 4: 6.17/6.18 Execution Bridge & Parallel Subagents -->
-      <div class="flight-card" id="flight-item-t17" style="display:flex; justify-content:space-between; align-items:flex-start; padding:8px 10px; border-radius:6px; background:rgba(63,185,80,0.08); border:1px solid rgba(63,185,80,0.4); margin-bottom:6px;">
-        <div style="flex:1;">
-          <div style="font-size:11px; font-weight:600; color:var(--text-main);">
-            <span style="color:var(--accent-green); font-weight:700;">F4.</span> Execution Bridge &amp; Subagents (was 6.17/18)
-          </div>
-          <div style="font-size:10px; color:var(--accent-green); margin-top:2px;">
-            ✓ Phase 1 Online (:4040) • Phase 2: Parallel background subagent workers.
-          </div>
-        </div>
-        <button class="interactive-btn green" style="font-size:10px; padding:3px 7px;" onclick="loadItineraryTopic('t17')">View</button>
-      </div>
-
-      <!-- Flight 5: 6.4/6.14 Skill Taxonomy & Routing -->
-      <div class="flight-card" id="flight-item-t4" style="display:flex; justify-content:space-between; align-items:flex-start; padding:8px 10px; border-radius:6px; background:rgba(255,255,255,0.02); border:1px solid rgba(48,54,61,0.5); margin-bottom:6px;">
-        <div style="flex:1;">
-          <div style="font-size:11px; font-weight:600; color:var(--text-main);">
-            <span style="color:var(--text-muted); font-weight:700;">F5.</span> Skill Taxonomy &amp; Routing (was 6.4/14)
-          </div>
-          <div style="font-size:10px; color:var(--text-muted); margin-top:2px;">
-            Consolidated skills suite + N'kai-first visual default with --chat fallback.
-          </div>
-        </div>
-        <button class="interactive-btn" style="font-size:10px; padding:3px 7px;" onclick="loadItineraryTopic('t4')">Load</button>
-      </div>
-    </div>
-
-    <!-- Phase 3: The Surface (Views & Ergonomics) -->
+    <!-- Phase 2: Orchestration & AI Harnesses (Tier 2 Flash High) -->
     <div style="margin-bottom:16px;">
       <div style="font-size:10px; font-family:var(--font-mono); color:var(--accent-blue); font-weight:700; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.05em; border-bottom:1px solid rgba(88,166,255,0.3); padding-bottom:4px;">
-        Phase 3: The Surface (Views &amp; Ergonomics)
+        Phase 2: Orchestration &amp; Harnesses — 🟢 Tier 2 Flash High
       </div>
 
-      <!-- Flight 6: 6.5 Nkai Ergonomics -->
-      <div class="flight-card" id="flight-item-t5" style="display:flex; justify-content:space-between; align-items:flex-start; padding:8px 10px; border-radius:6px; background:rgba(255,255,255,0.02); border:1px solid rgba(48,54,61,0.5); margin-bottom:6px;">
+      <!-- Flight 3: 6.4 + 6.14 Skill Taxonomy & Defaults -->
+      <div class="flight-card" id="flight-item-t4" style="display:flex; justify-content:space-between; align-items:flex-start; padding:8px 10px; border-radius:6px; background:rgba(0,0,0,0.2); border:1px solid rgba(48,54,61,0.6); margin-bottom:6px;">
         <div style="flex:1;">
           <div style="font-size:11px; font-weight:600; color:var(--text-main);">
-            <span style="color:var(--text-muted); font-weight:700;">F6.</span> N'kai Ergonomics: Asymmetric Split (was 6.5)
+            <span style="color:var(--accent-blue); font-family:var(--font-mono);">F3.</span> 6.4 + 6.14: Skill Taxonomy &amp; Invocation Defaults
           </div>
           <div style="font-size:10px; color:var(--text-muted); margin-top:2px;">
-            Strict separation: terse chat steering vs rich visual sidecar canvas.
+            Layered micro/macro skill taxonomy paired with N'kai-first sidecar defaults and --chat terminal escape hatches.
+          </div>
+          <div style="margin-top:4px;">
+            <button class="interactive-btn blue" style="font-size:9px; padding:2px 6px;" onclick="setWorkshopTopic('t4'); closeAllDrawers();">[ 🛠️ Load in Workshop ]</button>
           </div>
         </div>
-        <button class="interactive-btn" style="font-size:10px; padding:3px 7px;" onclick="loadItineraryTopic('t5')">Load</button>
+        <span class="badge" style="font-size:9px; margin-left:6px;">QUEUED</span>
       </div>
 
-      <!-- Flight 7: 6.9/6.10 Surface Layout & Density -->
-      <div class="flight-card" id="flight-item-t9" style="display:flex; justify-content:space-between; align-items:flex-start; padding:8px 10px; border-radius:6px; background:rgba(255,255,255,0.02); border:1px solid rgba(48,54,61,0.5); margin-bottom:6px;">
+      <!-- Flight 4: 6.13 Universal AI Harness Portability -->
+      <div class="flight-card" id="flight-item-t13" style="display:flex; justify-content:space-between; align-items:flex-start; padding:8px 10px; border-radius:6px; background:rgba(0,0,0,0.2); border:1px solid rgba(48,54,61,0.6); margin-bottom:6px;">
         <div style="flex:1;">
           <div style="font-size:11px; font-weight:600; color:var(--text-main);">
-            <span style="color:var(--text-muted); font-weight:700;">F7.</span> Surface Layout &amp; Density (was 6.9/10)
+            <span style="color:var(--accent-blue); font-family:var(--font-mono);">F4.</span> 6.13: Universal AI Harness Portability
           </div>
           <div style="font-size:10px; color:var(--text-muted); margin-top:2px;">
-            Two-tier header w/ Bridge status LED, utility cluster, and compact tab density.
+            Cross-harness abstraction layer ensuring zero vendor lock-in across Claude Code, Cursor, Windsurf, and Antigravity.
+          </div>
+          <div style="margin-top:4px;">
+            <button class="interactive-btn blue" style="font-size:9px; padding:2px 6px;" onclick="setWorkshopTopic('t13'); closeAllDrawers();">[ 🛠️ Load in Workshop ]</button>
           </div>
         </div>
-        <button class="interactive-btn" style="font-size:10px; padding:3px 7px;" onclick="loadItineraryTopic('t9')">Load</button>
-      </div>
-
-      <!-- Flight 8: 6.8 Ongoing Autopsy -->
-      <div class="flight-card" id="flight-item-t8" style="display:flex; justify-content:space-between; align-items:flex-start; padding:8px 10px; border-radius:6px; background:rgba(255,255,255,0.02); border:1px solid rgba(48,54,61,0.5); margin-bottom:6px;">
-        <div style="flex:1;">
-          <div style="font-size:11px; font-weight:600; color:var(--text-main);">
-            <span style="color:var(--text-muted); font-weight:700;">F8.</span> "Ongoing Autopsy" View Mode (was 6.8)
-          </div>
-          <div style="font-size:10px; color:var(--text-muted); margin-top:2px;">
-            Continuous filterable scorecard feed in persistent Slot 2.
-          </div>
-        </div>
-        <button class="interactive-btn" style="font-size:10px; padding:3px 7px;" onclick="loadItineraryTopic('t8')">Load</button>
-      </div>
-
-      <!-- Flight 9: 6.11 Check Mail -->
-      <div class="flight-card" id="flight-item-t11" style="display:flex; justify-content:space-between; align-items:flex-start; padding:8px 10px; border-radius:6px; background:rgba(255,255,255,0.02); border:1px solid rgba(48,54,61,0.5); margin-bottom:6px;">
-        <div style="flex:1;">
-          <div style="font-size:11px; font-weight:600; color:var(--text-main);">
-            <span style="color:var(--text-muted); font-weight:700;">F9.</span> "Check the Mail" (Vault Inbox) (was 6.11)
-          </div>
-          <div style="font-size:10px; color:var(--text-muted); margin-top:2px;">
-            1-click ingestion and sidecar board generation for raw Vault ideas.
-          </div>
-        </div>
-        <button class="interactive-btn" style="font-size:10px; padding:3px 7px;" onclick="loadItineraryTopic('t11')">Load</button>
+        <span class="badge" style="font-size:9px; margin-left:6px;">QUEUED</span>
       </div>
     </div>
 
-    <!-- Phase 4: Polish & Portability (Ecosystem) -->
+    <!-- Phase 3: Surfaces & Viewports (Tier 2 Flash High) -->
     <div style="margin-bottom:16px;">
-      <div style="font-size:10px; font-family:var(--font-mono); color:var(--accent-amber); font-weight:700; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.05em; border-bottom:1px solid rgba(255,171,112,0.3); padding-bottom:4px;">
-        Phase 4: Polish &amp; Portability (Ecosystem)
+      <div style="font-size:10px; font-family:var(--font-mono); color:var(--accent-neon); font-weight:700; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.05em; border-bottom:1px solid rgba(86,211,100,0.3); padding-bottom:4px;">
+        Phase 3: Surfaces &amp; Viewports — 🟢 Tier 2 Flash High
       </div>
 
-      <!-- Flight 10: 6.6 AGY Shortcuts -->
-      <div class="flight-card" id="flight-item-t6" style="display:flex; justify-content:space-between; align-items:flex-start; padding:8px 10px; border-radius:6px; background:rgba(255,255,255,0.02); border:1px solid rgba(48,54,61,0.5); margin-bottom:6px;">
+      <!-- Flight 5: 6.9 + 6.10 Header Ergonomics & Spatial Density -->
+      <div class="flight-card" id="flight-item-t9" style="display:flex; justify-content:space-between; align-items:flex-start; padding:8px 10px; border-radius:6px; background:rgba(0,0,0,0.2); border:1px solid rgba(48,54,61,0.6); margin-bottom:6px;">
         <div style="flex:1;">
           <div style="font-size:11px; font-weight:600; color:var(--text-main);">
-            <span style="color:var(--text-muted); font-weight:700;">F10.</span> Keyboard Shortcuts &amp; Slash Commands (was 6.6)
+            <span style="color:var(--accent-neon); font-family:var(--font-mono);">F5.</span> 6.9 + 6.10: Header Ergonomics &amp; Spatial Density
           </div>
           <div style="font-size:10px; color:var(--text-muted); margin-top:2px;">
-            Accelerating interactive workflows via keyboard mappings.
+            Two-tier responsive header with Bridge LED, drawer toggles, and compact emoji+number tab density.
+          </div>
+          <div style="margin-top:4px;">
+            <button class="interactive-btn" style="font-size:9px; padding:2px 6px;" onclick="setWorkshopTopic('t9'); closeAllDrawers();">[ 🛠️ Load in Workshop ]</button>
           </div>
         </div>
-        <button class="interactive-btn" style="font-size:10px; padding:3px 7px;" onclick="loadItineraryTopic('t6')">Load</button>
+        <span class="badge" style="font-size:9px; margin-left:6px;">QUEUED</span>
       </div>
 
-      <!-- Flight 11: 6.19 Token Impact Ledger -->
-      <div class="flight-card" id="flight-item-t19" style="display:flex; justify-content:space-between; align-items:flex-start; padding:8px 10px; border-radius:6px; background:rgba(255,255,255,0.02); border:1px solid rgba(48,54,61,0.5); margin-bottom:6px;">
+      <!-- Flight 6: 6.8 + 6.11 Interactive Triage Views -->
+      <div class="flight-card" id="flight-item-t8" style="display:flex; justify-content:space-between; align-items:flex-start; padding:8px 10px; border-radius:6px; background:rgba(0,0,0,0.2); border:1px solid rgba(48,54,61,0.6); margin-bottom:6px;">
         <div style="flex:1;">
           <div style="font-size:11px; font-weight:600; color:var(--text-main);">
-            <span style="color:var(--text-muted); font-weight:700;">F11.</span> Cumulative Allowance &amp; Token Ledger (was 6.19)
+            <span style="color:var(--accent-neon); font-family:var(--font-mono);">F6.</span> 6.8 + 6.11: Interactive Triage Views
           </div>
           <div style="font-size:10px; color:var(--text-muted); margin-top:2px;">
-            Live quota tracking and cost ledger across approved features.
+            Dual viewports: Chronological incoming event stream (Vault Inbox) alongside filterable decision graveyard &amp; scorecard (Autopsy).
+          </div>
+          <div style="margin-top:4px;">
+            <button class="interactive-btn" style="font-size:9px; padding:2px 6px;" onclick="setWorkshopTopic('t8'); closeAllDrawers();">[ 🛠️ Load in Workshop ]</button>
           </div>
         </div>
-        <button class="interactive-btn" style="font-size:10px; padding:3px 7px;" onclick="loadItineraryTopic('t19')">Load</button>
-      </div>
-
-      <!-- Flight 12: 6.12/6.13 Universal Distribution -->
-      <div class="flight-card" id="flight-item-t12" style="display:flex; justify-content:space-between; align-items:flex-start; padding:8px 10px; border-radius:6px; background:rgba(255,255,255,0.02); border:1px solid rgba(48,54,61,0.5); margin-bottom:6px;">
-        <div style="flex:1;">
-          <div style="font-size:11px; font-weight:600; color:var(--text-main);">
-            <span style="color:var(--text-muted); font-weight:700;">F12.</span> Universal Distribution &amp; Adapter (was 6.12/13)
-          </div>
-          <div style="font-size:10px; color:var(--text-muted); margin-top:2px;">
-            Monolithic installer bundle + cross-host runtime (AGY, Claude Code, Cursor).
-          </div>
-        </div>
-        <button class="interactive-btn" style="font-size:10px; padding:3px 7px;" onclick="loadItineraryTopic('t12')">Load</button>
+        <span class="badge" style="font-size:9px; margin-left:6px;">QUEUED</span>
       </div>
     </div>
 
-    <!-- Settled & Approved Foundation -->
+    <!-- Phase 4: Meta, Governance & Packaging (Tier 3 Flash Low) -->
     <div style="margin-bottom:16px;">
-      <div style="font-size:10px; font-family:var(--font-mono); color:var(--accent-green); font-weight:700; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.05em; border-bottom:1px solid rgba(63,185,80,0.3); padding-bottom:4px;">
-        Settled &amp; Approved Foundation
+      <div style="font-size:10px; font-family:var(--font-mono); color:var(--accent-cyan); font-weight:700; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.05em; border-bottom:1px solid rgba(56,189,248,0.3); padding-bottom:4px;">
+        Phase 4: Meta, Governance &amp; Packaging — ⚡ Tier 3 Flash Low
       </div>
 
-      <div class="flight-card" style="display:flex; justify-content:space-between; align-items:flex-start; padding:8px 10px; border-radius:6px; background:rgba(63,185,80,0.05); border:1px solid rgba(63,185,80,0.3); margin-bottom:6px; opacity:0.8;">
+      <!-- Flight 7: 6.1 + 6.2 + 6.15 PCDA Governance & Precedents -->
+      <div class="flight-card" id="flight-item-t1" style="display:flex; justify-content:space-between; align-items:flex-start; padding:8px 10px; border-radius:6px; background:rgba(63,185,80,0.1); border:1px solid var(--accent-green); margin-bottom:6px;">
         <div style="flex:1;">
-          <div style="font-size:11px; font-weight:600; color:var(--text-main);"><span style="color:var(--accent-green); font-weight:700;">✓ 6.1</span> Post-Mortem Architecture</div>
-          <div style="font-size:10px; color:var(--accent-green); margin-top:2px;">APPROVED: Continuous Live Triage</div>
+          <div style="font-size:11px; font-weight:600; color:var(--text-main);">
+            <span style="color:var(--accent-green); font-family:var(--font-mono);">F7.</span> 6.1 + 6.2 + 6.15: PCDA Governance &amp; Precedents
+          </div>
+          <div style="font-size:10px; color:var(--text-muted); margin-top:2px;">
+            Hegelian dialectic triad (Thesis -> Antithesis -> Synthesis), on-demand PCDA tables, and industry benchmarking.
+          </div>
+          <div style="margin-top:4px;">
+            <button class="interactive-btn green" style="font-size:9px; padding:2px 6px;" onclick="setWorkshopTopic('t1'); closeAllDrawers();">[ 🛠️ Inspect Flight ]</button>
+          </div>
         </div>
-        <button class="interactive-btn green" style="font-size:10px; padding:3px 7px;" onclick="loadItineraryTopic('t1')">View</button>
+        <span class="badge badge-green" style="font-size:9px; margin-left:6px;">APPROVED ✓</span>
       </div>
 
-      <div class="flight-card" style="display:flex; justify-content:space-between; align-items:flex-start; padding:8px 10px; border-radius:6px; background:rgba(63,185,80,0.05); border:1px solid rgba(63,185,80,0.3); margin-bottom:6px; opacity:0.8;">
+      <!-- Flight 8: 6.19 + 6.3 Token Impact Ledger & Lifecycle Org -->
+      <div class="flight-card" id="flight-item-t19" style="display:flex; justify-content:space-between; align-items:flex-start; padding:8px 10px; border-radius:6px; background:rgba(0,0,0,0.2); border:1px solid rgba(48,54,61,0.6); margin-bottom:6px;">
         <div style="flex:1;">
-          <div style="font-size:11px; font-weight:600; color:var(--text-main);"><span style="color:var(--accent-green); font-weight:700;">✓ 6.2</span> Pros &amp; Cons Strategy</div>
-          <div style="font-size:10px; color:var(--accent-green); margin-top:2px;">APPROVED: On-Demand SOTA w/ Live Research</div>
+          <div style="font-size:11px; font-weight:600; color:var(--text-main);">
+            <span style="color:var(--accent-cyan); font-family:var(--font-mono);">F8.</span> 6.19 + 6.3: Token Impact Ledger &amp; Lifecycle Org
+          </div>
+          <div style="font-size:10px; color:var(--text-muted); margin-top:2px;">
+            Live quota footprint tracking across complexity tiers (Pro vs Flash) within deep-linked monolithic boards.
+          </div>
+          <div style="margin-top:4px;">
+            <button class="interactive-btn" style="font-size:9px; padding:2px 6px;" onclick="setWorkshopTopic('t19'); closeAllDrawers();">[ 🛠️ Load in Workshop ]</button>
+          </div>
         </div>
-        <button class="interactive-btn green" style="font-size:10px; padding:3px 7px;" onclick="loadItineraryTopic('t2')">View</button>
+        <span class="badge" style="font-size:9px; margin-left:6px;">QUEUED</span>
       </div>
 
-      <div class="flight-card" style="display:flex; justify-content:space-between; align-items:flex-start; padding:8px 10px; border-radius:6px; background:rgba(63,185,80,0.05); border:1px solid rgba(63,185,80,0.3); margin-bottom:6px; opacity:0.8;">
+      <!-- Flight 9: 6.12 + 6.6 Distribution Packaging & Key Ergonomics -->
+      <div class="flight-card" id="flight-item-t12" style="display:flex; justify-content:space-between; align-items:flex-start; padding:8px 10px; border-radius:6px; background:rgba(0,0,0,0.2); border:1px solid rgba(48,54,61,0.6); margin-bottom:6px;">
         <div style="flex:1;">
-          <div style="font-size:11px; font-weight:600; color:var(--text-main);"><span style="color:var(--accent-green); font-weight:700;">✓ 6.3</span> Topic Organization Strategy</div>
-          <div style="font-size:10px; color:var(--accent-green); margin-top:2px;">APPROVED: Deep-Linked Monolithic Board</div>
+          <div style="font-size:11px; font-weight:600; color:var(--text-main);">
+            <span style="color:var(--accent-cyan); font-family:var(--font-mono);">F9.</span> 6.12 + 6.6: Distribution Packaging &amp; Key Ergonomics
+          </div>
+          <div style="font-size:10px; color:var(--text-muted); margin-top:2px;">
+            Self-contained all-in-one nkai distribution bundle with keyboard power suite (Ctrl+K palette, Ctrl+I composer).
+          </div>
+          <div style="margin-top:4px;">
+            <button class="interactive-btn" style="font-size:9px; padding:2px 6px;" onclick="setWorkshopTopic('t12'); closeAllDrawers();">[ 🛠️ Load in Workshop ]</button>
+          </div>
         </div>
-        <button class="interactive-btn green" style="font-size:10px; padding:3px 7px;" onclick="loadItineraryTopic('t3')">View</button>
+        <span class="badge" style="font-size:9px; margin-left:6px;">QUEUED</span>
       </div>
     </div>
   </div>
@@ -963,19 +927,16 @@
         <span class="badge badge-amber" id="itinerary-pending-badge" style="font-size: 10px;">13 PENDING</span>
       </button>
 
-            <div class="sidebar-section-title">Sequenced Flight Plan</div>
-      <a class="sidebar-item active" href="#sec-audit-t16"><span>F1. 6.16 Persistence</span> <span id="side-v-t16" class="badge badge-amber">ACTIVE</span></a>
-      <a class="sidebar-item" href="#sec-audit-t7"><span>F2. 6.7 Context Clues</span> <span id="side-v-t7" class="badge">PENDING</span></a>
-      <a class="sidebar-item" href="#sec-audit-t15"><span>F3. 6.15 Precedents</span> <span id="side-v-t15" class="badge">PENDING</span></a>
-      <a class="sidebar-item" href="#sec-audit-t17"><span>F4. 6.17/18 Bridge &amp; Subagents</span> <span id="side-v-t17" class="badge badge-green">✓</span></a>
-      <a class="sidebar-item" href="#sec-audit-t4"><span>F5. 6.4/14 Skill Taxonomy</span> <span id="side-v-t4" class="badge">PENDING</span></a>
-      <a class="sidebar-item" href="#sec-audit-t5"><span>F6. 6.5 N'kai Ergonomics</span> <span id="side-v-t5" class="badge">PENDING</span></a>
-      <a class="sidebar-item" href="#sec-audit-t9"><span>F7. 6.9/10 Surface &amp; Density</span> <span id="side-v-t9" class="badge">PENDING</span></a>
-      <a class="sidebar-item" href="#sec-audit-t8"><span>F8. 6.8 Ongoing Autopsy</span> <span id="side-v-t8" class="badge">PENDING</span></a>
-      <a class="sidebar-item" href="#sec-audit-t11"><span>F9. 6.11 "Check Mail"</span> <span id="side-v-t11" class="badge">PENDING</span></a>
-      <a class="sidebar-item" href="#sec-audit-t6"><span>F10. 6.6 AGY Shortcuts</span> <span id="side-v-t6" class="badge">PENDING</span></a>
-      <a class="sidebar-item" href="#sec-audit-t19"><span>F11. 6.19 Allowance Ledger</span> <span id="side-v-t19" class="badge">PENDING</span></a>
-      <a class="sidebar-item" href="#sec-audit-t12"><span>F12. 6.12/13 Distribution</span> <span id="side-v-t12" class="badge">PENDING</span></a>
+                  <div class="sidebar-section-title">Sequenced Flight Plan (9 Nodes)</div>
+      <a class="sidebar-item active" href="#sec-audit-t16"><span>F1. 6.16+6.7 State</span> <span id="side-v-t16" class="badge badge-amber">ACTIVE</span></a>
+      <a class="sidebar-item" href="#sec-audit-t17"><span>F2. 6.17+6.18 Bridge</span> <span id="side-v-t17" class="badge badge-green">✓</span></a>
+      <a class="sidebar-item" href="#sec-audit-t4"><span>F3. 6.4+6.14 Skills</span> <span id="side-v-t4" class="badge">QUEUED</span></a>
+      <a class="sidebar-item" href="#sec-audit-t13"><span>F4. 6.13 Portability</span> <span id="side-v-t13" class="badge">QUEUED</span></a>
+      <a class="sidebar-item" href="#sec-audit-t9"><span>F5. 6.9+6.10 Header</span> <span id="side-v-t9" class="badge">QUEUED</span></a>
+      <a class="sidebar-item" href="#sec-audit-t8"><span>F6. 6.8+6.11 Views</span> <span id="side-v-t8" class="badge">QUEUED</span></a>
+      <a class="sidebar-item" href="#sec-audit-t1"><span>F7. PCDA Governance</span> <span id="side-v-t1" class="badge badge-green">✓</span></a>
+      <a class="sidebar-item" href="#sec-audit-t19"><span>F8. 6.19 Ledger</span> <span id="side-v-t19" class="badge">QUEUED</span></a>
+      <a class="sidebar-item" href="#sec-audit-t12"><span>F9. 6.12 Dist &amp; Keys</span> <span id="side-v-t12" class="badge">QUEUED</span></a>
 
       <div class="sidebar-section-title">Interactive Labs</div>
       <a class="sidebar-item" href="#sec-matrix-lab">📊 2x2 Decision Matrix</a>
@@ -3131,7 +3092,35 @@ function toggleDrawer(drawerId) {
     window.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') closeAllDrawers();
     });
-      function forceReloadCanvas(btn) {
+          function triggerReorderItinerary(btn) {
+      if (btn) btn.classList.add('is-spinning');
+      playHapticTick();
+      showToast("🔄 Re-sequencing flights via 2-Pass Convergence Gate...");
+
+      if (window.isBridgeOnline) {
+        fetch('http://127.0.0.1:4040/api/action', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            action: 'reorderItinerary',
+            prompt: 'Trigger /audit-reorder: execute 2-Pass Convergence Gate on all audit topics and re-sequence flight path',
+            source: 'nkai-sidecar'
+          })
+        })
+        .then(r => r.json())
+        .then(data => {
+          showToast("⚡ Re-sequence request dispatched to AI agent!");
+          setTimeout(() => { if (btn) btn.classList.remove('is-spinning'); }, 1000);
+        })
+        .catch(e => {
+          copyPromptToChat('Trigger /audit-reorder: execute 2-Pass Convergence Gate on all audit topics and re-sequence flight path', btn);
+        });
+      } else {
+        copyPromptToChat('Trigger /audit-reorder: execute 2-Pass Convergence Gate on all audit topics and re-sequence flight path', btn);
+      }
+    }
+
+    function forceReloadCanvas(btn) {
       if (btn) btn.classList.add('is-spinning');
       setTimeout(() => {
         try {
@@ -4521,25 +4510,25 @@ function toggleDrawer(drawerId) {
       });
 
             const flightMap = {
-        t16: 'F1: 6.16 Persistence',
-        t7: 'F2: 6.7 Context Clues',
-        t15: 'F3: 6.15 Precedents',
-        t17: 'F4: 6.17 Bridge ✓',
-        t18: 'F4: 6.18 Subagents',
-        t4: 'F5: 6.4 Skill Taxonomy',
-        t14: 'F5: 6.14 Nkai-First',
-        t5: 'F6: 6.5 Ergonomics',
-        t9: 'F7: 6.9 Surface & Density',
-        t10: 'F7: 6.10 Tab Density',
-        t8: 'F8: 6.8 Autopsy View',
-        t11: 'F9: 6.11 Check Mail',
-        t6: 'F10: 6.6 AGY Shortcuts',
-        t19: 'F11: 6.19 Allowance Ledger',
-        t12: 'F12: 6.12 Bundle & Dist',
-        t13: 'F12: 6.13 Host Portability',
-        t1: '6.1 Post-Mortem ✓',
-        t2: '6.2 Pros/Cons ✓',
-        t3: '6.3 Topic Org ✓'
+        t16: 'F1: 6.16+6.7 State',
+        t7: 'F1: 6.7 Context Clues',
+        t17: 'F2: 6.17+6.18 Bridge ✓',
+        t18: 'F2: 6.18 Subagents',
+        t4: 'F3: 6.4+6.14 Skills',
+        t14: 'F3: 6.14 Defaults',
+        t13: 'F4: 6.13 Portability',
+        t9: 'F5: 6.9+6.10 Header',
+        t10: 'F5: 6.10 Tab Density',
+        t8: 'F6: 6.8+6.11 Views',
+        t11: 'F6: 6.11 Check Mail',
+        t1: 'F7: PCDA Governance ✓',
+        t2: 'F7: 6.2 Pros/Cons ✓',
+        t15: 'F7: 6.15 Precedents ✓',
+        t19: 'F8: 6.19 Ledger',
+        t3: 'F8: 6.3 Topic Org ✓',
+        t12: 'F9: 6.12 Dist & Keys',
+        t6: 'F9: 6.6 Shortcuts',
+        t5: 'F5: 6.5 Ergonomics'
       };
 
       const sideActiveNum = document.getElementById('side-active-topic-num');
