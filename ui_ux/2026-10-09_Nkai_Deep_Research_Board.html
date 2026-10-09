@@ -722,6 +722,18 @@
 
     <!-- Phase 1: Foundations & Paradigms -->
     <div style="margin-bottom:16px;">
+      <!-- Spotlight Priority: 6.17 Bridge -->
+      <div class="flight-card" id="flight-item-t17" style="display:flex; justify-content:space-between; align-items:flex-start; padding:8px 10px; border-radius:6px; background:rgba(126,231,135,0.12); border:1px solid var(--accent-neon); margin-bottom:8px;">
+        <div style="flex:1;">
+          <div style="font-size:11px; font-weight:700; color:var(--text-main);">
+            <span style="color:var(--accent-neon); font-weight:700;">⚡ SPOTLIGHT:</span> 6.17 The Bidirectional Click Bridge
+          </div>
+          <div style="font-size:10px; color:var(--accent-neon); margin-top:2px;">
+            🔥 <em>Direct Click-to-Agent IPC: Eliminating manual copy-paste prods!</em>
+          </div>
+        </div>
+        <button class="interactive-btn green" style="font-size:10px; padding:3px 7px;" onclick="loadItineraryTopic('t17')">★ Active</button>
+      </div>
       <div style="font-size:10px; font-family:var(--font-mono); color:var(--accent-purple); font-weight:700; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.05em; border-bottom:1px solid rgba(187,128,255,0.3); padding-bottom:4px;">
         Phase 1: Foundations &amp; Paradigms (Host, Packaging &amp; Persistence)
       </div>
@@ -969,7 +981,7 @@
       <a class="sidebar-item" href="#sec-upgrade">5.0 Upgrade Path &amp; Migration</a>
 
             <div class="sidebar-section-title">Active Focus</div>
-      <a class="sidebar-item active" id="side-item-workshop" href="#tab-workshop">🛠️ Active Workshop (<span id="side-active-topic-num">F1: 6.15</span>)</a>
+      <a class="sidebar-item active" id="side-item-workshop" href="#tab-workshop">🛠️ Active Workshop (<span id="side-active-topic-num">⚡ 6.17 Bridge</span>)</a>
 
       <div class="sidebar-section-title">Audit Navigation</div>
       <button id="toggleItineraryBtn" class="interactive-btn purple" style="width: 100%; margin: 4px 0 10px 0; font-weight: 600; display: flex; align-items: center; justify-content: space-between; padding: 7px 10px; font-size: 11px;" onclick="toggleItineraryDrawer()">
@@ -978,6 +990,7 @@
       </button>
 
       <div class="sidebar-section-title">Sequenced Flight Plan</div>
+      <a class="sidebar-item active" href="#sec-audit-t17"><span>⚡ 6.17 Click-to-Agent Bridge</span> <span id="side-v-t17" class="badge badge-green">ACTIVE</span></a>
       <a class="sidebar-item" href="#sec-audit-t15"><span>F1. 6.15 Industry Precedents</span> <span id="side-v-t15" class="badge badge-blue">ACTIVE</span></a>
       <a class="sidebar-item" href="#sec-audit-t13"><span>F2. 6.13 Host Portability</span> <span id="side-v-t13" class="badge">PENDING</span></a>
       <a class="sidebar-item" href="#sec-audit-t12"><span>F3. 6.12 All-in-One Bundle</span> <span id="side-v-t12" class="badge">PENDING</span></a>
@@ -1004,21 +1017,21 @@
       <!-- Tab 0: Active Workshop (Hero Stage) -->
       <div id="tab-workshop" class="tab-pane">
         <div class="hero-card" style="border-left: 4px solid var(--accent-amber); background: linear-gradient(180deg, rgba(255, 171, 112, 0.08) 0%, rgba(13, 17, 23, 0.98) 100%);">
-                    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:10px;">
+                              <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:10px;">
             <div>
-              <div class="hero-badge" style="color:var(--accent-amber); border-color:rgba(255,171,112,0.4); background:rgba(255,171,112,0.12);">
-                🛠️ Active Workshop: In-Flight Triage Stage • Flight 1 (Root Prerequisite)
+              <div class="hero-badge" style="color:var(--accent-neon); border-color:rgba(126,231,135,0.4); background:rgba(126,231,135,0.12);">
+                ⚡ Active Workshop: Spotlight Priority (Ergonomics Leap)
               </div>
               <h1 class="hero-title" id="ws-hero-title" style="margin-top:4px;">
-                Topic 6.15: Industry Workflow Precedents &amp; Competitive Teardowns
+                Topic 6.17: The Bidirectional Click-to-Agent Bridge (Zero-Copy Sidecar IPC)
               </h1>
               <p class="hero-desc" id="ws-hero-desc" style="max-width:760px; margin-bottom:8px;">
-                Isolating the active triage topic for immediate evaluation, trade-off analysis, and instant verdict submission.
+                Eliminating manual clipboard copy-paste: Direct click-to-agent IPC so buttons in N'kai instantly dispatch actions and wake up the AI agent.
               </p>
             </div>
             <div style="text-align:right;">
               <span id="workshop-scorecard" class="badge badge-amber" style="font-size:11px; padding:4px 8px;">
-                [ 3 Approved | 0 Tabled | 0 Killed | 13 Pending ]
+                [ 3 Approved | 0 Tabled | 0 Killed | 14 Pending ]
               </span>
             </div>
           </div>
@@ -1026,7 +1039,8 @@
           <!-- Workshop Topic Quick-Switch Pills (Sequenced Itinerary Order) -->
           <div style="display:flex; gap:6px; margin-top:12px; flex-wrap:wrap; align-items:center;">
             <span style="font-size:10px; font-family:var(--font-mono); color:var(--text-muted); text-transform:uppercase; margin-right:4px;">Flight Plan:</span>
-            <button class="header-btn amber active" id="btn-ws-t15" onclick="setWorkshopTopic('t15')" style="font-size:10px; padding:3px 7px; border-color:var(--accent-amber); background:rgba(255,171,112,0.25);">F1. Precedents ★ ACTIVE</button>
+            <button class="header-btn green active" id="btn-ws-t17" onclick="setWorkshopTopic('t17')" style="font-size:10px; padding:3px 7px; border-color:var(--accent-neon); background:rgba(126,231,135,0.25);">⚡ 6.17 Bridge ★ SPOTLIGHT</button>
+            <button class="header-btn" id="btn-ws-t15" onclick="setWorkshopTopic('t15')" style="font-size:10px; padding:3px 7px;">F1. Precedents</button>
             <button class="header-btn" id="btn-ws-t13" onclick="setWorkshopTopic('t13')" style="font-size:10px; padding:3px 7px;">F2. Portability</button>
             <button class="header-btn" id="btn-ws-t12" onclick="setWorkshopTopic('t12')" style="font-size:10px; padding:3px 7px;">F3. Bundle</button>
             <button class="header-btn" id="btn-ws-t16" onclick="setWorkshopTopic('t16')" style="font-size:10px; padding:3px 7px;">F4. Backend</button>
@@ -1045,45 +1059,45 @@
           </div>
         </div>
 
-                <!-- Active Topic Workshop Hero Card Mount -->
+                        <!-- Active Topic Workshop Hero Card Mount -->
         <div id="workshop-card-mount">
-          <!-- Rendered dynamically by setWorkshopTopic, pre-populated with t15 -->
+          <!-- Rendered dynamically by setWorkshopTopic, pre-populated with t17 -->
           <div class="section-card" id="workshop-card">
             <div class="section-title">
-              <span id="ws-card-title">6.15 Industry Workflow Precedents &amp; Competitive Teardowns</span>
-              <span id="ws-card-badge" class="badge badge-purple">Industry Benchmarking</span>
+              <span id="ws-card-title">6.17 The Bidirectional Click-to-Agent Bridge (Zero-Copy Sidecar IPC)</span>
+              <span id="ws-card-badge" class="badge badge-green">Ergonomics Leap</span>
             </div>
             <p id="ws-card-desc" style="font-size: 12px; line-height: 1.6; color: var(--text-main);">
-              <strong>The Question:</strong> Are there existing major developer or AI tools that use N'kai's asymmetric sidecar workflow (chat in one panel, live rich interactive visual canvas in the other), and what architectural patterns, micro-interactions, or ergonomics can we adopt from them?
+              <strong>The Question:</strong> How do we build a direct, zero-copy communication bridge so that clicking buttons in N'kai (like 'Approve', 'Request Pros &amp; Cons', or 'Run Online Research') immediately dispatches actions directly to the AI agent, eliminating the need to manually copy-paste into chat or prod the model?
             </p>
 
             <div class="grid-3" id="ws-card-options" style="margin-top: 12px;">
               <div class="pill-card">
-                <div class="pill-title">Option A: The Static Artifact Model (Claude Artifacts)</div>
-                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Isolated iframe rendered purely from agent markdown file output. Clean side-by-side view, but primarily a read-only preview with minimal bidirectional interaction or live workspace controls.</p>
+                <div class="pill-title">Option A: Native Antigravity Plugin (Sidecar SDK / MCP)</div>
+                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Run N'kai as an installed IDE extension (<code>nkai/plugin/</code>). Buttons call <code>window.sidecar.sendAction()</code>, which routes directly through Antigravity's MCP server into the agent conversation. 100% native, zero terminal daemons, but requires installing the plugin.</p>
               </div>
               <div class="pill-card">
-                <div class="pill-title">Option B: The Local WebSocket Server Model (Playwright/Vitest UI)</div>
-                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Spins up a local background HTTP/WebSocket server streaming real-time JSON-RPC to a heavy SPA. Highly interactive, but introduces brittle daemon lifecycle management, port conflicts, and battery/CPU drain.</p>
+                <div class="pill-title">Option B: Universal Localhost Loopback Micro-Server (npx nkai serve)</div>
+                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">A lightweight 40-line Node or Python daemon on <code>localhost:4040</code>. Buttons call <code>fetch('http://localhost:4040/action')</code>, writing to <code>.agents/pipeline/actions.json</code> which triggers an agent notification. Works across ALL harnesses (AGY, Claude Code, Cursor, Chrome).</p>
               </div>
               <div class="pill-card" style="border: 1px solid var(--accent-green);">
-                <div class="pill-title" style="color:var(--accent-green);">Option C: The Hybrid File-URI Model (Recommended)</div>
-                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Leverage IDE webview interception via <code>file:///</code> URI to artifact directories. Zero background server daemons. Uses Web Workers, <code>localStorage</code>, and 1-click prompt-to-clipboard action chips for instant pairing with chat at zero token burn.</p>
+                <div class="pill-title" style="color:var(--accent-green);">Option C: Hybrid Resilient Adapter (Plugin SDK + Localhost + Clipboard Fallback) [Recommended]</div>
+                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Checks for <code>window.sidecar</code> first (native AGY plugin mode). If absent, attempts loopback <code>fetch('localhost:4040')</code>. If offline, gracefully falls back to the hardened in-canvas expansion and clipboard modal. Guarantees zero broken clicks anywhere.</p>
               </div>
             </div>
 
             <!-- 3-Lens Pros & Cons -->
             <div id="ws-card-evaluation" style="margin-top: 14px; background: rgba(0,0,0,0.3); border: 1px solid rgba(48,54,61,0.6); border-radius: 6px; padding: 12px;">
-              <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option C: Hybrid File-URI Model)</div>
+              <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option C: Hybrid Resilient Adapter)</div>
               <ul style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin: 0; padding-left: 18px;">
-                <li><strong>🌍 Real-World Ergonomics:</strong> Zero setup. Click the link and the canvas renders instantly in the IDE side panel with persistent zoom, theme, and tab state. No server to crash or leave running.</li>
-                <li><strong>🏛️ Wider SOTA:</strong> Combines the lightweight elegance of Claude Artifacts with the interactive power of Storybook and Vitest UI without their heavy daemon baggage.</li>
-                <li><strong>🏆 Best Practices:</strong> Zero external dependencies. Indestructible offline portability with instant 100% testable DOM.</li>
+                <li><strong>🌍 Real-World Ergonomics:</strong> The holy grail of pair-programming. You click 'Approve Option B' or 'Request Pros &amp; Cons', and the agent immediately receives the signal and starts working—zero manual copy-paste friction.</li>
+                <li><strong>🏛️ Wider SOTA:</strong> Matches how Playwright UI, Vitest UI, and Storybook bridge interactive webviews back to CLI test runners and daemons.</li>
+                <li><strong>🏆 Best Practices:</strong> Multi-tiered graceful degradation ensures that if the server isn't running, the user never gets an unhandled crash or stalled click.</li>
               </ul>
               <div style="margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap;">
-                <button class="interactive-btn blue" onclick="copyPromptToChat('pros and cons for SOTA Sidecar Architectures (Claude vs Playwright vs Nkai) across the 4 Lenses', this)">[ ⚖️ Request Pros &amp; Cons ]</button>
-                <button class="interactive-btn purple" onclick="copyPromptToChat('research online developer ergonomics of webview sidecars and canvas interfaces in AI IDEs', this)">[ 🔬 Research Online ]</button>
-                <button class="interactive-btn amber" onclick="navigateToSection('sec-audit-t15')">[ 🔍 See in Full Context ]</button>
+                <button class="interactive-btn blue" onclick="copyPromptToChat('pros and cons for Native Plugin MCP vs Localhost Loopback vs Hybrid Adapter across the 4 Lenses', this)">[ ⚖️ Request Pros &amp; Cons ]</button>
+                <button class="interactive-btn purple" onclick="copyPromptToChat('research online webview to AI agent IPC patterns in Claude Cursor and Antigravity', this)">[ 🔬 Research Online ]</button>
+                <button class="interactive-btn amber" onclick="navigateToSection('sec-audit-t17')">[ 🔍 See in Full Context ]</button>
               </div>
             </div>
 
@@ -1093,9 +1107,9 @@
                 Verdict: <strong id="workshop-v-badge" class="badge">PENDING</strong>
               </div>
               <div style="display:flex; gap:6px; flex-wrap:wrap;">
-                <button class="interactive-btn" id="ws-btn-approve" style="color:var(--accent-green); border-color:var(--accent-green);" onclick="setAuditVerdict(window.currentWorkshopTopic || 't15', 'APPROVED', this)">[ ✅ APPROVE Option C ]</button>
-                <button class="interactive-btn amber" id="ws-btn-table" onclick="setAuditVerdict(window.currentWorkshopTopic || 't15', 'TABLED', this)">[ ⏳ TABLE ]</button>
-                <button class="interactive-btn" id="ws-btn-kill" style="color:var(--accent-red); border-color:var(--accent-red);" onclick="setAuditVerdict(window.currentWorkshopTopic || 't15', 'KILLED', this)">[ 💀 KEEP Option A ]</button>
+                <button class="interactive-btn" id="ws-btn-approve" style="color:var(--accent-green); border-color:var(--accent-green);" onclick="setAuditVerdict(window.currentWorkshopTopic || 't17', 'APPROVED', this)">[ ✅ APPROVE Option C (Hybrid Adapter) ]</button>
+                <button class="interactive-btn amber" id="ws-btn-table" onclick="setAuditVerdict(window.currentWorkshopTopic || 't17', 'TABLED', this)">[ ⏳ TABLE ]</button>
+                <button class="interactive-btn" id="ws-btn-kill" style="color:var(--accent-red); border-color:var(--accent-red);" onclick="setAuditVerdict(window.currentWorkshopTopic || 't17', 'KILLED', this)">[ 💀 KEEP Option A (Plugin Only) ]</button>
               </div>
             </div>
           </div>
@@ -2329,6 +2343,56 @@ class SidecarMigrator:
           </div>
         </div>
 
+        <!-- Topic 6.17: The Bidirectional Click-to-Agent Bridge -->
+        <div class="section-card" id="sec-audit-t17" style="border-left: 3px solid var(--accent-neon);">
+          <div class="section-title">
+            <span>6.17 The Bidirectional Click-to-Agent Bridge (Zero-Copy Sidecar IPC)</span>
+            <span class="badge badge-green">Ergonomics Leap</span>
+          </div>
+          <p style="font-size: 12px; line-height: 1.6; color: var(--text-main);">
+            <strong>The Question:</strong> How do we build a direct, zero-copy communication bridge so that clicking buttons in N'kai (like 'Approve', 'Request Pros &amp; Cons', or 'Run Online Research') immediately dispatches actions directly to the AI agent, eliminating the need to manually copy-paste into chat or prod the model?
+          </p>
+
+          <div class="grid-3" style="margin-top: 12px;">
+            <div class="pill-card">
+              <div class="pill-title">Option A: Native Antigravity Plugin (Sidecar SDK / MCP)</div>
+              <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Run N'kai as an installed IDE extension (<code>nkai/plugin/</code>). Buttons call <code>window.sidecar.sendAction()</code>, which routes directly through Antigravity's MCP server into the agent conversation. 100% native, zero terminal daemons, but requires installing the plugin.</p>
+            </div>
+            <div class="pill-card">
+              <div class="pill-title">Option B: Universal Localhost Loopback Micro-Server (npx nkai serve)</div>
+              <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">A lightweight 40-line Node or Python daemon on <code>localhost:4040</code>. Buttons call <code>fetch('http://localhost:4040/action')</code>, writing to <code>.agents/pipeline/actions.json</code> which triggers an agent notification. Works across ALL harnesses (AGY, Claude Code, Cursor, Chrome).</p>
+            </div>
+            <div class="pill-card" style="border: 1px solid var(--accent-green);">
+              <div class="pill-title" style="color:var(--accent-green);">Option C: Hybrid Resilient Adapter (Plugin SDK + Localhost + Clipboard Fallback) [Recommended]</div>
+              <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Checks for <code>window.sidecar</code> first (native AGY plugin mode). If absent, attempts loopback <code>fetch('localhost:4040')</code>. If offline, gracefully falls back to the hardened in-canvas expansion and clipboard modal. Guarantees zero broken clicks anywhere.</p>
+            </div>
+          </div>
+
+          <div style="margin-top: 14px; background: rgba(0,0,0,0.3); border: 1px solid rgba(48,54,61,0.6); border-radius: 6px; padding: 12px;">
+            <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option C: Hybrid Resilient Adapter)</div>
+            <ul style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin: 0; padding-left: 18px;">
+              <li><strong>🌍 Real-World Ergonomics:</strong> The holy grail of pair-programming. You click 'Approve Option B' or 'Request Pros &amp; Cons', and the agent immediately receives the signal and starts working—zero manual copy-paste friction.</li>
+              <li><strong>🏛️ Wider SOTA:</strong> Matches how Playwright UI, Vitest UI, and Storybook bridge interactive webviews back to CLI test runners and daemons.</li>
+              <li><strong>🏆 Best Practices:</strong> Multi-tiered graceful degradation ensures that if the server isn't running, the user never gets an unhandled crash or stalled click.</li>
+            </ul>
+            <div style="margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" onclick="copyPromptToChat('pros and cons for Native Plugin MCP vs Localhost Loopback vs Hybrid Adapter across the 4 Lenses', this)">[ ⚖️ Request Pros &amp; Cons ]</button>
+              <button class="interactive-btn purple" onclick="copyPromptToChat('research online webview to AI agent IPC patterns in Claude Cursor and Antigravity', this)">[ 🔬 Research Online ]</button>
+            </div>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:14px; padding-top:10px; border-top:1px solid rgba(48,54,61,0.5);">
+            <div style="font-family:var(--font-mono); font-size:11px; color:var(--text-muted);">
+              Verdict: <strong id="v-badge-t17" style="color:var(--text-muted);">PENDING</strong>
+            </div>
+            <div style="display:flex; gap:6px;">
+              <button class="interactive-btn" style="color:var(--accent-green); border-color:var(--accent-green);" onclick="setAuditVerdict('t17', 'APPROVED', this)">[ ✅ APPROVE Option C (Hybrid Adapter) ]</button>
+              <button class="interactive-btn amber" onclick="setAuditVerdict('t17', 'TABLED', this)">[ ⏳ TABLE ]</button>
+              <button class="interactive-btn" style="color:var(--accent-red); border-color:var(--accent-red);" onclick="setAuditVerdict('t17', 'KILLED', this)">[ 💀 KEEP Option A (Plugin Only) ]</button>
+            </div>
+          </div>
+        </div>
+
         <!-- Topic 6.15: Industry Workflow Precedents & Competitive Teardowns -->
         <div class="section-card" id="sec-audit-t15">
           <div class="section-title">
@@ -2917,7 +2981,7 @@ function toggleDrawer(drawerId) {
     // ============================================================
     // Active Workshop & Sanity Audit Triage Engine
     // ============================================================
-    window.currentWorkshopTopic = 't15';
+    window.currentWorkshopTopic = 't17';
 
     const defaultAuditVerdicts = {
       t1: { title: '6.1 Post-Mortem Architecture', verdict: 'APPROVED' },
@@ -2933,6 +2997,36 @@ function toggleDrawer(drawerId) {
       t11: { title: '6.11 "Check the Mail" Workflow', verdict: 'PENDING' },
       t12: { title: '6.12 All-in-One Distribution Bundle', verdict: 'PENDING' },
       t13: { title: '6.13 Universal AI Harness Portability', verdict: 'PENDING' },
+      t17: {
+        title: '6.17 The Bidirectional Click-to-Agent Bridge (Zero-Copy Sidecar IPC)',
+        badge: 'Ergonomics Leap',
+        desc: '<strong>The Question:</strong> How do we build a direct, zero-copy communication bridge so that clicking buttons in N\'kai (like \'Approve\', \'Request Pros &amp; Cons\', or \'Run Online Research\') immediately dispatches actions directly to the AI agent, eliminating the need to manually copy-paste into chat or prod the model?',
+        optionsHtml: `
+          <div class="pill-card">
+            <div class="pill-title">Option A: Native Antigravity Plugin (Sidecar SDK / MCP)</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Run N\'kai as an installed IDE extension (<code>nkai/plugin/</code>). Buttons call <code>window.sidecar.sendAction()</code>, which routes directly through Antigravity\'s MCP server into the agent conversation. 100% native, zero terminal daemons, but requires installing the plugin.</p>
+          </div>
+          <div class="pill-card">
+            <div class="pill-title">Option B: Universal Localhost Loopback Micro-Server (npx nkai serve)</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">A lightweight 40-line Node or Python daemon on <code>localhost:4040</code>. Buttons call <code>fetch(\'http://localhost:4040/action\')</code>, writing to <code>.agents/pipeline/actions.json</code> which triggers an agent notification. Works across ALL harnesses (AGY, Claude Code, Cursor, Chrome).</p>
+          </div>
+          <div class="pill-card" style="border: 1px solid var(--accent-green);">
+            <div class="pill-title" style="color:var(--accent-green);">Option C: Hybrid Resilient Adapter (Plugin SDK + Localhost + Clipboard Fallback) [Recommended]</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Checks for <code>window.sidecar</code> first (native AGY plugin mode). If absent, attempts loopback <code>fetch(\'localhost:4040\')</code>. If offline, gracefully falls back to the hardened in-canvas expansion and clipboard modal. Guarantees zero broken clicks anywhere.</p>
+          </div>`,
+        evalHtml: `
+          <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option C: Hybrid Resilient Adapter)</div>
+          <ul style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin: 0; padding-left: 18px;">
+            <li><strong>🌍 Real-World Ergonomics:</strong> The holy grail of pair-programming. You click \'Approve Option B\' or \'Request Pros &amp; Cons\', and the agent immediately receives the signal and starts working—zero manual copy-paste friction.</li>
+            <li><strong>🏛️ Wider SOTA:</strong> Matches how Playwright UI, Vitest UI, and Storybook bridge interactive webviews back to CLI test runners and daemons.</li>
+            <li><strong>🏆 Best Practices:</strong> Multi-tiered graceful degradation ensures that if the server isn\'t running, the user never gets an unhandled crash or stalled click.</li>
+          </ul>`,
+        recommendation: 'APPROVE Option C (Hybrid Adapter)',
+        chips: [
+          { label: '⚖️ Request Pros & Cons', prompt: 'pros and cons for Native Plugin MCP vs Localhost Loopback vs Hybrid Adapter across the 4 Lenses' },
+          { label: '🔬 Research Online', prompt: 'research online webview to AI agent IPC patterns in Claude Cursor and Antigravity' }
+        ]
+      },
       t15: {
         title: '6.15 Industry Workflow Precedents & Competitive Teardowns',
         badge: 'Industry Benchmarking',
@@ -2994,8 +3088,39 @@ function toggleDrawer(drawerId) {
         ]
       },
       t14: { title: '6.14 Nkai-First Skill Default', verdict: 'PENDING' },
+      t17: {
+        title: '6.17 The Bidirectional Click-to-Agent Bridge (Zero-Copy Sidecar IPC)',
+        badge: 'Ergonomics Leap',
+        desc: '<strong>The Question:</strong> How do we build a direct, zero-copy communication bridge so that clicking buttons in N\'kai (like \'Approve\', \'Request Pros &amp; Cons\', or \'Run Online Research\') immediately dispatches actions directly to the AI agent, eliminating the need to manually copy-paste into chat or prod the model?',
+        optionsHtml: `
+          <div class="pill-card">
+            <div class="pill-title">Option A: Native Antigravity Plugin (Sidecar SDK / MCP)</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Run N\'kai as an installed IDE extension (<code>nkai/plugin/</code>). Buttons call <code>window.sidecar.sendAction()</code>, which routes directly through Antigravity\'s MCP server into the agent conversation. 100% native, zero terminal daemons, but requires installing the plugin.</p>
+          </div>
+          <div class="pill-card">
+            <div class="pill-title">Option B: Universal Localhost Loopback Micro-Server (npx nkai serve)</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">A lightweight 40-line Node or Python daemon on <code>localhost:4040</code>. Buttons call <code>fetch(\'http://localhost:4040/action\')</code>, writing to <code>.agents/pipeline/actions.json</code> which triggers an agent notification. Works across ALL harnesses (AGY, Claude Code, Cursor, Chrome).</p>
+          </div>
+          <div class="pill-card" style="border: 1px solid var(--accent-green);">
+            <div class="pill-title" style="color:var(--accent-green);">Option C: Hybrid Resilient Adapter (Plugin SDK + Localhost + Clipboard Fallback) [Recommended]</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Checks for <code>window.sidecar</code> first (native AGY plugin mode). If absent, attempts loopback <code>fetch(\'localhost:4040\')</code>. If offline, gracefully falls back to the hardened in-canvas expansion and clipboard modal. Guarantees zero broken clicks anywhere.</p>
+          </div>`,
+        evalHtml: `
+          <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option C: Hybrid Resilient Adapter)</div>
+          <ul style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin: 0; padding-left: 18px;">
+            <li><strong>🌍 Real-World Ergonomics:</strong> The holy grail of pair-programming. You click \'Approve Option B\' or \'Request Pros &amp; Cons\', and the agent immediately receives the signal and starts working—zero manual copy-paste friction.</li>
+            <li><strong>🏛️ Wider SOTA:</strong> Matches how Playwright UI, Vitest UI, and Storybook bridge interactive webviews back to CLI test runners and daemons.</li>
+            <li><strong>🏆 Best Practices:</strong> Multi-tiered graceful degradation ensures that if the server isn\'t running, the user never gets an unhandled crash or stalled click.</li>
+          </ul>`,
+        recommendation: 'APPROVE Option C (Hybrid Adapter)',
+        chips: [
+          { label: '⚖️ Request Pros & Cons', prompt: 'pros and cons for Native Plugin MCP vs Localhost Loopback vs Hybrid Adapter across the 4 Lenses' },
+          { label: '🔬 Research Online', prompt: 'research online webview to AI agent IPC patterns in Claude Cursor and Antigravity' }
+        ]
+      },
       t15: { title: '6.15 Industry Workflow Precedents', verdict: 'PENDING' },
-      t16: { title: '6.16 Backend Persistence & State', verdict: 'PENDING' }
+      t16: { title: '6.16 Backend Persistence & State', verdict: 'PENDING' },
+      t17: { title: '6.17 Bidirectional Click-to-Agent Bridge', verdict: 'PENDING' }
     };
 
     let auditVerdicts = { ...defaultAuditVerdicts };
@@ -3391,6 +3516,36 @@ function toggleDrawer(drawerId) {
           { label: '🔬 Research Online', prompt: 'research online cross-harness compatibility for Claude Code Cursor Windsurf sidecar tools' }
         ]
       },
+      t17: {
+        title: '6.17 The Bidirectional Click-to-Agent Bridge (Zero-Copy Sidecar IPC)',
+        badge: 'Ergonomics Leap',
+        desc: '<strong>The Question:</strong> How do we build a direct, zero-copy communication bridge so that clicking buttons in N\'kai (like \'Approve\', \'Request Pros &amp; Cons\', or \'Run Online Research\') immediately dispatches actions directly to the AI agent, eliminating the need to manually copy-paste into chat or prod the model?',
+        optionsHtml: `
+          <div class="pill-card">
+            <div class="pill-title">Option A: Native Antigravity Plugin (Sidecar SDK / MCP)</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Run N\'kai as an installed IDE extension (<code>nkai/plugin/</code>). Buttons call <code>window.sidecar.sendAction()</code>, which routes directly through Antigravity\'s MCP server into the agent conversation. 100% native, zero terminal daemons, but requires installing the plugin.</p>
+          </div>
+          <div class="pill-card">
+            <div class="pill-title">Option B: Universal Localhost Loopback Micro-Server (npx nkai serve)</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">A lightweight 40-line Node or Python daemon on <code>localhost:4040</code>. Buttons call <code>fetch(\'http://localhost:4040/action\')</code>, writing to <code>.agents/pipeline/actions.json</code> which triggers an agent notification. Works across ALL harnesses (AGY, Claude Code, Cursor, Chrome).</p>
+          </div>
+          <div class="pill-card" style="border: 1px solid var(--accent-green);">
+            <div class="pill-title" style="color:var(--accent-green);">Option C: Hybrid Resilient Adapter (Plugin SDK + Localhost + Clipboard Fallback) [Recommended]</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Checks for <code>window.sidecar</code> first (native AGY plugin mode). If absent, attempts loopback <code>fetch(\'localhost:4040\')</code>. If offline, gracefully falls back to the hardened in-canvas expansion and clipboard modal. Guarantees zero broken clicks anywhere.</p>
+          </div>`,
+        evalHtml: `
+          <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option C: Hybrid Resilient Adapter)</div>
+          <ul style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin: 0; padding-left: 18px;">
+            <li><strong>🌍 Real-World Ergonomics:</strong> The holy grail of pair-programming. You click \'Approve Option B\' or \'Request Pros &amp; Cons\', and the agent immediately receives the signal and starts working—zero manual copy-paste friction.</li>
+            <li><strong>🏛️ Wider SOTA:</strong> Matches how Playwright UI, Vitest UI, and Storybook bridge interactive webviews back to CLI test runners and daemons.</li>
+            <li><strong>🏆 Best Practices:</strong> Multi-tiered graceful degradation ensures that if the server isn\'t running, the user never gets an unhandled crash or stalled click.</li>
+          </ul>`,
+        recommendation: 'APPROVE Option C (Hybrid Adapter)',
+        chips: [
+          { label: '⚖️ Request Pros & Cons', prompt: 'pros and cons for Native Plugin MCP vs Localhost Loopback vs Hybrid Adapter across the 4 Lenses' },
+          { label: '🔬 Research Online', prompt: 'research online webview to AI agent IPC patterns in Claude Cursor and Antigravity' }
+        ]
+      },
       t15: {
         title: '6.15 Industry Workflow Precedents & Competitive Teardowns',
         badge: 'Industry Benchmarking',
@@ -3491,7 +3646,7 @@ function toggleDrawer(drawerId) {
       const titleEl = document.getElementById('ws-hero-title');
       if (titleEl) titleEl.innerText = data.title;
 
-      for (let i = 1; i <= 16; i++) {
+      for (let i = 1; i <= 17; i++) {
         const btn = document.getElementById('btn-ws-t' + i);
         if (btn) {
           if ('t' + i === topicId) {
@@ -3917,6 +4072,7 @@ function toggleDrawer(drawerId) {
       });
 
             const flightMap = {
+        t17: '⚡ 6.17 Bridge',
         t15: 'F1: 6.15',
         t13: 'F2: 6.13',
         t12: 'F3: 6.12',
@@ -3996,7 +4152,7 @@ function toggleDrawer(drawerId) {
     <!-- DYNAMIC INJECTION FOR QA -->
     <script>
       document.addEventListener("DOMContentLoaded", () => {
-          for (let i = 1; i <= 16; i++) {
+          for (let i = 1; i <= 17; i++) {
               let tid = 't' + i;
               
               // Find or create buttons in tab-audit
