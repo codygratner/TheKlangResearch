@@ -309,7 +309,7 @@ To make our open-source lineage airtight, we codified strict rules into `GEMINI.
 
 ## 8. The Universal Sidecar Architecture, The "Ready Handshake" & The Asymmetric Split
 
-> **Reference:** [2026 Agentic Architecture Audit & Research](research/2026-10-08_Agentic_Architecture_Deep_Research.md) provides a comprehensive post-mortem and audit.
+> **Reference:** [2026 Agentic Architecture Audit & Research](../agentic/2026-10-08_Agentic_Architecture_Deep_Research.md) provides a comprehensive post-mortem and audit.
 
 
 ### The Trap: Ephemeral Brain Hash Paths & Context Redundancy
