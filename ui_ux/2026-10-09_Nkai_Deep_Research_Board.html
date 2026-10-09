@@ -3478,6 +3478,63 @@ function toggleDrawer(drawerId) {
             </ul>
           `
         }
+      },
+      t13: {
+        A: {
+          pros_cons: `
+            <h5>⚖️ PCDA Breakdown: Option A (Antigravity-Only Lock-in)</h5>
+            <ul>
+              <li><strong>Pros [Thesis]:</strong> Deepest possible integration with Antigravity IDE UI extension APIs; zero extra abstraction layer.</li>
+              <li><strong>Cons [Friction]:</strong> 100% vendor lock-in. If you switch to Claude Code CLI, Cursor, Windsurf, or terminal tmux sessions, the sidecar is completely non-functional.</li>
+              <li><strong>Devil's Advocate [Antithesis]:</strong> Investing months in a proprietary API that could be deprecated or rewritten by the host IDE creates massive architectural liability.</li>
+              <li><strong>80/20 Resolution:</strong> Exclude hard lock-in; use standard web technology as the bedrock and treat Antigravity's Sidecar SDK as a progressive enhancement.</li>
+            </ul>
+          `,
+          research: `
+            <h5>🔬 Research & Benchmarks: Option A (Proprietary Lock-in)</h5>
+            <p style="color:var(--text-muted); margin-bottom:6px;">Cross-referenced against VS Code webview extensions and proprietary IDE APIs.</p>
+            <ul>
+              <li><strong>Portability Barrier:</strong> Proprietary webview extensions require complete rewrites for Cursor, Windsurf, and terminal CLIs like Claude Code.</li>
+            </ul>
+          `
+        },
+        B: {
+          pros_cons: `
+            <h5>⚖️ PCDA Breakdown: Option B (Standalone File + Localhost Adapter) [Recommended]</h5>
+            <ul>
+              <li><strong>Pros [Thesis]:</strong> Zero-dependency standalone HTML (<code>file:///</code>) runs in Antigravity side panel, Cursor, VS Code, or plain Chrome/Edge. A tiny 30-line <code>npx nkai serve</code> enables instant browser pop-out for terminal CLIs (Claude Code, OpenAI Codex, Aider).</li>
+              <li><strong>Cons [Friction]:</strong> Requires careful handling of <code>file:///</code> sandbox restrictions (solved via uneditable click-to-highlight prompt boxes).</li>
+              <li><strong>Devil's Advocate [Antithesis]:</strong> Maintaining dual-mode support (standalone <code>file:///</code> vs localhost server) requires testing both loading paths.</li>
+              <li><strong>80/20 Resolution:</strong> The battle-tested industry standard used by Playwright UI (<code>--ui</code>), Vitest UI, Storybook, and Astro. 80% of value with zero vendor lock-in.</li>
+            </ul>
+          `,
+          research: `
+            <h5>🔬 Research & Benchmarks: Option B (Universal Web Canvas)</h5>
+            <p style="color:var(--text-muted); margin-bottom:6px;">Audited upstream architectures of Claude Code, Cursor, and modern web tooling.</p>
+            <ul>
+              <li><strong>Claude Code Precedents:</strong> Claude Code CLI relies on browser extension integrations or local WebSocket servers (e.g. Claudito) for GUI companions.</li>
+              <li><strong>Cursor & Windsurf:</strong> Rely on Model Context Protocol (MCP) and local browser tooling rather than proprietary webview wrappers.</li>
+            </ul>
+          `
+        },
+        C: {
+          pros_cons: `
+            <h5>⚖️ PCDA Breakdown: Option C (Markdown-Only Fallback)</h5>
+            <ul>
+              <li><strong>Pros [Thesis]:</strong> Pure plain text; zero browser or webview needed.</li>
+              <li><strong>Cons [Friction]:</strong> Dumps massive 200+ line tables directly into chat, incinerating agent context allowance, causing context rot, and destroying the clean conversational flow.</li>
+              <li><strong>Devil's Advocate [Antithesis]:</strong> Defeats the foundational premise of N'kai (the Asymmetric Sidecar Split). Chat becomes unreadable sludge.</li>
+              <li><strong>80/20 Resolution:</strong> Useful strictly as an emergency fallback (<code>--chat</code> flag) for headless SSH or low-bandwidth terminal sessions, never as a primary workflow.</li>
+            </ul>
+          `,
+          research: `
+            <h5>🔬 Research & Benchmarks: Option C (Terminal Text Dumps)</h5>
+            <p style="color:var(--text-muted); margin-bottom:6px;">Benchmarked across terminal LLM agent workflows.</p>
+            <ul>
+              <li><strong>Context Rot Finding:</strong> Developers report massive ASCII tables consume 3,000+ tokens per turn, severely degrading LLM context quality within 20 turns.</li>
+            </ul>
+          `
+        }
       }
     };
 
