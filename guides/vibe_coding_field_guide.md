@@ -484,4 +484,31 @@ We solved this by establishing a decoupled **Tri-Project Architecture** managed 
 - **Zero-Dependency Compilation**:
   - The roadmap is compiled deterministically from markdown backlogs across all repos using `tools/sync_roadmap_sidecar.py` in ~40ms, guaranteeing zero drift, zero manual HTML synchronization, and 100% offline portability.
 
+---
+
+## 13. The Factory Handshake Gate, Context Clues Architecture & Zero-Modal Execution (Topic 6.7)
+
+### 13.1 The Factory Handshake Protocol
+- **The Core Problem**: In multi-agent autonomous engineering pipelines, informal chat handoffs lead to lost context, race conditions, premature implementation, and untracked status transitions.
+- **The Communiqué Protocol**:
+  1. **Dispatch**: New Klang City (Planner) authors blueprints into `.agents/pipeline/plans/drafts/<slug>.md`. Upon review and idle factory state, the plan is promoted to `PLAN.md` and dispatched via `.agents/pipeline/communique/plan_to_build.md`.
+  2. **Ingest & State Transition**: Klang Industries (Builder) runs `/read-plan`, verifies that the model matches the recommended tier, and transitions `plan_to_build.md` to `STATUS: IN_PROGRESS`.
+  3. **Phase Execution & Telemetry**: As phases complete, Klang Industries updates telemetry in `.agents/pipeline/communique/build_to_plan.md` and checks off acceptance criteria in `PLAN.md`.
+  4. **Completion Handshake ("JOB'S DONE")**: Upon reaching 100% checklist completion and passing test suites, Klang Industries archives `PLAN.md` to `.agents/pipeline/plans/completed/`, sets both communiqués to `COMPLETED ✅`, and sounds the audible "JOB'S DONE" chime.
+
+### 13.2 Canonical Context Clues Architecture (The 5-Section Standard)
+- **Step 0 Turn 1 Bootstrapping**: To prevent prompt bloat and eliminate LLM context amnesia between conversation compacts, all agents and subagents read their role-specific context clues document on Turn 1 (`context_clues_plan.md`, `context_clues_build.md`, `context_clues_subagent.md`).
+- **The 5 Inviolable Sections**:
+  1. `Active SemVer, Branch State & Roadmap Sidecar Deep Links`: Ecosystem SemVer matrix, active working milestone, git branch, and hash-routed roadmap links.
+  2. `Immediate Return Agenda & Status`: Primary role objective, execution state, active blueprint, and next agenda items.
+  3. `Architectural Memory & "Unforgettables"`: Inviolable rules, model tier assignments, synthesis engine facts, and negative architecture reminders.
+  4. `Canonical Taxonomy, Product Lineup & Essential Spec Links`: Authoritative links to `GLOSSARY.md`, `DOCS_CATALOG.json`, `SYSTEM_MAP.md`, `product_lineup.md`, and active design specifications.
+  5. `Audio Thread / Workflow Invariants & Handshake Gates`: Real-time audio invariants (zero allocations, zero locks, zero blocking I/O), subagent 20-line/1-file delegation rules, and factory handshake gates.
+- **Automated Verification**: `tools/verify_context_clues.py` programmatically scans all context clues files and the canonical template (`docs/templates/context_clues_template.md`), asserting 100% heading compliance and 100% local file link resolution with exit code 0.
+
+### 13.3 The Zero-Modal Execution Invariant
+- **The Interactive Modal Freeze**: Antigravity's `ask_question` tool renders an interactive blocking modal in the IDE chat window. While highly effective for interactive interviews (`/grill-me`, `/plan`), active modals freeze the IDE footer dropdown, preventing the developer from adjusting model tiers.
+- **Strict Builder Gate**: Under NO circumstances should `ask_question` be invoked by factory builders during task execution (`/read-plan`, `/execute-task`). Builders pause in standard chat text, allowing the user to reply and adjust models freely.
+
+
 
