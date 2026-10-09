@@ -3134,7 +3134,7 @@ function toggleDrawer(drawerId) {
     }
 
     let toastTimer = null;
-    function showAudioToast(msg) {
+    function showAudioToast(msg, promptText) {
       // 1. Update legacy audio toast if visible
       const legacyToast = document.getElementById('audio-toast');
       if (legacyToast) {
@@ -3152,7 +3152,13 @@ function toggleDrawer(drawerId) {
         document.body.appendChild(hud);
       }
       
-      hud.innerText = msg;
+      const safePrompt = promptText ? encodeURIComponent(promptText) : '';
+      hud.innerHTML = `
+        <div style="display:flex; align-items:center; justify-content:space-between; gap:12px;">
+          <span>${msg}</span>
+          ${promptText ? `<button class="interactive-btn amber" style="font-size:10px; padding:2px 8px; white-space:nowrap; border-color:var(--accent-amber);" onclick="showFallbackModal(decodeURIComponent('${safePrompt}'))">[ 📋 View ]</button>` : ''}
+        </div>
+      `;
       hud.classList.add('show');
       
       if (window.floatingToastTimer) {
@@ -3160,7 +3166,7 @@ function toggleDrawer(drawerId) {
       }
       window.floatingToastTimer = setTimeout(() => {
         hud.classList.remove('show');
-      }, 3500);
+      }, 4000);
     }
 
     function playVisualFallback() {
@@ -3287,7 +3293,7 @@ function toggleDrawer(drawerId) {
 <span style="color:#ffa657;">[DRY-RUN SUCCESS] Ready to execute on disk. Zero breaking changes detected.</span>`;
     }
 
-    function copyMigrationChecklist() {
+    async function copyMigrationChecklist() {
       const text = `## TKS UI/UX Research Board Upgrade Checklist (v1.0.0 -> v1.1.0)
 - [x] Step 1: Snapshot Backup (ui_ux_research_board.v1.0.0.bak)
 - [ ] Step 2: Inject v1.1.0 CSS (drawers, flex-wrap header, keyframes spin)
@@ -3296,11 +3302,15 @@ function toggleDrawer(drawerId) {
 - [ ] Step 5: Replace Inlined Roadmap with NkaiDataLoader
 - [ ] Step 6: Automated BeautifulSoup Tag Balance Test (opens == closes)
 - [ ] Step 7: Tri-Location Mirroring & IDE Verification`;
-      navigator.clipboard.writeText(text).then(() => {
-        showAudioToast('📋 Migration Checklist copied to clipboard!');
-      }).catch(() => {
-        prompt('Copy checklist:', text);
-      });
+      const btn = document.querySelector('button[onclick="copyMigrationChecklist()"]');
+      const success = await copyToClipboard(text);
+      if (btn) flashButtonSuccess(btn, success ? '📋 Copied!' : '📋 Ready');
+      playHapticTick();
+      if (success) {
+        showAudioToast('📋 Migration Checklist copied to clipboard!', text);
+      } else {
+        showFallbackModal(text);
+      }
     }
 
     // Sidebar navigation bindings
@@ -3538,8 +3548,8 @@ function toggleDrawer(drawerId) {
       if (actionData.action === 'setVerdict') {
         if (btn) flashButtonSuccess(btn, `✅ ${actionData.verdict}`);
         playHapticChime();
-        showAudioToast(`✅ Topic ${actionData.topicId}: ${actionData.verdict} recorded in sidecar & saved!`);
-        if (actionData.prompt) copyToClipboardSilently(actionData.prompt);
+        showAudioToast(`✅ Topic ${actionData.topicId}: ${actionData.verdict} recorded in sidecar & saved!`, actionData.prompt);
+        if (actionData.prompt) await copyToClipboard(actionData.prompt);
         return true;
       }
 
@@ -4364,66 +4374,101 @@ function toggleDrawer(drawerId) {
       playHapticTick();
     }
 
-    function copyToClipboard(text) {
-      // 1. Try synchronous execCommand first: instant, never stalls in headless/sandboxed webviews
-      if (fallbackCopy(text)) {
-        return Promise.resolve(true);
+    async function copyToClipboard(text) {
+      if (!text) return false;
+      let copied = false;
+
+      // Layer 1: Synchronous execCommand on in-viewport transparent textarea
+      // Must execute synchronously inside the user click event before any DOM manipulation steals focus!
+      try {
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        ta.style.position = "fixed";
+        ta.style.top = "0";
+        ta.style.left = "0";
+        ta.style.width = "2em";
+        ta.style.height = "2em";
+        ta.style.padding = "0";
+        ta.style.border = "none";
+        ta.style.outline = "none";
+        ta.style.boxShadow = "none";
+        ta.style.background = "transparent";
+        ta.style.opacity = "0.01";
+        ta.style.zIndex = "999999";
+        document.body.appendChild(ta);
+        ta.focus();
+        ta.select();
+        ta.setSelectionRange(0, text.length);
+        copied = document.execCommand('copy');
+        document.body.removeChild(ta);
+      } catch (e) {
+        copied = false;
       }
-      // 2. Fallback to navigator.clipboard with a 300ms timeout race to prevent headless promise stalls
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        return Promise.race([
-          navigator.clipboard.writeText(text),
-          new Promise((_, reject) => setTimeout(() => reject(new Error('Clipboard timeout')), 300))
-        ]);
+
+      // Layer 2: Async Clipboard API (navigator.clipboard.writeText)
+      if (navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
+        try {
+          await Promise.race([
+            navigator.clipboard.writeText(text),
+            new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 250))
+          ]);
+          copied = true;
+        } catch (e) {
+          // If navigator.clipboard failed, copied remains whatever Layer 1 achieved
+        }
       }
-      return Promise.reject(new Error('Clipboard copy not supported'));
+
+      return copied;
     }
 
     function copyToClipboardSilently(text) {
       if (!text) return false;
-      let success = false;
+      let copied = false;
       try {
-        const textArea = document.createElement("textarea");
-        textArea.value = text;
-        textArea.style.position = "fixed";
-        textArea.style.left = "-999999px";
-        textArea.style.top = "-999999px";
-        document.body.appendChild(textArea);
-        textArea.focus();
-        textArea.select();
-        textArea.setSelectionRange(0, 99999);
-        success = document.execCommand('copy');
-        document.body.removeChild(textArea);
-      } catch (e) {}
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        ta.style.position = "fixed";
+        ta.style.top = "0";
+        ta.style.left = "0";
+        ta.style.width = "2em";
+        ta.style.height = "2em";
+        ta.style.opacity = "0.01";
+        ta.style.zIndex = "999999";
+        document.body.appendChild(ta);
+        ta.focus();
+        ta.select();
+        ta.setSelectionRange(0, text.length);
+        copied = document.execCommand('copy');
+        document.body.removeChild(ta);
+      } catch(e) {}
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(text).catch(() => {});
-        success = true;
       }
-      return success;
+      return copied;
     }
 
     function fallbackCopy(text) {
-      try {
-        const textArea = document.createElement("textarea");
-        textArea.value = text;
-        textArea.style.position = "fixed";
-        textArea.style.left = "-999999px";
-        textArea.style.top = "-999999px";
-        document.body.appendChild(textArea);
-        textArea.focus();
-        textArea.select();
-        textArea.setSelectionRange(0, 99999);
-        const successful = document.execCommand('copy');
-        document.body.removeChild(textArea);
-        return successful;
-      } catch (err) {
-        return false;
-      }
+      return copyToClipboardSilently(text);
     }
 
     function showFallbackModal(text) {
       const existing = document.getElementById('nkai-copy-modal');
       if (existing) existing.remove();
+      const existingOverlay = document.getElementById('nkai-copy-modal-overlay');
+      if (existingOverlay) existingOverlay.remove();
+
+      const overlay = document.createElement('div');
+      overlay.id = 'nkai-copy-modal-overlay';
+      overlay.style.position = 'fixed';
+      overlay.style.top = '0';
+      overlay.style.left = '0';
+      overlay.style.width = '100vw';
+      overlay.style.height = '100vh';
+      overlay.style.background = 'rgba(0,0,0,0.65)';
+      overlay.style.backdropFilter = 'blur(4px)';
+      overlay.style.zIndex = '99998';
+      overlay.onclick = () => { overlay.remove(); modal.remove(); };
+      document.body.appendChild(overlay);
 
       const modal = document.createElement('div');
       modal.id = 'nkai-copy-modal';
@@ -4436,9 +4481,9 @@ function toggleDrawer(drawerId) {
       modal.style.padding = '22px';
       modal.style.zIndex = '99999';
       modal.style.borderRadius = '10px';
-      modal.style.boxShadow = '0 16px 48px rgba(0,0,0,0.9)';
-      modal.style.width = '480px';
-      modal.style.maxWidth = '90vw';
+      modal.style.boxShadow = '0 16px 48px rgba(0,0,0,0.95)';
+      modal.style.width = '520px';
+      modal.style.maxWidth = '92vw';
       
       const title = document.createElement('h3');
       title.innerText = '📋 Prompt Ready to Paste into Chat';
@@ -4450,7 +4495,7 @@ function toggleDrawer(drawerId) {
       modal.appendChild(title);
 
       const subtitle = document.createElement('p');
-      subtitle.innerText = 'Click Copy below, then paste into Antigravity chat (Ctrl+V) & press Enter:';
+      subtitle.innerText = 'Text is pre-selected below. Press Ctrl+C (or click Copy), then paste into Antigravity chat (Ctrl+V):';
       subtitle.style.fontSize = '11px';
       subtitle.style.color = 'var(--text-muted)';
       subtitle.style.marginTop = '0';
@@ -4460,7 +4505,7 @@ function toggleDrawer(drawerId) {
       const textarea = document.createElement('textarea');
       textarea.value = text;
       textarea.style.width = '100%';
-      textarea.style.height = '110px';
+      textarea.style.height = '120px';
       textarea.style.background = 'rgba(0,0,0,0.6)';
       textarea.style.color = 'var(--accent-blue)';
       textarea.style.border = '1px solid var(--border)';
@@ -4475,14 +4520,22 @@ function toggleDrawer(drawerId) {
       const btnRow = document.createElement('div');
       btnRow.style.display = 'flex';
       btnRow.style.justifyContent = 'space-between';
+      btnRow.style.alignItems = 'center';
       btnRow.style.marginTop = '14px';
 
       const copyBtn = document.createElement('button');
       copyBtn.innerText = '📋 Copy & Close';
       copyBtn.className = 'interactive-btn green';
       copyBtn.onclick = () => {
-        copyToClipboardSilently(text);
+        textarea.focus();
+        textarea.select();
+        let ok = false;
+        try { ok = document.execCommand('copy'); } catch(e) {}
+        if (!ok && navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).catch(() => {});
+        }
         showAudioToast('📋 Copied to clipboard! Ready to paste into chat.');
+        overlay.remove();
         modal.remove();
       };
       btnRow.appendChild(copyBtn);
@@ -4490,14 +4543,16 @@ function toggleDrawer(drawerId) {
       const closeBtn = document.createElement('button');
       closeBtn.innerText = '✕ Dismiss';
       closeBtn.className = 'interactive-btn';
-      closeBtn.onclick = () => modal.remove();
+      closeBtn.onclick = () => { overlay.remove(); modal.remove(); };
       btnRow.appendChild(closeBtn);
 
       modal.appendChild(btnRow);
       
       document.body.appendChild(modal);
-      textarea.focus();
-      textarea.select();
+      setTimeout(() => {
+        textarea.focus();
+        textarea.select();
+      }, 50);
     }
 
     function flashButtonSuccess(btn, msg) {
@@ -4518,19 +4573,22 @@ function toggleDrawer(drawerId) {
       }, 2000);
     }
 
-    function copyPromptToChat(promptText, btn, evt) {
+    async function copyPromptToChat(promptText, btn, evt) {
       const targetBtn = btn || (evt && evt.currentTarget ? evt.currentTarget : null);
       playHapticTick();
 
-      const success = copyToClipboardSilently(promptText);
+      // Perform copy FIRST
+      const success = await copyToClipboard(promptText);
       if (targetBtn) {
-        flashButtonSuccess(targetBtn, '📋 Copied! Paste in Chat');
+        flashButtonSuccess(targetBtn, success ? '📋 Copied! Paste in Chat' : '📋 Prompt Ready');
       }
       playHapticChime();
-      showAudioToast('📋 Copied prompt! Paste into chat (Ctrl+V) & press Enter');
 
-      if (!success) {
+      if (success) {
+        showAudioToast('📋 Copied prompt! Paste into chat (Ctrl+V) & press Enter', promptText);
+      } else {
         showFallbackModal(promptText);
+        showAudioToast('⚠️ Browser blocked auto-copy: Press Ctrl+C in popup to copy', promptText);
       }
 
       // Passive telemetry log if bridge is active
@@ -4545,8 +4603,7 @@ function toggleDrawer(drawerId) {
       }
     }
 
-
-    function setAuditVerdict(topicId, verdict, btn) {
+    async function setAuditVerdict(topicId, verdict, btn) {
       if (!auditVerdicts[topicId]) return;
       auditVerdicts[topicId].verdict = verdict;
 
@@ -4556,23 +4613,27 @@ function toggleDrawer(drawerId) {
         console.warn('Could not save audit verdicts to localStorage:', e);
       }
 
-      // 1. Update UI state locally immediately
-      applyAuditVerdictsUI();
-      playHapticChime();
-
-      // 2. Prepare the exact verdict text to paste into chat
+      // 1. Prepare verdict prompt
       const topicTitle = auditVerdicts[topicId].title || topicId;
       const verdictPrompt = `[${topicTitle}] VERDICT: ${verdict}`;
 
-      // 3. Rock-solid clipboard copy (Table bridge to v0.2.0)
-      const success = copyToClipboardSilently(verdictPrompt);
-      if (btn) {
-        flashButtonSuccess(btn, '📋 Copied! Paste in Chat');
-      }
-      showAudioToast(`📋 ${verdict} copied! Paste into chat (Ctrl+V) & press Enter to advance`);
+      // 2. Perform copy FIRST before DOM modifications steal focus
+      const success = await copyToClipboard(verdictPrompt);
 
-      if (!success) {
+      // 3. Update UI state locally immediately
+      applyAuditVerdictsUI();
+      playHapticChime();
+
+      if (btn) {
+        flashButtonSuccess(btn, success ? '📋 Copied! Paste in Chat' : '📋 Prompt Ready');
+      }
+
+      if (success) {
+        showAudioToast(`📋 ${verdict} copied! Paste into chat (Ctrl+V) & press Enter to advance`, verdictPrompt);
+      } else {
+        // Guaranteed fallback modal if browser sandbox blocked clipboard!
         showFallbackModal(verdictPrompt);
+        showAudioToast(`⚠️ Browser blocked auto-copy: Press Ctrl+C in popup to copy`, verdictPrompt);
       }
 
       // 4. Passive telemetry log (silent background logging)
@@ -4788,18 +4849,23 @@ function toggleDrawer(drawerId) {
       applyAuditVerdictsUI();
     }
 
-    function copyAuditVerdictsToClipboard() {
+    async function copyAuditVerdictsToClipboard() {
       let md = '### 🩺 System Sanity Audit Verdicts\n\n';
       Object.entries(auditVerdicts).forEach(([k, v]) => {
         const icon = v.verdict === 'APPROVED' ? '✅' : v.verdict === 'TABLED' ? '⏳' : v.verdict === 'KILLED' ? '💀' : '❓';
         md += '- ' + icon + ' **' + v.title + '**: `' + v.verdict + '`\n';
       });
       const btn = document.querySelector('button[onclick="copyAuditVerdictsToClipboard()"]');
-      dispatchNkaiAction({
-        action: 'submitTriageSummary',
-        summary: md,
-        prompt: `[TRIAGE AUDIT SUMMARY via N'kai Bridge]\n\n${md}`
-      }, btn);
+      const success = await copyToClipboard(md);
+      if (btn) flashButtonSuccess(btn, success ? '📋 Copied All Verdicts!' : '📋 Summary Ready');
+      playHapticChime();
+
+      if (success) {
+        showAudioToast('📋 All audit decisions copied to clipboard! Paste in chat', md);
+      } else {
+        showFallbackModal(md);
+        showAudioToast('⚠️ Browser blocked auto-copy: Press Ctrl+C in popup to copy', md);
+      }
     }
 
     // Kickoff Lifecycle
