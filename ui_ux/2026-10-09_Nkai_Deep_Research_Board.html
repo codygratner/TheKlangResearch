@@ -732,6 +732,10 @@
       <a class="sidebar-item" href="#sec-audit-t5"><span>6.5 N'kai Ergonomics</span> <span id="side-v-t5" class="badge">PENDING</span></a>
       <a class="sidebar-item" href="#sec-audit-t6"><span>6.6 AGY Shortcuts</span> <span id="side-v-t6" class="badge">PENDING</span></a>
       <a class="sidebar-item" href="#sec-audit-t7"><span>6.7 Context Clues</span> <span id="side-v-t7" class="badge">PENDING</span></a>
+      <a class="sidebar-item" href="#sec-audit-t8"><span>6.8 Ongoing Autopsy</span> <span id="side-v-t8" class="badge">PENDING</span></a>
+      <a class="sidebar-item" href="#sec-audit-t9"><span>6.9 Header Layout</span> <span id="side-v-t9" class="badge">PENDING</span></a>
+      <a class="sidebar-item" href="#sec-audit-t10"><span>6.10 Tab Density</span> <span id="side-v-t10" class="badge">PENDING</span></a>
+      <a class="sidebar-item" href="#sec-audit-t11"><span>6.11 "Check Mail" Flow</span> <span id="side-v-t11" class="badge">PENDING</span></a>
 
       <div class="sidebar-section-title">Interactive Labs</div>
       <a class="sidebar-item" href="#sec-matrix-lab">📊 2x2 Decision Matrix</a>
@@ -756,7 +760,7 @@
             </div>
             <div style="text-align:right;">
               <span id="workshop-scorecard" class="badge badge-amber" style="font-size:11px; padding:4px 8px;">
-                [ 3 Approved | 0 Tabled | 0 Killed | 4 Pending ]
+                [ 3 Approved | 0 Tabled | 0 Killed | 8 Pending ]
               </span>
             </div>
           </div>
@@ -771,6 +775,10 @@
             <button class="header-btn" id="btn-ws-t5" onclick="setWorkshopTopic('t5')" style="font-size:10px; padding:3px 7px;">6.5 N'kai View</button>
             <button class="header-btn" id="btn-ws-t6" onclick="setWorkshopTopic('t6')" style="font-size:10px; padding:3px 7px;">6.6 AGY Shortcuts</button>
             <button class="header-btn" id="btn-ws-t7" onclick="setWorkshopTopic('t7')" style="font-size:10px; padding:3px 7px;">6.7 Context Clues</button>
+            <button class="header-btn" id="btn-ws-t8" onclick="setWorkshopTopic('t8')" style="font-size:10px; padding:3px 7px;">6.8 Autopsy</button>
+            <button class="header-btn" id="btn-ws-t9" onclick="setWorkshopTopic('t9')" style="font-size:10px; padding:3px 7px;">6.9 Header</button>
+            <button class="header-btn" id="btn-ws-t10" onclick="setWorkshopTopic('t10')" style="font-size:10px; padding:3px 7px;">6.10 Tab Density</button>
+            <button class="header-btn" id="btn-ws-t11" onclick="setWorkshopTopic('t11')" style="font-size:10px; padding:3px 7px;">6.11 Check Mail</button>
           </div>
         </div>
 
@@ -1736,6 +1744,234 @@ class SidecarMigrator:
             </div>
           </div>
         </div>
+        <!-- Topic 6.8: Ongoing Autopsy -->
+        <div class="section-card" id="sec-audit-t8">
+          <div class="section-title">
+            <span>6.8 Ongoing Autopsy: Live Triage Feed &amp; Filterable Scoreboard</span>
+            <span class="badge badge-amber">Workflow Architecture</span>
+          </div>
+          <p style="font-size: 12px; line-height: 1.6; color: var(--text-main);">
+            <strong>The Question:</strong> Should N'kai add an "Ongoing Autopsy" view mode (Slot 2 after Workshop) providing a continuous, filterable (Approved / Tabled / Graveyard) summary feed of all decisions with direct jump links, automatically morphing into the final Post-Mortem report?
+          </p>
+
+          <div class="grid-3" style="margin-top: 12px;">
+            <div class="pill-card">
+              <div class="pill-title">Option A: Late-Stage Post-Mortem Only</div>
+              <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
+                Triage summaries remain tucked at the very bottom or hidden until milestone completion. Zero high-level in-flight visibility.
+              </p>
+            </div>
+            <div class="pill-card" style="border: 1px solid var(--accent-green);">
+              <div class="pill-title" style="color:var(--accent-green);">Option B: Dedicated Autopsy Tab w/ Filter Chips (Recommended)</div>
+              <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
+                Slot 2 header item; live high-level feed, filter buttons (<code>[All]</code>, <code>[Approved]</code>, <code>[Tabled]</code>, <code>[Graveyard]</code>), 1-click jumps to full cards, and auto-morphs into final post-mortem.
+              </p>
+            </div>
+            <div class="pill-card">
+              <div class="pill-title">Option C: Slide-Out Autopsy Drawer</div>
+              <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
+                Keep the feed inside a slide-over modal/drawer. Keeps header clean but adds an extra click to view scorecard.
+              </p>
+            </div>
+          </div>
+
+          <!-- 3-Lens Pros & Cons -->
+          <div style="margin-top: 14px; background: rgba(0,0,0,0.3); border: 1px solid rgba(48,54,61,0.6); border-radius: 6px; padding: 12px;">
+            <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option B: Dedicated Autopsy Tab)</div>
+            <ul style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin: 0; padding-left: 18px;">
+              <li><strong>🌍 Real-World Ergonomics:</strong> Instant visibility on all active decisions without waiting for milestone wrap-up. Filter chips allow rapid review of approved vs tabled items.</li>
+              <li><strong>🏛️ Wider SOTA:</strong> Matches modern agile triage workflows (GitHub Projects board filters, Linear triage streams).</li>
+              <li><strong>🏆 Best Practices:</strong> Seamless lifecycle transition: in-flight triage feed smoothly becomes the permanent post-mortem archive with zero duplicate tracking.</li>
+            </ul>
+            <div style="margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" onclick="copyPromptToChat('pros and cons for Ongoing Autopsy Tab across the 4 Lenses')">[ ⚖️ Request Pros &amp; Cons ]</button>
+              <button class="interactive-btn purple" onclick="copyPromptToChat('research online agile continuous post-mortem triage dashboards')">[ 🔬 Research Online ]</button>
+            </div>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:14px; padding-top:10px; border-top:1px solid rgba(48,54,61,0.5);">
+            <div style="font-family:var(--font-mono); font-size:11px; color:var(--text-muted);">
+              Verdict: <strong id="v-badge-t8" style="color:var(--text-muted);">PENDING</strong>
+            </div>
+            <div style="display:flex; gap:6px;">
+              <button class="interactive-btn" style="color:var(--accent-green); border-color:var(--accent-green);" onclick="setAuditVerdict('t8', 'APPROVED', this)">[ ✅ APPROVE Option B ]</button>
+              <button class="interactive-btn amber" onclick="setAuditVerdict('t8', 'TABLED', this)">[ ⏳ TABLE ]</button>
+              <button class="interactive-btn" style="color:var(--accent-red); border-color:var(--accent-red);" onclick="setAuditVerdict('t8', 'KILLED', this)">[ 💀 REJECT ]</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Topic 6.9: Header Layout & Utility Ergonomics -->
+        <div class="section-card" id="sec-audit-t9">
+          <div class="section-title">
+            <span>6.9 Header Layout: Top-Bar Right Cluster vs. Sidebar Drawer</span>
+            <span class="badge badge-blue">UI Ergonomics</span>
+          </div>
+          <p style="font-size: 12px; line-height: 1.6; color: var(--text-main);">
+            <strong>The Question:</strong> How should utility controls (Roadmap, Sessions with badge count, History, Font zoom, Mute, Refresh) be arranged in mouse-driven N'kai?
+          </p>
+
+          <div class="grid-3" style="margin-top: 12px;">
+            <div class="pill-card">
+              <div class="pill-title">Option A: Single Crowded Header</div>
+              <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
+                Current layout: wraps into multiline when narrow, mixing view modes and utility buttons on the same tier.
+              </p>
+            </div>
+            <div class="pill-card" style="border: 1px solid var(--accent-green);">
+              <div class="pill-title" style="color:var(--accent-green);">Option B: Two-Tier Header w/ Top-Right Emoji Cluster (Recommended)</div>
+              <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
+                Top bar = Brand on left, prominent right-aligned emoji buttons (<code>🗺️</code>, <code>📦 1</code>, <code>📜</code>, <code>🔊</code>, <code>🔄</code>). Bottom row = Clean dedicated view switchers.
+              </p>
+            </div>
+            <div class="pill-card">
+              <div class="pill-title">Option C: Utility Sidebar Drawer</div>
+              <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
+                Move all utilities into a slide-out sidebar drawer with a prominent toggle button. Leaves header ultra-minimal.
+              </p>
+            </div>
+          </div>
+
+          <!-- 3-Lens Pros & Cons -->
+          <div style="margin-top: 14px; background: rgba(0,0,0,0.3); border: 1px solid rgba(48,54,61,0.6); border-radius: 6px; padding: 12px;">
+            <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option B: Two-Tier Header Cluster)</div>
+            <ul style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin: 0; padding-left: 18px;">
+              <li><strong>🌍 Real-World Ergonomics:</strong> Mouse-driven navigation is fast and intuitive. Clear visual hierarchy: top bar = global utilities, bottom bar = content navigation.</li>
+              <li><strong>🏛️ Wider SOTA:</strong> Standard in high-density web workstations (Grafana, Datadog, VS Code workbench top bar).</li>
+              <li><strong>🏆 Best Practices:</strong> Eliminates header wrapping clutter while keeping critical system status (active sessions, audio haptics) permanently visible.</li>
+            </ul>
+            <div style="margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" onclick="copyPromptToChat('pros and cons for Two-Tier Header with Top-Right Emoji Cluster across the 4 Lenses')">[ ⚖️ Request Pros &amp; Cons ]</button>
+              <button class="interactive-btn purple" onclick="copyPromptToChat('research online header hierarchy and utility clusters in dense web applications')">[ 🔬 Research Online ]</button>
+            </div>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:14px; padding-top:10px; border-top:1px solid rgba(48,54,61,0.5);">
+            <div style="font-family:var(--font-mono); font-size:11px; color:var(--text-muted);">
+              Verdict: <strong id="v-badge-t9" style="color:var(--text-muted);">PENDING</strong>
+            </div>
+            <div style="display:flex; gap:6px;">
+              <button class="interactive-btn" style="color:var(--accent-green); border-color:var(--accent-green);" onclick="setAuditVerdict('t9', 'APPROVED', this)">[ ✅ APPROVE Option B ]</button>
+              <button class="interactive-btn amber" onclick="setAuditVerdict('t9', 'TABLED', this)">[ ⏳ TABLE ]</button>
+              <button class="interactive-btn" style="color:var(--accent-red); border-color:var(--accent-red);" onclick="setAuditVerdict('t9', 'KILLED', this)">[ 💀 REJECT ]</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Topic 6.10: Tab Header Density -->
+        <div class="section-card" id="sec-audit-t10">
+          <div class="section-title">
+            <span>6.10 Tab Header Density: Compact Emoji + Numbers vs. Verbose Labels</span>
+            <span class="badge badge-purple">Spatial Ergonomics</span>
+          </div>
+          <p style="font-size: 12px; line-height: 1.6; color: var(--text-main);">
+            <strong>The Question:</strong> Should topic tabs be condensed to section numbers and emoji (e.g. <code>1 🗺️</code>, <code>2 📦</code>, <code>3 🚀</code>), keeping primary modes labeled (<code>Workshop</code>, <code>Autopsy</code>), with full titles revealed on hover/tooltip?
+          </p>
+
+          <div class="grid-3" style="margin-top: 12px;">
+            <div class="pill-card">
+              <div class="pill-title">Option A: Verbose Multiline Labels</div>
+              <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
+                Current layout: full words (<code>🗺️ DYNAMIC ROADMAPS</code>). Clear, but consumes 2-3 vertical lines on narrow panels.
+              </p>
+            </div>
+            <div class="pill-card" style="border: 1px solid var(--accent-green);">
+              <div class="pill-title" style="color:var(--accent-green);">Option B: Hybrid Compact w/ Hover Tooltips (Recommended)</div>
+              <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
+                Primary modes named (<code>Workshop</code>, <code>Autopsy</code>), category tabs as <code>1 🗺️</code>, <code>2 📦</code>, <code>3 🚀</code>. Full title revealed instantly on hover.
+              </p>
+            </div>
+            <div class="pill-card">
+              <div class="pill-title">Option C: Pure Icon-Only Toolbar</div>
+              <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
+                Only emoji icons, zero numbers or text. Ultra-compact, but causes cognitive friction when memorizing tabs.
+              </p>
+            </div>
+          </div>
+
+          <!-- 3-Lens Pros & Cons -->
+          <div style="margin-top: 14px; background: rgba(0,0,0,0.3); border: 1px solid rgba(48,54,61,0.6); border-radius: 6px; padding: 12px;">
+            <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option B: Hybrid Compact)</div>
+            <ul style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin: 0; padding-left: 18px;">
+              <li><strong>🌍 Real-World Ergonomics:</strong> Saves 40-60px of vertical header space on narrow side panels, keeping code and card content in immediate view.</li>
+              <li><strong>🏛️ Wider SOTA:</strong> Matches hardware groovebox and DAW pagination (Elektron bank pages <code>A B C D</code>, Ableton view icons).</li>
+              <li><strong>🏆 Best Practices:</strong> Balances scannability with spatial economy. Preserves clear semantic labels for primary operational modes.</li>
+            </ul>
+            <div style="margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" onclick="copyPromptToChat('pros and cons for Hybrid Compact Tab Density across the 4 Lenses')">[ ⚖️ Request Pros &amp; Cons ]</button>
+              <button class="interactive-btn purple" onclick="copyPromptToChat('research online tab bar density and hover tooltips in developer tooling')">[ 🔬 Research Online ]</button>
+            </div>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:14px; padding-top:10px; border-top:1px solid rgba(48,54,61,0.5);">
+            <div style="font-family:var(--font-mono); font-size:11px; color:var(--text-muted);">
+              Verdict: <strong id="v-badge-t10" style="color:var(--text-muted);">PENDING</strong>
+            </div>
+            <div style="display:flex; gap:6px;">
+              <button class="interactive-btn" style="color:var(--accent-green); border-color:var(--accent-green);" onclick="setAuditVerdict('t10', 'APPROVED', this)">[ ✅ APPROVE Option B ]</button>
+              <button class="interactive-btn amber" onclick="setAuditVerdict('t10', 'TABLED', this)">[ ⏳ TABLE ]</button>
+              <button class="interactive-btn" style="color:var(--accent-red); border-color:var(--accent-red);" onclick="setAuditVerdict('t10', 'KILLED', this)">[ 💀 REJECT ]</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Topic 6.11: Check the Mail Workflow -->
+        <div class="section-card" id="sec-audit-t11">
+          <div class="section-title">
+            <span>6.11 "Check the Mail" (Vault Inbox) Workflow &amp; Sidecar Board Default</span>
+            <span class="badge badge-green">Pipeline Workflow</span>
+          </div>
+          <p style="font-size: 12px; line-height: 1.6; color: var(--text-main);">
+            <strong>The Question:</strong> When the user asks to "check the mail" (Obsidian Vault <code>Inbox/</code>), should the default be an interactive N'kai research board with 1 section per note (e.g. Obsidian Addons), unless explicitly overridden by <code>--chat</code>?
+          </p>
+
+          <div class="grid-3" style="margin-top: 12px;">
+            <div class="pill-card">
+              <div class="pill-title">Option A: Raw Chat Dump Default</div>
+              <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
+                Output markdown bullet points directly into chat. Fast, but clutters chat context and burns tokens on unformatted dumps.
+              </p>
+            </div>
+            <div class="pill-card" style="border: 1px solid var(--accent-green);">
+              <div class="pill-title" style="color:var(--accent-green);">Option B: N'kai Inbox Board Default (Recommended)</div>
+              <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
+                Parses <code>TheKlangVault/Inbox/*.md</code>, generates a dedicated sidecar board with 1 section per note and triage chips. <code>--chat</code> flag preserves terminal output option.
+              </p>
+            </div>
+            <div class="pill-card">
+              <div class="pill-title">Option C: Automatic Backlog Sorter</div>
+              <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
+                Agent sorts notes directly into BACKLOG.md without presenting an interactive interview. High risk of filing errors.
+              </p>
+            </div>
+          </div>
+
+          <!-- 3-Lens Pros & Cons -->
+          <div style="margin-top: 14px; background: rgba(0,0,0,0.3); border: 1px solid rgba(48,54,61,0.6); border-radius: 6px; padding: 12px;">
+            <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option B: N'kai Inbox Board Default)</div>
+            <ul style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin: 0; padding-left: 18px;">
+              <li><strong>🌍 Real-World Ergonomics:</strong> Zero skipped notes. Complex brainstorms (like obsidian addons or hardware ideas) get clean dedicated space for thoughtful triage.</li>
+              <li><strong>🏛️ Wider SOTA:</strong> Follows Inbox Zero methodology (Superhuman card triage, Linear issue triage).</li>
+              <li><strong>🏆 Best Practices:</strong> Preserves main agent context window by keeping large brain dumps in the sidecar.</li>
+            </ul>
+            <div style="margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" onclick="copyPromptToChat('pros and cons for Nkai Inbox Board Default across the 4 Lenses')">[ ⚖️ Request Pros &amp; Cons ]</button>
+              <button class="interactive-btn purple" onclick="copyPromptToChat('research online Inbox Zero triage workflows for AI engineering')">[ 🔬 Research Online ]</button>
+            </div>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:14px; padding-top:10px; border-top:1px solid rgba(48,54,61,0.5);">
+            <div style="font-family:var(--font-mono); font-size:11px; color:var(--text-muted);">
+              Verdict: <strong id="v-badge-t11" style="color:var(--text-muted);">PENDING</strong>
+            </div>
+            <div style="display:flex; gap:6px;">
+              <button class="interactive-btn" style="color:var(--accent-green); border-color:var(--accent-green);" onclick="setAuditVerdict('t11', 'APPROVED', this)">[ ✅ APPROVE Option B ]</button>
+              <button class="interactive-btn amber" onclick="setAuditVerdict('t11', 'TABLED', this)">[ ⏳ TABLE ]</button>
+              <button class="interactive-btn" style="color:var(--accent-red); border-color:var(--accent-red);" onclick="setAuditVerdict('t11', 'KILLED', this)">[ 💀 REJECT ]</button>
+            </div>
+          </div>
+        </div>
+
       </div>
 
     </main>
@@ -2171,7 +2407,11 @@ function toggleDrawer(drawerId) {
       t4: { title: '6.4 Agent Skills Organization', verdict: 'PENDING' },
       t5: { title: "6.5 N'kai Ergonomics", verdict: 'PENDING' },
       t6: { title: '6.6 AGY Keyboard Shortcuts', verdict: 'PENDING' },
-      t7: { title: '6.7 Context Clues Architecture', verdict: 'PENDING' }
+      t7: { title: '6.7 Context Clues Architecture', verdict: 'PENDING' },
+      t8: { title: '6.8 Ongoing Autopsy', verdict: 'PENDING' },
+      t9: { title: '6.9 Header Layout & Utility Cluster', verdict: 'PENDING' },
+      t10: { title: '6.10 Tab Header Density', verdict: 'PENDING' },
+      t11: { title: '6.11 "Check the Mail" Workflow', verdict: 'PENDING' }
     };
 
     let auditVerdicts = { ...defaultAuditVerdicts };
@@ -2386,6 +2626,126 @@ function toggleDrawer(drawerId) {
           { label: '⚖️ Request Pros & Cons', prompt: 'pros and cons for Structured Context Clues vs SQLite Memory across the 4 Lenses' },
           { label: '🔬 Research Online', prompt: 'research online AI coding agent context management best practices 2026' }
         ]
+      },
+      t8: {
+        title: '6.8 Ongoing Autopsy: Live Triage Feed & Filterable Scoreboard',
+        badge: 'Workflow Architecture',
+        desc: '<strong>The Question:</strong> Should N\'kai add an "Ongoing Autopsy" view mode (Slot 2 after Workshop) providing a continuous, filterable (Approved / Tabled / Graveyard) summary feed of all decisions with direct jump links, automatically morphing into the final Post-Mortem report?',
+        optionsHtml: `
+          <div class="pill-card">
+            <div class="pill-title">Option A: Late-Stage Post-Mortem Only</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Triage summaries remain tucked at the very bottom or hidden until milestone completion.</p>
+          </div>
+          <div class="pill-card" style="border: 1px solid var(--accent-green);">
+            <div class="pill-title" style="color:var(--accent-green);">Option B: Dedicated Autopsy Tab w/ Filter Chips (Recommended)</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Slot 2 header item; live high-level feed, filter buttons (All, Approved, Tabled, Graveyard), 1-click jumps to full cards, and auto-morphs into final post-mortem.</p>
+          </div>
+          <div class="pill-card">
+            <div class="pill-title">Option C: Slide-Out Autopsy Drawer</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Keep the feed inside a slide-over modal/drawer. Keeps header clean but adds an extra click.</p>
+          </div>`,
+        evalHtml: `
+          <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option B: Dedicated Autopsy Tab)</div>
+          <ul style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin: 0; padding-left: 18px;">
+            <li><strong>🌍 Real-World Ergonomics:</strong> Instant visibility on all active decisions without waiting for milestone wrap-up. Filter chips allow rapid review.</li>
+            <li><strong>🏛️ Wider SOTA:</strong> Matches modern agile triage workflows (GitHub Projects board filters, Linear triage streams).</li>
+            <li><strong>🏆 Best Practices:</strong> Seamless lifecycle transition: in-flight triage feed smoothly becomes the permanent post-mortem archive.</li>
+          </ul>`,
+        recommendation: 'APPROVE Option B',
+        chips: [
+          { label: '⚖️ Request Pros & Cons', prompt: 'pros and cons for Ongoing Autopsy Tab across the 4 Lenses' },
+          { label: '🔬 Research Online', prompt: 'research online agile continuous post-mortem triage dashboards' }
+        ]
+      },
+      t9: {
+        title: '6.9 Header Layout: Top-Bar Right Cluster vs. Sidebar Drawer',
+        badge: 'UI Ergonomics',
+        desc: '<strong>The Question:</strong> How should utility controls (Roadmap, Sessions with badge count, History, Font zoom, Mute, Refresh) be arranged in mouse-driven N\'kai?',
+        optionsHtml: `
+          <div class="pill-card">
+            <div class="pill-title">Option A: Single Crowded Header</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Current layout: wraps into multiline when narrow, mixing view modes and utility buttons on the same tier.</p>
+          </div>
+          <div class="pill-card" style="border: 1px solid var(--accent-green);">
+            <div class="pill-title" style="color:var(--accent-green);">Option B: Two-Tier Header w/ Top-Right Emoji Cluster (Recommended)</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Top bar = Brand on left, prominent right-aligned emoji buttons (🗺️, 📦 1, 📜, 🔊, 🔄). Bottom row = Clean dedicated view switchers.</p>
+          </div>
+          <div class="pill-card">
+            <div class="pill-title">Option C: Utility Sidebar Drawer</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Move all utilities into a slide-out sidebar drawer with a prominent toggle button. Leaves header ultra-minimal.</p>
+          </div>`,
+        evalHtml: `
+          <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option B: Two-Tier Header Cluster)</div>
+          <ul style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin: 0; padding-left: 18px;">
+            <li><strong>🌍 Real-World Ergonomics:</strong> Mouse-driven navigation is fast and intuitive. Clear visual hierarchy between system tools and content tabs.</li>
+            <li><strong>🏛️ Wider SOTA:</strong> Standard in high-density web workstations (Grafana, Datadog, VS Code workbench top bar).</li>
+            <li><strong>🏆 Best Practices:</strong> Eliminates header wrapping clutter while keeping critical system status permanently visible.</li>
+          </ul>`,
+        recommendation: 'APPROVE Option B',
+        chips: [
+          { label: '⚖️ Request Pros & Cons', prompt: 'pros and cons for Two-Tier Header with Top-Right Emoji Cluster across the 4 Lenses' },
+          { label: '🔬 Research Online', prompt: 'research online header hierarchy and utility clusters in dense web applications' }
+        ]
+      },
+      t10: {
+        title: '6.10 Tab Header Density: Compact Emoji + Numbers vs. Verbose Labels',
+        badge: 'Spatial Ergonomics',
+        desc: '<strong>The Question:</strong> Should topic tabs be condensed to section numbers and emoji (e.g. 1 🗺️, 2 📦, 3 🚀), keeping primary modes labeled (Workshop, Autopsy), with full titles revealed on hover/tooltip?',
+        optionsHtml: `
+          <div class="pill-card">
+            <div class="pill-title">Option A: Verbose Multiline Labels</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Current layout: full words (🗺️ DYNAMIC ROADMAPS). Clear, but consumes 2-3 vertical lines on narrow panels.</p>
+          </div>
+          <div class="pill-card" style="border: 1px solid var(--accent-green);">
+            <div class="pill-title" style="color:var(--accent-green);">Option B: Hybrid Compact w/ Hover Tooltips (Recommended)</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Primary modes named (Workshop, Autopsy), category tabs as 1 🗺️, 2 📦, 3 🚀. Full title revealed instantly on hover.</p>
+          </div>
+          <div class="pill-card">
+            <div class="pill-title">Option C: Pure Icon-Only Toolbar</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Only emoji icons, zero numbers or text. Ultra-compact, but causes cognitive friction when memorizing tabs.</p>
+          </div>`,
+        evalHtml: `
+          <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option B: Hybrid Compact)</div>
+          <ul style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin: 0; padding-left: 18px;">
+            <li><strong>🌍 Real-World Ergonomics:</strong> Saves 40-60px of vertical header space on narrow side panels, keeping code and card content in immediate view.</li>
+            <li><strong>🏛️ Wider SOTA:</strong> Matches hardware groovebox and DAW pagination (Elektron bank pages A B C D, Ableton view icons).</li>
+            <li><strong>🏆 Best Practices:</strong> Balances scannability with spatial economy. Preserves clear semantic labels for primary operational modes.</li>
+          </ul>`,
+        recommendation: 'APPROVE Option B',
+        chips: [
+          { label: '⚖️ Request Pros & Cons', prompt: 'pros and cons for Hybrid Compact Tab Density across the 4 Lenses' },
+          { label: '🔬 Research Online', prompt: 'research online tab bar density and hover tooltips in developer tooling' }
+        ]
+      },
+      t11: {
+        title: '6.11 "Check the Mail" (Vault Inbox) Workflow & Sidecar Board Default',
+        badge: 'Pipeline Workflow',
+        desc: '<strong>The Question:</strong> When the user asks to "check the mail" (Obsidian Vault Inbox/), should the default be an interactive N\'kai research board with 1 section per note (e.g. Obsidian Addons), unless explicitly overridden by --chat?',
+        optionsHtml: `
+          <div class="pill-card">
+            <div class="pill-title">Option A: Raw Chat Dump Default</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Output markdown bullet points directly into chat. Fast, but clutters chat context and burns tokens on unformatted dumps.</p>
+          </div>
+          <div class="pill-card" style="border: 1px solid var(--accent-green);">
+            <div class="pill-title" style="color:var(--accent-green);">Option B: N'kai Inbox Board Default (Recommended)</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Parses TheKlangVault/Inbox/*.md, generates a dedicated sidecar board with 1 section per note and triage chips. --chat flag preserves terminal output option.</p>
+          </div>
+          <div class="pill-card">
+            <div class="pill-title">Option C: Automatic Backlog Sorter</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Agent sorts notes directly into BACKLOG.md without presenting an interactive interview. High risk of filing errors.</p>
+          </div>`,
+        evalHtml: `
+          <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option B: N'kai Inbox Board Default)</div>
+          <ul style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin: 0; padding-left: 18px;">
+            <li><strong>🌍 Real-World Ergonomics:</strong> Zero skipped notes. Complex brainstorms (like obsidian addons or hardware ideas) get clean dedicated space for thoughtful triage.</li>
+            <li><strong>🏛️ Wider SOTA:</strong> Follows Inbox Zero methodology (Superhuman card triage, Linear issue triage).</li>
+            <li><strong>🏆 Best Practices:</strong> Preserves main agent context window by keeping large brain dumps in the sidecar.</li>
+          </ul>`,
+        recommendation: 'APPROVE Option B',
+        chips: [
+          { label: '⚖️ Request Pros & Cons', prompt: 'pros and cons for Nkai Inbox Board Default across the 4 Lenses' },
+          { label: '🔬 Research Online', prompt: 'research online Inbox Zero triage workflows for AI engineering' }
+        ]
       }
     };
 
@@ -2397,7 +2757,7 @@ function toggleDrawer(drawerId) {
       const titleEl = document.getElementById('ws-hero-title');
       if (titleEl) titleEl.innerText = data.title;
 
-      for (let i = 1; i <= 7; i++) {
+      for (let i = 1; i <= 11; i++) {
         const btn = document.getElementById('btn-ws-t' + i);
         if (btn) {
           if ('t' + i === topicId) {
