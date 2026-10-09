@@ -533,6 +533,7 @@
       <button class="mode-btn" onclick="switchTab('tab-bluesky')">🚀 BLUE-SKY INNOVATIONS</button>
       <button class="mode-btn" onclick="switchTab('tab-contrarian')">⚖️ DEVIL'S ADVOCATE &amp; 80/20</button>
       <button class="mode-btn" onclick="switchTab('tab-upgrade')">🔄 UPGRADE &amp; MIGRATION</button>
+      <button class="mode-btn" onclick="switchTab('tab-audit')">🩺 SANITY AUDIT &amp; TRIAGE</button>
     </div>
 
     <div class="header-controls">
@@ -660,6 +661,16 @@
       <a class="sidebar-item" href="#sec-bluesky">3.0 Blue-Sky Innovations</a>
       <a class="sidebar-item" href="#sec-contrarian">4.0 Devil's Advocate &amp; 80/20</a>
       <a class="sidebar-item" href="#sec-upgrade">5.0 Upgrade Path &amp; Migration</a>
+
+      <div class="sidebar-section-title">System Sanity Audit</div>
+      <a class="sidebar-item" href="#sec-audit-summary">🩺 Audit Overview</a>
+      <a class="sidebar-item" href="#sec-audit-t1">6.1 Post-Mortem Architecture</a>
+      <a class="sidebar-item" href="#sec-audit-t2">6.2 Pros/Cons: On-Demand vs Always</a>
+      <a class="sidebar-item" href="#sec-audit-t3">6.3 Topic Organization</a>
+      <a class="sidebar-item" href="#sec-audit-t4">6.4 Agent Skills Structure</a>
+      <a class="sidebar-item" href="#sec-audit-t5">6.5 N'kai View Ergonomics</a>
+      <a class="sidebar-item" href="#sec-audit-t6">6.6 AGY Keyboard Shortcuts</a>
+      <a class="sidebar-item" href="#sec-audit-t7">6.7 Context Clues &amp; Pipelines</a>
 
       <div class="sidebar-section-title">Interactive Labs</div>
       <a class="sidebar-item" href="#sec-matrix-lab">📊 2x2 Decision Matrix</a>
@@ -1146,6 +1157,368 @@ class SidecarMigrator:
                 </div>
               </div>
               <pre id="sim-console" style="margin:0; font-family:var(--font-mono); font-size:11px; line-height:1.5; color:#79c0ff; max-height:220px; overflow-y:auto; background:rgba(0,0,0,0.5); padding:10px; border-radius:4px; border:1px solid rgba(48,54,61,0.5);">[System Ready] Click "Inspect Diff" or "Run Dry-Run Upgrade" to simulate automated migration of TKS UI/UX board.</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    
+      <!-- Tab 6: System Sanity Audit & Architecture Triage -->
+      <div id="tab-audit" class="tab-pane" style="display: none;">
+        <div class="section-card" id="sec-audit-summary">
+          <div class="section-title">
+            <span>6.0 System Sanity Audit &amp; Architecture Triage</span>
+            <div style="display:flex; gap:6px;">
+              <span class="badge badge-purple">System Sanity Audit</span>
+              <span class="badge badge-green">7 Topics</span>
+            </div>
+          </div>
+          <p style="font-size: 13px; line-height: 1.6; color: var(--text-main);">
+            <strong>Comprehensive Ecosystem Sanity Audit:</strong> A systematic, methodical review of N'kai's sidecar framework, agent skill architecture, guardrail ergonomics, and user interaction patterns. Triage decisions made here directly refine our operational standards and future roadmap.
+          </p>
+
+          <!-- Grand Audit Scorecard -->
+          <div style="background:var(--bg-panel); border:1px solid var(--border); border-radius:6px; padding:14px; margin-top:14px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+              <div>
+                <span style="font-family:var(--font-mono); font-size:12px; font-weight:700; color:var(--text-main);">Audit Scorecard:</span>
+                <span id="audit-scorecard" style="font-family:var(--font-mono); font-size:11px; color:var(--text-muted); margin-left:8px;">
+                  [ 0 Approved | 0 Tabled | 0 Killed | 7 Pending ]
+                </span>
+              </div>
+              <button class="interactive-btn" onclick="copyAuditVerdictsToClipboard()">📋 Copy Audit Decisions to Chat</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Topic 6.1: Post-Mortem Architecture -->
+        <div class="section-card" id="sec-audit-t1" style="border-left: 3px solid var(--accent-neon);">
+          <div class="section-title">
+            <span>6.1 Post-Mortem Architecture: Continuous Live Triage vs. Separate Batch Skill</span>
+            <span class="badge badge-blue">Topic 1 (Priority)</span>
+          </div>
+          <p style="font-size: 12px; line-height: 1.6; color: var(--text-main);">
+            <strong>The Question:</strong> Should the post-mortem be a separate, phased batch skill (running <code>/post-mortem</code> after research finishes), or should research, live approvals, and triage be unified into an integrated, continuous flow inside the sidecar, with the post-mortem simply acting as a 1-click executive ledger generator at the end?
+          </p>
+
+          <div class="grid-3" style="margin-top: 12px;">
+            <div class="pill-card">
+              <div class="pill-title">Option A: Phased Batch Skill</div>
+              <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
+                Research runs to completion $	o$ pauses $	o$ spawns <code>/post-mortem</code> $	o$ steps through each item in chat $	o$ creates separate package JSON.<br/>
+                <em>Drawback:</em> Forces re-reading items twice; high friction.
+              </p>
+            </div>
+            <div class="pill-card" style="border: 1px solid var(--accent-green);">
+              <div class="pill-title" style="color:var(--accent-green);">Option B: Continuous In-Flight Triage (Recommended)</div>
+              <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
+                Every research card has live <code>[ ✅ APPROVE ]</code>, <code>[ ⏳ TABLE ]</code>, <code>[ 💀 KILL ]</code> chips right on the card. The user triages in real time as they read. The "Post-Mortem" becomes a 1-click button: <em>"Generate Executive Ledger &amp; Ingest into Backlog"</em>.
+              </p>
+            </div>
+            <div class="pill-card">
+              <div class="pill-title">Option C: Hybrid Gate</div>
+              <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
+                Live voting on cards in sidecar, but requires a short 1-turn chat confirmation before writing approvals to <code>docs/BACKLOG.md</code>.
+              </p>
+            </div>
+          </div>
+
+          <!-- 3-Lens Pros & Cons -->
+          <div style="margin-top: 14px; background: rgba(0,0,0,0.3); border: 1px solid rgba(48,54,61,0.6); border-radius: 6px; padding: 12px;">
+            <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Continuous In-Flight Triage)</div>
+            <ul style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin: 0; padding-left: 18px;">
+              <li><strong>🌍 Real-World Ergonomics:</strong> Eliminates duplicate reading and the clumsy "Pause &amp; Package" dance. You react immediately while the visual mockups and simulator controls are right in front of you.</li>
+              <li><strong>🏛️ Wider SOTA:</strong> Matches Figma FigJam, Linear triage, and modern design sprints where decisions happen in-context on the canvas rather than through terminal Q&amp;A loops.</li>
+              <li><strong>🏆 Best Practices:</strong> Slashes token burn by ~80% by eliminating repetitive interactive questioning turns. The post-mortem becomes an automated synthesizer.</li>
+            </ul>
+          </div>
+
+          <!-- Interactive Verdict Chips -->
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:14px; padding-top:10px; border-top:1px solid rgba(48,54,61,0.5);">
+            <div style="font-family:var(--font-mono); font-size:11px; color:var(--text-muted);">
+              Verdict: <strong id="v-badge-t1" style="color:var(--text-muted);">PENDING</strong>
+            </div>
+            <div style="display:flex; gap:6px;">
+              <button class="interactive-btn" style="color:var(--accent-green); border-color:var(--accent-green);" onclick="setAuditVerdict('t1', 'APPROVED', this)">[ ✅ APPROVE Option B ]</button>
+              <button class="interactive-btn amber" onclick="setAuditVerdict('t1', 'TABLED', this)">[ ⏳ TABLE ]</button>
+              <button class="interactive-btn" style="color:var(--accent-red); border-color:var(--accent-red);" onclick="setAuditVerdict('t1', 'KILLED', this)">[ 💀 KEEP Option A ]</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Topic 6.2: Pros & Cons Strategy -->
+        <div class="section-card" id="sec-audit-t2">
+          <div class="section-title">
+            <span>6.2 Pros &amp; Cons Strategy: On-Demand vs. Always-Grabbed</span>
+            <span class="badge badge-amber">Ergonomics</span>
+          </div>
+          <p style="font-size: 12px; line-height: 1.6; color: var(--text-main);">
+            <strong>The Question:</strong> Should the agent proactively generate exhaustive 4-Lens pros &amp; cons tables for every proposal, or generate them <em>on-demand</em> (via explicit prompt or 1-click sidecar action)?
+          </p>
+
+          <div class="grid-3" style="margin-top: 12px;">
+            <div class="pill-card">
+              <div class="pill-title">Option A: Always-Grabbed (Current)</div>
+              <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
+                Proactively outputs deep tables on every idea.<br/>
+                <em>Tradeoff:</em> Thorough, but consumes high tokens and stretches chat turns when you only wanted a quick answer.
+              </p>
+            </div>
+            <div class="pill-card" style="border: 1px solid var(--accent-green);">
+              <div class="pill-title" style="color:var(--accent-green);">Option B: On-Demand via Action Chips (Recommended)</div>
+              <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
+                Chat responses stay terse (1–3 sentences). Sidecar cards feature a <code>[ ⚖️ Request Pros &amp; Cons ]</code> button that triggers deep tables only when requested.
+              </p>
+            </div>
+            <div class="pill-card">
+              <div class="pill-title">Option C: Tier-Gated Threshold</div>
+              <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
+                Proactively output pros/cons <em>strictly</em> for Tier 1 high-impact architectural forks (C++ audio thread, breaking schema changes). Keep Tier 2/3 terse.
+              </p>
+            </div>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:14px; padding-top:10px; border-top:1px solid rgba(48,54,61,0.5);">
+            <div style="font-family:var(--font-mono); font-size:11px; color:var(--text-muted);">
+              Verdict: <strong id="v-badge-t2" style="color:var(--text-muted);">PENDING</strong>
+            </div>
+            <div style="display:flex; gap:6px;">
+              <button class="interactive-btn" style="color:var(--accent-green); border-color:var(--accent-green);" onclick="setAuditVerdict('t2', 'APPROVED', this)">[ ✅ APPROVE Option B ]</button>
+              <button class="interactive-btn amber" onclick="setAuditVerdict('t2', 'TABLED', this)">[ ⏳ TABLE ]</button>
+              <button class="interactive-btn" style="color:var(--accent-red); border-color:var(--accent-red);" onclick="setAuditVerdict('t2', 'KILLED', this)">[ 💀 KEEP Option A ]</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Topic 6.3: Topic Organization Strategy -->
+        <div class="section-card" id="sec-audit-t3">
+          <div class="section-title">
+            <span>6.3 Topic Organization Strategy: Domain vs. Milestone vs. Lifecycle</span>
+            <span class="badge badge-purple">Taxonomy</span>
+          </div>
+          <p style="font-size: 12px; line-height: 1.6; color: var(--text-main);">
+            <strong>The Question:</strong> How should topics be categorized across research boards and roadmaps?
+          </p>
+
+          <div class="grid-3" style="margin-top: 12px;">
+            <div class="pill-card">
+              <div class="pill-title">Option A: Domain-Based (Current)</div>
+              <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
+                Divided by technical stack: Layouts vs DSP vs Blue Sky vs Hardware vs Tooling. Clean separation of concerns, but separates items bound for the same release.
+              </p>
+            </div>
+            <div class="pill-card">
+              <div class="pill-title">Option B: Milestone-Based</div>
+              <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
+                Divided strictly by target version: v0.4.0 vs v0.4.1 vs v0.5.0. Excellent for release alignment, but fragments technical domains across multiple tabs.
+              </p>
+            </div>
+            <div class="pill-card" style="border: 1px solid var(--accent-green);">
+              <div class="pill-title" style="color:var(--accent-green);">Option C: Lifecycle Hierarchy (Recommended)</div>
+              <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
+                Tab 1: <em>Active Workshop</em> (the immediate focus item) $	o$ Tabs 2–N: <em>Domain Deep Dives</em> with target milestone badges $	o$ Final Tab: <em>Executive Decision Ledger</em>.
+              </p>
+            </div>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:14px; padding-top:10px; border-top:1px solid rgba(48,54,61,0.5);">
+            <div style="font-family:var(--font-mono); font-size:11px; color:var(--text-muted);">
+              Verdict: <strong id="v-badge-t3" style="color:var(--text-muted);">PENDING</strong>
+            </div>
+            <div style="display:flex; gap:6px;">
+              <button class="interactive-btn" style="color:var(--accent-green); border-color:var(--accent-green);" onclick="setAuditVerdict('t3', 'APPROVED', this)">[ ✅ APPROVE Option C ]</button>
+              <button class="interactive-btn amber" onclick="setAuditVerdict('t3', 'TABLED', this)">[ ⏳ TABLE ]</button>
+              <button class="interactive-btn" style="color:var(--accent-red); border-color:var(--accent-red);" onclick="setAuditVerdict('t3', 'KILLED', this)">[ 💀 KEEP Option A ]</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Topic 6.4: Agent Skills Organization -->
+        <div class="section-card" id="sec-audit-t4">
+          <div class="section-title">
+            <span>6.4 Agent Skills Organization: Micro-Skills vs. Macro-Suites</span>
+            <span class="badge badge-blue">Skill Architecture</span>
+          </div>
+          <p style="font-size: 12px; line-height: 1.6; color: var(--text-main);">
+            <strong>The Question:</strong> We currently have 16 distinct skills in <code>.agents/skills/</code>. Is this too fragmented, or does Unix-style modular composability provide superior reliability?
+          </p>
+
+          <div class="grid-3" style="margin-top: 12px;">
+            <div class="pill-card">
+              <div class="pill-title">Option A: 16 Micro-Skills (Current)</div>
+              <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
+                Every command is its own atomic skill (<code>build-validate</code>, <code>step-verify</code>, <code>audiothread-guard</code>, <code>web-qa</code>). High granularity, but requires knowing multiple commands.
+              </p>
+            </div>
+            <div class="pill-card">
+              <div class="pill-title">Option B: 4 Consolidated Macro-Suites</div>
+              <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
+                Merged into 4 monolithic skills: <code>/architect</code>, <code>/factory</code>, <code>/maintain</code>, <code>/qa</code>. Simpler menu, but reduces flexibility for targeted single operations.
+              </p>
+            </div>
+            <div class="pill-card" style="border: 1px solid var(--accent-green);">
+              <div class="pill-title" style="color:var(--accent-green);">Option C: Layered Hybrid (Recommended)</div>
+              <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
+                Keep atomic micro-skills as the underlying engine, while macro-commands (like <code>/execute-task</code>) chain them deterministically. Zero loss of composability.
+              </p>
+            </div>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:14px; padding-top:10px; border-top:1px solid rgba(48,54,61,0.5);">
+            <div style="font-family:var(--font-mono); font-size:11px; color:var(--text-muted);">
+              Verdict: <strong id="v-badge-t4" style="color:var(--text-muted);">PENDING</strong>
+            </div>
+            <div style="display:flex; gap:6px;">
+              <button class="interactive-btn" style="color:var(--accent-green); border-color:var(--accent-green);" onclick="setAuditVerdict('t4', 'APPROVED', this)">[ ✅ APPROVE Option C ]</button>
+              <button class="interactive-btn amber" onclick="setAuditVerdict('t4', 'TABLED', this)">[ ⏳ TABLE ]</button>
+              <button class="interactive-btn" style="color:var(--accent-red); border-color:var(--accent-red);" onclick="setAuditVerdict('t4', 'KILLED', this)">[ 💀 KEEP Option A ]</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Topic 6.5: N'kai View Ergonomics -->
+        <div class="section-card" id="sec-audit-t5">
+          <div class="section-title">
+            <span>6.5 N'kai View Ergonomics: Narrow IDE Panels vs. Wide Displays</span>
+            <span class="badge badge-green">UI / UX</span>
+          </div>
+          <p style="font-size: 12px; line-height: 1.6; color: var(--text-main);">
+            <strong>The Question:</strong> On narrow 380px–480px IDE side panels, the 240px left sidebar steals 50% of horizontal space. How should N'kai adapt?
+          </p>
+
+          <div class="grid-3" style="margin-top: 12px;">
+            <div class="pill-card">
+              <div class="pill-title">Option A: Fixed 2-Column (Current)</div>
+              <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
+                Sidebar remains pinned at 240px. Great on wide monitors, but squishes cards and tables on narrow panels.
+              </p>
+            </div>
+            <div class="pill-card" style="border: 1px solid var(--accent-green);">
+              <div class="pill-title" style="color:var(--accent-green);">Option B: Container Query Auto-Collapse (Recommended)</div>
+              <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
+                When panel width &lt; 650px, the sidebar collapses into a top sticky chip bar or modal drawer trigger. Cards expand to 100% width.
+              </p>
+            </div>
+            <div class="pill-card">
+              <div class="pill-title">Option C: Draggable Split Pane</div>
+              <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
+                Allows user to manually resize the sidebar boundary with a mouse drag handle.
+              </p>
+            </div>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:14px; padding-top:10px; border-top:1px solid rgba(48,54,61,0.5);">
+            <div style="font-family:var(--font-mono); font-size:11px; color:var(--text-muted);">
+              Verdict: <strong id="v-badge-t5" style="color:var(--text-muted);">PENDING</strong>
+            </div>
+            <div style="display:flex; gap:6px;">
+              <button class="interactive-btn" style="color:var(--accent-green); border-color:var(--accent-green);" onclick="setAuditVerdict('t5', 'APPROVED', this)">[ ✅ APPROVE Option B ]</button>
+              <button class="interactive-btn amber" onclick="setAuditVerdict('t5', 'TABLED', this)">[ ⏳ TABLE ]</button>
+              <button class="interactive-btn" style="color:var(--accent-red); border-color:var(--accent-red);" onclick="setAuditVerdict('t5', 'KILLED', this)">[ 💀 KEEP Option A ]</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Topic 6.6: AGY Keyboard Shortcuts & Power Tools -->
+        <div class="section-card" id="sec-audit-t6">
+          <div class="section-title">
+            <span>6.6 AGY Keyboard Shortcuts &amp; Power Tools Integration</span>
+            <span class="badge badge-purple">Power Tools</span>
+          </div>
+          <p style="font-size: 12px; line-height: 1.6; color: var(--text-main);">
+            <strong>Research Findings:</strong> The shortcut you accidentally pressed was <code>Ctrl + L</code> (Focuses Chat Panel / opens Gemini prompt in Antigravity IDE). Here is the official shortcut inventory and how N'kai can leverage it:
+          </p>
+
+          <div style="overflow-x: auto; background: var(--bg-panel); border: 1px solid var(--border); border-radius: 6px; padding: 12px; margin-top: 12px;">
+            <table style="width: 100%; border-collapse: collapse; font-size: 11px; color: var(--text-main);">
+              <thead>
+                <tr style="border-bottom: 2px solid var(--border); text-align: left;">
+                  <th style="padding: 6px 10px; color: var(--accent-neon); font-family: var(--font-mono); width: 22%;">Shortcut Key</th>
+                  <th style="padding: 6px 10px; color: var(--accent-blue); font-family: var(--font-mono); width: 38%;">Antigravity IDE Function</th>
+                  <th style="padding: 6px 10px; color: var(--accent-green); font-family: var(--font-mono); width: 40%;">N'kai Power Integration</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom: 1px solid rgba(48,54,61,0.5);">
+                  <td style="padding: 6px 10px; font-family: var(--font-mono); font-weight: 700; color: var(--accent-amber);">Ctrl + L</td>
+                  <td style="padding: 6px 10px;">Focuses Chat Panel &amp; Agent Input</td>
+                  <td style="padding: 6px 10px; color: var(--text-muted);">Sidecar prompt copiers format prompts directly for instant <code>Ctrl+L</code> $	o$ <code>Ctrl+V</code>.</td>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(48,54,61,0.5);">
+                  <td style="padding: 6px 10px; font-family: var(--font-mono); font-weight: 700; color: var(--accent-amber);">Ctrl + I</td>
+                  <td style="padding: 6px 10px;">Inline Code Edit / Code Generation</td>
+                  <td style="padding: 6px 10px; color: var(--text-muted);">Quick-copy drop-in C++ method signatures from sidecar for instant inline refactoring.</td>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(48,54,61,0.5);">
+                  <td style="padding: 6px 10px; font-family: var(--font-mono); font-weight: 700; color: var(--accent-amber);">Ctrl + B</td>
+                  <td style="padding: 6px 10px;">Toggle Primary Sidebar (File Tree)</td>
+                  <td style="padding: 6px 10px; color: var(--text-muted);">Quickly hide file tree to give 100% width to sidecar webview.</td>
+                </tr>
+                <tr style="border-bottom: 1px solid rgba(48,54,61,0.5);">
+                  <td style="padding: 6px 10px; font-family: var(--font-mono); font-weight: 700; color: var(--accent-amber);">Ctrl + J</td>
+                  <td style="padding: 6px 10px;">Toggle Bottom Terminal / Output Drawer</td>
+                  <td style="padding: 6px 10px; color: var(--text-muted);">Check compilation and test outputs side-by-side with sidecar.</td>
+                </tr>
+                <tr>
+                  <td style="padding: 6px 10px; font-family: var(--font-mono); font-weight: 700; color: var(--accent-amber);">Cmd/Ctrl + K</td>
+                  <td style="padding: 6px 10px;">Command Palette / Quick Actions</td>
+                  <td style="padding: 6px 10px; color: var(--accent-green);">In-Sidecar Command Palette: Pressing <code>Ctrl+K</code> inside N'kai searches all cards and roadmaps.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:14px; padding-top:10px; border-top:1px solid rgba(48,54,61,0.5);">
+            <div style="font-family:var(--font-mono); font-size:11px; color:var(--text-muted);">
+              Verdict: <strong id="v-badge-t6" style="color:var(--text-muted);">PENDING</strong>
+            </div>
+            <div style="display:flex; gap:6px;">
+              <button class="interactive-btn" style="color:var(--accent-green); border-color:var(--accent-green);" onclick="setAuditVerdict('t6', 'APPROVED', this)">[ ✅ APPROVE Shortcuts Suite ]</button>
+              <button class="interactive-btn amber" onclick="setAuditVerdict('t6', 'TABLED', this)">[ ⏳ TABLE ]</button>
+              <button class="interactive-btn" style="color:var(--accent-red); border-color:var(--accent-red);" onclick="setAuditVerdict('t6', 'KILLED', this)">[ 💀 REJECT ]</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Topic 6.7: Context Clues & Factory Handshake -->
+        <div class="section-card" id="sec-audit-t7">
+          <div class="section-title">
+            <span>6.7 Context Clues Architecture &amp; Factory Handshake Gate</span>
+            <span class="badge badge-blue">Context Hygiene</span>
+          </div>
+          <p style="font-size: 12px; line-height: 1.6; color: var(--text-main);">
+            <strong>The Question:</strong> We recently established the Tri-File Context Architecture (<code>context_clues_plan.md</code>, <code>context_clues_build.md</code>, <code>context_clues_subagent.md</code>). How should session refreshment and clean slates be managed?
+          </p>
+
+          <div class="grid-3" style="margin-top: 12px;">
+            <div class="pill-card">
+              <div class="pill-title">Option A: 40-Turn Manual Threshold</div>
+              <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
+                Wait until turn 40 before recommending <code>/refresh-context</code>. Can lead to subtle reasoning degradation ("context rot") on complex tasks.
+              </p>
+            </div>
+            <div class="pill-card" style="border: 1px solid var(--accent-green);">
+              <div class="pill-title" style="color:var(--accent-green);">Option B: Milestone-Bound Clean Slates (Recommended)</div>
+              <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
+                Clean slate between major milestones: whenever a task/plan finishes, harvest into <code>DEV_HISTORY.md</code> and immediately start a fresh session on Flash High.
+              </p>
+            </div>
+            <div class="pill-card">
+              <div class="pill-title">Option C: Automatic Turn Pruning</div>
+              <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
+                Prune old assistant messages silently via automated transcripts wiping. (Risk: loses short-term chat continuity).
+              </p>
+            </div>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:14px; padding-top:10px; border-top:1px solid rgba(48,54,61,0.5);">
+            <div style="font-family:var(--font-mono); font-size:11px; color:var(--text-muted);">
+              Verdict: <strong id="v-badge-t7" style="color:var(--text-muted);">PENDING</strong>
+            </div>
+            <div style="display:flex; gap:6px;">
+              <button class="interactive-btn" style="color:var(--accent-green); border-color:var(--accent-green);" onclick="setAuditVerdict('t7', 'APPROVED', this)">[ ✅ APPROVE Option B ]</button>
+              <button class="interactive-btn amber" onclick="setAuditVerdict('t7', 'TABLED', this)">[ ⏳ TABLE ]</button>
+              <button class="interactive-btn" style="color:var(--accent-red); border-color:var(--accent-red);" onclick="setAuditVerdict('t7', 'KILLED', this)">[ 💀 KEEP Option A ]</button>
             </div>
           </div>
         </div>
