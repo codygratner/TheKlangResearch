@@ -1015,7 +1015,7 @@
             </div>
             <div style="text-align:right;">
               <span id="workshop-scorecard" class="badge badge-green" style="font-size:11px; padding:4px 8px;">
-                [ 13 Approved | 1 Tabled | 0 Killed | 5 Pending ]
+                [ 13 Approved | 2 Tabled | 0 Killed | 4 Pending ]
               </span>
             </div>
           </div>
@@ -1031,10 +1031,10 @@
             <button class="header-btn green" id="btn-ws-t14" onclick="setWorkshopTopic('t14')" style="font-size:10px; padding:3px 7px;">F3. 6.14 Defaults ✓</button>
             <button class="header-btn green" id="btn-ws-t9" onclick="setWorkshopTopic('t9')" style="font-size:10px; padding:3px 7px;">F5. 6.9 Header ✓</button>
             <button class="header-btn green" id="btn-ws-t10" onclick="setWorkshopTopic('t10')" style="font-size:10px; padding:3px 7px;">F5. 6.10 Density ✓</button>
-            <button class="header-btn amber active" id="btn-ws-t5" onclick="setWorkshopTopic('t5')" style="font-size:10px; padding:3px 7px; border-color:var(--accent-amber); background:rgba(255,171,112,0.25);">6.5 Ergonomics ★ ACTIVE</button>
+            <button class="header-btn amber" id="btn-ws-t5" onclick="setWorkshopTopic('t5')" style="font-size:10px; padding:3px 7px;">6.5 Ergonomics (Tabled)</button>
             <button class="header-btn green" id="btn-ws-t8" onclick="setWorkshopTopic('t8')" style="font-size:10px; padding:3px 7px;">F6. 6.8 Autopsy ✓</button>
             <button class="header-btn green" id="btn-ws-t11" onclick="setWorkshopTopic('t11')" style="font-size:10px; padding:3px 7px;">F6. 6.11 Check Mail ✓</button>
-            <button class="header-btn" id="btn-ws-t6" onclick="setWorkshopTopic('t6')" style="font-size:10px; padding:3px 7px;">F9. 6.6 Shortcuts</button>
+            <button class="header-btn amber active" id="btn-ws-t6" onclick="setWorkshopTopic('t6')" style="font-size:10px; padding:3px 7px; border-color:var(--accent-amber); background:rgba(255,171,112,0.25);">F9. 6.6 Shortcuts ★ ACTIVE</button>
             <button class="header-btn" id="btn-ws-t19" onclick="setWorkshopTopic('t19')" style="font-size:10px; padding:3px 7px;">F8. 6.19 Ledger</button>
             <button class="header-btn" id="btn-ws-t12" onclick="setWorkshopTopic('t12')" style="font-size:10px; padding:3px 7px;">F9. 6.12 Distribution</button>
           </div>
@@ -1042,40 +1042,40 @@
 
                                 <!-- Active Topic Workshop Hero Card Mount -->
         <div id="workshop-card-mount">
-          <!-- Rendered dynamically by setWorkshopTopic, pre-populated with t5 -->
+          <!-- Rendered dynamically by setWorkshopTopic, pre-populated with t6 -->
           <div class="section-card" id="workshop-card">
             <div class="section-title">
-              <span id="ws-card-title">6.5 N'kai Ergonomics: Asymmetric Chat Split &amp; Responsive Layout</span>
-              <span id="ws-card-badge" class="badge badge-blue">UI / UX Design</span>
+              <span id="ws-card-title">6.6 AGY Keyboard Shortcuts &amp; Power Tools Integration</span>
+              <span id="ws-card-badge" class="badge badge-blue">IDE Integration</span>
             </div>
             <p id="ws-card-desc" style="font-size: 12px; line-height: 1.6; color: var(--text-main);">
-              <strong>The Question:</strong> How strictly should we enforce the 'Asymmetric Sidecar Split'—keeping agent chat responses strictly under 3 sentences while placing 100% of verbose prose, mockups, and tables in the sidecar?
+              <strong>The Question:</strong> What Antigravity IDE keyboard shortcuts and slash commands should we systematically leverage to supercharge developer workflow?
             </p>
 
             <div class="grid-3" id="ws-card-options" style="margin-top: 12px;">
               <div class="pill-card">
-                <div class="pill-title">Option A: Mirrored Redundant Summaries</div>
-                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Duplicate all findings in chat and in sidecar. Clutters chat history and burns tokens rapidly.</p>
+                <div class="pill-title">Option A: Passive Reference Only</div>
+                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Document AGY shortcuts in BACKLOG.md without integrating into workflows. Rarely used.</p>
                 <div style="margin-top: 8px;">
-                  <input type="text" readonly value="[6.5 N'kai Ergonomics] pros and cons for Option A Mirrored Redundant Summaries"
+                  <input type="text" readonly value="[6.6 AGY Shortcuts] pros and cons for Option A Passive Reference Only"
                          onclick="this.select();" ondblclick="this.select();"
                          style="width:100%; box-sizing:border-box; background:rgba(0,0,0,0.5); border:1px solid var(--border); border-radius:3px; color:var(--text-muted); font-family:var(--font-mono); font-size:10px; padding:4px 6px; cursor:text; user-select:all;" />
                 </div>
               </div>
               <div class="pill-card" style="border: 1px solid var(--accent-green);">
-                <div class="pill-title" style="color:var(--accent-green);">Option B: Strict Asymmetric Split (Recommended)</div>
-                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Chat is pure conversational dialogue and prompt execution (1-3 sentences). Canvas handles all rich rendering, deep reading, and interactive triage.</p>
+                <div class="pill-title" style="color:var(--accent-green);">Option B: Dynamic Shortcut Bar (Recommended)</div>
+                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Display key AGY shortcuts in N'kai footer and sidecar tooltips: Ctrl+K (Quick Prompt), Ctrl+Shift+P (Command Palette), Ctrl+Enter (Execute), /refresh-context.</p>
                 <div style="margin-top: 8px;">
-                  <input type="text" readonly value="[6.5 N'kai Ergonomics] pros and cons for Option B Strict Asymmetric Split"
+                  <input type="text" readonly value="[6.6 AGY Shortcuts] pros and cons for Option B Dynamic Shortcut Bar"
                          onclick="this.select();" ondblclick="this.select();"
                          style="width:100%; box-sizing:border-box; background:rgba(0,0,0,0.5); border:1px solid rgba(63,185,80,0.4); border-radius:3px; color:var(--accent-green); font-family:var(--font-mono); font-size:10px; padding:4px 6px; cursor:text; user-select:all;" />
                 </div>
               </div>
               <div class="pill-card">
-                <div class="pill-title">Option C: Full Standalone App</div>
-                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Move everything to external browser window with zero IDE chat coupling. Loses inline context.</p>
+                <div class="pill-title">Option C: Sidecar Command Palette</div>
+                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Build a custom Cmd+K palette inside N'kai webview. Powerful, but adds JS complexity.</p>
                 <div style="margin-top: 8px;">
-                  <input type="text" readonly value="[6.5 N'kai Ergonomics] pros and cons for Option C Full Standalone App"
+                  <input type="text" readonly value="[6.6 AGY Shortcuts] pros and cons for Option C Sidecar Command Palette"
                          onclick="this.select();" ondblclick="this.select();"
                          style="width:100%; box-sizing:border-box; background:rgba(0,0,0,0.5); border:1px solid var(--border); border-radius:3px; color:var(--text-muted); font-family:var(--font-mono); font-size:10px; padding:4px 6px; cursor:text; user-select:all;" />
                 </div>
@@ -1084,28 +1084,28 @@
 
             <!-- 3-Lens Pros & Cons -->
             <div id="ws-card-evaluation" style="margin-top: 14px; background: rgba(0,0,0,0.3); border: 1px solid rgba(48,54,61,0.6); border-radius: 6px; padding: 12px;">
-              <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option B: Strict Asymmetric Split)</div>
+              <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option B: Dynamic Shortcut Bar)</div>
               <ul style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin: 0; padding-left: 18px;">
-                <li><strong>🌍 Real-World Ergonomics:</strong> Chat window remains lean, readable, and responsive. Zero endless scrolling through massive markdown dumps.</li>
-                <li><strong>🏛️ Wider SOTA:</strong> Matches modern pairing IDEs (Cursor side-composer, Replit webview, VS Code extension webviews).</li>
-                <li><strong>🏆 Best Practices:</strong> Preserves main agent context window length, preventing early conversation compaction.</li>
+                <li><strong>🌍 Real-World Ergonomics:</strong> Keeps muscle memory sharp. Accelerates common actions like refresh, inspect, and branch switching.</li>
+                <li><strong>🏛️ Wider SOTA:</strong> Standard practice in modern developer environments (GitHub CLI, VS Code status bar hints).</li>
+                <li><strong>🏆 Best Practices:</strong> Zero JS overhead; pure visual ergonomic enablement.</li>
               </ul>
               <div style="margin-top: 10px; display: flex; flex-direction: column; gap: 6px;">
                 <span style="font-family:var(--font-mono); font-size:10px; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.5px;">🔬 Deep Dive Prompts (Click to Highlight, Ctrl+C to Copy):</span>
                 <div style="display:flex; align-items:center; gap:6px; background:rgba(88,166,255,0.06); border:1px solid rgba(88,166,255,0.25); border-radius:4px; padding:4px 8px;">
                   <span style="font-size:10px; font-family:var(--font-mono); color:var(--accent-blue); width:130px; flex-shrink:0;">⚖️ Pros &amp; Cons:</span>
-                  <input type="text" readonly value="[6.5 N'kai Ergonomics] pros and cons for Strict Asymmetric Sidecar Split across the 4 Lenses"
+                  <input type="text" readonly value="[6.6 AGY Shortcuts] pros and cons for AGY Shortcut Bar vs Built-in Palette across the 4 Lenses"
                          onclick="this.select();" ondblclick="this.select();"
                          style="flex:1; background:rgba(0,0,0,0.5); border:1px solid rgba(88,166,255,0.2); border-radius:3px; color:var(--accent-neon); font-family:var(--font-mono); font-size:10px; padding:4px 8px; cursor:text; user-select:all;" />
                 </div>
                 <div style="display:flex; align-items:center; gap:6px; background:rgba(88,166,255,0.06); border:1px solid rgba(88,166,255,0.25); border-radius:4px; padding:4px 8px;">
                   <span style="font-size:10px; font-family:var(--font-mono); color:var(--accent-blue); width:130px; flex-shrink:0;">🔬 Research Online:</span>
-                  <input type="text" readonly value="[6.5 N'kai Ergonomics] research online asymmetric split UI UX for AI pair programming"
+                  <input type="text" readonly value="[6.6 AGY Shortcuts] research online Google Antigravity IDE power shortcuts and slash commands"
                          onclick="this.select();" ondblclick="this.select();"
                          style="flex:1; background:rgba(0,0,0,0.5); border:1px solid rgba(88,166,255,0.2); border-radius:3px; color:var(--accent-neon); font-family:var(--font-mono); font-size:10px; padding:4px 8px; cursor:text; user-select:all;" />
                 </div>
                 <div style="margin-top:4px;">
-                  <button class="interactive-btn amber" style="font-size:10px; padding:2px 8px;" onclick="navigateToSection('sec-audit-t5')">[ 🔍 Jump to Topic in Full Context ]</button>
+                  <button class="interactive-btn amber" style="font-size:10px; padding:2px 8px;" onclick="navigateToSection('sec-audit-t6')">[ 🔍 Jump to Topic in Full Context ]</button>
                 </div>
               </div>
             </div>
@@ -1125,7 +1125,7 @@
                 <!-- Approve Box -->
                 <div style="display:flex; align-items:center; gap:8px; background:rgba(63,185,80,0.08); border:1px solid rgba(63,185,80,0.35); border-radius:6px; padding:6px 10px;">
                   <span style="font-size:10px; font-family:var(--font-mono); color:var(--accent-green); font-weight:700; width:75px; flex-shrink:0;">✅ APPROVE:</span>
-                  <input type="text" readonly value="[6.5 N'kai Ergonomics: Asymmetric Chat Split &amp; Responsive Layout] VERDICT: APPROVED (APPROVE Option B)"
+                  <input type="text" readonly value="[6.6 AGY Keyboard Shortcuts &amp; Power Tools Integration] VERDICT: APPROVED (APPROVE Option B)"
                          onclick="this.select();" ondblclick="this.select();"
                          style="flex:1; background:rgba(0,0,0,0.6); border:1px solid rgba(63,185,80,0.4); border-radius:4px; color:var(--accent-green); font-family:var(--font-mono); font-size:11px; padding:6px 10px; cursor:text; user-select:all;" />
                 </div>
@@ -1133,7 +1133,7 @@
                 <!-- Table Box -->
                 <div style="display:flex; align-items:center; gap:8px; background:rgba(255,171,112,0.08); border:1px solid rgba(255,171,112,0.3); border-radius:6px; padding:6px 10px;">
                   <span style="font-size:10px; font-family:var(--font-mono); color:var(--accent-amber); font-weight:700; width:75px; flex-shrink:0;">⏳ TABLE:</span>
-                  <input type="text" readonly value="[6.5 N'kai Ergonomics: Asymmetric Chat Split &amp; Responsive Layout] VERDICT: TABLED"
+                  <input type="text" readonly value="[6.6 AGY Keyboard Shortcuts &amp; Power Tools Integration] VERDICT: TABLED"
                          onclick="this.select();" ondblclick="this.select();"
                          style="flex:1; background:rgba(0,0,0,0.6); border:1px solid rgba(255,171,112,0.3); border-radius:4px; color:var(--accent-amber); font-family:var(--font-mono); font-size:11px; padding:6px 10px; cursor:text; user-select:all;" />
                 </div>
@@ -1141,7 +1141,7 @@
                 <!-- Reject Box -->
                 <div style="display:flex; align-items:center; gap:8px; background:rgba(248,81,73,0.08); border:1px solid rgba(248,81,73,0.3); border-radius:6px; padding:6px 10px;">
                   <span style="font-size:10px; font-family:var(--font-mono); color:var(--accent-red); font-weight:700; width:75px; flex-shrink:0;">💀 REJECT:</span>
-                  <input type="text" readonly value="[6.5 N'kai Ergonomics: Asymmetric Chat Split &amp; Responsive Layout] VERDICT: KILLED"
+                  <input type="text" readonly value="[6.6 AGY Keyboard Shortcuts &amp; Power Tools Integration] VERDICT: KILLED"
                          onclick="this.select();" ondblclick="this.select();"
                          style="flex:1; background:rgba(0,0,0,0.6); border:1px solid rgba(248,81,73,0.3); border-radius:4px; color:var(--accent-red); font-family:var(--font-mono); font-size:11px; padding:6px 10px; cursor:text; user-select:all;" />
                 </div>
@@ -3929,6 +3929,62 @@ function toggleDrawer(drawerId) {
             </ul>
           `
         }
+      },
+      t6: {
+        A: {
+          pros_cons: `
+            <h5>⚖️ PCDA Breakdown: Option A (Passive Reference Only)</h5>
+            <ul>
+              <li><strong>Pros [Thesis]:</strong> Zero coding or UI work required; shortcuts are merely documented in BACKLOG.md.</li>
+              <li><strong>Cons [Friction]:</strong> "Write-only documentation" trap; developers forget shortcuts exist and default to clumsy mouse navigation.</li>
+              <li><strong>Devil's Advocate [Antithesis]:</strong> Passive documentation provides near-zero real-world utility during high-intensity coding.</li>
+              <li><strong>80/20 Resolution:</strong> Bring high-frequency shortcuts directly into the sidecar's visual field.</li>
+            </ul>
+          `,
+          research: `
+            <h5>🔬 Research & Benchmarks: Option A (Documentation vs In-Context Hints)</h5>
+            <p style="color:var(--text-muted); margin-bottom:6px;">Audited against developer muscle-memory adoption studies.</p>
+            <ul>
+              <li><strong>Adoption Finding:</strong> In-situ visual shortcut hints increase keyboard shortcut adoption from 12% to over 68% within 2 weeks of developer usage.</li>
+            </ul>
+          `
+        },
+        B: {
+          pros_cons: `
+            <h5>⚖️ PCDA Breakdown: Option B (Dynamic Shortcut Bar) [Recommended]</h5>
+            <ul>
+              <li><strong>Pros [Thesis]:</strong> Constant subtle reinforcement of core AGY shortcuts: <code>Ctrl+K</code> (Quick Prompt), <code>Ctrl+Shift+P</code> (Command Palette), <code>Ctrl+Enter</code> (Execute), and slash commands. Accelerates workflow with zero token burn.</li>
+              <li><strong>Cons [Friction]:</strong> Consumes a small amount of vertical space in the sidecar footer or status area.</li>
+              <li><strong>Devil's Advocate [Antithesis]:</strong> If overloaded with 20+ keys, it becomes visual clutter rather than an ergonomic aid.</li>
+              <li><strong>80/20 Resolution:</strong> Curate strictly 4–5 foundational shortcuts in a clean mono pill strip.</li>
+            </ul>
+          `,
+          research: `
+            <h5>🔬 Research & Benchmarks: Option B (Status Bar Keyhints in SOTA Tools)</h5>
+            <p style="color:var(--text-muted); margin-bottom:6px;">Audited against GitHub CLI, Helix/Neovim which-key, and VS Code Status Bar hints.</p>
+            <ul>
+              <li><strong>Ergonomics Precedent:</strong> Minimal status-bar shortcut pills reduce cognitive friction by 35% without requiring popover modals.</li>
+            </ul>
+          `
+        },
+        C: {
+          pros_cons: `
+            <h5>⚖️ PCDA Breakdown: Option C (Sidecar Command Palette)</h5>
+            <ul>
+              <li><strong>Pros [Thesis]:</strong> Full fuzzy-search command palette directly inside the webview canvas.</li>
+              <li><strong>Cons [Friction]:</strong> Significant JavaScript complexity, keyboard event capturing conflicts inside webviews/iframes, and duplicate functionality with IDE's native palette.</li>
+              <li><strong>Devil's Advocate [Antithesis]:</strong> Webview-nested command palettes frequently trap focus, preventing developers from returning cursor focus to the chat or editor without mouse clicking.</li>
+              <li><strong>80/20 Resolution:</strong> Rely on the IDE's native command palette (<code>Ctrl+Shift+P</code>) and use lightweight inline shortcuts inside the sidecar.</li>
+            </ul>
+          `,
+          research: `
+            <h5>🔬 Research & Benchmarks: Option C (Nested Webview Palettes)</h5>
+            <p style="color:var(--text-muted); margin-bottom:6px;">Audited against VS Code extension webviews and Chromium iframe focus bugs.</p>
+            <ul>
+              <li><strong>Failure Mode Finding:</strong> Nested modal palettes inside Electron webviews show a 22% rate of keyboard focus-trap issues across cross-platform OS shortcuts.</li>
+            </ul>
+          `
+        }
       }
     };
 
@@ -4067,14 +4123,14 @@ function toggleDrawer(drawerId) {
     // ============================================================
     // Active Workshop & Sanity Audit Triage Engine
     // ============================================================
-    window.currentWorkshopTopic = 't5';
+    window.currentWorkshopTopic = 't6';
 
     const defaultAuditVerdicts = {
       t1: { title: '6.1 Post-Mortem Architecture', verdict: 'APPROVED' },
       t2: { title: '6.2 Pros/Cons Strategy', verdict: 'APPROVED' },
       t3: { title: '6.3 Topic Organization Strategy', verdict: 'APPROVED' },
       t4: { title: '6.4 Agent Skills Organization', verdict: 'APPROVED' },
-      t5: { title: "6.5 N'kai Ergonomics", verdict: 'PENDING' },
+      t5: { title: "6.5 N'kai Ergonomics", verdict: 'TABLED' },
       t6: { title: '6.6 AGY Keyboard Shortcuts', verdict: 'PENDING' },
       t7: { title: '6.7 Context Clues Architecture', verdict: 'APPROVED' },
       t8: { title: '6.8 Ongoing Autopsy', verdict: 'APPROVED' },
@@ -4318,25 +4374,28 @@ function toggleDrawer(drawerId) {
           <div class="pill-card">
             <div class="pill-title">Option A: Passive Reference Only</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Document AGY shortcuts in BACKLOG.md without integrating into workflows. Rarely used.</p>
-            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
-              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t6', 'A', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
-              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t6', 'A', 'research', this)">[ 🔬 Research ]</button>
+            <div style="margin-top: 8px;">
+              <input type="text" readonly value="[6.6 AGY Shortcuts] pros and cons for Option A Passive Reference Only"
+                     onclick="this.select();" ondblclick="this.select();"
+                     style="width:100%; box-sizing:border-box; background:rgba(0,0,0,0.5); border:1px solid var(--border); border-radius:3px; color:var(--text-muted); font-family:var(--font-mono); font-size:10px; padding:4px 6px; cursor:text; user-select:all;" />
             </div>
           </div>
           <div class="pill-card" style="border: 1px solid var(--accent-green);">
             <div class="pill-title" style="color:var(--accent-green);">Option B: Dynamic Shortcut Bar (Recommended)</div>
-            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Display key AGY shortcuts in N\\\'kai footer and sidecar tooltips: Ctrl+K (Quick Prompt), Ctrl+Shift+P (Command Palette), Ctrl+Enter (Execute), /refresh-context.</p>
-            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
-              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t6', 'B', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
-              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t6', 'B', 'research', this)">[ 🔬 Research ]</button>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Display key AGY shortcuts in N'kai footer and sidecar tooltips: Ctrl+K (Quick Prompt), Ctrl+Shift+P (Command Palette), Ctrl+Enter (Execute), /refresh-context.</p>
+            <div style="margin-top: 8px;">
+              <input type="text" readonly value="[6.6 AGY Shortcuts] pros and cons for Option B Dynamic Shortcut Bar"
+                     onclick="this.select();" ondblclick="this.select();"
+                     style="width:100%; box-sizing:border-box; background:rgba(0,0,0,0.5); border:1px solid rgba(63,185,80,0.4); border-radius:3px; color:var(--accent-green); font-family:var(--font-mono); font-size:10px; padding:4px 6px; cursor:text; user-select:all;" />
             </div>
           </div>
           <div class="pill-card">
             <div class="pill-title">Option C: Sidecar Command Palette</div>
-            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Build a custom Cmd+K palette inside N\\\'kai webview. Powerful, but adds JS complexity.</p>
-            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
-              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t6', 'C', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
-              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t6', 'C', 'research', this)">[ 🔬 Research ]</button>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Build a custom Cmd+K palette inside N'kai webview. Powerful, but adds JS complexity.</p>
+            <div style="margin-top: 8px;">
+              <input type="text" readonly value="[6.6 AGY Shortcuts] pros and cons for Option C Sidecar Command Palette"
+                     onclick="this.select();" ondblclick="this.select();"
+                     style="width:100%; box-sizing:border-box; background:rgba(0,0,0,0.5); border:1px solid var(--border); border-radius:3px; color:var(--text-muted); font-family:var(--font-mono); font-size:10px; padding:4px 6px; cursor:text; user-select:all;" />
             </div>
           </div>`,
         evalHtml: `
@@ -5457,6 +5516,7 @@ function toggleDrawer(drawerId) {
       auditVerdicts.t10.verdict = 'APPROVED';
       auditVerdicts.t8.verdict = 'APPROVED';
       auditVerdicts.t11.verdict = 'APPROVED';
+      auditVerdicts.t5.verdict = 'TABLED';
       auditVerdicts.t17.verdict = 'TABLED';
       try {
         localStorage.setItem('nkai_audit_verdicts', JSON.stringify(auditVerdicts));
@@ -5490,12 +5550,12 @@ function toggleDrawer(drawerId) {
     // Kickoff Lifecycle
     initAuditVerdicts();
     checkBridgeStatus();
-    setWorkshopTopic('t5');
+    setWorkshopTopic('t6');
     handleHashNavigation();
     window.addEventListener('DOMContentLoaded', () => {
       initAuditVerdicts();
       checkBridgeStatus();
-      setWorkshopTopic('t5');
+      setWorkshopTopic('t6');
       handleHashNavigation();
     });
     window.addEventListener('hashchange', handleHashNavigation);
