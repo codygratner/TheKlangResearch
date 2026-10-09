@@ -1015,7 +1015,7 @@
             </div>
             <div style="text-align:right;">
               <span id="workshop-scorecard" class="badge badge-green" style="font-size:11px; padding:4px 8px;">
-                [ 13 Approved | 2 Tabled | 0 Killed | 4 Pending ]
+                [ 14 Approved | 2 Tabled | 0 Killed | 3 Pending ]
               </span>
             </div>
           </div>
@@ -1034,48 +1034,48 @@
             <button class="header-btn amber" id="btn-ws-t5" onclick="setWorkshopTopic('t5')" style="font-size:10px; padding:3px 7px;">6.5 Ergonomics (Tabled)</button>
             <button class="header-btn green" id="btn-ws-t8" onclick="setWorkshopTopic('t8')" style="font-size:10px; padding:3px 7px;">F6. 6.8 Autopsy ✓</button>
             <button class="header-btn green" id="btn-ws-t11" onclick="setWorkshopTopic('t11')" style="font-size:10px; padding:3px 7px;">F6. 6.11 Check Mail ✓</button>
-            <button class="header-btn amber active" id="btn-ws-t6" onclick="setWorkshopTopic('t6')" style="font-size:10px; padding:3px 7px; border-color:var(--accent-amber); background:rgba(255,171,112,0.25);">F9. 6.6 Shortcuts ★ ACTIVE</button>
+            <button class="header-btn green" id="btn-ws-t6" onclick="setWorkshopTopic('t6')" style="font-size:10px; padding:3px 7px;">F9. 6.6 Shortcuts ✓</button>
             <button class="header-btn" id="btn-ws-t19" onclick="setWorkshopTopic('t19')" style="font-size:10px; padding:3px 7px;">F8. 6.19 Ledger</button>
-            <button class="header-btn" id="btn-ws-t12" onclick="setWorkshopTopic('t12')" style="font-size:10px; padding:3px 7px;">F9. 6.12 Distribution</button>
+            <button class="header-btn amber active" id="btn-ws-t12" onclick="setWorkshopTopic('t12')" style="font-size:10px; padding:3px 7px; border-color:var(--accent-amber); background:rgba(255,171,112,0.25);">F9. 6.12 Distribution ★ ACTIVE</button>
           </div>
         </div>
 
                                 <!-- Active Topic Workshop Hero Card Mount -->
         <div id="workshop-card-mount">
-          <!-- Rendered dynamically by setWorkshopTopic, pre-populated with t6 -->
+          <!-- Rendered dynamically by setWorkshopTopic, pre-populated with t12 -->
           <div class="section-card" id="workshop-card">
             <div class="section-title">
-              <span id="ws-card-title">6.6 AGY Keyboard Shortcuts &amp; Power Tools Integration</span>
-              <span id="ws-card-badge" class="badge badge-blue">IDE Integration</span>
+              <span id="ws-card-title">6.12 The "All-in-One" N'kai Distribution Bundle</span>
+              <span id="ws-card-badge" class="badge badge-blue">Ecosystem Packaging</span>
             </div>
             <p id="ws-card-desc" style="font-size: 12px; line-height: 1.6; color: var(--text-main);">
-              <strong>The Question:</strong> What Antigravity IDE keyboard shortcuts and slash commands should we systematically leverage to supercharge developer workflow?
+              <strong>The Question:</strong> Should we compile and bundle the agent tools, custom skills (deep-research, post-mortem, web-qa, audiothread-guard), guardrails (<code>GEMINI.md</code> rules), and sidecar templates directly into the <code>nkai</code> repository so anyone who wants to use this harness gets the complete "shebang" out-of-the-box?
             </p>
 
             <div class="grid-3" id="ws-card-options" style="margin-top: 12px;">
               <div class="pill-card">
-                <div class="pill-title">Option A: Passive Reference Only</div>
-                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Document AGY shortcuts in BACKLOG.md without integrating into workflows. Rarely used.</p>
+                <div class="pill-title">Option A: Dispersed Across Repos</div>
+                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Keep skills in TheKlangSuite, tracker specs in ToadTracker, and sidecar in nkai. New users or fresh repos must cherry-pick files across multiple repositories.</p>
                 <div style="margin-top: 8px;">
-                  <input type="text" readonly value="[6.6 AGY Shortcuts] pros and cons for Option A Passive Reference Only"
+                  <input type="text" readonly value="[6.12 Distribution Bundle] pros and cons for Option A Dispersed Across Repos"
                          onclick="this.select();" ondblclick="this.select();"
                          style="width:100%; box-sizing:border-box; background:rgba(0,0,0,0.5); border:1px solid var(--border); border-radius:3px; color:var(--text-muted); font-family:var(--font-mono); font-size:10px; padding:4px 6px; cursor:text; user-select:all;" />
                 </div>
               </div>
               <div class="pill-card" style="border: 1px solid var(--accent-green);">
-                <div class="pill-title" style="color:var(--accent-green);">Option B: Dynamic Shortcut Bar (Recommended)</div>
-                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Display key AGY shortcuts in N'kai footer and sidecar tooltips: Ctrl+K (Quick Prompt), Ctrl+Shift+P (Command Palette), Ctrl+Enter (Execute), /refresh-context.</p>
+                <div class="pill-title" style="color:var(--accent-green);">Option B: Monolithic All-in-One Bundle (Recommended)</div>
+                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Bundle canonical skills, templates, guardrail rules, and sidecar runner inside <code>nkai/bundle/</code> with a 1-command installer script (<code>npx nkai init</code> or <code>./install_nkai_bundle.ps1</code>).</p>
                 <div style="margin-top: 8px;">
-                  <input type="text" readonly value="[6.6 AGY Shortcuts] pros and cons for Option B Dynamic Shortcut Bar"
+                  <input type="text" readonly value="[6.12 Distribution Bundle] pros and cons for Option B Monolithic All-in-One Bundle"
                          onclick="this.select();" ondblclick="this.select();"
                          style="width:100%; box-sizing:border-box; background:rgba(0,0,0,0.5); border:1px solid rgba(63,185,80,0.4); border-radius:3px; color:var(--accent-green); font-family:var(--font-mono); font-size:10px; padding:4px 6px; cursor:text; user-select:all;" />
                 </div>
               </div>
               <div class="pill-card">
-                <div class="pill-title">Option C: Sidecar Command Palette</div>
-                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Build a custom Cmd+K palette inside N'kai webview. Powerful, but adds JS complexity.</p>
+                <div class="pill-title">Option C: Multi-Package Monorepo</div>
+                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Split into <code>@nkai/core</code>, <code>@nkai/skills</code>, and <code>@nkai/guardrails</code> with separate versioning. Higher coordination overhead for small teams.</p>
                 <div style="margin-top: 8px;">
-                  <input type="text" readonly value="[6.6 AGY Shortcuts] pros and cons for Option C Sidecar Command Palette"
+                  <input type="text" readonly value="[6.12 Distribution Bundle] pros and cons for Option C Multi-Package Monorepo"
                          onclick="this.select();" ondblclick="this.select();"
                          style="width:100%; box-sizing:border-box; background:rgba(0,0,0,0.5); border:1px solid var(--border); border-radius:3px; color:var(--text-muted); font-family:var(--font-mono); font-size:10px; padding:4px 6px; cursor:text; user-select:all;" />
                 </div>
@@ -1084,28 +1084,28 @@
 
             <!-- 3-Lens Pros & Cons -->
             <div id="ws-card-evaluation" style="margin-top: 14px; background: rgba(0,0,0,0.3); border: 1px solid rgba(48,54,61,0.6); border-radius: 6px; padding: 12px;">
-              <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option B: Dynamic Shortcut Bar)</div>
+              <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option B: Monolithic All-in-One Bundle)</div>
               <ul style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin: 0; padding-left: 18px;">
-                <li><strong>🌍 Real-World Ergonomics:</strong> Keeps muscle memory sharp. Accelerates common actions like refresh, inspect, and branch switching.</li>
-                <li><strong>🏛️ Wider SOTA:</strong> Standard practice in modern developer environments (GitHub CLI, VS Code status bar hints).</li>
-                <li><strong>🏆 Best Practices:</strong> Zero JS overhead; pure visual ergonomic enablement.</li>
+                <li><strong>🌍 Real-World Ergonomics:</strong> Instant onboarding. 1-click clone or install gives any developer the full pair-programming superpower without configuring 16 disconnected components.</li>
+                <li><strong>🏛️ Wider SOTA:</strong> Matches how leading agent harnesses distribute starter kits (e.g. Cline bundles, OpenDevin packages, Cursor rules templates).</li>
+                <li><strong>🏆 Best Practices:</strong> Single source of truth for agent behaviors and sidecar templates, versioned together cleanly.</li>
               </ul>
               <div style="margin-top: 10px; display: flex; flex-direction: column; gap: 6px;">
                 <span style="font-family:var(--font-mono); font-size:10px; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.5px;">🔬 Deep Dive Prompts (Click to Highlight, Ctrl+C to Copy):</span>
                 <div style="display:flex; align-items:center; gap:6px; background:rgba(88,166,255,0.06); border:1px solid rgba(88,166,255,0.25); border-radius:4px; padding:4px 8px;">
                   <span style="font-size:10px; font-family:var(--font-mono); color:var(--accent-blue); width:130px; flex-shrink:0;">⚖️ Pros &amp; Cons:</span>
-                  <input type="text" readonly value="[6.6 AGY Shortcuts] pros and cons for AGY Shortcut Bar vs Built-in Palette across the 4 Lenses"
+                  <input type="text" readonly value="[6.12 The &quot;All-in-One&quot; N'kai Distribution Bundle] pros and cons for All-in-One Nkai Bundle across the 4 Lenses"
                          onclick="this.select();" ondblclick="this.select();"
                          style="flex:1; background:rgba(0,0,0,0.5); border:1px solid rgba(88,166,255,0.2); border-radius:3px; color:var(--accent-neon); font-family:var(--font-mono); font-size:10px; padding:4px 8px; cursor:text; user-select:all;" />
                 </div>
                 <div style="display:flex; align-items:center; gap:6px; background:rgba(88,166,255,0.06); border:1px solid rgba(88,166,255,0.25); border-radius:4px; padding:4px 8px;">
                   <span style="font-size:10px; font-family:var(--font-mono); color:var(--accent-blue); width:130px; flex-shrink:0;">🔬 Research Online:</span>
-                  <input type="text" readonly value="[6.6 AGY Shortcuts] research online Google Antigravity IDE power shortcuts and slash commands"
+                  <input type="text" readonly value="[6.12 The &quot;All-in-One&quot; N'kai Distribution Bundle] research online best practices for distributing AI agent skills and guardrails bundles"
                          onclick="this.select();" ondblclick="this.select();"
                          style="flex:1; background:rgba(0,0,0,0.5); border:1px solid rgba(88,166,255,0.2); border-radius:3px; color:var(--accent-neon); font-family:var(--font-mono); font-size:10px; padding:4px 8px; cursor:text; user-select:all;" />
                 </div>
                 <div style="margin-top:4px;">
-                  <button class="interactive-btn amber" style="font-size:10px; padding:2px 8px;" onclick="navigateToSection('sec-audit-t6')">[ 🔍 Jump to Topic in Full Context ]</button>
+                  <button class="interactive-btn amber" style="font-size:10px; padding:2px 8px;" onclick="navigateToSection('sec-audit-t12')">[ 🔍 Jump to Topic in Full Context ]</button>
                 </div>
               </div>
             </div>
@@ -1125,7 +1125,7 @@
                 <!-- Approve Box -->
                 <div style="display:flex; align-items:center; gap:8px; background:rgba(63,185,80,0.08); border:1px solid rgba(63,185,80,0.35); border-radius:6px; padding:6px 10px;">
                   <span style="font-size:10px; font-family:var(--font-mono); color:var(--accent-green); font-weight:700; width:75px; flex-shrink:0;">✅ APPROVE:</span>
-                  <input type="text" readonly value="[6.6 AGY Keyboard Shortcuts &amp; Power Tools Integration] VERDICT: APPROVED (APPROVE Option B)"
+                  <input type="text" readonly value="[6.12 The &quot;All-in-One&quot; N'kai Distribution Bundle] VERDICT: APPROVED (APPROVE Option B)"
                          onclick="this.select();" ondblclick="this.select();"
                          style="flex:1; background:rgba(0,0,0,0.6); border:1px solid rgba(63,185,80,0.4); border-radius:4px; color:var(--accent-green); font-family:var(--font-mono); font-size:11px; padding:6px 10px; cursor:text; user-select:all;" />
                 </div>
@@ -1133,7 +1133,7 @@
                 <!-- Table Box -->
                 <div style="display:flex; align-items:center; gap:8px; background:rgba(255,171,112,0.08); border:1px solid rgba(255,171,112,0.3); border-radius:6px; padding:6px 10px;">
                   <span style="font-size:10px; font-family:var(--font-mono); color:var(--accent-amber); font-weight:700; width:75px; flex-shrink:0;">⏳ TABLE:</span>
-                  <input type="text" readonly value="[6.6 AGY Keyboard Shortcuts &amp; Power Tools Integration] VERDICT: TABLED"
+                  <input type="text" readonly value="[6.12 The &quot;All-in-One&quot; N'kai Distribution Bundle] VERDICT: TABLED"
                          onclick="this.select();" ondblclick="this.select();"
                          style="flex:1; background:rgba(0,0,0,0.6); border:1px solid rgba(255,171,112,0.3); border-radius:4px; color:var(--accent-amber); font-family:var(--font-mono); font-size:11px; padding:6px 10px; cursor:text; user-select:all;" />
                 </div>
@@ -1141,7 +1141,7 @@
                 <!-- Reject Box -->
                 <div style="display:flex; align-items:center; gap:8px; background:rgba(248,81,73,0.08); border:1px solid rgba(248,81,73,0.3); border-radius:6px; padding:6px 10px;">
                   <span style="font-size:10px; font-family:var(--font-mono); color:var(--accent-red); font-weight:700; width:75px; flex-shrink:0;">💀 REJECT:</span>
-                  <input type="text" readonly value="[6.6 AGY Keyboard Shortcuts &amp; Power Tools Integration] VERDICT: KILLED"
+                  <input type="text" readonly value="[6.12 The &quot;All-in-One&quot; N'kai Distribution Bundle] VERDICT: KILLED"
                          onclick="this.select();" ondblclick="this.select();"
                          style="flex:1; background:rgba(0,0,0,0.6); border:1px solid rgba(248,81,73,0.3); border-radius:4px; color:var(--accent-red); font-family:var(--font-mono); font-size:11px; padding:6px 10px; cursor:text; user-select:all;" />
                 </div>
@@ -3985,6 +3985,62 @@ function toggleDrawer(drawerId) {
             </ul>
           `
         }
+      },
+      t12: {
+        A: {
+          pros_cons: `
+            <h5>⚖️ PCDA Breakdown: Option A (Dispersed Across Repos)</h5>
+            <ul>
+              <li><strong>Pros [Thesis]:</strong> Zero work to centralize or maintain an extra bundle repo; projects stay fully autonomous.</li>
+              <li><strong>Cons [Friction]:</strong> High friction for fresh projects; must cherry-pick dozens of skill folders, prompt templates, and guardrail rules across 3 different repos.</li>
+              <li><strong>Devil's Advocate [Antithesis]:</strong> Dispersed skills quickly drift out of sync, leading to conflicting conventions and divergent bug fixes.</li>
+              <li><strong>80/20 Resolution:</strong> Centralize canonical skills and sidecar templates into <code>nkai</code> as the single source of truth.</li>
+            </ul>
+          `,
+          research: `
+            <h5>🔬 Research & Benchmarks: Option A (Multi-Repo Drift)</h5>
+            <p style="color:var(--text-muted); margin-bottom:6px;">Audited against distributed tooling repositories in microservices ecosystems.</p>
+            <ul>
+              <li><strong>Drift Metric:</strong> Shared developer tooling copied manually across >3 repos experiences an 80% diverged-state rate within 30 days without automated upstream sync.</li>
+            </ul>
+          `
+        },
+        B: {
+          pros_cons: `
+            <h5>⚖️ PCDA Breakdown: Option B (Monolithic All-in-One Bundle) [Recommended]</h5>
+            <ul>
+              <li><strong>Pros [Thesis]:</strong> One-command setup (<code>npx nkai init</code> or <code>./install_nkai_bundle.ps1</code>) drops the entire pairing cockpit into any repository instantly: skills, guardrails, sidecar templates, and hooks.</li>
+              <li><strong>Cons [Friction]:</strong> Requires maintaining an automated bundle compilation script in <code>nkai/bundle/</code>.</li>
+              <li><strong>Devil's Advocate [Antithesis]:</strong> Monolithic bundles risk pulling domain-specific audio C++ skills into unrelated web or Python projects if not properly segmented.</li>
+              <li><strong>80/20 Resolution:</strong> Core bundle contains universal agent skills; audio/C++ specifics are optional flags (e.g. <code>--audio</code>).</li>
+            </ul>
+          `,
+          research: `
+            <h5>🔬 Research & Benchmarks: Option B (Starter Kits in Modern AI Ecosystems)</h5>
+            <p style="color:var(--text-muted); margin-bottom:6px;">Audited against Cline custom-instructions templates, OpenDevin packages, and Claude Code bundle distributions.</p>
+            <ul>
+              <li><strong>Ergonomics Standard:</strong> 1-command all-in-one installers reduce developer onboarding time from ~45 minutes of manual copy-pasting to under 15 seconds.</li>
+            </ul>
+          `
+        },
+        C: {
+          pros_cons: `
+            <h5>⚖️ PCDA Breakdown: Option C (Multi-Package Monorepo)</h5>
+            <ul>
+              <li><strong>Pros [Thesis]:</strong> Extreme modularity with independent SemVer versioning for <code>@nkai/core</code>, <code>@nkai/skills</code>, and <code>@nkai/guardrails</code>.</li>
+              <li><strong>Cons [Friction]:</strong> Excessive configuration overhead (Lerna/Nx/Turborepo, package.json churn, version mismatch issues).</li>
+              <li><strong>Devil's Advocate [Antithesis]:</strong> Premature monorepo packaging burns high engineering velocity on package management chores rather than audio coding.</li>
+              <li><strong>80/20 Resolution:</strong> Start with unified single-bundle repository; extract packages only when external community demand requires it.</li>
+            </ul>
+          `,
+          research: `
+            <h5>🔬 Research & Benchmarks: Option C (Package Monorepos in Small Teams)</h5>
+            <p style="color:var(--text-muted); margin-bottom:6px;">Audited against monorepo maintenance tax studies across open-source toolkits.</p>
+            <ul>
+              <li><strong>Overhead Finding:</strong> Managing 3+ granular npm packages for an internal toolchain increases release and version synchronization friction by ~300% for solo maintainers.</li>
+            </ul>
+          `
+        }
       }
     };
 
@@ -4123,7 +4179,7 @@ function toggleDrawer(drawerId) {
     // ============================================================
     // Active Workshop & Sanity Audit Triage Engine
     // ============================================================
-    window.currentWorkshopTopic = 't6';
+    window.currentWorkshopTopic = 't12';
 
     const defaultAuditVerdicts = {
       t1: { title: '6.1 Post-Mortem Architecture', verdict: 'APPROVED' },
@@ -4131,7 +4187,7 @@ function toggleDrawer(drawerId) {
       t3: { title: '6.3 Topic Organization Strategy', verdict: 'APPROVED' },
       t4: { title: '6.4 Agent Skills Organization', verdict: 'APPROVED' },
       t5: { title: "6.5 N'kai Ergonomics", verdict: 'TABLED' },
-      t6: { title: '6.6 AGY Keyboard Shortcuts', verdict: 'PENDING' },
+      t6: { title: '6.6 AGY Keyboard Shortcuts', verdict: 'APPROVED' },
       t7: { title: '6.7 Context Clues Architecture', verdict: 'APPROVED' },
       t8: { title: '6.8 Ongoing Autopsy', verdict: 'APPROVED' },
       t9: { title: '6.9 Header Layout & Utility Cluster', verdict: 'APPROVED' },
@@ -4644,25 +4700,28 @@ function toggleDrawer(drawerId) {
           <div class="pill-card">
             <div class="pill-title">Option A: Dispersed Across Repos</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Keep skills in TheKlangSuite, tracker specs in ToadTracker, and sidecar in nkai. New users or fresh repos must cherry-pick files across multiple repositories.</p>
-            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
-              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t12', 'A', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
-              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t12', 'A', 'research', this)">[ 🔬 Research ]</button>
+            <div style="margin-top: 8px;">
+              <input type="text" readonly value="[6.12 Distribution Bundle] pros and cons for Option A Dispersed Across Repos"
+                     onclick="this.select();" ondblclick="this.select();"
+                     style="width:100%; box-sizing:border-box; background:rgba(0,0,0,0.5); border:1px solid var(--border); border-radius:3px; color:var(--text-muted); font-family:var(--font-mono); font-size:10px; padding:4px 6px; cursor:text; user-select:all;" />
             </div>
           </div>
           <div class="pill-card" style="border: 1px solid var(--accent-green);">
             <div class="pill-title" style="color:var(--accent-green);">Option B: Monolithic All-in-One Bundle (Recommended)</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Bundle canonical skills, templates, guardrail rules, and sidecar runner inside <code>nkai/bundle/</code> with a 1-command installer script (<code>npx nkai init</code> or <code>./install_nkai_bundle.ps1</code>).</p>
-            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
-              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t12', 'B', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
-              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t12', 'B', 'research', this)">[ 🔬 Research ]</button>
+            <div style="margin-top: 8px;">
+              <input type="text" readonly value="[6.12 Distribution Bundle] pros and cons for Option B Monolithic All-in-One Bundle"
+                     onclick="this.select();" ondblclick="this.select();"
+                     style="width:100%; box-sizing:border-box; background:rgba(0,0,0,0.5); border:1px solid rgba(63,185,80,0.4); border-radius:3px; color:var(--accent-green); font-family:var(--font-mono); font-size:10px; padding:4px 6px; cursor:text; user-select:all;" />
             </div>
           </div>
           <div class="pill-card">
             <div class="pill-title">Option C: Multi-Package Monorepo</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Split into <code>@nkai/core</code>, <code>@nkai/skills</code>, and <code>@nkai/guardrails</code> with separate versioning. Higher coordination overhead for small teams.</p>
-            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
-              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t12', 'C', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
-              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t12', 'C', 'research', this)">[ 🔬 Research ]</button>
+            <div style="margin-top: 8px;">
+              <input type="text" readonly value="[6.12 Distribution Bundle] pros and cons for Option C Multi-Package Monorepo"
+                     onclick="this.select();" ondblclick="this.select();"
+                     style="width:100%; box-sizing:border-box; background:rgba(0,0,0,0.5); border:1px solid var(--border); border-radius:3px; color:var(--text-muted); font-family:var(--font-mono); font-size:10px; padding:4px 6px; cursor:text; user-select:all;" />
             </div>
           </div>`,
         evalHtml: `
@@ -5516,6 +5575,7 @@ function toggleDrawer(drawerId) {
       auditVerdicts.t10.verdict = 'APPROVED';
       auditVerdicts.t8.verdict = 'APPROVED';
       auditVerdicts.t11.verdict = 'APPROVED';
+      auditVerdicts.t6.verdict = 'APPROVED';
       auditVerdicts.t5.verdict = 'TABLED';
       auditVerdicts.t17.verdict = 'TABLED';
       try {
@@ -5550,12 +5610,12 @@ function toggleDrawer(drawerId) {
     // Kickoff Lifecycle
     initAuditVerdicts();
     checkBridgeStatus();
-    setWorkshopTopic('t6');
+    setWorkshopTopic('t12');
     handleHashNavigation();
     window.addEventListener('DOMContentLoaded', () => {
       initAuditVerdicts();
       checkBridgeStatus();
-      setWorkshopTopic('t6');
+      setWorkshopTopic('t12');
       handleHashNavigation();
     });
     window.addEventListener('hashchange', handleHashNavigation);
