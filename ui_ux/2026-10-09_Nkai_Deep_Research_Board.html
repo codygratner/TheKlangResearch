@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>N'kai Deep Research - Architecture, Roadmaps & Blue-Sky Innovations</title>
+  <style>
+    :root {
+      --bg-base: #0d1117;
+      --bg-panel: #161b22;
+      --bg-card: #21262d;
+      --border: #30363d;
+      --border-accent: rgba(88, 166, 255, 0.4);
+      --text-main: #c9d1d9;
+      --text-muted: #8b949e;
+      --accent-blue: #58a6ff;
+      --accent-green: #3fb950;
+      --accent-red: #f85149;
+      --accent-neon: #38bdf8;
+      --accent-amber: #ffab70;
+      --accent-purple: #bc8cff;
+      --font-mono: 'JetBrains Mono', 'Consolas', monospace;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      height: 100vh;
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-base);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      overflow-y: auto;
+      font-size: 1rem;
+      transition: font-size 0.15s ease;
+    }
+
+    .app-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(13, 17, 23, 0.95);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 10px 20px;
+      border-bottom: 1px solid var(--border);
+      width: 100%;
+      height: auto;
+      min-height: 62px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .brand-title {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .brand-pill {
+      background: rgba(88, 166, 255, 0.15);
+      border: 1px solid rgba(88, 166, 255, 0.3);
+      color: var(--accent-blue);
+      font-size: 10px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+
+    .header-modes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .mode-btn {
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .mode-btn:hover {
+      background: var(--bg-card);
+      color: var(--text-main);
+      border-color: #8b949e;
+    }
+
+    .mode-btn.active {
+      background: rgba(88, 166, 255, 0.15);
+      color: var(--accent-blue);
+      border-color: var(--accent-blue);
+      box-shadow: 0 0 10px rgba(88, 166, 255, 0.2);
+    }
+
+    .header-controls {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .header-btn {
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      padding: 5px 9px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .header-btn:hover {
+      background: var(--bg-card);
+      color: var(--text-main);
+      border-color: #8b949e;
+    }
+
+    .header-btn.amber {
+      color: var(--accent-amber);
+      border-color: rgba(255, 171, 112, 0.4);
+      background: rgba(255, 171, 112, 0.1);
+    }
+
+    .header-btn.blue {
+      color: var(--accent-blue);
+      border-color: rgba(88, 166, 255, 0.4);
+      background: rgba(88, 166, 255, 0.1);
+    }
+
+    .zoom-group {
+      display: flex;
+      gap: 2px;
+    }
+
+    /* Layout Container */
+    .layout-container {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      min-height: calc(100vh - 62px);
+    }
+
+    @media (max-width: 900px) {
+      .layout-container {
+        grid-template-columns: 1fr;
+      }
+      .sidebar {
+        display: none;
+      }
+    }
+
+    .sidebar {
+      background: var(--bg-panel);
+      border-right: 1px solid var(--border);
+      padding: 20px 14px;
+      overflow-y: auto;
+      height: calc(100vh - 62px);
+      position: sticky;
+      top: 62px;
+    }
+
+    .sidebar-section-title {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin: 16px 0 8px 4px;
+    }
+
+    .sidebar-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 7px 10px;
+      border-radius: 6px;
+      color: var(--text-main);
+      font-size: 12px;
+      font-family: var(--font-mono);
+      cursor: pointer;
+      transition: background 0.15s ease;
+      text-decoration: none;
+      margin-bottom: 3px;
+    }
+
+    .sidebar-item:hover {
+      background: var(--bg-card);
+    }
+
+    .sidebar-item.active {
+      background: rgba(88, 166, 255, 0.12);
+      color: var(--accent-blue);
+      border-left: 2px solid var(--accent-blue);
+    }
+
+    .content-area {
+      padding: 24px 32px;
+      max-width: 1080px;
+    }
+
+    .hero-card {
+      background: linear-gradient(180deg, rgba(22, 27, 34, 0.95) 0%, rgba(13, 17, 23, 0.98) 100%);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 22px;
+      margin-bottom: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple), var(--accent-neon));
+    }
+
+    .hero-badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent-neon);
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 3px 8px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+
+    .hero-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin: 0 0 6px 0;
+      color: #fff;
+    }
+
+    .hero-desc {
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--text-muted);
+      margin: 0 0 14px 0;
+    }
+
+    .section-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 0;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(48, 54, 61, 0.6);
+    }
+
+    .badge {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .badge-blue { background: rgba(88, 166, 255, 0.15); color: var(--accent-blue); border: 1px solid rgba(88, 166, 255, 0.3); }
+    .badge-amber { background: rgba(255, 171, 112, 0.15); color: var(--accent-amber); border: 1px solid rgba(255, 171, 112, 0.3); }
+    .badge-green { background: rgba(63, 185, 80, 0.15); color: var(--accent-green); border: 1px solid rgba(63, 185, 80, 0.3); }
+    .badge-purple { background: rgba(188, 140, 255, 0.15); color: var(--accent-purple); border: 1px solid rgba(188, 140, 255, 0.3); }
+    .badge-red { background: rgba(248, 81, 73, 0.15); color: var(--accent-red); border: 1px solid rgba(248, 81, 73, 0.3); }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 14px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    @media (max-width: 800px) {
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    }
+
+    .pill-card {
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px;
+    }
+
+    .pill-title {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent-blue);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .code-block {
+      background: #090d13;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 12px 14px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: #79c0ff;
+      overflow-x: auto;
+      margin: 12px 0;
+      line-height: 1.5;
+    }
+
+    /* Interactive Drawer Overlay */
+    .drawer-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(6px);
+      z-index: 2000;
+      display: none;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+
+    .drawer-overlay.active {
+      display: block;
+      opacity: 1;
+    }
+
+    .slide-drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 440px;
+      max-width: 90vw;
+      height: 100vh;
+      background: var(--bg-panel);
+      border-left: 1px solid var(--border);
+      z-index: 2001;
+      padding: 24px;
+      overflow-y: auto;
+      transform: translateX(100%);
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .slide-drawer.active {
+      transform: translateX(0);
+    }
+
+    .drawer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 12px;
+      margin-bottom: 16px;
+    }
+
+    .drawer-title {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .close-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 18px;
+      cursor: pointer;
+      padding: 4px 8px;
+    }
+
+    .close-btn:hover {
+      color: var(--text-main);
+    }
+
+    .interactive-btn {
+      background: rgba(88, 166, 255, 0.15);
+      border: 1px solid var(--accent-blue);
+      color: var(--accent-blue);
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .interactive-btn:hover {
+      background: var(--accent-blue);
+      color: #000;
+    }
+
+    .interactive-btn.amber {
+      background: rgba(255, 171, 112, 0.15);
+      border-color: var(--accent-amber);
+      color: var(--accent-amber);
+    }
+
+    .interactive-btn.amber:hover {
+      background: var(--accent-amber);
+      color: #000;
+    }
+
+    /* 2x2 Matrix Grid */
+    .matrix-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 12px;
+      margin-top: 14px;
+      min-height: 280px;
+    }
+
+    .matrix-quadrant {
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 12px;
+      position: relative;
+    }
+
+    .matrix-tag {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 3px;
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      text-transform: uppercase;
+    }
+
+    .q-quickwins { border-top: 2px solid var(--accent-green); }
+    .q-strategic { border-top: 2px solid var(--accent-blue); }
+    .q-fillin { border-top: 2px solid var(--accent-amber); }
+    .q-graveyard { border-top: 2px solid var(--accent-red); }
+
+    .matrix-title {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 8px;
+    }
+
+    .matrix-item {
+      background: var(--bg-card);
+      border: 1px solid rgba(48, 54, 61, 0.6);
+      border-radius: 4px;
+      padding: 6px 8px;
+      font-size: 11px;
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Persistent Header with Drawers -->
+  <header class="app-header">
+    <div class="brand-title">
+      <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--accent-green); box-shadow:0 0 6px var(--accent-green);"></span>
+      <span>NKAI DEEP RESEARCH</span>
+      <span class="brand-pill">Asymmetric Sidecar</span>
+    </div>
+
+    <div class="header-modes">
+      <button class="mode-btn active" onclick="switchTab('tab-loaders')">🗺️ DYNAMIC ROADMAPS</button>
+      <button class="mode-btn" onclick="switchTab('tab-sessions')">📦 SESSIONS &amp; HISTORY</button>
+      <button class="mode-btn" onclick="switchTab('tab-bluesky')">🚀 BLUE-SKY INNOVATIONS</button>
+      <button class="mode-btn" onclick="switchTab('tab-contrarian')">⚖️ DEVIL'S ADVOCATE &amp; 80/20</button>
+    </div>
+
+    <div class="header-controls">
+      <!-- Dynamic Utility Drawer Triggers -->
+      <button class="header-btn blue" onclick="toggleDrawer('roadmap-drawer')" title="Open Multi-Repo Roadmap Drawer">
+        🗺️ Roadmap <span class="badge badge-blue">v0.4.0</span>
+      </button>
+      <button class="header-btn amber" onclick="toggleDrawer('sessions-drawer')" title="View Paused &amp; Archived Triage Sessions">
+        📦 Sessions <span class="badge badge-amber">1 PAUSED</span>
+      </button>
+
+      <div class="zoom-group">
+        <button class="header-btn" onclick="adjustZoom(-0.05)">A-</button>
+        <button class="header-btn" onclick="adjustZoom(0.05)">A+</button>
+      </div>
+      <button class="header-btn" onclick="location.reload()" title="Force Refresh">🔄</button>
+    </div>
+  </header>
+
+  <!-- Slide-Over Roadmap Drawer (Simulator) -->
+  <div class="drawer-overlay" id="drawer-overlay" onclick="closeAllDrawers()"></div>
+
+  <div class="slide-drawer" id="roadmap-drawer">
+    <div class="drawer-header">
+      <div class="drawer-title">🗺️ Multi-Repo Ecosystem Roadmap</div>
+      <button class="close-btn" onclick="closeAllDrawers()">✕</button>
+    </div>
+    <div style="font-size: 11px; font-family: var(--font-mono); color: var(--text-muted); margin-bottom: 12px;">
+      Auto-compiled from <code>docs/BACKLOG.md</code> across all 3 pillars.
+    </div>
+
+    <div style="display:flex; gap:6px; margin-bottom:14px;">
+      <button class="mode-btn active" style="font-size:10px; padding:4px 8px;">The Klang Suite</button>
+      <button class="mode-btn" style="font-size:10px; padding:4px 8px;">ToadTracker</button>
+      <button class="mode-btn" style="font-size:10px; padding:4px 8px;">N'kai</button>
+    </div>
+
+    <div class="pill-card" style="margin-bottom:12px; border-left:3px solid var(--accent-amber);">
+      <div class="pill-title">
+        <span>🚀 v0.4.0 The Complete Control Surface</span>
+        <span class="badge badge-amber">ACTIVE</span>
+      </div>
+      <div style="background:rgba(255,171,112,0.15); height:6px; border-radius:3px; margin:8px 0; overflow:hidden;">
+        <div style="background:var(--accent-amber); width:75%; height:100%;"></div>
+      </div>
+      <div style="font-size:11px; color:var(--text-muted); line-height:1.5;">
+        • ☑ CardHeroVisualizer 64px Viewport<br/>
+        • ☑ Procedural Vector Scopes (Mist, Crusher, Tape)<br/>
+        • ☐ N'kai Dynamic Data Loader Bridge<br/>
+        • ☐ Two-Stage Watchdog Timer Integration
+      </div>
+    </div>
+
+    <div class="pill-card" style="margin-bottom:12px; opacity:0.75;">
+      <div class="pill-title">
+        <span>✓ v0.3.1 Editor Quality &amp; Data Schema</span>
+        <span class="badge badge-green">DONE</span>
+      </div>
+      <div style="font-size:11px; color:var(--text-muted);">
+        All 4 milestone deliverables verified &amp; tagged.
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide-Over Sessions Drawer (Simulator) -->
+  <div class="slide-drawer" id="sessions-drawer">
+    <div class="drawer-header">
+      <div class="drawer-title">📦 Triage Sessions &amp; History</div>
+      <button class="close-btn" onclick="closeAllDrawers()">✕</button>
+    </div>
+
+    <div style="font-size:11px; font-family:var(--font-mono); color:var(--accent-amber); font-weight:700; margin-bottom:8px; text-transform:uppercase;">
+      ⏸️ Active &amp; Paused Sessions (1)
+    </div>
+
+    <div class="pill-card" style="margin-bottom:16px; border:1px solid rgba(255,171,112,0.4); background:rgba(255,171,112,0.05);">
+      <div class="pill-title" style="color:var(--accent-amber);">
+        <span>2026-10-08 Layouts &amp; Ergonomics</span>
+        <span class="badge badge-amber">PAUSED</span>
+      </div>
+      <div style="font-size:11px; color:var(--text-muted); line-height:1.5; margin:6px 0 10px 0;">
+        • Topic: Monolithic Titanium Faceplate &amp; Signal Traces<br/>
+        • Status: 0 of 9 triaged (9 pending)<br/>
+        • Snapshot: <code>packages/2026-10-08_layouts_...json</code>
+      </div>
+      <div style="display:flex; gap:8px;">
+        <button class="interactive-btn amber" onclick="alert('Session Restored! Switching to Active Workshop...')">▶️ Resume in Workshop</button>
+        <button class="interactive-btn" onclick="alert('Copied /resume-post-mortem layouts to clipboard!')">📋 Copy Command</button>
+      </div>
+    </div>
+
+    <div style="font-size:11px; font-family:var(--font-mono); color:var(--text-muted); font-weight:700; margin-bottom:8px; text-transform:uppercase;">
+      📜 Archived Historical Triage (2)
+    </div>
+
+    <div class="pill-card" style="margin-bottom:10px; opacity:0.8;">
+      <div class="pill-title">
+        <span>2026-10-08 Agentic Architecture Audit</span>
+        <span class="badge badge-green">COMPLETED</span>
+      </div>
+      <div style="font-size:11px; color:var(--text-muted);">
+        Verdicts: [ 6 Approved | 0 Tabled | 0 Killed ] • Committed on <code>0.4.0-dev</code>
+      </div>
+    </div>
+
+    <div class="pill-card" style="margin-bottom:10px; opacity:0.8;">
+      <div class="pill-title">
+        <span>2026-10-05 DSP FastMath &amp; Saturation</span>
+        <span class="badge badge-green">COMPLETED</span>
+      </div>
+      <div style="font-size:11px; color:var(--text-muted);">
+        Verdicts: [ 4 Approved | 1 Tabled | 1 Killed ]
+      </div>
+    </div>
+  </div>
+
+  <!-- Layout Container -->
+  <div class="layout-container">
+    <aside class="sidebar">
+      <div class="sidebar-section-title">Research Synthesis</div>
+      <a class="sidebar-item active" href="#sec-overview">⚡ Executive Summary</a>
+      <a class="sidebar-item" href="#sec-loaders">1.0 Dynamic Loaders &amp; CORS</a>
+      <a class="sidebar-item" href="#sec-sessions">2.0 Triage Sessions Drawer</a>
+      <a class="sidebar-item" href="#sec-bluesky">3.0 Blue-Sky Innovations</a>
+      <a class="sidebar-item" href="#sec-contrarian">4.0 Devil's Advocate &amp; 80/20</a>
+
+      <div class="sidebar-section-title">Interactive Labs</div>
+      <a class="sidebar-item" href="#sec-matrix-lab">📊 2x2 Decision Matrix</a>
+      <a class="sidebar-item" href="#sec-audio-lab">🔊 Web Audio Haptics Test</a>
+    </aside>
+
+    <main class="content-area">
+      <div class="hero-card" id="sec-overview">
+        <div class="hero-badge">Deep Research Synthesis Complete</div>
+        <h1 class="hero-title">N'kai Evolution: Dynamic Loaders, Drawers &amp; Blue-Sky Cockpit</h1>
+        <p class="hero-desc">
+          Tri-engine subagent synthesis on decoupling roadmap data, exposing paused triage sessions directly in the header, and elevating N'kai into a transcendent pair-programming cockpit.
+        </p>
+        <div style="display:flex; gap:12px; font-family:var(--font-mono); font-size:11px; flex-wrap:wrap;">
+          <span style="color:var(--accent-blue);">🔬 Pro High: Schemas &amp; Systems Architecture</span>
+          <span style="color:var(--accent-neon);">⚡ Flash Explorer: Hybrid Universal Adapter</span>
+          <span style="color:var(--accent-red);">⚖️ Contrarian: CORS Trap &amp; 80/20 Guardrails</span>
+        </div>
+      </div>
+
+      <!-- Tab 1: Dynamic Roadmaps & Loaders -->
+      <div id="tab-loaders" class="tab-pane">
+        <div class="section-card" id="sec-loaders">
+          <div class="section-title">
+            <span>1.0 Dynamic Data Loading: The file:/// CORS Wall &amp; The Universal Adapter</span>
+            <span class="badge badge-blue">Architecture</span>
+          </div>
+          <p style="font-size: 13px; line-height: 1.6; color: var(--text-main);">
+            <strong>The Problem:</strong> Inlining roadmaps into every HTML artifact inflates file sizes from 35KB to 180KB+ and burns thousands of generation tokens. However, calling <code>fetch('roadmap.json')</code> inside a local <code>file:///</code> page triggers an immediate, uncatchable Chromium security rejection (<code>origin: 'null'</code>).
+          </p>
+
+          <div class="grid-2">
+            <div class="pill-card">
+              <div class="pill-title" style="color:var(--accent-red);">
+                <span>❌ Why Raw fetch('file://') Fails</span>
+                <span class="badge badge-red">RFC 6454</span>
+              </div>
+              <p style="font-size: 12px; color: var(--text-muted); line-height: 1.5;">
+                Chromium assigns opaque origin <code>null</code> to local files. The Fetch API explicitly rejects non-HTTP protocols, causing silent blank screens in offline webviews without zero-flag workarounds.
+              </p>
+            </div>
+            <div class="pill-card">
+              <div class="pill-title" style="color:var(--accent-green);">
+                <span>✅ The Hybrid Universal Adapter</span>
+                <span class="badge badge-green">SOTA Pattern</span>
+              </div>
+              <p style="font-size: 12px; color: var(--text-muted); line-height: 1.5;">
+                In Antigravity Extension mode: uses Node.js Sidecar SDK / HTTP IPC.<br/>
+                In Standalone <code>file://</code> mode: dynamically injects <code>data/roadmap.data.js</code> via a synchronous script tag. 100% CORS-proof, zero build tools.
+              </p>
+            </div>
+          </div>
+
+          <div class="code-block">
+// Universal Dual-Mode Loader Pattern (core/data_loader.js)
+class NkaiDataLoader {
+  static async load(key, scriptPath, apiPath = `/api/${key}`) {
+    window.NKAI_DATA = window.NKAI_DATA || {};
+    if (window.NKAI_DATA[key]) return window.NKAI_DATA[key];
+
+    // Mode 1: Antigravity Extension / Node.js HTTP Server
+    if (window.location.protocol === 'http:' || window.sidecar) {
+      const res = await fetch(apiPath);
+      return (window.NKAI_DATA[key] = await res.json());
+    }
+
+    // Mode 2: Zero-Dependency Offline file:/// Mode
+    return new Promise((resolve, reject) => {
+      const script = document.createElement('script');
+      script.src = scriptPath;
+      script.onload = () => resolve(window.NKAI_DATA[key]);
+      script.onerror = () => reject(new Error(`Failed to load ${scriptPath}`));
+      document.head.appendChild(script);
+    });
+  }
+}
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 2: Sessions & History -->
+      <div id="tab-sessions" class="tab-pane" style="display: none;">
+        <div class="section-card" id="sec-sessions">
+          <div class="section-title">
+            <span>2.0 Persistent Triage Sessions &amp; History Drawer</span>
+            <span class="badge badge-amber">Ergonomics</span>
+          </div>
+          <p style="font-size: 13px; line-height: 1.6; color: var(--text-main);">
+            <strong>The Problem:</strong> When a user pauses a post-mortem session (Phase 2.8), the snapshot is saved into <code>.agents/sidecar/packages/</code>, but has zero UI visibility. The user forgets it exists until someone remembers to run <code>/resume-post-mortem</code>.
+          </p>
+
+          <div class="grid-2">
+            <div class="pill-card">
+              <div class="pill-title">Persistent Header Indicator</div>
+              <p style="font-size: 12px; color: var(--text-muted); line-height: 1.5;">
+                The header utility cluster renders <code>📦 Sessions [1 PAUSED]</code> with a warm amber pulse whenever un-triaged items remain in any active package.
+              </p>
+            </div>
+            <div class="pill-card">
+              <div class="pill-title">1-Click "Resume in Workshop"</div>
+              <p style="font-size: 12px; color: var(--text-muted); line-height: 1.5;">
+                Clicking Resume loads the package in-memory, advances to the first undecided hero item, switches to the Active Workshop tab, and updates the Decision Composer instantly.
+              </p>
+            </div>
+          </div>
+
+          <div style="margin-top:16px; text-align:center;">
+            <button class="interactive-btn amber" onclick="toggleDrawer('sessions-drawer')">👉 Click to Test Slide-Over Sessions Drawer</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 3: Blue-Sky Innovations -->
+      <div id="tab-bluesky" class="tab-pane" style="display: none;">
+        <div class="section-card" id="sec-bluesky">
+          <div class="section-title">
+            <span>3.0 Blue-Sky UX Innovations: The Transcendent Cockpit</span>
+            <span class="badge badge-purple">Blue-Sky</span>
+          </div>
+          <p style="font-size: 13px; line-height: 1.6; color: var(--text-main);">
+            Four transformative UX features engineered specifically for developer-agent pair programming:
+          </p>
+
+          <div class="grid-2">
+            <div class="pill-card">
+              <div class="pill-title">
+                <span>⌨️ Command Palette (Cmd+K / Ctrl+K)</span>
+                <span class="badge badge-purple">SOTA</span>
+              </div>
+              <p style="font-size: 12px; color: var(--text-muted); line-height: 1.5;">
+                Spotlight-style fuzzy jumper across all roadmap milestones, active triage cards, and past harvest docs with direct prompt dispatch.
+              </p>
+            </div>
+
+            <div class="pill-card">
+              <div class="pill-title">
+                <span>⚡ Bi-Directional Action Prompters</span>
+                <span class="badge badge-blue">Composer</span>
+              </div>
+              <p style="font-size: 12px; color: var(--text-muted); line-height: 1.5;">
+                Action pills on cards (<code>[ 🔬 Deep Dive ]</code>, <code>[ ⚖️ Pros/Cons ]</code>, <code>[ 🔨 Plan ]</code>) that inject pre-structured prompts into the chat clipboard.
+              </p>
+            </div>
+
+            <div class="pill-card" id="sec-audio-lab">
+              <div class="pill-title">
+                <span>🔊 Procedural Web Audio Haptics</span>
+                <span class="badge badge-green">0 KB Audio</span>
+              </div>
+              <p style="font-size: 12px; color: var(--text-muted); line-height: 1.5;">
+                Physical detent clicks and subtle harmonic chimes rendered via pure Web Audio oscillators (with master mute toggle).
+              </p>
+              <div style="margin-top:8px; display:flex; gap:6px;">
+                <button class="interactive-btn" onclick="playHapticTick()">🔊 Test Tick (800Hz)</button>
+                <button class="interactive-btn" onclick="playHapticChime()">✨ Test Chime (Major 3rd)</button>
+              </div>
+            </div>
+
+            <div class="pill-card">
+              <div class="pill-title">
+                <span>📊 2x2 Decision Matrix</span>
+                <span class="badge badge-amber">Strategic</span>
+              </div>
+              <p style="font-size: 12px; color: var(--text-muted); line-height: 1.5;">
+                Flips post-mortem lists into an interactive Effort vs Impact quadrant to separate Quick Wins from Strategic Bets.
+              </p>
+            </div>
+          </div>
+
+          <!-- Interactive 2x2 Matrix Simulator -->
+          <div style="margin-top:20px;" id="sec-matrix-lab">
+            <div class="section-title">
+              <span>Interactive Decision Matrix Simulator</span>
+              <span class="badge badge-purple">Interactive</span>
+            </div>
+            <div class="matrix-grid">
+              <div class="matrix-quadrant q-quickwins">
+                <span class="matrix-tag" style="background:rgba(63,185,80,0.15); color:var(--accent-green);">Quick Wins (Low Effort / High Impact)</span>
+                <div class="matrix-title">🚀 Fast Track to Backlog</div>
+                <div class="matrix-item">Item 1.3: Reclaiming Blank Spacer Real Estate</div>
+                <div class="matrix-item">Item 3.2: Magnetic Detents on Musical Knobs</div>
+              </div>
+              <div class="matrix-quadrant q-strategic">
+                <span class="matrix-tag" style="background:rgba(88,166,255,0.15); color:var(--accent-blue);">Strategic Bets (High Effort / High Impact)</span>
+                <div class="matrix-title">🏛️ Major Milestone Targets</div>
+                <div class="matrix-item">Item 1.1: Monolithic Sculpted Titanium Faceplate</div>
+                <div class="matrix-item">Item 4.1: Persistent Lower Modulator Dock Strip</div>
+              </div>
+              <div class="matrix-quadrant q-fillin">
+                <span class="matrix-tag" style="background:rgba(255,171,112,0.15); color:var(--accent-amber);">Fill-Ins (Low Effort / Low Impact)</span>
+                <div class="matrix-title">⏳ Table for Chores</div>
+                <div class="matrix-item">Item 2.2: Procedural Vector Glyphs (Cosmetic)</div>
+              </div>
+              <div class="matrix-quadrant q-graveyard">
+                <span class="matrix-tag" style="background:rgba(248,81,73,0.15); color:var(--accent-red);">Strategy Graveyard (High Effort / Low Impact)</span>
+                <div class="matrix-title">💀 Reject / Out of Scope</div>
+                <div class="matrix-item">Anti-Pattern: Heavy WebGL / D3 Dependency Graphs</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 4: Devil's Advocate -->
+      <div id="tab-contrarian" class="tab-pane" style="display: none;">
+        <div class="section-card" id="sec-contrarian">
+          <div class="section-title">
+            <span>4.0 Contrarian Audit: The 3 Fatal Traps &amp; The Pragmatic 80/20 Standard</span>
+            <span class="badge badge-green">80/20 Reality Check</span>
+          </div>
+
+          <div class="grid-3">
+            <div class="pill-card" style="border-top:2px solid var(--accent-red);">
+              <div class="pill-title" style="color:var(--accent-red);">1. The CORS Trap</div>
+              <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
+                <strong>Pitfall:</strong> <code>fetch('roadmap.json')</code> triggers a silent blank screen on <code>file:///</code>.<br/>
+                <strong>80/20 Rule:</strong> Dual-emission generator writes both <code>.json</code> and synchronous <code>.data.js</code>. Zero network stack needed.
+              </p>
+            </div>
+
+            <div class="pill-card" style="border-top:2px solid var(--accent-red);">
+              <div class="pill-title" style="color:var(--accent-red);">2. The Audio Hazard</div>
+              <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
+                <strong>Pitfall:</strong> Synthesized Web Audio clicks bursting through high-gain monitor speakers during DSP testing.<br/>
+                <strong>80/20 Rule:</strong> Default to 100% silence. Haptics strictly opt-in via a persistent mute toggle.
+              </p>
+            </div>
+
+            <div class="pill-card" style="border-top:2px solid var(--accent-red);">
+              <div class="pill-title" style="color:var(--accent-red);">3. The 380px Panel Squish</div>
+              <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
+                <strong>Pitfall:</strong> Crowding the header with 10 buttons wraps into 4 ugly lines, stealing 25% of visible canvas.<br/>
+                <strong>80/20 Rule:</strong> Right-anchored slide-over drawers with icon+badge triggers that collapse cleanly on narrow panels.
+              </p>
+            </div>
+          </div>
+
+          <div style="margin-top:16px; background:var(--bg-panel); border:1px solid var(--border); border-radius:6px; padding:16px;">
+            <div class="pill-title" style="color:var(--accent-green); margin-bottom:8px;">
+              🏆 The Pragmatic 80/20 Architectural Verdict
+            </div>
+            <p style="font-size:12px; line-height:1.6; color:var(--text-main); margin:0;">
+              1. <strong>Roadmaps:</strong> Decouple into <code>.agents/sidecar/data/roadmap.data.js</code>. Render via right-anchored slide drawer.<br/>
+              2. <strong>Sessions:</strong> Scan <code>.agents/sidecar/packages/*.json</code> into <code>sessions_manifest.data.js</code>. Expose <code>[ 1 PAUSED ]</code> in header with 1-click workshop resumption.<br/>
+              3. <strong>Blue-Sky:</strong> Adopt the 2x2 Decision Matrix and Bi-Directional Action Prompters. Keep Web Audio haptics strictly opt-in and silent by default.<br/>
+              4. <strong>Indestructible Portability:</strong> Ensure every sidecar continues running 100% offline from disk with zero external servers.
+            </p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    let currentZoom = parseFloat(localStorage.getItem('nkai_zoom') || '1.0');
+    document.documentElement.style.fontSize = (currentZoom * 16) + 'px';
+
+    function adjustZoom(delta) {
+      currentZoom = Math.min(Math.max(currentZoom + delta, 0.75), 1.35);
+      document.documentElement.style.fontSize = (currentZoom * 16) + 'px';
+      localStorage.setItem('nkai_zoom', currentZoom.toFixed(2));
+    }
+
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-pane').forEach(el => el.style.display = 'none');
+      document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active'));
+      const target = document.getElementById(tabId);
+      if (target) target.style.display = 'block';
+      event.target.classList.add('active');
+    }
+
+    function toggleDrawer(drawerId) {
+      const drawer = document.getElementById(drawerId);
+      const overlay = document.getElementById('drawer-overlay');
+      const isCurrentlyActive = drawer.classList.contains('active');
+
+      closeAllDrawers();
+
+      if (!isCurrentlyActive) {
+        drawer.classList.add('active');
+        overlay.classList.add('active');
+      }
+    }
+
+    function closeAllDrawers() {
+      document.querySelectorAll('.slide-drawer').forEach(d => d.classList.remove('active'));
+      const overlay = document.getElementById('drawer-overlay');
+      if (overlay) overlay.classList.remove('active');
+    }
+
+    // Zero-Dependency Procedural Web Audio Synthesis
+    let audioCtx = null;
+    function getAudioContext() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      return audioCtx;
+    }
+
+    function playHapticTick() {
+      try {
+        const ctx = getAudioContext();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(800, ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(120, ctx.currentTime + 0.025);
+
+        gain.gain.setValueAtTime(0.08, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.025);
+
+        osc.start();
+        osc.stop(ctx.currentTime + 0.025);
+      } catch (e) {
+        console.warn('Web Audio not allowed without user gesture:', e);
+      }
+    }
+
+    function playHapticChime() {
+      try {
+        const ctx = getAudioContext();
+        [523.25, 659.25].forEach((freq, i) => { // C5 and E5
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, ctx.currentTime + (i * 0.04));
+
+          gain.gain.setValueAtTime(0.06, ctx.currentTime + (i * 0.04));
+          gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + (i * 0.04) + 0.25);
+
+          osc.start(ctx.currentTime + (i * 0.04));
+          osc.stop(ctx.currentTime + (i * 0.04) + 0.25);
+        });
+      } catch (e) {
+        console.warn('Web Audio not allowed without user gesture:', e);
+      }
+    }
+
+    // Close drawers on Escape key
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeAllDrawers();
+    });
+  </script>
+</body>
+</html>
