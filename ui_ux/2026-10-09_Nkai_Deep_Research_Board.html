@@ -811,19 +811,19 @@
       </div>
 
       <!-- Flight 2: 6.17 + 6.18 Execution Bridge -->
-      <div class="flight-card" id="flight-item-t17" style="display:flex; justify-content:space-between; align-items:flex-start; padding:8px 10px; border-radius:6px; background:rgba(255,171,112,0.12); border:1px solid var(--accent-amber); margin-bottom:6px;">
+      <div class="flight-card" id="flight-item-t17" style="display:flex; justify-content:space-between; align-items:flex-start; padding:8px 10px; border-radius:6px; background:rgba(63,185,80,0.1); border:1px solid var(--accent-green); margin-bottom:6px;">
         <div style="flex:1;">
           <div style="font-size:11px; font-weight:600; color:var(--text-main);">
-            <span style="color:var(--accent-amber); font-family:var(--font-mono);">F2.</span> 6.17 + 6.18: Execution Bridge &amp; Parallel Subagents
+            <span style="color:var(--accent-green); font-family:var(--font-mono);">F2.</span> 6.17 + 6.18: Execution Bridge &amp; Concurrency
           </div>
           <div style="font-size:10px; color:var(--text-muted); margin-top:2px;">
-            6.17 Tabled for v0.2.0 UI Extension. 6.18 Parallel Flash Subagents for sidecar actions (Active Workshop topic).
+            6.17 Tabled for v0.2.0 UI Extension. 6.18 Parallel Flash Subagents Approved (Option B). Flight Complete.
           </div>
           <div style="margin-top:4px;">
-            <button class="interactive-btn amber" style="font-size:9px; padding:2px 6px;" onclick="setWorkshopTopic('t18'); closeAllDrawers();">[ 🛠️ Load in Workshop ]</button>
+            <button class="interactive-btn green" style="font-size:9px; padding:2px 6px;" onclick="setWorkshopTopic('t18'); closeAllDrawers();">[ 🛠️ Inspect Flight ]</button>
           </div>
         </div>
-        <span class="badge badge-amber" style="font-size:9px; margin-left:6px;">6.18 ACTIVE ★</span>
+        <span class="badge badge-green" style="font-size:9px; margin-left:6px;">✓ COMPLETED</span>
       </div>
     </div>
 
@@ -973,17 +973,17 @@
       <a class="sidebar-item" href="#sec-upgrade">5.0 Upgrade Path &amp; Migration</a>
 
       <div class="sidebar-section-title">Active Focus</div>
-      <a class="sidebar-item active" id="side-item-workshop" href="#tab-workshop">🛠️ Active Workshop (<span id="side-active-topic-num">F2: 6.18</span>)</a>
+      <a class="sidebar-item active" id="side-item-workshop" href="#tab-workshop">🛠️ Active Workshop (<span id="side-active-topic-num">COMPLETE 🎉</span>)</a>
 
       <div class="sidebar-section-title">Audit Navigation</div>
       <button id="toggleItineraryBtn" class="interactive-btn purple" style="width: 100%; margin: 4px 0 10px 0; font-weight: 600; display: flex; align-items: center; justify-content: space-between; padding: 7px 10px; font-size: 11px;" onclick="toggleItineraryDrawer()">
         <span>📅 Audit Itinerary</span>
-        <span class="badge badge-amber" id="itinerary-pending-badge" style="font-size: 10px;">1 PENDING</span>
+        <span class="badge badge-green" id="itinerary-pending-badge" style="font-size: 10px;">0 PENDING ✓</span>
       </button>
 
       <div class="sidebar-section-title">Sequenced Flight Plan (9 Nodes)</div>
       <a class="sidebar-item" href="#sec-audit-t16"><span>F1. 6.16+6.7 State</span> <span id="side-v-t16" class="badge badge-green">✓</span></a>
-      <a class="sidebar-item" href="#sec-audit-t17"><span>F2. 6.17+6.18 Bridge</span> <span id="side-v-t17" class="badge badge-amber">6.18 ★</span></a>
+      <a class="sidebar-item" href="#sec-audit-t17"><span>F2. 6.17+6.18 Bridge</span> <span id="side-v-t17" class="badge badge-green">✓</span></a>
       <a class="sidebar-item" href="#sec-audit-t4"><span>F3. 6.4+6.14 Skills</span> <span id="side-v-t4" class="badge badge-green">✓</span></a>
       <a class="sidebar-item" href="#sec-audit-t13"><span>F4. 6.13 Portability</span> <span id="side-v-t13" class="badge badge-green">✓</span></a>
       <a class="sidebar-item" href="#sec-audit-t9"><span>F5. 6.9+6.10 Header</span> <span id="side-v-t9" class="badge badge-green">✓</span></a>
@@ -1003,19 +1003,19 @@
         <div class="hero-card" style="border-left: 4px solid var(--accent-amber); background: linear-gradient(180deg, rgba(255, 171, 112, 0.08) 0%, rgba(13, 17, 23, 0.98) 100%);">
           <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:10px;">
             <div>
-              <div class="hero-badge" id="ws-hero-badge" style="color:var(--accent-amber); border-color:rgba(255,171,112,0.4); background:rgba(255,171,112,0.12);">
-                🛠️ Active Workshop: In-Flight Triage Stage • Flight 2 (Final Audit Topic: Concurrency &amp; UX)
+              <div class="hero-badge" id="ws-hero-badge" style="color:var(--accent-green); border-color:rgba(63,185,80,0.4); background:rgba(63,185,80,0.12);">
+                🏆 System Sanity Audit Milestone Complete • 100% Consensus Achieved!
               </div>
               <h1 class="hero-title" id="ws-hero-title" style="margin-top:4px;">
-                Topic 6.18: Parallel Subagent Delegation for Sidecar Actions
+                Audit Capstone: All 19 Topics Resolved Across 9 Flights
               </h1>
               <p class="hero-desc" id="ws-hero-desc" style="max-width:760px; margin-bottom:8px;">
-                When the user clicks [ ⚖️ Pros/Cons ] or [ 🔬 Research ] on an option card in the sidecar, can/should the agent harness spawn dedicated background subagents in parallel, allowing research to proceed asynchronously without interrupting or stalling the primary agent's active coding/compilation tasks?
+                Every architectural question across state persistence, AI harness portability, skill defaults, header ergonomics, triage viewports, PCDA governance, token budgeting, and background execution has been resolved. 17 features approved, 2 tabled for v0.2.0 UI Extension, 0 killed, 0 pending.
               </p>
             </div>
             <div style="text-align:right;">
               <span id="workshop-scorecard" class="badge badge-green" style="font-size:11px; padding:4px 8px;">
-                [ 16 Approved | 2 Tabled | 0 Killed | 1 Pending ]
+                [ 17 Approved | 2 Tabled | 0 Killed | 0 Pending ]
               </span>
             </div>
           </div>
@@ -1026,7 +1026,7 @@
             <button class="header-btn green" id="btn-ws-t16" onclick="setWorkshopTopic('t16')" style="font-size:10px; padding:3px 7px;">F1. 6.16 State ✓</button>
             <button class="header-btn green" id="btn-ws-t7" onclick="setWorkshopTopic('t7')" style="font-size:10px; padding:3px 7px;">F1. 6.7 Context ✓</button>
             <button class="header-btn amber" id="btn-ws-t17" onclick="setWorkshopTopic('t17')" style="font-size:10px; padding:3px 7px;">F2. 6.17 Bridge (Tabled)</button>
-            <button class="header-btn amber active" id="btn-ws-t18" onclick="setWorkshopTopic('t18')" style="font-size:10px; padding:3px 7px; border-color:var(--accent-amber); background:rgba(255,171,112,0.25);">F2. 6.18 Subagents ★ ACTIVE</button>
+            <button class="header-btn green" id="btn-ws-t18" onclick="setWorkshopTopic('t18')" style="font-size:10px; padding:3px 7px;">F2. 6.18 Subagents ✓</button>
             <button class="header-btn green" id="btn-ws-t13" onclick="setWorkshopTopic('t13')" style="font-size:10px; padding:3px 7px;">F4. 6.13 Portability ✓</button>
             <button class="header-btn green" id="btn-ws-t4" onclick="setWorkshopTopic('t4')" style="font-size:10px; padding:3px 7px;">F3. 6.4 Skills ✓</button>
             <button class="header-btn green" id="btn-ws-t14" onclick="setWorkshopTopic('t14')" style="font-size:10px; padding:3px 7px;">F3. 6.14 Defaults ✓</button>
@@ -1044,108 +1044,74 @@
 
                                 <!-- Active Topic Workshop Hero Card Mount -->
         <div id="workshop-card-mount">
-          <!-- Rendered dynamically by setWorkshopTopic, pre-populated with t18 -->
-          <div class="section-card" id="workshop-card">
+          <!-- Rendered dynamically by setWorkshopTopic, pre-populated with Capstone -->
+          <div class="section-card" id="workshop-card" style="border: 1px solid var(--accent-green); background: linear-gradient(180deg, rgba(63, 185, 80, 0.06) 0%, rgba(13, 17, 23, 0.95) 100%);">
             <div class="section-title">
-              <span id="ws-card-title">6.18 Parallel Subagent Delegation for Sidecar Actions</span>
-              <span id="ws-card-badge" class="badge badge-amber">Concurrency &amp; UX</span>
+              <span id="ws-card-title">🎉 System Sanity Audit Capstone: 100% Consensus Achieved</span>
+              <span id="ws-card-badge" class="badge badge-green">Milestone Complete</span>
             </div>
             <p id="ws-card-desc" style="font-size: 12px; line-height: 1.6; color: var(--text-main);">
-              <strong>The Question:</strong> When the user clicks [ ⚖️ Pros/Cons ] or [ 🔬 Research ] on an option card in the sidecar, can/should the agent harness spawn dedicated background subagents in parallel, allowing research to proceed asynchronously without interrupting or stalling the primary agent's active coding/compilation tasks?
+              <strong>Full Triage Consensus:</strong> Over an intensive collaborative sprint, all 19 system sanity audit topics were thoroughly explored across the 4 Lenses, vetted with devil's advocate counter-arguments, and systematically resolved into 9 coherent engineering flights.
             </p>
 
-            <div class="grid-3" id="ws-card-options" style="margin-top: 12px;">
-              <div class="pill-card">
-                <div class="pill-title">Option A: Synchronous Main Agent Turn</div>
-                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Routes action directly into the main agent's chat turn queue. If the main agent is currently running a build or executing a plan, the request waits until the task finishes, causing a stall.</p>
-                <div style="margin-top: 8px;">
-                  <input type="text" readonly value="[6.18 Parallel Subagents] pros and cons for Option A Synchronous Main Agent Turn"
-                         onclick="this.select();" ondblclick="this.select();"
-                         style="width:100%; box-sizing:border-box; background:rgba(0,0,0,0.5); border:1px solid var(--border); border-radius:3px; color:var(--text-muted); font-family:var(--font-mono); font-size:10px; padding:4px 6px; cursor:text; user-select:all;" />
-                </div>
+            <div class="grid-3" id="ws-card-options" style="margin-top: 14px;">
+              <div class="pill-card" style="border: 1px solid rgba(63,185,80,0.3);">
+                <div class="pill-title" style="color:var(--accent-green);">17 Approved Features</div>
+                <ul style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin: 0; padding-left: 16px;">
+                  <li><strong>Phase 1:</strong> 6.16 State (Markdown+JSON) &amp; 6.7 Context Clues</li>
+                  <li><strong>Phase 2:</strong> 6.4 Hybrid Skills &amp; 6.14 N'kai Defaults &amp; 6.13 Portability</li>
+                  <li><strong>Phase 3:</strong> 6.9 Two-Tier Header &amp; 6.10 Density &amp; 6.8 Autopsy &amp; 6.11 Inbox</li>
+                  <li><strong>Phase 4:</strong> 6.1 PCDA &amp; 6.2 On-Demand &amp; 6.15 SOTA &amp; 6.19 Quota Ledger &amp; 6.3 Monolithic &amp; 6.12 Dist Bundle &amp; 6.6 AGY Keys &amp; 6.18 Parallel Subagents</li>
+                </ul>
               </div>
-              <div class="pill-card" style="border: 1px solid var(--accent-green);">
-                <div class="pill-title" style="color:var(--accent-green);">Option B: Dedicated Parallel Flash Subagents (Recommended)</div>
-                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Every pro/con or research click immediately spawns a parallel Flash subagent in the background (<code>invoke_subagent(Model=&quot;flash&quot;)</code>). The subagent executes asynchronously, writes results to the sidecar canvas or <code>.agents/sidecar/</code>, and alerts the user when ready—without stalling the main agent or burning Pro quota.</p>
-                <div style="margin-top: 8px;">
-                  <input type="text" readonly value="[6.18 Parallel Subagents] pros and cons for Option B Dedicated Parallel Flash Subagents"
-                         onclick="this.select();" ondblclick="this.select();"
-                         style="width:100%; box-sizing:border-box; background:rgba(0,0,0,0.5); border:1px solid rgba(63,185,80,0.4); border-radius:3px; color:var(--accent-green); font-family:var(--font-mono); font-size:10px; padding:4px 6px; cursor:text; user-select:all;" />
-                </div>
+              <div class="pill-card" style="border: 1px solid rgba(255,171,112,0.3);">
+                <div class="pill-title" style="color:var(--accent-amber);">2 Tabled Features (v0.2.0)</div>
+                <ul style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin: 0; padding-left: 16px;">
+                  <li><strong>Topic 6.5:</strong> N'kai Ergonomics Asymmetric Split (v0.2.0 UI Extension)</li>
+                  <li><strong>Topic 6.17:</strong> Bidirectional Loopback Bridge :4040 &amp; Programmatic Clipboard (Decoupled from file:/// for v0.2.0)</li>
+                </ul>
+                <p style="font-size: 10px; color: var(--text-muted); margin-top: 6px;">
+                  Eliminated premature localhost socket dependencies and clipboard sandbox failures, locking in the uneditable click-to-highlight standard.
+                </p>
               </div>
-              <div class="pill-card">
-                <div class="pill-title">Option C: Hybrid Tiered Routing (Flash Pros/Cons, Pro Deep Research)</div>
-                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Lightweight pros/cons run on fast Flash subagents; complex DSP or architecture research prompts escalate to on-demand Pro subagents; direct main-agent answer if the main agent is currently idle.</p>
-                <div style="margin-top: 8px;">
-                  <input type="text" readonly value="[6.18 Parallel Subagents] pros and cons for Option C Hybrid Tiered Routing"
-                         onclick="this.select();" ondblclick="this.select();"
-                         style="width:100%; box-sizing:border-box; background:rgba(0,0,0,0.5); border:1px solid var(--border); border-radius:3px; color:var(--text-muted); font-family:var(--font-mono); font-size:10px; padding:4px 6px; cursor:text; user-select:all;" />
+              <div class="pill-card" style="border: 1px solid rgba(88,166,255,0.3);">
+                <div class="pill-title" style="color:var(--accent-blue);">Cumulative Allowance Footprint</div>
+                <div style="font-size: 11px; color: var(--text-muted); line-height: 1.6;">
+                  <div>🧠 <strong>Tier 1 Pro:</strong> ~15,000 tokens (high DSP/schemas)</div>
+                  <div>🟢 <strong>Tier 2 Flash High:</strong> ~110,000 tokens (factory builds)</div>
+                  <div>⚡ <strong>Tier 3 Flash Low:</strong> ~25,000 tokens (JSON/docs/git)</div>
+                  <div style="margin-top: 6px; font-weight: 700; color: var(--accent-neon);">
+                    Sustainable Budget: ~150k tokens (within daily limits)
+                  </div>
                 </div>
               </div>
             </div>
 
-            <!-- 3-Lens Pros & Cons -->
+            <!-- Capstone Summary & Next Actions -->
             <div id="ws-card-evaluation" style="margin-top: 14px; background: rgba(0,0,0,0.3); border: 1px solid rgba(48,54,61,0.6); border-radius: 6px; padding: 12px;">
-              <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option B: Dedicated Parallel Flash Subagents)</div>
-              <ul style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin: 0; padding-left: 18px;">
-                <li><strong>🌍 Real-World Ergonomics:</strong> Maximum responsiveness. You can trigger multiple research inquiries across options while the main agent keeps writing code or running tests uninterrupted.</li>
-                <li><strong>🏛️ Wider SOTA:</strong> Standard multi-agent orchestrator design (Cursor background indexers, Devin parallel sub-tasks, Antigravity background subagents).</li>
-                <li><strong>🏆 Best Practices:</strong> Protects the main chat transcript from massive research dumps, keeping token burn near zero and main context ultra-clean.</li>
-              </ul>
-              <div style="margin-top: 10px; display: flex; flex-direction: column; gap: 6px;">
-                <span style="font-family:var(--font-mono); font-size:10px; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.5px;">🔬 Deep Dive Prompts (Click to Highlight, Ctrl+C to Copy):</span>
-                <div style="display:flex; align-items:center; gap:6px; background:rgba(88,166,255,0.06); border:1px solid rgba(88,166,255,0.25); border-radius:4px; padding:4px 8px;">
-                  <span style="font-size:10px; font-family:var(--font-mono); color:var(--accent-blue); width:130px; flex-shrink:0;">⚖️ Pros &amp; Cons:</span>
-                  <input type="text" readonly value="[6.18 Parallel Subagent Delegation for Sidecar Actions] pros and cons for Parallel Subagents across the 4 Lenses"
-                         onclick="this.select();" ondblclick="this.select();"
-                         style="flex:1; background:rgba(0,0,0,0.5); border:1px solid rgba(88,166,255,0.2); border-radius:3px; color:var(--accent-neon); font-family:var(--font-mono); font-size:10px; padding:4px 8px; cursor:text; user-select:all;" />
-                </div>
-                <div style="display:flex; align-items:center; gap:6px; background:rgba(88,166,255,0.06); border:1px solid rgba(88,166,255,0.25); border-radius:4px; padding:4px 8px;">
-                  <span style="font-size:10px; font-family:var(--font-mono); color:var(--accent-blue); width:130px; flex-shrink:0;">🔬 Research Online:</span>
-                  <input type="text" readonly value="[6.18 Parallel Subagent Delegation for Sidecar Actions] research online parallel background subagent patterns in modern AI coding agents"
-                         onclick="this.select();" ondblclick="this.select();"
-                         style="flex:1; background:rgba(0,0,0,0.5); border:1px solid rgba(88,166,255,0.2); border-radius:3px; color:var(--accent-neon); font-family:var(--font-mono); font-size:10px; padding:4px 8px; cursor:text; user-select:all;" />
-                </div>
-                <div style="margin-top:4px;">
-                  <button class="interactive-btn amber" style="font-size:10px; padding:2px 8px;" onclick="navigateToSection('sec-audit-t18')">[ 🔍 Jump to Topic in Full Context ]</button>
-                </div>
-              </div>
+              <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">🚀 Next Operational Steps</div>
+              <p style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin: 0;">
+                With the System Sanity Audit 100% complete, all decisions are permanently codified in <code>docs/BACKLOG.md</code> and mirrored to <code>TheKlangResearch</code>. You can click any pill above to inspect the full 4-Lens evaluation for any individual topic, or trigger 1-click clipboard copies of the final audit manifest below.
+              </p>
             </div>
 
-            <!-- Decision Prompts Row (Boxes replace buttons) -->
+            <!-- Final Copy Triage Manifest -->
             <div style="margin-top:16px; padding-top:12px; border-top:1px solid rgba(48,54,61,0.5);">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-                <span style="font-family:var(--font-mono); font-size:11px; font-weight:700; color:var(--accent-neon); text-transform:uppercase; letter-spacing:0.5px;">
-                  📋 Decision Prompts (Click to Highlight, Ctrl+C to Copy):
+                <span style="font-family:var(--font-mono); font-size:11px; font-weight:700; color:var(--accent-green); text-transform:uppercase; letter-spacing:0.5px;">
+                  📋 Complete Audit Manifest (Click to Highlight, Ctrl+C to Copy):
                 </span>
-                <span style="font-family:var(--font-mono); font-size:11px; color:var(--text-muted);">
-                  Verdict: <strong id="workshop-v-badge" class="badge">PENDING</strong>
+                <span style="font-family:var(--font-mono); font-size:11px; color:var(--accent-green); font-weight:700;">
+                  Audit Status: <span class="badge badge-green">100% COMPLETE ✓</span>
                 </span>
               </div>
 
               <div style="display:flex; flex-direction:column; gap:8px;">
-                <!-- Approve Box -->
                 <div style="display:flex; align-items:center; gap:8px; background:rgba(63,185,80,0.08); border:1px solid rgba(63,185,80,0.35); border-radius:6px; padding:6px 10px;">
-                  <span style="font-size:10px; font-family:var(--font-mono); color:var(--accent-green); font-weight:700; width:75px; flex-shrink:0;">✅ APPROVE:</span>
-                  <input type="text" readonly value="[6.18 Parallel Subagent Delegation for Sidecar Actions] VERDICT: APPROVED (APPROVE Option B)"
+                  <span style="font-size:10px; font-family:var(--font-mono); color:var(--accent-green); font-weight:700; width:110px; flex-shrink:0;">🏆 AUDIT REPORT:</span>
+                  <input type="text" readonly value="System Sanity Audit Complete: 17 Approved, 2 Tabled, 0 Killed, 0 Pending across 9 Flights. Ready for factory engineering!"
                          onclick="this.select();" ondblclick="this.select();"
                          style="flex:1; background:rgba(0,0,0,0.6); border:1px solid rgba(63,185,80,0.4); border-radius:4px; color:var(--accent-green); font-family:var(--font-mono); font-size:11px; padding:6px 10px; cursor:text; user-select:all;" />
-                </div>
-
-                <!-- Table Box -->
-                <div style="display:flex; align-items:center; gap:8px; background:rgba(255,171,112,0.08); border:1px solid rgba(255,171,112,0.3); border-radius:6px; padding:6px 10px;">
-                  <span style="font-size:10px; font-family:var(--font-mono); color:var(--accent-amber); font-weight:700; width:75px; flex-shrink:0;">⏳ TABLE:</span>
-                  <input type="text" readonly value="[6.18 Parallel Subagent Delegation for Sidecar Actions] VERDICT: TABLED"
-                         onclick="this.select();" ondblclick="this.select();"
-                         style="flex:1; background:rgba(0,0,0,0.6); border:1px solid rgba(255,171,112,0.3); border-radius:4px; color:var(--accent-amber); font-family:var(--font-mono); font-size:11px; padding:6px 10px; cursor:text; user-select:all;" />
-                </div>
-
-                <!-- Reject Box -->
-                <div style="display:flex; align-items:center; gap:8px; background:rgba(248,81,73,0.08); border:1px solid rgba(248,81,73,0.3); border-radius:6px; padding:6px 10px;">
-                  <span style="font-size:10px; font-family:var(--font-mono); color:var(--accent-red); font-weight:700; width:75px; flex-shrink:0;">💀 REJECT:</span>
-                  <input type="text" readonly value="[6.18 Parallel Subagent Delegation for Sidecar Actions] VERDICT: KILLED"
-                         onclick="this.select();" ondblclick="this.select();"
-                         style="flex:1; background:rgba(0,0,0,0.6); border:1px solid rgba(248,81,73,0.3); border-radius:4px; color:var(--accent-red); font-family:var(--font-mono); font-size:11px; padding:6px 10px; cursor:text; user-select:all;" />
                 </div>
               </div>
             </div>
@@ -2816,7 +2782,7 @@ class SidecarMigrator:
 
           <div style="display:flex; justify-content:space-between; align-items:center; margin-top:14px; padding-top:10px; border-top:1px solid rgba(48,54,61,0.5);">
             <div style="font-family:var(--font-mono); font-size:11px; color:var(--text-muted);">
-              Verdict: <strong id="v-badge-t18" style="color:var(--text-muted);">PENDING</strong>
+              Verdict: <strong id="v-badge-t18" class="badge badge-green" style="color:var(--accent-green);">APPROVED</strong>
             </div>
             <div style="display:flex; gap:6px;">
               <button class="interactive-btn" style="color:var(--accent-green); border-color:var(--accent-green);" onclick="setAuditVerdict('t18', 'APPROVED', this)">[ ✅ APPROVE Option B ]</button>
@@ -4313,7 +4279,7 @@ function toggleDrawer(drawerId) {
       t15: { title: '6.15 Industry Workflow Precedents', verdict: 'APPROVED' },
       t16: { title: '6.16 Backend Persistence & State', verdict: 'APPROVED' },
       t17: { title: '6.17 Bidirectional Click-to-Agent Bridge', verdict: 'TABLED' },
-      t18: { title: '6.18 Parallel Subagent Delegation for Sidecar Actions', verdict: 'PENDING' },
+      t18: { title: '6.18 Parallel Subagent Delegation for Sidecar Actions', verdict: 'APPROVED' },
       t19: { title: '6.19 Cumulative Allowance & Token Impact Ledger', verdict: 'APPROVED' }
     };
 
@@ -5771,12 +5737,12 @@ function toggleDrawer(drawerId) {
         console.warn('Could not load saved audit verdicts:', e);
       }
       // Force approved topics per user order
-      ['t1', 't2', 't3', 't4', 't6', 't7', 't8', 't9', 't10', 't11', 't12', 't13', 't14', 't15', 't16', 't19'].forEach(k => {
+      ['t1', 't2', 't3', 't4', 't6', 't7', 't8', 't9', 't10', 't11', 't12', 't13', 't14', 't15', 't16', 't18', 't19'].forEach(k => {
         if (auditVerdicts[k]) auditVerdicts[k].verdict = 'APPROVED';
       });
       if (auditVerdicts.t5) auditVerdicts.t5.verdict = 'TABLED';
       if (auditVerdicts.t17) auditVerdicts.t17.verdict = 'TABLED';
-      if (auditVerdicts.t18) auditVerdicts.t18.verdict = 'PENDING';
+      if (auditVerdicts.t18) auditVerdicts.t18.verdict = 'APPROVED';
       try {
         localStorage.setItem('nkai_audit_verdicts', JSON.stringify(auditVerdicts));
       } catch (e) {}
