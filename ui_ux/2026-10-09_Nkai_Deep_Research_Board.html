@@ -3477,8 +3477,8 @@ function toggleDrawer(drawerId) {
       }
 
       const prompt = isProsCons ? 
-        `Please provide an individualized 4-Lens Pros & Cons evaluation for ${topic.title} - ${optName} across Ergonomics, Audio Industry, SOTA, and Best Practices.` :
-        `Please conduct online research and benchmarking for ${topic.title} - ${optName}.`;
+        `[${topic.title} - ${optName}] Please provide an individualized 4-Lens Pros & Cons evaluation across Ergonomics, Audio Industry, SOTA, and Best Practices.` :
+        `[${topic.title} - ${optName}] Please conduct online research and benchmarking.`;
 
       panel.innerHTML = `
         ${detailHtml}
@@ -4341,7 +4341,7 @@ function toggleDrawer(drawerId) {
             <div id="ws-card-evaluation" style="margin-top: 14px; background: rgba(0,0,0,0.3); border: 1px solid rgba(48,54,61,0.6); border-radius: 6px; padding: 12px;">
               ${data.evalHtml}
               <div style="margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap;">
-                ${data.chips.map(c => `<button class="interactive-btn blue" onclick="copyPromptToChat('${c.prompt}', this)">[ ${c.label} ]</button>`).join('')}
+                ${data.chips.map(c => `<button class="interactive-btn blue" onclick="copyPromptToChat('[${data.title}] ${c.prompt}', this)">[ ${c.label} ]</button>`).join('')}
                 <button class="interactive-btn amber" onclick="navigateToSection('sec-audit-${topicId}')">[ 🔍 See in Full Context ]</button>
               </div>
             </div>
