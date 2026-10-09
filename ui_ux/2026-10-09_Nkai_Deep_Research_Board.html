@@ -657,10 +657,10 @@
         📦 Sessions <span class="badge badge-amber">1 PAUSED</span>
       </button>
 
-      <!-- Live Bridge Connection Status Indicator -->
-      <button id="bridge-status-pill" class="header-btn green" onclick="checkBridgeStatus()" title="Bridge Status: Direct-to-Agent Loopback. Click to re-check." style="font-size:10px; padding:3px 8px; display:inline-flex; align-items:center; gap:5px;">
-        <span id="bridge-status-led" style="display:inline-block; width:6px; height:6px; border-radius:50%; background:var(--accent-neon); box-shadow:0 0 6px var(--accent-neon);"></span>
-        <span id="bridge-status-text">⚡ Bridge: Online</span>
+      <!-- Standalone Canvas Mode (100% Functional Offline) -->
+      <button id="bridge-status-pill" class="header-btn" onclick="checkBridgeStatus()" title="Standalone Canvas Mode: 100% functional. Actions copy directly to clipboard. Click to probe optional telemetry logger." style="font-size:10px; padding:3px 8px; display:inline-flex; align-items:center; gap:5px;">
+        <span id="bridge-status-led" style="display:inline-block; width:6px; height:6px; border-radius:50%; background:var(--text-muted);"></span>
+        <span id="bridge-status-text" style="color:var(--text-muted);">📋 Standalone Canvas</span>
       </button>
 
       <div class="zoom-group">
