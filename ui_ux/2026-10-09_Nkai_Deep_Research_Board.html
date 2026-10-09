@@ -1013,6 +1013,8 @@
       <a class="sidebar-item" href="#sec-audit-t2"><span>F14. 6.2 Pros/Cons Strategy</span> <span id="side-v-t2" class="badge badge-green">✓</span></a>
       <a class="sidebar-item" href="#sec-audit-t7"><span>F15. 6.7 Context Clues</span> <span id="side-v-t7" class="badge">PENDING</span></a>
       <a class="sidebar-item" href="#sec-audit-t6"><span>F16. 6.6 AGY Shortcuts</span> <span id="side-v-t6" class="badge">PENDING</span></a>
+      <a class="sidebar-item" href="#sec-audit-t18"><span>F17. 6.18 Parallel Subagents</span> <span id="side-v-t18" class="badge">PENDING</span></a>
+      <a class="sidebar-item" href="#sec-audit-t19"><span>F18. 6.19 Token Impact Ledger</span> <span id="side-v-t19" class="badge">PENDING</span></a>
 
       <div class="sidebar-section-title">Interactive Labs</div>
       <a class="sidebar-item" href="#sec-matrix-lab">📊 2x2 Decision Matrix</a>
@@ -1651,18 +1653,30 @@ class SidecarMigrator:
                 Research runs to completion $	o$ pauses $	o$ spawns <code>/post-mortem</code> $	o$ steps through each item in chat $	o$ creates separate package JSON.<br/>
                 <em>Drawback:</em> Forces re-reading items twice; high friction.
               </p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t1', 'A', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t1', 'A', 'research', this)">[ 🔬 Research ]</button>
+            </div>
             </div>
             <div class="pill-card" style="border: 1px solid var(--accent-green);">
               <div class="pill-title" style="color:var(--accent-green);">Option B: Continuous In-Flight Triage (Recommended)</div>
               <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
                 Every research card has live <code>[ ✅ APPROVE ]</code>, <code>[ ⏳ TABLE ]</code>, <code>[ 💀 KILL ]</code> chips right on the card. The user triages in real time as they read. The "Post-Mortem" becomes a 1-click button: <em>"Generate Executive Ledger &amp; Ingest into Backlog"</em>.
               </p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t1', 'B', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t1', 'B', 'research', this)">[ 🔬 Research ]</button>
+            </div>
             </div>
             <div class="pill-card">
               <div class="pill-title">Option C: Hybrid Gate</div>
               <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
                 Live voting on cards in sidecar, but requires a short 1-turn chat confirmation before writing approvals to <code>docs/BACKLOG.md</code>.
               </p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t1', 'C', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t1', 'C', 'research', this)">[ 🔬 Research ]</button>
+            </div>
             </div>
           </div>
 
@@ -1706,6 +1720,10 @@ class SidecarMigrator:
                 Proactively outputs deep tables on every idea.<br/>
                 <em>Tradeoff:</em> Thorough, but consumes high tokens and stretches chat turns when you only wanted a quick answer.
               </p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t2', 'A', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t2', 'A', 'research', this)">[ 🔬 Research ]</button>
+            </div>
             </div>
             <div class="pill-card" style="border: 1px solid var(--accent-green);">
               <div class="pill-title" style="color:var(--accent-green);">Option B+: On-Demand with Deep Research (Approved)</div>
@@ -1718,6 +1736,10 @@ class SidecarMigrator:
               <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
                 Proactively output pros/cons <em>strictly</em> for Tier 1 high-impact architectural forks (C++ audio thread, breaking schema changes). Keep Tier 2/3 terse.
               </p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t2', 'C', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t2', 'C', 'research', this)">[ 🔬 Research ]</button>
+            </div>
             </div>
           </div>
 
@@ -1763,18 +1785,30 @@ class SidecarMigrator:
               <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
                 Divided by technical stack: Layouts vs DSP vs Blue Sky vs Hardware vs Tooling. Clean separation of concerns, but separates items bound for the same release.
               </p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t3', 'A', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t3', 'A', 'research', this)">[ 🔬 Research ]</button>
+            </div>
             </div>
             <div class="pill-card">
               <div class="pill-title">Option B: Milestone-Based</div>
               <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
                 Divided strictly by target version: v0.4.0 vs v0.4.1 vs v0.5.0. Excellent for release alignment, but fragments technical domains across multiple tabs.
               </p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t3', 'B', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t3', 'B', 'research', this)">[ 🔬 Research ]</button>
+            </div>
             </div>
             <div class="pill-card" style="border: 1px solid var(--accent-green);">
               <div class="pill-title" style="color:var(--accent-green);">Option C: Lifecycle Hierarchy (Approved)</div>
               <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
                 Tab 1: <em>Active Workshop</em> (the immediate focus item) &rarr; Tabs 2–N: <em>Domain Deep Dives</em> with target milestone badges &rarr; Final Tab: <em>Executive Decision Ledger</em>.
               </p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t3', 'C', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t3', 'C', 'research', this)">[ 🔬 Research ]</button>
+            </div>
             </div>
           </div>
 
@@ -1820,18 +1854,30 @@ class SidecarMigrator:
               <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
                 Every command is its own atomic skill (<code>build-validate</code>, <code>step-verify</code>, <code>audiothread-guard</code>, <code>web-qa</code>). High granularity, but requires knowing multiple commands.
               </p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t4', 'A', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t4', 'A', 'research', this)">[ 🔬 Research ]</button>
+            </div>
             </div>
             <div class="pill-card">
               <div class="pill-title">Option B: 4 Consolidated Macro-Suites</div>
               <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
                 Merged into 4 monolithic skills: <code>/architect</code>, <code>/factory</code>, <code>/maintain</code>, <code>/qa</code>. Simpler menu, but reduces flexibility for targeted single operations.
               </p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t4', 'B', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t4', 'B', 'research', this)">[ 🔬 Research ]</button>
+            </div>
             </div>
             <div class="pill-card" style="border: 1px solid var(--accent-green);">
               <div class="pill-title" style="color:var(--accent-green);">Option C: Layered Hybrid (Recommended)</div>
               <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
                 Keep atomic micro-skills as the underlying engine, while macro-commands (like <code>/execute-task</code> or unified <code>qa</code>) chain them deterministically. Zero loss of composability.
               </p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t4', 'C', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t4', 'C', 'research', this)">[ 🔬 Research ]</button>
+            </div>
             </div>
           </div>
 
@@ -1877,18 +1923,30 @@ class SidecarMigrator:
               <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
                 Detailed tables and prose printed in chat and sidecar. High chat scrollback, cognitive fatigue, and sidebars squishing cards on narrow panels.
               </p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t5', 'A', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t5', 'A', 'research', this)">[ 🔬 Research ]</button>
+            </div>
             </div>
             <div class="pill-card" style="border: 1px solid var(--accent-green);">
               <div class="pill-title" style="color:var(--accent-green);">Option B: Asymmetric Split + Auto-Collapse (Recommended)</div>
               <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
                 <strong>Strict Asymmetry:</strong> 100% of verbose prose, tradeoff tables, and cards live in the sidecar. Chat stream stays ultra-terse (1–3 sentences) and clean. Sidebar collapses into top chip bar on panels &lt; 650px.
               </p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t5', 'B', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t5', 'B', 'research', this)">[ 🔬 Research ]</button>
+            </div>
             </div>
             <div class="pill-card">
               <div class="pill-title">Option C: Draggable Split Pane</div>
               <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
                 Manual drag handle to adjust sidebar width, but requires manual fiddling every time the IDE layout shifts.
               </p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t5', 'C', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t5', 'C', 'research', this)">[ 🔬 Research ]</button>
+            </div>
             </div>
           </div>
 
@@ -1995,18 +2053,30 @@ class SidecarMigrator:
               <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
                 Wait until turn 40 before recommending <code>/refresh-context</code>. Can lead to subtle reasoning degradation ("context rot") on complex tasks.
               </p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t7', 'A', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t7', 'A', 'research', this)">[ 🔬 Research ]</button>
+            </div>
             </div>
             <div class="pill-card" style="border: 1px solid var(--accent-green);">
               <div class="pill-title" style="color:var(--accent-green);">Option B: Milestone-Bound Clean Slates (Recommended)</div>
               <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
                 Clean slate between major milestones: whenever a task/plan finishes, harvest into <code>DEV_HISTORY.md</code> and immediately start a fresh session on Flash High.
               </p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t7', 'B', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t7', 'B', 'research', this)">[ 🔬 Research ]</button>
+            </div>
             </div>
             <div class="pill-card">
               <div class="pill-title">Option C: Automatic Turn Pruning</div>
               <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
                 Prune old assistant messages silently via automated transcripts wiping. (Risk: loses short-term chat continuity).
               </p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t7', 'C', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t7', 'C', 'research', this)">[ 🔬 Research ]</button>
+            </div>
             </div>
           </div>
 
@@ -2037,18 +2107,30 @@ class SidecarMigrator:
               <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
                 Triage summaries remain tucked at the very bottom or hidden until milestone completion. Zero high-level in-flight visibility.
               </p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t8', 'A', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t8', 'A', 'research', this)">[ 🔬 Research ]</button>
+            </div>
             </div>
             <div class="pill-card" style="border: 1px solid var(--accent-green);">
               <div class="pill-title" style="color:var(--accent-green);">Option B: Dedicated Autopsy Tab w/ Filter Chips (Recommended)</div>
               <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
                 Slot 2 header item; live high-level feed, filter buttons (<code>[All]</code>, <code>[Approved]</code>, <code>[Tabled]</code>, <code>[Graveyard]</code>), 1-click jumps to full cards, and auto-morphs into final post-mortem.
               </p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t8', 'B', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t8', 'B', 'research', this)">[ 🔬 Research ]</button>
+            </div>
             </div>
             <div class="pill-card">
               <div class="pill-title">Option C: Slide-Out Autopsy Drawer</div>
               <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
                 Keep the feed inside a slide-over modal/drawer. Keeps header clean but adds an extra click to view scorecard.
               </p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t8', 'C', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t8', 'C', 'research', this)">[ 🔬 Research ]</button>
+            </div>
             </div>
           </div>
 
@@ -2094,18 +2176,30 @@ class SidecarMigrator:
               <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
                 Current layout: wraps into multiline when narrow, mixing view modes and utility buttons on the same tier.
               </p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t9', 'A', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t9', 'A', 'research', this)">[ 🔬 Research ]</button>
+            </div>
             </div>
             <div class="pill-card" style="border: 1px solid var(--accent-green);">
               <div class="pill-title" style="color:var(--accent-green);">Option B: Two-Tier Header w/ Bridge Status LED &amp; Utility Cluster (Recommended)</div>
               <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
                 Top bar = Brand on left, prominent right-aligned utility cluster with live Bridge Connection Status LED (<code>⚡ Bridge: Online</code> / <code>🔌 Offline</code>), Roadmap &amp; Sessions drawers with badge counts, Font zoom (<code>A-</code>/<code>A+</code>), Sound toggle (<code>🔊</code>), and Force Refresh (<code>🔄</code>). Bottom row = Clean dedicated view switchers.
               </p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t9', 'B', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t9', 'B', 'research', this)">[ 🔬 Research ]</button>
+            </div>
             </div>
             <div class="pill-card">
               <div class="pill-title">Option C: Utility Sidebar Drawer</div>
               <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
                 Move all utilities into a slide-out sidebar drawer with a prominent toggle button. Leaves header ultra-minimal.
               </p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t9', 'C', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t9', 'C', 'research', this)">[ 🔬 Research ]</button>
+            </div>
             </div>
           </div>
 
@@ -2151,18 +2245,30 @@ class SidecarMigrator:
               <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
                 Current layout: full words (<code>🗺️ DYNAMIC ROADMAPS</code>). Clear, but consumes 2-3 vertical lines on narrow panels.
               </p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t10', 'A', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t10', 'A', 'research', this)">[ 🔬 Research ]</button>
+            </div>
             </div>
             <div class="pill-card" style="border: 1px solid var(--accent-green);">
               <div class="pill-title" style="color:var(--accent-green);">Option B: Hybrid Compact w/ Hover Tooltips (Recommended)</div>
               <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
                 Primary modes named (<code>Workshop</code>, <code>Autopsy</code>), category tabs as <code>1 🗺️</code>, <code>2 📦</code>, <code>3 🚀</code>. Full title revealed instantly on hover.
               </p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t10', 'B', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t10', 'B', 'research', this)">[ 🔬 Research ]</button>
+            </div>
             </div>
             <div class="pill-card">
               <div class="pill-title">Option C: Pure Icon-Only Toolbar</div>
               <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
                 Only emoji icons, zero numbers or text. Ultra-compact, but causes cognitive friction when memorizing tabs.
               </p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t10', 'C', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t10', 'C', 'research', this)">[ 🔬 Research ]</button>
+            </div>
             </div>
           </div>
 
@@ -2208,18 +2314,30 @@ class SidecarMigrator:
               <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
                 Output markdown bullet points directly into chat. Fast, but clutters chat context and burns tokens on unformatted dumps.
               </p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t11', 'A', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t11', 'A', 'research', this)">[ 🔬 Research ]</button>
+            </div>
             </div>
             <div class="pill-card" style="border: 1px solid var(--accent-green);">
               <div class="pill-title" style="color:var(--accent-green);">Option B: N'kai Inbox Board Default (Recommended)</div>
               <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
                 Parses <code>TheKlangVault/Inbox/*.md</code>, generates a dedicated sidecar board with 1 section per note and triage chips. <code>--chat</code> flag preserves terminal output option.
               </p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t11', 'B', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t11', 'B', 'research', this)">[ 🔬 Research ]</button>
+            </div>
             </div>
             <div class="pill-card">
               <div class="pill-title">Option C: Automatic Backlog Sorter</div>
               <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
                 Agent sorts notes directly into BACKLOG.md without presenting an interactive interview. High risk of filing errors.
               </p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t11', 'C', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t11', 'C', 'research', this)">[ 🔬 Research ]</button>
+            </div>
             </div>
           </div>
 
@@ -2263,14 +2381,26 @@ class SidecarMigrator:
             <div class="pill-card">
               <div class="pill-title">Option A: Dispersed Across Repos</div>
               <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Keep skills in TheKlangSuite, tracker specs in ToadTracker, and sidecar in nkai. New users or fresh repos must cherry-pick files across multiple repositories.</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t12', 'A', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t12', 'A', 'research', this)">[ 🔬 Research ]</button>
+            </div>
             </div>
             <div class="pill-card" style="border: 1px solid var(--accent-green);">
               <div class="pill-title" style="color:var(--accent-green);">Option B: Monolithic All-in-One Bundle (Recommended)</div>
               <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Bundle canonical skills, templates, guardrail rules, and sidecar runner inside <code>nkai/bundle/</code> with a 1-command installer script (<code>npx nkai init</code> or <code>./install_nkai_bundle.ps1</code>).</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t12', 'B', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t12', 'B', 'research', this)">[ 🔬 Research ]</button>
+            </div>
             </div>
             <div class="pill-card">
               <div class="pill-title">Option C: Multi-Package Monorepo</div>
               <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Split into <code>@nkai/core</code>, <code>@nkai/skills</code>, and <code>@nkai/guardrails</code> with separate versioning. Higher coordination overhead for small teams.</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t12', 'C', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t12', 'C', 'research', this)">[ 🔬 Research ]</button>
+            </div>
             </div>
           </div>
 
@@ -2313,14 +2443,26 @@ class SidecarMigrator:
             <div class="pill-card">
               <div class="pill-title">Option A: Antigravity-Only Lock-in</div>
               <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Target strictly Antigravity's proprietary Sidecar SDK. Breaks or requires major re-writes if developing in Claude Code or Cursor.</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t13', 'A', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t13', 'A', 'research', this)">[ 🔬 Research ]</button>
+            </div>
             </div>
             <div class="pill-card" style="border: 1px solid var(--accent-green);">
               <div class="pill-title" style="color:var(--accent-green);">Option B: Standalone File + Localhost Adapter (Recommended)</div>
               <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Keep zero-dependency standalone HTML (<code>file:///</code>) for IDE webviews (Cursor, VS Code, AGY), and provide a tiny 30-line localhost server (<code>npx nkai serve</code>) that auto-opens a browser tab for terminal CLIs (Claude Code, Codex).</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t13', 'B', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t13', 'B', 'research', this)">[ 🔬 Research ]</button>
+            </div>
             </div>
             <div class="pill-card">
               <div class="pill-title">Option C: Markdown-Only Fallback</div>
               <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">If not in Antigravity, completely disable sidecars and dump massive text tables directly into chat. Defeats the asymmetric split.</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t13', 'C', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t13', 'C', 'research', this)">[ 🔬 Research ]</button>
+            </div>
             </div>
           </div>
 
@@ -2363,14 +2505,26 @@ class SidecarMigrator:
             <div class="pill-card">
               <div class="pill-title">Option A: Native Antigravity Plugin (Sidecar SDK / MCP)</div>
               <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Run N'kai as an installed IDE extension (<code>nkai/plugin/</code>). Buttons call <code>window.sidecar.sendAction()</code>, which routes directly through Antigravity's MCP server into the agent conversation. 100% native, zero terminal daemons, but requires installing the plugin.</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t17', 'A', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t17', 'A', 'research', this)">[ 🔬 Research ]</button>
+            </div>
             </div>
             <div class="pill-card">
               <div class="pill-title">Option B: Universal Localhost Loopback Micro-Server (npx nkai serve)</div>
               <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">A lightweight 40-line Node or Python daemon on <code>localhost:4040</code>. Buttons call <code>fetch('http://localhost:4040/action')</code>, writing to <code>.agents/pipeline/actions.json</code> which triggers an agent notification. Works across ALL harnesses (AGY, Claude Code, Cursor, Chrome).</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t17', 'B', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t17', 'B', 'research', this)">[ 🔬 Research ]</button>
+            </div>
             </div>
             <div class="pill-card" style="border: 1px solid var(--accent-green);">
               <div class="pill-title" style="color:var(--accent-green);">Option C: Hybrid Resilient Adapter (Plugin SDK + Localhost + Clipboard Fallback) [Recommended]</div>
               <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Checks for <code>window.sidecar</code> first (native AGY plugin mode). If absent, attempts loopback <code>fetch('localhost:4040')</code>. If offline, gracefully falls back to the hardened in-canvas expansion and clipboard modal. Guarantees zero broken clicks anywhere.</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t17', 'C', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t17', 'C', 'research', this)">[ 🔬 Research ]</button>
+            </div>
             </div>
           </div>
 
@@ -2413,14 +2567,26 @@ class SidecarMigrator:
             <div class="pill-card">
               <div class="pill-title">Option A: The Static Artifact Model (Claude Artifacts)</div>
               <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Isolated iframe rendered purely from agent markdown file output. Clean side-by-side view, but primarily a read-only preview with minimal bidirectional interaction or live workspace controls.</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t15', 'A', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t15', 'A', 'research', this)">[ 🔬 Research ]</button>
+            </div>
             </div>
             <div class="pill-card">
               <div class="pill-title">Option B: The Local WebSocket Server Model (Playwright/Vitest UI)</div>
               <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Spins up a local background HTTP/WebSocket server streaming real-time JSON-RPC to a heavy SPA. Highly interactive, but introduces brittle daemon lifecycle management, port conflicts, and battery/CPU drain.</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t15', 'B', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t15', 'B', 'research', this)">[ 🔬 Research ]</button>
+            </div>
             </div>
             <div class="pill-card" style="border: 1px solid var(--accent-green);">
               <div class="pill-title" style="color:var(--accent-green);">Option C: The Hybrid File-URI + Micro-Bridge Model (Recommended)</div>
               <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Leverage IDE webview interception via <code>file:///</code> URI for zero-bundle instant rendering, paired with an optional micro-bridge daemon (or native IDE extension SDK) for zero-copy 1-click agent dispatch. If the bridge is offline, it gracefully degrades to the hardened in-canvas expansion and copy modal. Combines the indestructible zero-build simplicity of Claude Artifacts with the interactive dispatch power of Playwright/Vitest UI!</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t15', 'C', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t15', 'C', 'research', this)">[ 🔬 Research ]</button>
+            </div>
             </div>
           </div>
 
@@ -2463,14 +2629,26 @@ class SidecarMigrator:
             <div class="pill-card">
               <div class="pill-title">Option A: Pure JSON Monoliths</div>
               <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Store all data in raw JSON files in <code>.agents/sidecar/</code>. Easy for machine parsing, but causes painful Git merge conflicts for human teams and large token burn when read by agents.</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t16', 'A', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t16', 'A', 'research', this)">[ 🔬 Research ]</button>
+            </div>
             </div>
             <div class="pill-card">
               <div class="pill-title">Option B: Embedded SQLite Database</div>
               <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Store data in an embedded SQLite database (<code>.agents/nkai.db</code>). Instant relational queries and ACID safety, but opaque binary format completely breaks Git line-diffs and PR review history.</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t16', 'B', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t16', 'B', 'research', this)">[ 🔬 Research ]</button>
+            </div>
             </div>
             <div class="pill-card" style="border: 1px solid var(--accent-green);">
               <div class="pill-title" style="color:var(--accent-green);">Option C: Hybrid Markdown + LocalStorage + JSON Catalog (Recommended)</div>
               <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Markdown files with YAML frontmatter for human-readable, Git-friendly logs and notes. A lightweight <code>catalog.json</code> for agent lookups. Browser <code>localStorage</code> for transient UI state (zoom, tabs, drafts), keeping token burn near zero.</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t16', 'C', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t16', 'C', 'research', this)">[ 🔬 Research ]</button>
+            </div>
             </div>
           </div>
 
@@ -2513,14 +2691,26 @@ class SidecarMigrator:
             <div class="pill-card">
               <div class="pill-title">Option A: Separate Command Fork</div>
               <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Keep separate commands for text vs sidecar (e.g. <code>/grill-me</code> text vs <code>/visual-grill-me</code>). Higher cognitive burden remembering command variants.</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t14', 'A', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t14', 'A', 'research', this)">[ 🔬 Research ]</button>
+            </div>
             </div>
             <div class="pill-card" style="border: 1px solid var(--accent-green);">
               <div class="pill-title" style="color:var(--accent-green);">Option B: N'kai-First with --chat Flag (Recommended)</div>
               <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">All visual/interview skills default to generating the rich N'kai sidecar canvas. Passing <code>--chat</code> or saying "in chat" falls back cleanly to inline chat. Officially unifies Grill Lab into standard grill-me.</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t14', 'B', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t14', 'B', 'research', this)">[ 🔬 Research ]</button>
+            </div>
             </div>
             <div class="pill-card">
               <div class="pill-title">Option C: Strict Sidecar Only</div>
               <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Forbid text mode entirely for these skills. Creates friction when working on mobile or headless environments where a browser isn't desired.</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t14', 'C', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t14', 'C', 'research', this)">[ 🔬 Research ]</button>
+            </div>
             </div>
           </div>
 
@@ -2545,6 +2735,122 @@ class SidecarMigrator:
               <button class="interactive-btn" style="color:var(--accent-green); border-color:var(--accent-green);" onclick="setAuditVerdict('t14', 'APPROVED', this)">[ ✅ APPROVE Option B ]</button>
               <button class="interactive-btn amber" onclick="setAuditVerdict('t14', 'TABLED', this)">[ ⏳ TABLE ]</button>
               <button class="interactive-btn" style="color:var(--accent-red); border-color:var(--accent-red);" onclick="setAuditVerdict('t14', 'KILLED', this)">[ 💀 REJECT ]</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Topic 6.18: Parallel Subagent Delegation for Sidecar Actions -->
+        <div class="section-card" id="sec-audit-t18">
+          <div class="section-title">
+            <span>6.18 Parallel Subagent Delegation for Sidecar Actions</span>
+            <span class="badge badge-purple">Concurrency &amp; UX</span>
+          </div>
+          <p style="font-size: 12px; line-height: 1.6; color: var(--text-main);">
+            <strong>The Question:</strong> When the user clicks [ ⚖️ Pros/Cons ] or [ 🔬 Research ] on an option card in the sidecar, can/should the agent harness spawn dedicated background subagents in parallel, allowing research to proceed asynchronously without interrupting or stalling the primary agent's active coding/compilation tasks?
+          </p>
+
+          <div class="grid-3" style="margin-top: 12px;">
+            <div class="pill-card">
+              <div class="pill-title">Option A: Synchronous Main Agent Turn</div>
+              <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Routes action directly into the main agent's chat turn queue. If the main agent is currently running a build or executing a plan, the request waits until the task finishes, causing a stall.</p>
+              <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+                <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t18', 'A', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+                <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t18', 'A', 'research', this)">[ 🔬 Research ]</button>
+              </div>
+            </div>
+            <div class="pill-card" style="border: 1px solid var(--accent-green);">
+              <div class="pill-title" style="color:var(--accent-green);">Option B: Dedicated Parallel Flash Subagents (Recommended)</div>
+              <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Every pro/con or research click immediately spawns a parallel Flash subagent in the background (<code>invoke_subagent(Model="flash")</code>). The subagent executes asynchronously, writes results to the sidecar canvas or <code>.agents/sidecar/</code>, and alerts the user when ready—without stalling the main agent or burning Pro quota.</p>
+              <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+                <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t18', 'B', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+                <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t18', 'B', 'research', this)">[ 🔬 Research ]</button>
+              </div>
+            </div>
+            <div class="pill-card">
+              <div class="pill-title">Option C: Hybrid Tiered Routing (Flash Pros/Cons, Pro Deep Research)</div>
+              <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Lightweight pros/cons run on fast Flash subagents; complex DSP or architecture research prompts escalate to on-demand Pro subagents; direct main-agent answer if the main agent is currently idle.</p>
+              <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+                <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t18', 'C', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+                <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t18', 'C', 'research', this)">[ 🔬 Research ]</button>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top: 14px; background: rgba(0,0,0,0.3); border: 1px solid rgba(48,54,61,0.6); border-radius: 6px; padding: 12px;">
+            <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option B: Dedicated Parallel Flash Subagents)</div>
+            <ul style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin: 0; padding-left: 18px;">
+              <li><strong>🌍 Real-World Ergonomics:</strong> Maximum responsiveness. You can trigger multiple research inquiries across options while the main agent keeps writing code or running tests uninterrupted.</li>
+              <li><strong>🏛️ Wider SOTA:</strong> Standard multi-agent orchestrator design (Cursor background indexers, Devin parallel sub-tasks, Antigravity background subagents).</li>
+              <li><strong>🏆 Best Practices:</strong> Protects the main chat transcript from massive research dumps, keeping token burn near zero and main context ultra-clean.</li>
+            </ul>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:14px; padding-top:10px; border-top:1px solid rgba(48,54,61,0.5);">
+            <div style="font-family:var(--font-mono); font-size:11px; color:var(--text-muted);">
+              Verdict: <strong id="v-badge-t18" style="color:var(--text-muted);">PENDING</strong>
+            </div>
+            <div style="display:flex; gap:6px;">
+              <button class="interactive-btn" style="color:var(--accent-green); border-color:var(--accent-green);" onclick="setAuditVerdict('t18', 'APPROVED', this)">[ ✅ APPROVE Option B ]</button>
+              <button class="interactive-btn amber" onclick="setAuditVerdict('t18', 'TABLED', this)">[ ⏳ TABLE ]</button>
+              <button class="interactive-btn" style="color:var(--accent-red); border-color:var(--accent-red);" onclick="setAuditVerdict('t18', 'KILLED', this)">[ 💀 REJECT ]</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Topic 6.19: Cumulative Allowance & Token Impact Ledger -->
+        <div class="section-card" id="sec-audit-t19">
+          <div class="section-title">
+            <span>6.19 Cumulative Allowance &amp; Token Impact Ledger in Post-Mortem</span>
+            <span class="badge badge-amber">Token Economics</span>
+          </div>
+          <p style="font-size: 12px; line-height: 1.6; color: var(--text-main);">
+            <strong>The Question:</strong> Should N'kai track and display an estimated cumulative token burn / quota impact across all approved and planned architectural features, allowing the user to review the "budget footprint" before committing to implementation?
+          </p>
+
+          <div class="grid-3" style="margin-top: 12px;">
+            <div class="pill-card">
+              <div class="pill-title">Option A: Opaque Unmetered Triage</div>
+              <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Approve features without cost visibility. Risk running into sudden token exhaustion, rate limits, or quota throttles mid-milestone.</p>
+              <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+                <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t19', 'A', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+                <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t19', 'A', 'research', this)">[ 🔬 Research ]</button>
+              </div>
+            </div>
+            <div class="pill-card">
+              <div class="pill-title">Option B: Static Per-Item Tier Badges</div>
+              <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Mark cards with static Tier 1/2/3 labels, but provide no cumulative total or budget aggregation across approved items.</p>
+              <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+                <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t19', 'B', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+                <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t19', 'B', 'research', this)">[ 🔬 Research ]</button>
+              </div>
+            </div>
+            <div class="pill-card" style="border: 1px solid var(--accent-green);">
+              <div class="pill-title" style="color:var(--accent-green);">Option C: Live Cumulative Cost Meter & Budget Ledger (Recommended)</div>
+              <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">An interactive meter and ledger in the Post-Mortem & Workshop header showing total estimated token burn across all approved items, broken down by Tier 1 Pro High vs Tier 2 Flash High vs Tier 3 Minimal, with warning flags if cumulative quota exceeds sustainable limits.</p>
+              <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+                <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t19', 'C', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+                <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t19', 'C', 'research', this)">[ 🔬 Research ]</button>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top: 14px; background: rgba(0,0,0,0.3); border: 1px solid rgba(48,54,61,0.6); border-radius: 6px; padding: 12px;">
+            <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option C: Live Cumulative Cost Meter & Budget Ledger)</div>
+            <ul style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin: 0; padding-left: 18px;">
+              <li><strong>🌍 Real-World Ergonomics:</strong> Eliminates quota anxiety. The user knows before saying "proceed" whether a milestone will consume 10k tokens or 250k tokens, allowing informed prioritization.</li>
+              <li><strong>🏛️ Wider SOTA:</strong> Standard in enterprise LLM tooling (LangSmith cost tracking, OpenPipe evaluation metering, AWS Bedrock billing dashboards).</li>
+              <li><strong>🏆 Best Practices:</strong> Direct enforcement of GEMINI.md Strict Model Advisory Protocol, ensuring proactive token economics rather than reactive quota exhaustion.</li>
+            </ul>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:14px; padding-top:10px; border-top:1px solid rgba(48,54,61,0.5);">
+            <div style="font-family:var(--font-mono); font-size:11px; color:var(--text-muted);">
+              Verdict: <strong id="v-badge-t19" style="color:var(--text-muted);">PENDING</strong>
+            </div>
+            <div style="display:flex; gap:6px;">
+              <button class="interactive-btn" style="color:var(--accent-green); border-color:var(--accent-green);" onclick="setAuditVerdict('t19', 'APPROVED', this)">[ ✅ APPROVE Option C ]</button>
+              <button class="interactive-btn amber" onclick="setAuditVerdict('t19', 'TABLED', this)">[ ⏳ TABLE ]</button>
+              <button class="interactive-btn" style="color:var(--accent-red); border-color:var(--accent-red);" onclick="setAuditVerdict('t19', 'KILLED', this)">[ 💀 REJECT ]</button>
             </div>
           </div>
         </div>
@@ -3028,6 +3334,26 @@ function toggleDrawer(drawerId) {
       return false;
     }
 
+    
+    function requestOptionInfo(topicId, optLetter, actionType, btn) {
+      playHapticTick();
+      const topic = (typeof workshopTopicsData !== 'undefined' && workshopTopicsData[topicId]) || 
+                    (typeof auditVerdicts !== 'undefined' && auditVerdicts[topicId] ? { title: auditVerdicts[topicId].title } : { title: 'Topic ' + topicId });
+      const optName = 'Option ' + optLetter;
+      let prompt = '';
+      if (actionType === 'pros_cons') {
+        prompt = `Please provide an individualized 4-Lens Pros & Cons evaluation for ${topic.title} - ${optName} (Ergonomics, Audio Industry, SOTA, Best Practices).`;
+      } else {
+        prompt = `Please conduct online research and benchmarking for ${topic.title} - ${optName}.`;
+      }
+      dispatchNkaiAction({
+        action: actionType === 'pros_cons' ? 'requestOptionProsCons' : 'requestOptionResearch',
+        topicId: topicId,
+        option: optLetter,
+        prompt: prompt
+      }, btn);
+    }
+
     async function dispatchNkaiAction(actionData, btn) {
       // 1. Check native Antigravity UI Extension SDK
       if (window.sidecar && typeof window.sidecar.sendAction === 'function') {
@@ -3103,7 +3429,9 @@ function toggleDrawer(drawerId) {
       t14: { title: '6.14 Nkai-First Skill Default', verdict: 'PENDING' },
       t15: { title: '6.15 Industry Workflow Precedents', verdict: 'PENDING' },
       t16: { title: '6.16 Backend Persistence & State', verdict: 'PENDING' },
-      t17: { title: '6.17 Bidirectional Click-to-Agent Bridge', verdict: 'APPROVED' }
+      t17: { title: '6.17 Bidirectional Click-to-Agent Bridge', verdict: 'APPROVED' },
+      t18: { title: '6.18 Parallel Subagent Delegation for Sidecar Actions', verdict: 'PENDING' },
+      t19: { title: '6.19 Cumulative Allowance & Token Impact Ledger', verdict: 'PENDING' }
     };
 
     let auditVerdicts = { ...defaultAuditVerdicts };
@@ -3117,14 +3445,26 @@ function toggleDrawer(drawerId) {
           <div class="pill-card">
             <div class="pill-title">Option A: Retrospective Batch</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Accumulate dozens of raw ideas across research sprints, then run a separate dedicated /postmortem skill at the end.</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t1', 'A', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t1', 'A', 'research', this)">[ 🔬 Research ]</button>
+            </div>
           </div>
           <div class="pill-card" style="border: 1px solid var(--accent-green);">
             <div class="pill-title" style="color:var(--accent-green);">Option B: Continuous In-Flight Triage (APPROVED)</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Triage each card in real-time as research completes. The post-mortem tab is a live dashboard compiling verdicts automatically.</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t1', 'B', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t1', 'B', 'research', this)">[ 🔬 Research ]</button>
+            </div>
           </div>
           <div class="pill-card">
             <div class="pill-title">Option C: Event-Driven Incident Triage</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Trigger triage only on architectural breaks or test regressions. Leaves open-ended brainstorming unpruned.</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t1', 'C', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t1', 'C', 'research', this)">[ 🔬 Research ]</button>
+            </div>
           </div>`,
         evalHtml: `
           <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option B: Continuous Live Triage)</div>
@@ -3147,14 +3487,26 @@ function toggleDrawer(drawerId) {
           <div class="pill-card">
             <div class="pill-title">Option A: Proactive Exhaustive Tables</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Output full 4-lens tables for every turn. Burns 1,500+ tokens per turn and causes reader fatigue.</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t2', 'A', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t2', 'A', 'research', this)">[ 🔬 Research ]</button>
+            </div>
           </div>
           <div class="pill-card" style="border: 1px solid var(--accent-green);">
             <div class="pill-title" style="color:var(--accent-green);">Option B: On-Demand SOTA (APPROVED)</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Keep default chat responses punchy (1-3 sentences). Generate deep 4-lens analysis on demand with 1-click prompt chips.</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t2', 'B', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t2', 'B', 'research', this)">[ 🔬 Research ]</button>
+            </div>
           </div>
           <div class="pill-card">
             <div class="pill-title">Option C: Hybrid Keyword Trigger</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Trigger tables only on architectural keywords. Unpredictable and prone to spurious activations.</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t2', 'C', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t2', 'C', 'research', this)">[ 🔬 Research ]</button>
+            </div>
           </div>`,
         evalHtml: `
           <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option B+: On-Demand with Live Online Research)</div>
@@ -3177,14 +3529,26 @@ function toggleDrawer(drawerId) {
           <div class="pill-card">
             <div class="pill-title">Option A: Domain Silos</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Strict separation into UI, DSP, Blue Sky. Easy to categorize, but blurs what needs immediate attention.</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t3', 'A', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t3', 'A', 'research', this)">[ 🔬 Research ]</button>
+            </div>
           </div>
           <div class="pill-card">
             <div class="pill-title">Option B: Chronological Milestones</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Grouped strictly by release (v0.4.0, v0.5.0). Fragmented when research spans multiple phases.</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t3', 'B', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t3', 'B', 'research', this)">[ 🔬 Research ]</button>
+            </div>
           </div>
           <div class="pill-card" style="border: 1px solid var(--accent-green);">
             <div class="pill-title" style="color:var(--accent-green);">Option C: Lifecycle Hierarchy (APPROVED)</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Slot 1: Active Workshop (Hero Focus) -> Middle Slots: Category Research Tabs -> Final Slot: Full Post-Mortem & Roadmap.</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t3', 'C', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t3', 'C', 'research', this)">[ 🔬 Research ]</button>
+            </div>
           </div>`,
         evalHtml: `
           <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option C: Lifecycle Hierarchy)</div>
@@ -3207,14 +3571,26 @@ function toggleDrawer(drawerId) {
           <div class="pill-card">
             <div class="pill-title">Option A: 16 Micro-Skills (Current)</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Every command is its own atomic skill (build-validate, step-verify, audiothread-guard, web-qa). High granularity, but requires knowing multiple commands.</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t4', 'A', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t4', 'A', 'research', this)">[ 🔬 Research ]</button>
+            </div>
           </div>
           <div class="pill-card">
             <div class="pill-title">Option B: 4 Consolidated Macro-Suites</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Merged into 4 monolithic skills: /architect, /factory, /maintain, /qa. Simpler menu, but reduces flexibility for targeted single operations.</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t4', 'B', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t4', 'B', 'research', this)">[ 🔬 Research ]</button>
+            </div>
           </div>
           <div class="pill-card" style="border: 1px solid var(--accent-green);">
             <div class="pill-title" style="color:var(--accent-green);">Option C: Layered Hybrid (Recommended)</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Keep atomic micro-skills as the underlying engine, while macro-commands (like /execute-task or unified qa) chain them deterministically. Zero loss of composability.</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t4', 'C', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t4', 'C', 'research', this)">[ 🔬 Research ]</button>
+            </div>
           </div>`,
         evalHtml: `
           <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option C: Layered Hybrid)</div>
@@ -3237,14 +3613,26 @@ function toggleDrawer(drawerId) {
           <div class="pill-card">
             <div class="pill-title">Option A: Mirrored Redundant Summaries</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Duplicate all findings in chat and in sidecar. Clutters chat history and burns tokens rapidly.</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t5', 'A', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t5', 'A', 'research', this)">[ 🔬 Research ]</button>
+            </div>
           </div>
           <div class="pill-card" style="border: 1px solid var(--accent-green);">
             <div class="pill-title" style="color:var(--accent-green);">Option B: Strict Asymmetric Split (Recommended)</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Chat is pure conversational dialogue and prompt execution (1-3 sentences). Canvas handles all rich rendering, deep reading, and interactive triage.</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t5', 'B', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t5', 'B', 'research', this)">[ 🔬 Research ]</button>
+            </div>
           </div>
           <div class="pill-card">
             <div class="pill-title">Option C: Full Standalone App</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Move everything to external browser window with zero IDE chat coupling. Loses inline context.</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t5', 'C', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t5', 'C', 'research', this)">[ 🔬 Research ]</button>
+            </div>
           </div>`,
         evalHtml: `
           <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option B: Strict Asymmetric Split)</div>
@@ -3267,14 +3655,26 @@ function toggleDrawer(drawerId) {
           <div class="pill-card">
             <div class="pill-title">Option A: Passive Reference Only</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Document AGY shortcuts in BACKLOG.md without integrating into workflows. Rarely used.</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t6', 'A', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t6', 'A', 'research', this)">[ 🔬 Research ]</button>
+            </div>
           </div>
           <div class="pill-card" style="border: 1px solid var(--accent-green);">
             <div class="pill-title" style="color:var(--accent-green);">Option B: Dynamic Shortcut Bar (Recommended)</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Display key AGY shortcuts in N\\\'kai footer and sidecar tooltips: Ctrl+K (Quick Prompt), Ctrl+Shift+P (Command Palette), Ctrl+Enter (Execute), /refresh-context.</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t6', 'B', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t6', 'B', 'research', this)">[ 🔬 Research ]</button>
+            </div>
           </div>
           <div class="pill-card">
             <div class="pill-title">Option C: Sidecar Command Palette</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Build a custom Cmd+K palette inside N\\\'kai webview. Powerful, but adds JS complexity.</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t6', 'C', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t6', 'C', 'research', this)">[ 🔬 Research ]</button>
+            </div>
           </div>`,
         evalHtml: `
           <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option B: Dynamic Shortcut Bar)</div>
@@ -3297,14 +3697,26 @@ function toggleDrawer(drawerId) {
           <div class="pill-card">
             <div class="pill-title">Option A: Static Chat History</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Rely entirely on conversation transcript. Degrades as conversations grow past 30+ turns.</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t7', 'A', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t7', 'A', 'research', this)">[ 🔬 Research ]</button>
+            </div>
           </div>
           <div class="pill-card" style="border: 1px solid var(--accent-green);">
             <div class="pill-title" style="color:var(--accent-green);">Option B: Structured Context Clues (Recommended)</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Dedicated context clue files (context_clues_build.md, context_clues_research.md) with canonical links to DOCS_CATALOG.json and SYSTEM_MAP.md.</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t7', 'B', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t7', 'B', 'research', this)">[ 🔬 Research ]</button>
+            </div>
           </div>
           <div class="pill-card">
             <div class="pill-title">Option C: Dynamic SQLite Memory Store</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Store agent memory in SQLite database. High maintenance and opaque to git diffs.</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t7', 'C', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t7', 'C', 'research', this)">[ 🔬 Research ]</button>
+            </div>
           </div>`,
         evalHtml: `
           <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option B: Structured Context Clues)</div>
@@ -3327,14 +3739,26 @@ function toggleDrawer(drawerId) {
           <div class="pill-card">
             <div class="pill-title">Option A: Late-Stage Post-Mortem Only</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Triage summaries remain tucked at the very bottom or hidden until milestone completion.</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t8', 'A', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t8', 'A', 'research', this)">[ 🔬 Research ]</button>
+            </div>
           </div>
           <div class="pill-card" style="border: 1px solid var(--accent-green);">
             <div class="pill-title" style="color:var(--accent-green);">Option B: Dedicated Autopsy Tab w/ Filter Chips (Recommended)</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Slot 2 header item; live high-level feed, filter buttons (All, Approved, Tabled, Graveyard), 1-click jumps to full cards, and auto-morphs into final post-mortem.</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t8', 'B', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t8', 'B', 'research', this)">[ 🔬 Research ]</button>
+            </div>
           </div>
           <div class="pill-card">
             <div class="pill-title">Option C: Slide-Out Autopsy Drawer</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Keep the feed inside a slide-over modal/drawer. Keeps header clean but adds an extra click.</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t8', 'C', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t8', 'C', 'research', this)">[ 🔬 Research ]</button>
+            </div>
           </div>`,
         evalHtml: `
           <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option B: Dedicated Autopsy Tab)</div>
@@ -3357,14 +3781,26 @@ function toggleDrawer(drawerId) {
           <div class="pill-card">
             <div class="pill-title">Option A: Single Crowded Header</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Current layout: wraps into multiline when narrow, mixing view modes and utility buttons on the same tier.</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t9', 'A', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t9', 'A', 'research', this)">[ 🔬 Research ]</button>
+            </div>
           </div>
           <div class="pill-card" style="border: 1px solid var(--accent-green);">
             <div class="pill-title" style="color:var(--accent-green);">Option B: Two-Tier Header w/ Bridge Status LED &amp; Utility Cluster (Recommended)</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Top bar = Brand on left, prominent right-aligned utility cluster with live Bridge Connection Status LED (<code>⚡ Bridge: Online</code> / <code>🔌 Offline</code>), Roadmap &amp; Sessions drawers with badge counts, Font zoom (<code>A-</code>/<code>A+</code>), Sound toggle (<code>🔊</code>), and Force Refresh (<code>🔄</code>). Bottom row = Clean dedicated view switchers.</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t9', 'B', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t9', 'B', 'research', this)">[ 🔬 Research ]</button>
+            </div>
           </div>
           <div class="pill-card">
             <div class="pill-title">Option C: Utility Sidebar Drawer</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Move all utilities into a slide-out sidebar drawer with a prominent toggle button. Leaves header ultra-minimal.</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t9', 'C', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t9', 'C', 'research', this)">[ 🔬 Research ]</button>
+            </div>
           </div>`,
         evalHtml: `
           <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option B: Two-Tier Header Cluster w/ Bridge Status LED)</div>
@@ -3387,14 +3823,26 @@ function toggleDrawer(drawerId) {
           <div class="pill-card">
             <div class="pill-title">Option A: Verbose Multiline Labels</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Current layout: full words (🗺️ DYNAMIC ROADMAPS). Clear, but consumes 2-3 vertical lines on narrow panels.</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t10', 'A', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t10', 'A', 'research', this)">[ 🔬 Research ]</button>
+            </div>
           </div>
           <div class="pill-card" style="border: 1px solid var(--accent-green);">
             <div class="pill-title" style="color:var(--accent-green);">Option B: Hybrid Compact w/ Hover Tooltips (Recommended)</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Primary modes named (Workshop, Autopsy), category tabs as 1 🗺️, 2 📦, 3 🚀. Full title revealed instantly on hover.</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t10', 'B', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t10', 'B', 'research', this)">[ 🔬 Research ]</button>
+            </div>
           </div>
           <div class="pill-card">
             <div class="pill-title">Option C: Pure Icon-Only Toolbar</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Only emoji icons, zero numbers or text. Ultra-compact, but causes cognitive friction when memorizing tabs.</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t10', 'C', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t10', 'C', 'research', this)">[ 🔬 Research ]</button>
+            </div>
           </div>`,
         evalHtml: `
           <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option B: Hybrid Compact)</div>
@@ -3417,14 +3865,26 @@ function toggleDrawer(drawerId) {
           <div class="pill-card">
             <div class="pill-title">Option A: Raw Chat Dump Default</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Output markdown bullet points directly into chat. Fast, but clutters chat context and burns tokens on unformatted dumps.</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t11', 'A', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t11', 'A', 'research', this)">[ 🔬 Research ]</button>
+            </div>
           </div>
           <div class="pill-card" style="border: 1px solid var(--accent-green);">
             <div class="pill-title" style="color:var(--accent-green);">Option B: N'kai Inbox Board Default (Recommended)</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Parses TheKlangVault/Inbox/*.md, generates a dedicated sidecar board with 1 section per note and triage chips. --chat flag preserves terminal output option.</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t11', 'B', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t11', 'B', 'research', this)">[ 🔬 Research ]</button>
+            </div>
           </div>
           <div class="pill-card">
             <div class="pill-title">Option C: Automatic Backlog Sorter</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Agent sorts notes directly into BACKLOG.md without presenting an interactive interview. High risk of filing errors.</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t11', 'C', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t11', 'C', 'research', this)">[ 🔬 Research ]</button>
+            </div>
           </div>`,
         evalHtml: `
           <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option B: N'kai Inbox Board Default)</div>
@@ -3447,14 +3907,26 @@ function toggleDrawer(drawerId) {
           <div class="pill-card">
             <div class="pill-title">Option A: Dispersed Across Repos</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Keep skills in TheKlangSuite, tracker specs in ToadTracker, and sidecar in nkai. New users or fresh repos must cherry-pick files across multiple repositories.</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t12', 'A', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t12', 'A', 'research', this)">[ 🔬 Research ]</button>
+            </div>
           </div>
           <div class="pill-card" style="border: 1px solid var(--accent-green);">
             <div class="pill-title" style="color:var(--accent-green);">Option B: Monolithic All-in-One Bundle (Recommended)</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Bundle canonical skills, templates, guardrail rules, and sidecar runner inside <code>nkai/bundle/</code> with a 1-command installer script (<code>npx nkai init</code> or <code>./install_nkai_bundle.ps1</code>).</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t12', 'B', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t12', 'B', 'research', this)">[ 🔬 Research ]</button>
+            </div>
           </div>
           <div class="pill-card">
             <div class="pill-title">Option C: Multi-Package Monorepo</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Split into <code>@nkai/core</code>, <code>@nkai/skills</code>, and <code>@nkai/guardrails</code> with separate versioning. Higher coordination overhead for small teams.</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t12', 'C', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t12', 'C', 'research', this)">[ 🔬 Research ]</button>
+            </div>
           </div>`,
         evalHtml: `
           <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option B: Monolithic All-in-One Bundle)</div>
@@ -3477,14 +3949,26 @@ function toggleDrawer(drawerId) {
           <div class="pill-card">
             <div class="pill-title">Option A: Antigravity-Only Lock-in</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Target strictly Antigravity's proprietary Sidecar SDK. Breaks or requires major re-writes if developing in Claude Code or Cursor.</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t13', 'A', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t13', 'A', 'research', this)">[ 🔬 Research ]</button>
+            </div>
           </div>
           <div class="pill-card" style="border: 1px solid var(--accent-green);">
             <div class="pill-title" style="color:var(--accent-green);">Option B: Standalone File + Localhost Adapter (Recommended)</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Keep zero-dependency standalone HTML (<code>file:///</code>) for IDE webviews (Cursor, VS Code, AGY), and provide a tiny 30-line localhost server (<code>npx nkai serve</code>) that auto-opens a browser tab for terminal CLIs (Claude Code, Codex).</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t13', 'B', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t13', 'B', 'research', this)">[ 🔬 Research ]</button>
+            </div>
           </div>
           <div class="pill-card">
             <div class="pill-title">Option C: Markdown-Only Fallback</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">If not in Antigravity, completely disable sidecars and dump massive text tables directly into chat. Defeats the asymmetric split.</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t13', 'C', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t13', 'C', 'research', this)">[ 🔬 Research ]</button>
+            </div>
           </div>`,
         evalHtml: `
           <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option B: Standalone File + Localhost Adapter)</div>
@@ -3507,14 +3991,26 @@ function toggleDrawer(drawerId) {
           <div class="pill-card">
             <div class="pill-title">Option A: Native Antigravity Plugin (Sidecar SDK / MCP)</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Run N\'kai as an installed IDE extension (<code>nkai/plugin/</code>). Buttons call <code>window.sidecar.sendAction()</code>, which routes directly through Antigravity\'s MCP server into the agent conversation. 100% native, zero terminal daemons, but requires installing the plugin.</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t13', 'A', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t13', 'A', 'research', this)">[ 🔬 Research ]</button>
+            </div>
           </div>
           <div class="pill-card">
             <div class="pill-title">Option B: Universal Localhost Loopback Micro-Server (npx nkai serve)</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">A lightweight 40-line Node or Python daemon on <code>localhost:4040</code>. Buttons call <code>fetch(\'http://localhost:4040/action\')</code>, writing to <code>.agents/pipeline/actions.json</code> which triggers an agent notification. Works across ALL harnesses (AGY, Claude Code, Cursor, Chrome).</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t13', 'B', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t13', 'B', 'research', this)">[ 🔬 Research ]</button>
+            </div>
           </div>
           <div class="pill-card" style="border: 1px solid var(--accent-green);">
             <div class="pill-title" style="color:var(--accent-green);">Option C: Hybrid Resilient Adapter (Plugin SDK + Localhost + Clipboard Fallback) [Recommended]</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Checks for <code>window.sidecar</code> first (native AGY plugin mode). If absent, attempts loopback <code>fetch(\'localhost:4040\')</code>. If offline, gracefully falls back to the hardened in-canvas expansion and clipboard modal. Guarantees zero broken clicks anywhere.</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t13', 'C', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t13', 'C', 'research', this)">[ 🔬 Research ]</button>
+            </div>
           </div>`,
         evalHtml: `
           <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option C: Hybrid Resilient Adapter)</div>
@@ -3537,14 +4033,26 @@ function toggleDrawer(drawerId) {
           <div class="pill-card">
             <div class="pill-title">Option A: The Static Artifact Model (Claude Artifacts)</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Isolated iframe rendered purely from agent markdown file output. Clean side-by-side view, but primarily a read-only preview with minimal bidirectional interaction or live workspace controls.</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t13', 'A', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t13', 'A', 'research', this)">[ 🔬 Research ]</button>
+            </div>
           </div>
           <div class="pill-card">
             <div class="pill-title">Option B: The Local WebSocket Server Model (Playwright/Vitest UI)</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Spins up a local background HTTP/WebSocket server streaming real-time JSON-RPC to a heavy SPA. Highly interactive, but introduces brittle daemon lifecycle management, port conflicts, and battery/CPU drain.</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t13', 'B', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t13', 'B', 'research', this)">[ 🔬 Research ]</button>
+            </div>
           </div>
           <div class="pill-card" style="border: 1px solid var(--accent-green);">
             <div class="pill-title" style="color:var(--accent-green);">Option C: The Hybrid File-URI + Micro-Bridge Model (Recommended)</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Leverage IDE webview interception via <code>file:///</code> URI for zero-bundle instant rendering, paired with an optional micro-bridge daemon (or native IDE extension SDK) for zero-copy 1-click agent dispatch. If the bridge is offline, it gracefully degrades to the hardened in-canvas expansion and copy modal. Combines the indestructible zero-build simplicity of Claude Artifacts with the interactive dispatch power of Playwright/Vitest UI!</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t13', 'C', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t13', 'C', 'research', this)">[ 🔬 Research ]</button>
+            </div>
           </div>`,
         evalHtml: `
           <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option C: Hybrid File-URI + Micro-Bridge Model)</div>
@@ -3567,14 +4075,26 @@ function toggleDrawer(drawerId) {
           <div class="pill-card">
             <div class="pill-title">Option A: Pure JSON Monoliths</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Store all data in raw JSON files in <code>.agents/sidecar/</code>. Easy for machine parsing, but causes painful Git merge conflicts for human teams and large token burn when read by agents.</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t13', 'A', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t13', 'A', 'research', this)">[ 🔬 Research ]</button>
+            </div>
           </div>
           <div class="pill-card">
             <div class="pill-title">Option B: Embedded SQLite Database</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Store data in an embedded SQLite database (<code>.agents/nkai.db</code>). Instant relational queries and ACID safety, but opaque binary format completely breaks Git line-diffs and PR review history.</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t13', 'B', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t13', 'B', 'research', this)">[ 🔬 Research ]</button>
+            </div>
           </div>
           <div class="pill-card" style="border: 1px solid var(--accent-green);">
             <div class="pill-title" style="color:var(--accent-green);">Option C: Hybrid Markdown + LocalStorage + JSON Catalog (Recommended)</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Markdown files with YAML frontmatter for human-readable, Git-friendly logs and notes. A lightweight <code>catalog.json</code> for agent lookups. Browser <code>localStorage</code> for transient UI state (zoom, tabs, drafts), keeping token burn near zero.</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t13', 'C', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t13', 'C', 'research', this)">[ 🔬 Research ]</button>
+            </div>
           </div>`,
         evalHtml: `
           <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option C: Hybrid Markdown + LocalStorage + JSON Catalog)</div>
@@ -3597,14 +4117,26 @@ function toggleDrawer(drawerId) {
           <div class="pill-card">
             <div class="pill-title">Option A: Separate Command Fork</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Keep separate commands for text vs sidecar (e.g. <code>/grill-me</code> text vs <code>/visual-grill-me</code>). Higher cognitive burden remembering command variants.</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t14', 'A', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t14', 'A', 'research', this)">[ 🔬 Research ]</button>
+            </div>
           </div>
           <div class="pill-card" style="border: 1px solid var(--accent-green);">
             <div class="pill-title" style="color:var(--accent-green);">Option B: N'kai-First with --chat Flag (Recommended)</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">All visual/interview skills default to generating the rich N'kai sidecar canvas. Passing <code>--chat</code> or saying "in chat" falls back cleanly to inline chat. Officially unifies Grill Lab into standard grill-me.</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t14', 'B', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t14', 'B', 'research', this)">[ 🔬 Research ]</button>
+            </div>
           </div>
           <div class="pill-card">
             <div class="pill-title">Option C: Strict Sidecar Only</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Forbid text mode entirely for these skills. Creates friction when working on mobile or headless environments where a browser isn't desired.</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t14', 'C', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t14', 'C', 'research', this)">[ 🔬 Research ]</button>
+            </div>
           </div>`,
         evalHtml: `
           <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option B: N'kai-First with --chat Flag)</div>
@@ -3629,7 +4161,7 @@ function toggleDrawer(drawerId) {
       const titleEl = document.getElementById('ws-hero-title');
       if (titleEl) titleEl.innerText = data.title;
 
-      for (let i = 1; i <= 17; i++) {
+      for (let i = 1; i <= 19; i++) {
         const btn = document.getElementById('btn-ws-t' + i);
         if (btn) {
           if ('t' + i === topicId) {
@@ -4049,7 +4581,9 @@ function toggleDrawer(drawerId) {
         t11: 'F13: 6.11',
         t2: 'F14: 6.2',
         t7: 'F15: 6.7',
-        t6: 'F16: 6.6'
+        t6: 'F16: 6.6',
+        t18: 'F17: 6.18',
+        t19: 'F18: 6.19'
       };
 
       const sideActiveNum = document.getElementById('side-active-topic-num');
@@ -4118,7 +4652,7 @@ function toggleDrawer(drawerId) {
     <!-- DYNAMIC INJECTION FOR QA -->
     <script>
       document.addEventListener("DOMContentLoaded", () => {
-          for (let i = 1; i <= 17; i++) {
+          for (let i = 1; i <= 19; i++) {
               let tid = 't' + i;
               
               // Find or create buttons in tab-audit
