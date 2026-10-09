@@ -370,13 +370,15 @@
       background: rgba(0, 0, 0, 0.65);
       backdrop-filter: blur(6px);
       z-index: 2000;
-      display: none;
+      visibility: hidden;
+      pointer-events: none;
       opacity: 0;
-      transition: opacity 0.25s ease;
+      transition: opacity 0.25s ease, visibility 0.25s ease;
     }
 
     .drawer-overlay.active {
-      display: block;
+      visibility: visible;
+      pointer-events: auto;
       opacity: 1;
     }
 
@@ -924,7 +926,8 @@ class NkaiDataLoader {
       document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active'));
       const target = document.getElementById(tabId);
       if (target) target.style.display = 'block';
-      event.target.classList.add('active');
+      const activeBtn = document.querySelector(`.mode-btn[onclick*="${tabId}"]`);
+      if (activeBtn) activeBtn.classList.add('active');
     }
 
     function toggleDrawer(drawerId) {
@@ -995,9 +998,19 @@ class NkaiDataLoader {
       }, 2500);
     }
 
+    function playVisualFallback() {
+      const origBg = document.body.style.backgroundColor;
+      document.body.style.transition = 'background-color 0.1s ease';
+      document.body.style.backgroundColor = 'rgba(88, 166, 255, 0.15)';
+      setTimeout(() => {
+        document.body.style.backgroundColor = origBg || 'var(--bg-base)';
+      }, 150);
+    }
+
     async function getAudioContext() {
       if (!audioCtx) {
         const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContextClass) throw new Error("Web Audio API not supported in this environment");
         audioCtx = new AudioContextClass();
       }
       if (audioCtx.state === 'suspended') {
@@ -1013,6 +1026,7 @@ class NkaiDataLoader {
       }
       try {
         const ctx = await getAudioContext();
+        if (!ctx) throw new Error("AudioContext creation failed");
         const now = ctx.currentTime;
         const osc = ctx.createOscillator();
         const gain = ctx.createGain();
@@ -1031,7 +1045,8 @@ class NkaiDataLoader {
         showAudioToast('🔊 Tick played (850Hz -> 140Hz detent click)');
       } catch (e) {
         console.warn('Web Audio error:', e);
-        showAudioToast('⚠️ Web Audio Error: ' + e.message);
+        showAudioToast('⚠️ Web Audio Fallback: ' + e.message);
+        playVisualFallback();
       }
     }
 
@@ -1042,6 +1057,7 @@ class NkaiDataLoader {
       }
       try {
         const ctx = await getAudioContext();
+        if (!ctx) throw new Error("AudioContext creation failed");
         const now = ctx.currentTime;
         const triad = [523.25, 659.25, 783.99]; // C5, E5, G5 major triad
         triad.forEach((freq, i) => {
@@ -1063,7 +1079,8 @@ class NkaiDataLoader {
         showAudioToast('✨ Major Triad Approval Chime played (C5-E5-G5)');
       } catch (e) {
         console.warn('Web Audio error:', e);
-        showAudioToast('⚠️ Web Audio Error: ' + e.message);
+        showAudioToast('⚠️ Web Audio Fallback: ' + e.message);
+        playVisualFallback();
       }
     }
 
