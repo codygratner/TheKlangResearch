@@ -573,6 +573,32 @@
       box-shadow: 0 0 16px rgba(88, 166, 255, 0.4);
     }
 
+    /* Persistent Floating Toast HUD */
+    #nkai-floating-toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 99999;
+      background: rgba(13, 17, 23, 0.95);
+      border: 1px solid var(--accent-neon);
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+      color: var(--accent-neon);
+      padding: 14px 20px;
+      border-radius: 8px;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 600;
+      backdrop-filter: blur(8px);
+      transform: translateX(120%);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+    }
+    
+    #nkai-floating-toast.show {
+      transform: translateX(0);
+      opacity: 1;
+    }
   </style>
 </head>
 <body>
@@ -986,43 +1012,55 @@
 
                                 <!-- Active Topic Workshop Hero Card Mount -->
         <div id="workshop-card-mount">
-          <!-- Rendered dynamically by setWorkshopTopic, pre-populated with t15 -->
+          <!-- Rendered dynamically by setWorkshopTopic, pre-populated with t16 -->
           <div class="section-card" id="workshop-card">
             <div class="section-title">
-              <span id="ws-card-title">6.15 Industry Workflow Precedents &amp; Competitive Teardowns</span>
-              <span id="ws-card-badge" class="badge badge-purple">Industry Benchmarking</span>
+              <span id="ws-card-title">6.16 Backend Persistence &amp; State Management Architecture</span>
+              <span id="ws-card-badge" class="badge badge-amber">Data Architecture</span>
             </div>
             <p id="ws-card-desc" style="font-size: 12px; line-height: 1.6; color: var(--text-main);">
-              <strong>The Question:</strong> Are there existing major developer or AI tools that use N'kai's asymmetric sidecar workflow (chat in one panel, live rich interactive visual canvas in the other), and what architectural patterns, micro-interactions, or ergonomics can we adopt from them?
+              <strong>The Question:</strong> How should N'kai handle all data behind the scenes (audit verdicts, triage packages, roadmap milestones, session history, notes) for maximum usability, maximum stability, lowest CPU overhead, and lowest LLM token burn?
             </p>
 
             <div class="grid-3" id="ws-card-options" style="margin-top: 12px;">
-              <div class="pill-card">
-                <div class="pill-title">Option A: The Static Artifact Model (Claude Artifacts)</div>
-                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Isolated iframe rendered purely from agent markdown file output. Clean side-by-side view, but primarily a read-only preview with minimal bidirectional interaction or live workspace controls.</p>
-              </div>
-              <div class="pill-card">
-                <div class="pill-title">Option B: The Local WebSocket Server Model (Playwright/Vitest UI)</div>
-                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Spins up a local background HTTP/WebSocket server streaming real-time JSON-RPC to a heavy SPA. Highly interactive, but introduces brittle daemon lifecycle management, port conflicts, and battery/CPU drain.</p>
-              </div>
-              <div class="pill-card" style="border: 1px solid var(--accent-green);">
-                <div class="pill-title" style="color:var(--accent-green);">Option C: The Hybrid File-URI + Micro-Bridge Model (Recommended)</div>
-                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Leverage IDE webview interception via <code>file:///</code> URI for zero-bundle instant rendering, paired with an optional micro-bridge daemon (or native IDE extension SDK) for zero-copy 1-click agent dispatch. If the bridge is offline, it gracefully degrades to the hardened in-canvas expansion and copy modal. Combines the indestructible zero-build simplicity of Claude Artifacts with the interactive dispatch power of Playwright/Vitest UI!</p>
-              </div>
+          <div class="pill-card">
+            <div class="pill-title">Option A: Pure JSON Monoliths</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Store all data in raw JSON files in <code>.agents/sidecar/</code>. Easy for machine parsing, but causes painful Git merge conflicts for human teams and large token burn when read by agents.</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t16', 'A', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t16', 'A', 'research', this)">[ 🔬 Research ]</button>
+            </div>
+          </div>
+          <div class="pill-card">
+            <div class="pill-title">Option B: Embedded SQLite Database</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Store data in an embedded SQLite database (<code>.agents/nkai.db</code>). Instant relational queries and ACID safety, but opaque binary format completely breaks Git line-diffs and PR review history.</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t16', 'B', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t16', 'B', 'research', this)">[ 🔬 Research ]</button>
+            </div>
+          </div>
+          <div class="pill-card" style="border: 1px solid var(--accent-green);">
+            <div class="pill-title" style="color:var(--accent-green);">Option C: Hybrid Markdown + LocalStorage + JSON Catalog (Recommended)</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Markdown files with YAML frontmatter for human-readable, Git-friendly logs and notes. A lightweight <code>catalog.json</code> for agent lookups. Browser <code>localStorage</code> for transient UI state (zoom, tabs, drafts), keeping token burn near zero.</p>
+            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t16', 'C', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t16', 'C', 'research', this)">[ 🔬 Research ]</button>
+            </div>
+          </div>
             </div>
 
             <!-- 3-Lens Pros & Cons -->
             <div id="ws-card-evaluation" style="margin-top: 14px; background: rgba(0,0,0,0.3); border: 1px solid rgba(48,54,61,0.6); border-radius: 6px; padding: 12px;">
-              <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option C: Hybrid File-URI + Micro-Bridge Model)</div>
-              <ul style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin: 0; padding-left: 18px;">
-                <li><strong>🌍 Real-World Ergonomics:</strong> Zero build steps. Instant loading via <code>file:///</code> URI, with direct 1-click actions to the agent when the bridge is running, and seamless copy modal fallback when standalone.</li>
-                <li><strong>🏛️ Wider SOTA:</strong> Sits directly in the sweet spot between Claude Artifacts (clean but passive/read-only) and Playwright/Storybook (interactive but heavy node/daemon overhead).</li>
-                <li><strong>🏆 Best Practices:</strong> Resilient progressive enhancement: works 100% offline without servers or internet, but unlocks full bidirectional live control when paired with the harness bridge.</li>
-              </ul>
+          <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option C: Hybrid Markdown + LocalStorage + JSON Catalog)</div>
+          <ul style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin: 0; padding-left: 18px;">
+            <li><strong>🌍 Real-World Ergonomics:</strong> Humans and Obsidian can edit notes and logs directly in plain Markdown. Git diffs are crystal clean.</li>
+            <li><strong>🏛️ Wider SOTA:</strong> Follows modern static-site generation (Astro content collections, Hugo, VitePress) and headless CMS architecture.</li>
+            <li><strong>🏆 Best Practices:</strong> Zero database overhead, zero CPU daemon, and slashes agent token burn by avoiding repetitive full-state re-reads.</li>
+          </ul>
               <div style="margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap;">
-                <button class="interactive-btn blue" onclick="copyPromptToChat('pros and cons for SOTA Sidecar Architectures (Claude vs Playwright vs Nkai) across the 4 Lenses', this)">[ ⚖️ Request Pros &amp; Cons ]</button>
-                <button class="interactive-btn purple" onclick="copyPromptToChat('research online developer ergonomics of webview sidecars and canvas interfaces in AI IDEs', this)">[ 🔬 Research Online ]</button>
-                <button class="interactive-btn amber" onclick="navigateToSection('sec-audit-t15')">[ 🔍 See in Full Context ]</button>
+                <button class="interactive-btn blue" onclick="copyPromptToChat('pros and cons for Markdown Frontmatter vs SQLite vs JSON for AI state persistence across the 4 Lenses', this)">[ ⚖️ Request Pros &amp; Cons ]</button>
+                <button class="interactive-btn purple" onclick="copyPromptToChat('research online git-friendly local-first persistence patterns for AI agent tooling', this)">[ 🔬 Research Online ]</button>
+                <button class="interactive-btn amber" onclick="navigateToSection('sec-audit-t16')">[ 🔍 See in Full Context ]</button>
               </div>
             </div>
 
@@ -1032,9 +1070,9 @@
                 Verdict: <strong id="workshop-v-badge" class="badge">PENDING</strong>
               </div>
               <div style="display:flex; gap:6px; flex-wrap:wrap;">
-                <button class="interactive-btn" id="ws-btn-approve" style="color:var(--accent-green); border-color:var(--accent-green);" onclick="setAuditVerdict(window.currentWorkshopTopic || 't15', 'APPROVED', this)">[ ✅ APPROVE Option C ]</button>
-                <button class="interactive-btn amber" id="ws-btn-table" onclick="setAuditVerdict(window.currentWorkshopTopic || 't15', 'TABLED', this)">[ ⏳ TABLE ]</button>
-                <button class="interactive-btn" id="ws-btn-kill" style="color:var(--accent-red); border-color:var(--accent-red);" onclick="setAuditVerdict(window.currentWorkshopTopic || 't15', 'KILLED', this)">[ 💀 KEEP Option A ]</button>
+                <button class="interactive-btn" id="ws-btn-approve" style="color:var(--accent-green); border-color:var(--accent-green);" onclick="setAuditVerdict(window.currentWorkshopTopic || 't16', 'APPROVED', this)">[ ✅ APPROVE Option C ]</button>
+                <button class="interactive-btn amber" id="ws-btn-table" onclick="setAuditVerdict(window.currentWorkshopTopic || 't16', 'TABLED', this)">[ ⏳ TABLE ]</button>
+                <button class="interactive-btn" id="ws-btn-kill" style="color:var(--accent-red); border-color:var(--accent-red);" onclick="setAuditVerdict(window.currentWorkshopTopic || 't16', 'KILLED', this)">[ 💀 KEEP Option A ]</button>
               </div>
             </div>
           </div>
@@ -3069,12 +3107,32 @@ function toggleDrawer(drawerId) {
 
     let toastTimer = null;
     function showAudioToast(msg) {
-      const toast = document.getElementById('audio-toast');
-      if (!toast) return;
-      toast.innerText = msg;
-      toast.style.opacity = '1';
-      clearTimeout(toastTimer);
-      toastTimer = setTimeout(() => { toast.style.opacity = '0.5'; }, 2500);
+      // 1. Update legacy audio toast if visible
+      const legacyToast = document.getElementById('audio-toast');
+      if (legacyToast) {
+        legacyToast.innerText = msg;
+        legacyToast.style.opacity = '1';
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => { legacyToast.style.opacity = '0.5'; }, 2500);
+      }
+
+      // 2. Persistent Floating Toast HUD
+      let hud = document.getElementById('nkai-floating-toast');
+      if (!hud) {
+        hud = document.createElement('div');
+        hud.id = 'nkai-floating-toast';
+        document.body.appendChild(hud);
+      }
+      
+      hud.innerText = msg;
+      hud.classList.add('show');
+      
+      if (window.floatingToastTimer) {
+        clearTimeout(window.floatingToastTimer);
+      }
+      window.floatingToastTimer = setTimeout(() => {
+        hud.classList.remove('show');
+      }, 3500);
     }
 
     function playVisualFallback() {
@@ -3300,14 +3358,30 @@ function toggleDrawer(drawerId) {
     }
 
     async function dispatchNkaiAction(actionData, btn) {
+      // Ensure required fields
+      actionData.topicId = actionData.topicId || window.currentWorkshopTopic;
+      actionData.verdict = actionData.verdict || (window.auditVerdicts && window.auditVerdicts[actionData.topicId] ? window.auditVerdicts[actionData.topicId].verdict : 'PENDING');
+      
+      const port = window.nkaiBridgePort || 4040;
+
+      const onSuccessUI = () => {
+        const badge = document.getElementById('workshop-v-badge');
+        if (badge && actionData.verdict === 'APPROVED') {
+            badge.innerText = 'APPROVED';
+            badge.className = 'badge badge-green';
+        }
+        if (typeof applyAuditVerdictsUI === 'function') applyAuditVerdictsUI();
+        if (btn) flashButtonSuccess(btn, '✅ Approved');
+        playHapticChime();
+        showAudioToast(`⚡ Dispatched to Agent: ${actionData.verdict} Topic ${actionData.topicId} (Port :${port})`);
+        copyToClipboardSilently(actionData.prompt);
+      };
+
       // 1. Check native Antigravity UI Extension SDK
       if (window.sidecar && typeof window.sidecar.sendAction === 'function') {
         try {
           await window.sidecar.sendAction(actionData);
-          showAudioToast(`⚡ Dispatched: ${actionData.action} directly via Native SDK!`);
-          flashButtonSuccess(btn, '⚡ Dispatched!');
-          playHapticChime();
-          copyToClipboardSilently(actionData.prompt);
+          onSuccessUI();
           return true;
         } catch (err) {
           console.warn('[Nkai Bridge] Native sidecar sendAction failed, trying local bridge:', err);
@@ -3319,7 +3393,7 @@ function toggleDrawer(drawerId) {
         try {
           const ctrl = new AbortController();
           const timer = setTimeout(() => ctrl.abort(), 1500);
-          const res = await fetch(`http://127.0.0.1:${window.nkaiBridgePort}/api/action`, {
+          const res = await fetch(`http://127.0.0.1:${port}/api/action`, {
             method: 'POST',
             mode: 'cors',
             headers: { 'Content-Type': 'application/json' },
@@ -3328,11 +3402,7 @@ function toggleDrawer(drawerId) {
           });
           clearTimeout(timer);
           if (res.ok) {
-            showAudioToast(`⚡ Dispatched directly to AI agent via Bridge (: ${window.nkaiBridgePort})!`);
-            flashButtonSuccess(btn, '⚡ Dispatched!');
-            playHapticChime();
-            // Silent background copy for user convenience, but NO MODAL POPUP!
-            copyToClipboardSilently(actionData.prompt);
+            onSuccessUI();
             return true;
           }
         } catch (err) {
@@ -3345,8 +3415,8 @@ function toggleDrawer(drawerId) {
       if (actionData.prompt) {
         copyToClipboardSilently(actionData.prompt);
         showFallbackModal(actionData.prompt);
-        showAudioToast('📋 Bridge Offline: Opened prompt copy box');
-        flashButtonSuccess(btn, '📋 Copy Box');
+        showAudioToast('⚠️ Bridge Offline: Opened prompt copy box');
+        if (btn) flashButtonSuccess(btn, '📋 Copy Box');
         playHapticTick();
       }
       return false;
@@ -4337,18 +4407,11 @@ function toggleDrawer(drawerId) {
         console.warn('Could not save audit verdicts to localStorage:', e);
       }
 
+      // Update UI state locally immediately
       applyAuditVerdictsUI();
 
-      if (verdict === 'APPROVED') {
-        playHapticChime();
-      } else {
-        playHapticTick();
-      }
-
-      const prefix = verdict === 'APPROVED' ? '✅ Approved: ' : verdict === 'TABLED' ? '⏳ Tabled: ' : '💀 Strategy Graveyard: ';
-      showAudioToast(prefix + auditVerdicts[topicId].title);
-
-      // ⚡ Dispatch directly to agent queue via Bidirectional Bridge
+      // Dispatch directly to agent queue via Bidirectional Bridge
+      // The bridge success/fail handler will manage the haptic sounds, toasts, and fallback modals.
       dispatchNkaiAction({
         action: 'setVerdict',
         topicId: topicId,
