@@ -1043,67 +1043,67 @@
           <!-- Rendered dynamically by setWorkshopTopic, pre-populated with t7 -->
           <div class="section-card" id="workshop-card">
             <div class="section-title">
-              <span id="ws-card-title">6.13 Universal AI Harness Portability (Claude Code, Codex, Cursor, Antigravity)</span>
-              <span id="ws-card-badge" class="badge badge-blue">Cross-Platform Runtime</span>
+              <span id="ws-card-title">6.4 Agent Skills Organization: Micro-Skills vs. Macro-Suites</span>
+              <span id="ws-card-badge" class="badge badge-blue">Skill Architecture</span>
             </div>
             <p id="ws-card-desc" style="font-size: 12px; line-height: 1.6; color: var(--text-main);">
-              <strong>The Question:</strong> How do we ensure N'kai's asymmetric sidecar pattern, decision composer, and skills operate seamlessly across popular AI coding harnesses beyond Antigravity (such as Claude Code CLI, OpenAI Codex / ChatGPT developer harnesses, Cursor, and Windsurf)?
+              <strong>The Question:</strong> We currently have 16 distinct skills in <code>.agents/skills/</code>. Is this too fragmented, or does Unix-style modular composability provide superior reliability?
             </p>
 
             <div class="grid-3" id="ws-card-options" style="margin-top: 12px;">
               <div class="pill-card">
-                <div class="pill-title">Option A: Antigravity-Only Lock-in</div>
-                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Target strictly Antigravity's proprietary Sidecar SDK. Breaks or requires major re-writes if developing in Claude Code or Cursor.</p>
+                <div class="pill-title">Option A: 16 Micro-Skills (Current)</div>
+                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Every command is its own atomic skill (build-validate, step-verify, audiothread-guard, web-qa). High granularity, but requires knowing multiple commands.</p>
                 <div style="margin-top: 8px;">
-                  <input type="text" readonly value="[6.13 Portability] pros and cons for Option A Antigravity-Only Lock-in"
+                  <input type="text" readonly value="[6.4 Skills] pros and cons for Option A 16 Micro-Skills"
+                         onclick="this.select();" ondblclick="this.select();"
+                         style="width:100%; box-sizing:border-box; background:rgba(0,0,0,0.5); border:1px solid var(--border); border-radius:3px; color:var(--text-muted); font-family:var(--font-mono); font-size:10px; padding:4px 6px; cursor:text; user-select:all;" />
+                </div>
+              </div>
+              <div class="pill-card">
+                <div class="pill-title">Option B: 4 Consolidated Macro-Suites</div>
+                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Merged into 4 monolithic skills: /architect, /factory, /maintain, /qa. Simpler menu, but reduces flexibility for targeted single operations.</p>
+                <div style="margin-top: 8px;">
+                  <input type="text" readonly value="[6.4 Skills] pros and cons for Option B 4 Consolidated Macro-Suites"
                          onclick="this.select();" ondblclick="this.select();"
                          style="width:100%; box-sizing:border-box; background:rgba(0,0,0,0.5); border:1px solid var(--border); border-radius:3px; color:var(--text-muted); font-family:var(--font-mono); font-size:10px; padding:4px 6px; cursor:text; user-select:all;" />
                 </div>
               </div>
               <div class="pill-card" style="border: 1px solid var(--accent-green);">
-                <div class="pill-title" style="color:var(--accent-green);">Option B: Standalone File + Localhost Adapter (Recommended)</div>
-                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Keep zero-dependency standalone HTML (<code>file:///</code>) for IDE webviews (Cursor, VS Code, AGY), and provide a tiny 30-line localhost server (<code>npx nkai serve</code>) that auto-opens a browser tab for terminal CLIs (Claude Code, Codex).</p>
+                <div class="pill-title" style="color:var(--accent-green);">Option C: Layered Hybrid (Recommended)</div>
+                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Keep atomic micro-skills as the underlying engine, while macro-commands (like /execute-task or unified qa) chain them deterministically. Zero loss of composability.</p>
                 <div style="margin-top: 8px;">
-                  <input type="text" readonly value="[6.13 Portability] pros and cons for Option B Standalone File + Localhost Adapter"
-                     onclick="this.select();" ondblclick="this.select();"
-                     style="width:100%; box-sizing:border-box; background:rgba(0,0,0,0.5); border:1px solid rgba(63,185,80,0.4); border-radius:3px; color:var(--accent-green); font-family:var(--font-mono); font-size:10px; padding:4px 6px; cursor:text; user-select:all;" />
-                </div>
-              </div>
-              <div class="pill-card">
-                <div class="pill-title">Option C: Markdown-Only Fallback</div>
-                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">If not in Antigravity, completely disable sidecars and dump massive text tables directly into chat. Defeats the asymmetric split.</p>
-                <div style="margin-top: 8px;">
-                  <input type="text" readonly value="[6.13 Portability] pros and cons for Option C Markdown-Only Fallback"
+                  <input type="text" readonly value="[6.4 Skills] pros and cons for Option C Layered Hybrid"
                          onclick="this.select();" ondblclick="this.select();"
-                         style="width:100%; box-sizing:border-box; background:rgba(0,0,0,0.5); border:1px solid var(--border); border-radius:3px; color:var(--text-muted); font-family:var(--font-mono); font-size:10px; padding:4px 6px; cursor:text; user-select:all;" />
+                         style="width:100%; box-sizing:border-box; background:rgba(0,0,0,0.5); border:1px solid rgba(63,185,80,0.4); border-radius:3px; color:var(--accent-green); font-family:var(--font-mono); font-size:10px; padding:4px 6px; cursor:text; user-select:all;" />
                 </div>
               </div>
             </div>
 
             <!-- 3-Lens Pros & Cons -->
             <div id="ws-card-evaluation" style="margin-top: 14px; background: rgba(0,0,0,0.3); border: 1px solid rgba(48,54,61,0.6); border-radius: 6px; padding: 12px;">
-              <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option B: Standalone File + Localhost Adapter)</div>
+              <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option C: Layered Hybrid)</div>
               <ul style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin: 0; padding-left: 18px;">
-                <li><strong>🌍 Real-World Ergonomics:</strong> Works seamlessly regardless of environment. In GUI IDEs it renders in the side panel; in terminal CLIs it opens in Chrome/Edge instantly.</li>
-                <li><strong>🏛️ Wider SOTA:</strong> Matches how modern developer tools operate across CLIs and IDEs (Playwright UI, Vitest UI, Storybook, Astro).</li>
-                <li><strong>🏆 Best Practices:</strong> Zero vendor lock-in. 100% standard web technologies (HTML5/CSS/ES Modules) with zero heavyweight runtime dependencies.</li>
+                <li><strong>🌍 Real-World Ergonomics:</strong> You don't have to remember 16 individual command names—you just say <code>qa</code> or <code>/execute-task</code>. But when an isolated test fails, the agent or user can still run <code>audiothread-guard</code> directly.</li>
+                <li><strong>🏛️ Wider SOTA:</strong> Follows standard CLI &amp; API layered architectures (e.g. Git porcelain vs plumbing commands, Docker, AWS CLI). High-level intents invoke specialized low-level tools.</li>
+                <li><strong>🏆 Best Practices:</strong> Avoids giant monolithic skill files that burn excessive prompt tokens on every activation. Keeps tool schemas clean and single-purpose.</li>
               </ul>
               <div style="margin-top: 10px; display: flex; flex-direction: column; gap: 6px;">
                 <span style="font-family:var(--font-mono); font-size:10px; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.5px;">🔬 Deep Dive Prompts (Click to Highlight, Ctrl+C to Copy):</span>
                 <div style="display:flex; align-items:center; gap:6px; background:rgba(88,166,255,0.06); border:1px solid rgba(88,166,255,0.25); border-radius:4px; padding:4px 8px;">
                   <span style="font-size:10px; font-family:var(--font-mono); color:var(--accent-blue); width:130px; flex-shrink:0;">⚖️ Pros &amp; Cons:</span>
-                  <input type="text" readonly value="pros and cons for Universal AI Harness Portability across the 4 Lenses"
+                  <input type="text" readonly value="pros and cons for Layered Hybrid Skills across the 4 Lenses"
                          onclick="this.select();" ondblclick="this.select();"
                          style="flex:1; background:rgba(0,0,0,0.5); border:1px solid rgba(88,166,255,0.2); border-radius:3px; color:var(--accent-neon); font-family:var(--font-mono); font-size:10px; padding:4px 8px; cursor:text; user-select:all;" />
                 </div>
                 <div style="display:flex; align-items:center; gap:6px; background:rgba(88,166,255,0.06); border:1px solid rgba(88,166,255,0.25); border-radius:4px; padding:4px 8px;">
                   <span style="font-size:10px; font-family:var(--font-mono); color:var(--accent-blue); width:130px; flex-shrink:0;">🔬 Research Online:</span>
-                  <input type="text" readonly value="research online cross-harness compatibility for Claude Code Cursor Windsurf sidecar tools"
+                  <input type="text" readonly value="research online AI agent skills architecture micro vs macro suites"
                          onclick="this.select();" ondblclick="this.select();"
                          style="flex:1; background:rgba(0,0,0,0.5); border:1px solid rgba(88,166,255,0.2); border-radius:3px; color:var(--accent-neon); font-family:var(--font-mono); font-size:10px; padding:4px 8px; cursor:text; user-select:all;" />
                 </div>
                 <div style="margin-top:4px;">
-                  <button class="interactive-btn amber" style="font-size:10px; padding:2px 8px;" onclick="navigateToSection('sec-audit-t13')">[ 🔍 Jump to Topic in Full Context ]</button>
+                  <button class="interactive-btn amber" style="font-size:10px; padding:2px 8px;" onclick="navigateToSection('sec-audit-t4')">[ 🔍 Jump to Topic in Full Context ]</button>
                 </div>
               </div>
             </div>
@@ -1123,7 +1123,7 @@
                 <!-- Approve Box -->
                 <div style="display:flex; align-items:center; gap:8px; background:rgba(63,185,80,0.08); border:1px solid rgba(63,185,80,0.35); border-radius:6px; padding:6px 10px;">
                   <span style="font-size:10px; font-family:var(--font-mono); color:var(--accent-green); font-weight:700; width:75px; flex-shrink:0;">✅ APPROVE:</span>
-                  <input type="text" readonly value="[6.13 Universal AI Harness Portability] VERDICT: APPROVED (APPROVE Option B)"
+                  <input type="text" readonly value="[6.4 Agent Skills Organization] VERDICT: APPROVED (APPROVE Option C)"
                          onclick="this.select();" ondblclick="this.select();"
                          style="flex:1; background:rgba(0,0,0,0.6); border:1px solid rgba(63,185,80,0.4); border-radius:4px; color:var(--accent-green); font-family:var(--font-mono); font-size:11px; padding:6px 10px; cursor:text; user-select:all;" />
                 </div>
@@ -1131,7 +1131,7 @@
                 <!-- Table Box -->
                 <div style="display:flex; align-items:center; gap:8px; background:rgba(255,171,112,0.08); border:1px solid rgba(255,171,112,0.3); border-radius:6px; padding:6px 10px;">
                   <span style="font-size:10px; font-family:var(--font-mono); color:var(--accent-amber); font-weight:700; width:75px; flex-shrink:0;">⏳ TABLE:</span>
-                  <input type="text" readonly value="[6.13 Universal AI Harness Portability] VERDICT: TABLED"
+                  <input type="text" readonly value="[6.4 Agent Skills Organization] VERDICT: TABLED"
                          onclick="this.select();" ondblclick="this.select();"
                          style="flex:1; background:rgba(0,0,0,0.6); border:1px solid rgba(255,171,112,0.3); border-radius:4px; color:var(--accent-amber); font-family:var(--font-mono); font-size:11px; padding:6px 10px; cursor:text; user-select:all;" />
                 </div>
@@ -1139,7 +1139,7 @@
                 <!-- Reject Box -->
                 <div style="display:flex; align-items:center; gap:8px; background:rgba(248,81,73,0.08); border:1px solid rgba(248,81,73,0.3); border-radius:6px; padding:6px 10px;">
                   <span style="font-size:10px; font-family:var(--font-mono); color:var(--accent-red); font-weight:700; width:75px; flex-shrink:0;">💀 REJECT:</span>
-                  <input type="text" readonly value="[6.13 Universal AI Harness Portability] VERDICT: KILLED"
+                  <input type="text" readonly value="[6.4 Agent Skills Organization] VERDICT: KILLED"
                          onclick="this.select();" ondblclick="this.select();"
                          style="flex:1; background:rgba(0,0,0,0.6); border:1px solid rgba(248,81,73,0.3); border-radius:4px; color:var(--accent-red); font-family:var(--font-mono); font-size:11px; padding:6px 10px; cursor:text; user-select:all;" />
                 </div>
@@ -3535,6 +3535,62 @@ function toggleDrawer(drawerId) {
             </ul>
           `
         }
+      },
+      t4: {
+        A: {
+          pros_cons: `
+            <h5>⚖️ PCDA Breakdown: Option A (16 Micro-Skills)</h5>
+            <ul>
+              <li><strong>Pros [Thesis]:</strong> Atomic Unix-philosophy modularity; each skill does exactly one thing well with clean test boundaries.</li>
+              <li><strong>Cons [Friction]:</strong> High cognitive burden; developers and agents must memorize 16 different slash commands.</li>
+              <li><strong>Devil's Advocate [Antithesis]:</strong> Fragmented skills encourage turn-by-turn micromanagement instead of autonomous execution.</li>
+              <li><strong>80/20 Resolution:</strong> Keep as low-level execution engines, but abstract behind macro orchestrators.</li>
+            </ul>
+          `,
+          research: `
+            <h5>🔬 Research & Benchmarks: Option A (Atomic Micro-Skills)</h5>
+            <p style="color:var(--text-muted); margin-bottom:6px;">Benchmarked against Unix coreutils and atomic CLI commands.</p>
+            <ul>
+              <li><strong>Composability Strength:</strong> Highly testable and isolated, but creates menu overload when surfaced directly to end users.</li>
+            </ul>
+          `
+        },
+        B: {
+          pros_cons: `
+            <h5>⚖️ PCDA Breakdown: Option B (4 Consolidated Macro-Suites)</h5>
+            <ul>
+              <li><strong>Pros [Thesis]:</strong> Radically simplified menu: /architect, /factory, /maintain, /qa.</li>
+              <li><strong>Cons [Friction]:</strong> Monolithic files burn excessive tokens on every single invocation even for a 1-line check.</li>
+              <li><strong>Devil's Advocate [Antithesis]:</strong> Inflexible; running an audio thread safety check requires invoking the entire factory harness.</li>
+              <li><strong>80/20 Resolution:</strong> Avoid monolithic files; they lead to prompt bloat and flaky multi-step hallucinations.</li>
+            </ul>
+          `,
+          research: `
+            <h5>🔬 Research & Benchmarks: Option B (Monolithic Suites)</h5>
+            <p style="color:var(--text-muted); margin-bottom:6px;">Audited against monolithic agent prompt architectures.</p>
+            <ul>
+              <li><strong>Token Burn Finding:</strong> Merging all tools into 4 large prompts increases baseline context burn by 400% on trivial single-file edits.</li>
+            </ul>
+          `
+        },
+        C: {
+          pros_cons: `
+            <h5>⚖️ PCDA Breakdown: Option C (Layered Hybrid) [Recommended]</h5>
+            <ul>
+              <li><strong>Pros [Thesis]:</strong> Seamless dual-tier usability. High-level commands (qa, /execute-task) chain low-level skills deterministically, while individual micro-skills remain callable on demand.</li>
+              <li><strong>Cons [Friction]:</strong> Requires maintaining clear routing in skill documentation and command dispatchers.</li>
+              <li><strong>Devil's Advocate [Antithesis]:</strong> Potential ambiguity if command naming collisions occur without strict taxonomy.</li>
+              <li><strong>80/20 Resolution:</strong> The industry gold standard (Git porcelain vs plumbing, Docker, AWS CLI). Maximum velocity with zero loss of composability.</li>
+            </ul>
+          `,
+          research: `
+            <h5>🔬 Research & Benchmarks: Option C (Porcelain vs Plumbing)</h5>
+            <p style="color:var(--text-muted); margin-bottom:6px;">Benchmarked against Git architectural philosophy and modern CLI frameworks.</p>
+            <ul>
+              <li><strong>Industry Precedent:</strong> Git separates low-level plumbing (cat-file, hash-object) from high-level porcelain (commit, status, merge), allowing automation scripts and humans to operate at their ideal level of abstraction.</li>
+            </ul>
+          `
+        }
       }
     };
 
@@ -3673,7 +3729,7 @@ function toggleDrawer(drawerId) {
     // ============================================================
     // Active Workshop & Sanity Audit Triage Engine
     // ============================================================
-    window.currentWorkshopTopic = 't13';
+    window.currentWorkshopTopic = 't4';
 
     const defaultAuditVerdicts = {
       t1: { title: '6.1 Post-Mortem Architecture', verdict: 'APPROVED' },
@@ -3688,7 +3744,7 @@ function toggleDrawer(drawerId) {
       t10: { title: '6.10 Tab Header Density', verdict: 'PENDING' },
       t11: { title: '6.11 "Check the Mail" Workflow', verdict: 'PENDING' },
       t12: { title: '6.12 All-in-One Distribution Bundle', verdict: 'PENDING' },
-      t13: { title: '6.13 Universal AI Harness Portability', verdict: 'PENDING' },
+      t13: { title: '6.13 Universal AI Harness Portability', verdict: 'APPROVED' },
       t14: { title: '6.14 Nkai-First Skill Default', verdict: 'PENDING' },
       t15: { title: '6.15 Industry Workflow Precedents', verdict: 'APPROVED' },
       t16: { title: '6.16 Backend Persistence & State', verdict: 'APPROVED' },
@@ -5006,9 +5062,10 @@ function toggleDrawer(drawerId) {
       } catch (e) {
         console.warn('Could not load saved audit verdicts:', e);
       }
-      // Force 6.16 & 6.7 APPROVED per user order
+      // Force 6.16, 6.7, & 6.13 APPROVED per user order
       auditVerdicts.t16.verdict = 'APPROVED';
       auditVerdicts.t7.verdict = 'APPROVED';
+      auditVerdicts.t13.verdict = 'APPROVED';
       auditVerdicts.t17.verdict = 'TABLED';
       try {
         localStorage.setItem('nkai_audit_verdicts', JSON.stringify(auditVerdicts));
@@ -5042,12 +5099,12 @@ function toggleDrawer(drawerId) {
     // Kickoff Lifecycle
     initAuditVerdicts();
     checkBridgeStatus();
-    setWorkshopTopic('t13');
+    setWorkshopTopic('t4');
     handleHashNavigation();
     window.addEventListener('DOMContentLoaded', () => {
       initAuditVerdicts();
       checkBridgeStatus();
-      setWorkshopTopic('t13');
+      setWorkshopTopic('t4');
       handleHashNavigation();
     });
     window.addEventListener('hashchange', handleHashNavigation);
