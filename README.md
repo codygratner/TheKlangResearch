@@ -19,6 +19,7 @@ TheKlangResearch/
 ├── hardware/       # dadamachines TBD-16 (ESP32-P4 / RP2350B), upstream ledger, OLED drivers
 ├── ui_ux/          # Standalone HTML research boards, micro-scope prototypes, ergonomic benchmarks
 ├── subagents/      # Granular soul harvests & raw mathematical proofs from AI subagents
+├── qa_autopsies/   # Non-obvious platform gotchas, webview sandbox autopsies, and IPC invariants
 ├── agentic/        # AI pair-programming harness research, guardrail audits, tool benchmarks
 └── README.md       # Master index and architectural overview
 ```
