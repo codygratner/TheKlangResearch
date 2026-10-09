@@ -1258,16 +1258,16 @@ class SidecarMigrator:
 
           <div class="grid-3" style="margin-top: 12px;">
             <div class="pill-card">
-              <div class="pill-title">Option A: Always-Grabbed (Current)</div>
+              <div class="pill-title">Option A: Always-Grabbed</div>
               <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
                 Proactively outputs deep tables on every idea.<br/>
                 <em>Tradeoff:</em> Thorough, but consumes high tokens and stretches chat turns when you only wanted a quick answer.
               </p>
             </div>
             <div class="pill-card" style="border: 1px solid var(--accent-green);">
-              <div class="pill-title" style="color:var(--accent-green);">Option B: On-Demand via Action Chips (Recommended)</div>
+              <div class="pill-title" style="color:var(--accent-green);">Option B+: On-Demand with Deep Research (Approved)</div>
               <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
-                Chat responses stay terse (1–3 sentences). Sidecar cards feature a <code>[ ⚖️ Request Pros &amp; Cons ]</code> button that triggers deep tables only when requested.
+                Chat responses stay ultra-terse (1–3 sentences). Sidecar cards feature <code>[ ⚖️ Request Pros &amp; Cons ]</code> and <code>[ 🔬 Research Online ]</code> buttons triggering live web sweeps on demand.
               </p>
             </div>
             <div class="pill-card">
@@ -1278,14 +1278,28 @@ class SidecarMigrator:
             </div>
           </div>
 
+          <!-- 3-Lens Pros & Cons -->
+          <div style="margin-top: 14px; background: rgba(0,0,0,0.3); border: 1px solid rgba(48,54,61,0.6); border-radius: 6px; padding: 12px;">
+            <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option B+: On-Demand with Deep Dive Research)</div>
+            <ul style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin: 0; padding-left: 18px;">
+              <li><strong>🌍 Real-World Ergonomics:</strong> Eliminates conversational reading fatigue. You only review deep comparison tables when actively weighing a difficult fork, rather than scrolling past large tables on straightforward tasks.</li>
+              <li><strong>🏛️ Wider SOTA:</strong> Matches production AI developer tooling (Cursor, Claude Code, Linear) where answers start dense and provide progressive disclosure action chips for deep dives.</li>
+              <li><strong>🏆 Best Practices:</strong> Protects token economics and prevents context rot, perfectly honoring our Asymmetric Sidecar Split (<em>terse chat, rich sidecar</em>). Deep sweeps use pre-authorized web access autonomously.</li>
+            </ul>
+            <div style="margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" onclick="copyPromptToChat('pros and cons for [Topic] across the 4 Lenses')">[ ⚖️ Request Pros &amp; Cons ]</button>
+              <button class="interactive-btn purple" onclick="copyPromptToChat('research online the pros and cons for [Topic] with web citations')">[ 🔬 Research Pros &amp; Cons Online ]</button>
+            </div>
+          </div>
+
           <div style="display:flex; justify-content:space-between; align-items:center; margin-top:14px; padding-top:10px; border-top:1px solid rgba(48,54,61,0.5);">
             <div style="font-family:var(--font-mono); font-size:11px; color:var(--text-muted);">
-              Verdict: <strong id="v-badge-t2" style="color:var(--text-muted);">PENDING</strong>
+              Verdict: <strong id="v-badge-t2" style="color:var(--accent-green);">APPROVED (Option B+: On-Demand with Deep Dive Research)</strong>
             </div>
             <div style="display:flex; gap:6px;">
-              <button class="interactive-btn" style="color:var(--accent-green); border-color:var(--accent-green);" onclick="setAuditVerdict('t2', 'APPROVED', this)">[ ✅ APPROVE Option B ]</button>
-              <button class="interactive-btn amber" onclick="setAuditVerdict('t2', 'TABLED', this)">[ ⏳ TABLE ]</button>
-              <button class="interactive-btn" style="color:var(--accent-red); border-color:var(--accent-red);" onclick="setAuditVerdict('t2', 'KILLED', this)">[ 💀 KEEP Option A ]</button>
+              <button class="interactive-btn" style="color:var(--accent-green); border-color:var(--accent-green); transform:scale(1.05);" onclick="setAuditVerdict('t2', 'APPROVED', this)">[ ✅ APPROVE Option B ]</button>
+              <button class="interactive-btn amber" style="opacity:0.5;" onclick="setAuditVerdict('t2', 'TABLED', this)">[ ⏳ TABLE ]</button>
+              <button class="interactive-btn" style="color:var(--accent-red); border-color:var(--accent-red); opacity:0.5;" onclick="setAuditVerdict('t2', 'KILLED', this)">[ 💀 KEEP Option A ]</button>
             </div>
           </div>
         </div>
@@ -1846,13 +1860,22 @@ class SidecarMigrator:
     // ==========================================
     const auditVerdicts = {
       t1: { title: '6.1 Post-Mortem Architecture', verdict: 'APPROVED' },
-      t2: { title: '6.2 Pros/Cons: On-Demand vs Always', verdict: 'PENDING' },
+      t2: { title: '6.2 Pros/Cons: On-Demand vs Always', verdict: 'APPROVED' },
       t3: { title: '6.3 Topic Organization Strategy', verdict: 'PENDING' },
       t4: { title: '6.4 Agent Skills Organization', verdict: 'PENDING' },
       t5: { title: '6.5 N\'kai View Ergonomics', verdict: 'PENDING' },
       t6: { title: '6.6 AGY Keyboard Shortcuts', verdict: 'PENDING' },
       t7: { title: '6.7 Context Clues Architecture', verdict: 'PENDING' }
     };
+
+    function copyPromptToChat(promptText) {
+      navigator.clipboard.writeText(promptText).then(() => {
+        showAudioToast('📋 Copied to clipboard: "' + promptText + '"');
+      }).catch(() => {
+        prompt('Copy prompt to chat:', promptText);
+      });
+      if (typeof playHapticTick === 'function') playHapticTick();
+    }
 
     function setAuditVerdict(topicId, verdict, btn) {
       if (!auditVerdicts[topicId]) return;
