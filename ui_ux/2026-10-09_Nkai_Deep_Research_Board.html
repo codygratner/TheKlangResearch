@@ -603,6 +603,12 @@
         📦 Sessions <span class="badge badge-amber">1 PAUSED</span>
       </button>
 
+      <!-- Live Bridge Connection Status Indicator -->
+      <button id="bridge-status-pill" class="header-btn green" onclick="checkBridgeStatus()" title="Bridge Status: Direct-to-Agent Loopback. Click to re-check." style="font-size:10px; padding:3px 8px; display:inline-flex; align-items:center; gap:5px;">
+        <span id="bridge-status-led" style="display:inline-block; width:6px; height:6px; border-radius:50%; background:var(--accent-neon); box-shadow:0 0 6px var(--accent-neon);"></span>
+        <span id="bridge-status-text">⚡ Bridge: Online</span>
+      </button>
+
       <div class="zoom-group">
         <button class="header-btn" onclick="adjustZoom(-0.05)">A-</button>
         <button class="header-btn" onclick="adjustZoom(0.05)">A+</button>
@@ -850,7 +856,7 @@
             <span style="color:var(--text-muted); font-weight:700;">F8.</span> Header Layout &amp; Utility Cluster (was 6.9)
           </div>
           <div style="font-size:10px; color:var(--text-muted); margin-top:2px;">
-            Two-tier header vs sidebar drawer for utility icons.
+            Two-tier header w/ Bridge status LED &amp; utility drawers vs sidebar drawer.
           </div>
         </div>
         <button class="interactive-btn" style="font-size:10px; padding:3px 7px;" onclick="loadItineraryTopic('t9')">Load</button>
@@ -2079,7 +2085,7 @@ class SidecarMigrator:
             <span class="badge badge-blue">UI Ergonomics</span>
           </div>
           <p style="font-size: 12px; line-height: 1.6; color: var(--text-main);">
-            <strong>The Question:</strong> How should utility controls (Roadmap, Sessions with badge count, History, Font zoom, Mute, Refresh) be arranged in mouse-driven N'kai?
+            <strong>The Question:</strong> How should utility controls (Live Bridge connection status, Roadmap, Sessions with badge count, Font zoom, Mute, Refresh) be arranged in mouse-driven N'kai?
           </p>
 
           <div class="grid-3" style="margin-top: 12px;">
@@ -2090,9 +2096,9 @@ class SidecarMigrator:
               </p>
             </div>
             <div class="pill-card" style="border: 1px solid var(--accent-green);">
-              <div class="pill-title" style="color:var(--accent-green);">Option B: Two-Tier Header w/ Top-Right Emoji Cluster (Recommended)</div>
+              <div class="pill-title" style="color:var(--accent-green);">Option B: Two-Tier Header w/ Bridge Status LED &amp; Utility Cluster (Recommended)</div>
               <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
-                Top bar = Brand on left, prominent right-aligned emoji buttons (<code>🗺️</code>, <code>📦 1</code>, <code>📜</code>, <code>🔊</code>, <code>🔄</code>). Bottom row = Clean dedicated view switchers.
+                Top bar = Brand on left, prominent right-aligned utility cluster with live Bridge Connection Status LED (<code>⚡ Bridge: Online</code> / <code>🔌 Offline</code>), Roadmap &amp; Sessions drawers with badge counts, Font zoom (<code>A-</code>/<code>A+</code>), Sound toggle (<code>🔊</code>), and Force Refresh (<code>🔄</code>). Bottom row = Clean dedicated view switchers.
               </p>
             </div>
             <div class="pill-card">
@@ -2105,11 +2111,11 @@ class SidecarMigrator:
 
           <!-- 3-Lens Pros & Cons -->
           <div style="margin-top: 14px; background: rgba(0,0,0,0.3); border: 1px solid rgba(48,54,61,0.6); border-radius: 6px; padding: 12px;">
-            <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option B: Two-Tier Header Cluster)</div>
+            <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option B: Two-Tier Header Cluster w/ Bridge Status LED)</div>
             <ul style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin: 0; padding-left: 18px;">
-              <li><strong>🌍 Real-World Ergonomics:</strong> Mouse-driven navigation is fast and intuitive. Clear visual hierarchy: top bar = global utilities, bottom bar = content navigation.</li>
-              <li><strong>🏛️ Wider SOTA:</strong> Standard in high-density web workstations (Grafana, Datadog, VS Code workbench top bar).</li>
-              <li><strong>🏆 Best Practices:</strong> Eliminates header wrapping clutter while keeping critical system status (active sessions, audio haptics) permanently visible.</li>
+              <li><strong>🌍 Real-World Ergonomics:</strong> Provides instant visual confidence in agent loopback connectivity (zero guessing whether clicks dispatch live or open copy modals), plus rapid 1-click access to roadmaps and sessions.</li>
+              <li><strong>🏛️ Wider SOTA:</strong> Standard in modern interactive developer workbenches (Vitest UI, Playwright UI, Cypress, Storybook, Datadog), which always pair live server connection status with global utilities.</li>
+              <li><strong>🏆 Best Practices:</strong> High informational density without wrapping clutter; click-to-reconnect on the status pill makes troubleshooting instantaneous.</li>
             </ul>
             <div style="margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap;">
               <button class="interactive-btn blue" onclick="copyPromptToChat('pros and cons for Two-Tier Header with Top-Right Emoji Cluster across the 4 Lenses', this)">[ ⚖️ Request Pros &amp; Cons ]</button>
@@ -3001,12 +3007,9 @@ function toggleDrawer(drawerId) {
             window.nkaiBridgePort = p;
             const pill = document.getElementById('bridge-status-pill');
             if (pill) {
-              pill.innerText = `⚡ Bridge: Connected (Direct to Agent)`;
-              pill.title = `Actions send directly to AI agent via port ${p} without copy/pasting`;
-              pill.style.color = 'var(--accent-neon)';
-              pill.style.borderColor = 'rgba(126,231,135,0.4)';
-              pill.style.background = 'rgba(126,231,135,0.15)';
-              pill.style.boxShadow = '0 0 10px rgba(126,231,135,0.2)';
+              pill.className = 'header-btn green';
+              pill.title = `Bridge Active on port ${p}: Clicks dispatch directly to agent. Click to re-check.`;
+              pill.innerHTML = `<span id="bridge-status-led" style="display:inline-block; width:6px; height:6px; border-radius:50%; background:var(--accent-neon); box-shadow:0 0 6px var(--accent-neon);"></span> <span id="bridge-status-text">⚡ Bridge: Online (:${p})</span>`;
             }
             console.log(`[Nkai Bridge] Connected to local bridge on port ${p}`);
             return true;
@@ -3018,12 +3021,9 @@ function toggleDrawer(drawerId) {
       window.nkaiBridgeOnline = false;
       const pill = document.getElementById('bridge-status-pill');
       if (pill) {
-        pill.innerText = '🔌 Bridge: Offline (Copy Mode)';
-        pill.title = 'Local bridge server not detected. Buttons will open copy-paste modal.';
-        pill.style.color = 'var(--text-muted)';
-        pill.style.borderColor = 'var(--border)';
-        pill.style.background = 'rgba(255,255,255,0.02)';
-        pill.style.boxShadow = 'none';
+        pill.className = 'header-btn';
+        pill.title = 'Local bridge server not detected. Click to re-check. Buttons will open copy modal.';
+        pill.innerHTML = `<span id="bridge-status-led" style="display:inline-block; width:6px; height:6px; border-radius:50%; background:var(--text-muted);"></span> <span id="bridge-status-text" style="color:var(--text-muted);">🔌 Bridge: Offline</span>`;
       }
       return false;
     }
@@ -3352,26 +3352,26 @@ function toggleDrawer(drawerId) {
       t9: {
         title: '6.9 Header Layout: Top-Bar Right Cluster vs. Sidebar Drawer',
         badge: 'UI Ergonomics',
-        desc: '<strong>The Question:</strong> How should utility controls (Roadmap, Sessions with badge count, History, Font zoom, Mute, Refresh) be arranged in mouse-driven N\'kai?',
+        desc: '<strong>The Question:</strong> How should utility controls (Live Bridge connection status, Roadmap, Sessions with badge count, Font zoom, Mute, Refresh) be arranged in mouse-driven N\'kai?',
         optionsHtml: `
           <div class="pill-card">
             <div class="pill-title">Option A: Single Crowded Header</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Current layout: wraps into multiline when narrow, mixing view modes and utility buttons on the same tier.</p>
           </div>
           <div class="pill-card" style="border: 1px solid var(--accent-green);">
-            <div class="pill-title" style="color:var(--accent-green);">Option B: Two-Tier Header w/ Top-Right Emoji Cluster (Recommended)</div>
-            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Top bar = Brand on left, prominent right-aligned emoji buttons (🗺️, 📦 1, 📜, 🔊, 🔄). Bottom row = Clean dedicated view switchers.</p>
+            <div class="pill-title" style="color:var(--accent-green);">Option B: Two-Tier Header w/ Bridge Status LED &amp; Utility Cluster (Recommended)</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Top bar = Brand on left, prominent right-aligned utility cluster with live Bridge Connection Status LED (<code>⚡ Bridge: Online</code> / <code>🔌 Offline</code>), Roadmap &amp; Sessions drawers with badge counts, Font zoom (<code>A-</code>/<code>A+</code>), Sound toggle (<code>🔊</code>), and Force Refresh (<code>🔄</code>). Bottom row = Clean dedicated view switchers.</p>
           </div>
           <div class="pill-card">
             <div class="pill-title">Option C: Utility Sidebar Drawer</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Move all utilities into a slide-out sidebar drawer with a prominent toggle button. Leaves header ultra-minimal.</p>
           </div>`,
         evalHtml: `
-          <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option B: Two-Tier Header Cluster)</div>
+          <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option B: Two-Tier Header Cluster w/ Bridge Status LED)</div>
           <ul style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin: 0; padding-left: 18px;">
-            <li><strong>🌍 Real-World Ergonomics:</strong> Mouse-driven navigation is fast and intuitive. Clear visual hierarchy between system tools and content tabs.</li>
-            <li><strong>🏛️ Wider SOTA:</strong> Standard in high-density web workstations (Grafana, Datadog, VS Code workbench top bar).</li>
-            <li><strong>🏆 Best Practices:</strong> Eliminates header wrapping clutter while keeping critical system status permanently visible.</li>
+            <li><strong>🌍 Real-World Ergonomics:</strong> Provides instant visual confidence in agent loopback connectivity (zero guessing whether clicks dispatch live or open copy modals), plus rapid 1-click access to roadmaps and sessions.</li>
+            <li><strong>🏛️ Wider SOTA:</strong> Standard in modern interactive developer workbenches (Vitest UI, Playwright UI, Cypress, Storybook, Datadog), which always pair live server connection status with global utilities.</li>
+            <li><strong>🏆 Best Practices:</strong> High informational density without wrapping clutter; click-to-reconnect on the status pill makes troubleshooting instantaneous.</li>
           </ul>`,
         recommendation: 'APPROVE Option B',
         chips: [
