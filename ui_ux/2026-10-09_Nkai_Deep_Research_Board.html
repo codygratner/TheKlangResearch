@@ -709,7 +709,7 @@
     </div>
   </div>
 
-  <!-- Slide-Over Audit Itinerary Drawer -->
+    <!-- Slide-Over Audit Itinerary Drawer -->
   <div class="slide-drawer" id="itinerary-drawer" style="width: 440px;">
     <div class="drawer-header">
       <div class="drawer-title">📅 System Sanity Audit Itinerary</div>
@@ -720,30 +720,43 @@
       Topologically sorted dependency itinerary. Foundational hosting &amp; container boundaries precede layout topology, which precedes view modes, content, and contextual tools.
     </div>
 
-    <!-- Phase 1: Macro Ecosystem -->
+    <!-- Phase 1: Foundations & Paradigms -->
     <div style="margin-bottom:16px;">
       <div style="font-size:10px; font-family:var(--font-mono); color:var(--accent-purple); font-weight:700; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.05em; border-bottom:1px solid rgba(187,128,255,0.3); padding-bottom:4px;">
-        Phase 1: Macro Ecosystem (Host &amp; Distribution)
+        Phase 1: Foundations &amp; Paradigms (Host, Packaging &amp; Persistence)
       </div>
 
-      <!-- Flight 1: 6.13 Portability -->
-      <div class="flight-card" id="flight-item-t13" style="display:flex; justify-content:space-between; align-items:flex-start; padding:8px 10px; border-radius:6px; background:rgba(88,166,255,0.1); border:1px solid var(--accent-blue); margin-bottom:6px;">
+      <!-- Flight 1: 6.15 Industry Precedents -->
+      <div class="flight-card" id="flight-item-t15" style="display:flex; justify-content:space-between; align-items:flex-start; padding:8px 10px; border-radius:6px; background:rgba(88,166,255,0.1); border:1px solid var(--accent-blue); margin-bottom:6px;">
         <div style="flex:1;">
           <div style="font-size:11px; font-weight:600; color:var(--text-main);">
-            <span style="color:var(--accent-blue); font-weight:700;">F1.</span> Universal AI Harness Portability (was 6.13)
+            <span style="color:var(--accent-blue); font-weight:700;">F1.</span> Industry Workflow Precedents (was 6.15)
           </div>
           <div style="font-size:10px; color:var(--accent-amber); margin-top:2px;">
-            ⚠️ <em>Foundational: Defines bounds (CLI localhost vs IDE webview) for all canvas UI.</em>
+            ⚠️ <em>Root Prerequisite: Benchmarks Claude/v0/Playwright UI to define sidecar model.</em>
           </div>
         </div>
-        <button class="interactive-btn blue" style="font-size:10px; padding:3px 7px;" onclick="loadItineraryTopic('t13')">★ Active</button>
+        <button class="interactive-btn blue" style="font-size:10px; padding:3px 7px;" onclick="loadItineraryTopic('t15')">★ Active</button>
       </div>
 
-      <!-- Flight 2: 6.12 All-in-One Bundle -->
+      <!-- Flight 2: 6.13 Portability -->
+      <div class="flight-card" id="flight-item-t13" style="display:flex; justify-content:space-between; align-items:flex-start; padding:8px 10px; border-radius:6px; background:rgba(255,255,255,0.02); border:1px solid rgba(48,54,61,0.5); margin-bottom:6px;">
+        <div style="flex:1;">
+          <div style="font-size:11px; font-weight:600; color:var(--text-main);">
+            <span style="color:var(--text-muted); font-weight:700;">F2.</span> Universal AI Harness Portability (was 6.13)
+          </div>
+          <div style="font-size:10px; color:var(--text-muted); margin-top:2px;">
+            Cross-harness runtime (Claude Code CLI, Cursor, Windsurf, AGY).
+          </div>
+        </div>
+        <button class="interactive-btn" style="font-size:10px; padding:3px 7px;" onclick="loadItineraryTopic('t13')">Load</button>
+      </div>
+
+      <!-- Flight 3: 6.12 All-in-One Bundle -->
       <div class="flight-card" id="flight-item-t12" style="display:flex; justify-content:space-between; align-items:flex-start; padding:8px 10px; border-radius:6px; background:rgba(255,255,255,0.02); border:1px solid rgba(48,54,61,0.5); margin-bottom:6px;">
         <div style="flex:1;">
           <div style="font-size:11px; font-weight:600; color:var(--text-main);">
-            <span style="color:var(--text-muted); font-weight:700;">F2.</span> The "All-in-One" N'kai Bundle (was 6.12)
+            <span style="color:var(--text-muted); font-weight:700;">F3.</span> The "All-in-One" N'kai Bundle (was 6.12)
           </div>
           <div style="font-size:10px; color:var(--text-muted); margin-top:2px;">
             Packages tools, skills, rules, templates into 1-command installer.
@@ -752,11 +765,31 @@
         <button class="interactive-btn" style="font-size:10px; padding:3px 7px;" onclick="loadItineraryTopic('t12')">Load</button>
       </div>
 
-      <!-- Flight 3: 6.4 Agent Skills -->
+      <!-- Flight 4: 6.16 Backend Persistence -->
+      <div class="flight-card" id="flight-item-t16" style="display:flex; justify-content:space-between; align-items:flex-start; padding:8px 10px; border-radius:6px; background:rgba(255,255,255,0.02); border:1px solid rgba(48,54,61,0.5); margin-bottom:6px;">
+        <div style="flex:1;">
+          <div style="font-size:11px; font-weight:600; color:var(--text-main);">
+            <span style="color:var(--text-muted); font-weight:700;">F4.</span> Backend Persistence &amp; State (was 6.16)
+          </div>
+          <div style="font-size:10px; color:var(--accent-amber); margin-top:2px;">
+            ⚠️ <em>Data Prerequisite: Markdown + LocalStorage + JSON catalog for low token burn.</em>
+          </div>
+        </div>
+        <button class="interactive-btn" style="font-size:10px; padding:3px 7px;" onclick="loadItineraryTopic('t16')">Load</button>
+      </div>
+    </div>
+
+    <!-- Phase 2: Agent Tooling -->
+    <div style="margin-bottom:16px;">
+      <div style="font-size:10px; font-family:var(--font-mono); color:var(--accent-purple); font-weight:700; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.05em; border-bottom:1px solid rgba(187,128,255,0.3); padding-bottom:4px;">
+        Phase 2: Agent Tooling (Skills &amp; Defaults)
+      </div>
+
+      <!-- Flight 5: 6.4 Agent Skills -->
       <div class="flight-card" id="flight-item-t4" style="display:flex; justify-content:space-between; align-items:flex-start; padding:8px 10px; border-radius:6px; background:rgba(255,255,255,0.02); border:1px solid rgba(48,54,61,0.5); margin-bottom:6px;">
         <div style="flex:1;">
           <div style="font-size:11px; font-weight:600; color:var(--text-main);">
-            <span style="color:var(--text-muted); font-weight:700;">F3.</span> Agent Skills Organization (was 6.4)
+            <span style="color:var(--text-muted); font-weight:700;">F5.</span> Agent Skills Organization (was 6.4)
           </div>
           <div style="font-size:10px; color:var(--text-muted); margin-top:2px;">
             16 micro-skills vs 4 macro-suites vs layered hybrid engine.
@@ -765,11 +798,11 @@
         <button class="interactive-btn" style="font-size:10px; padding:3px 7px;" onclick="loadItineraryTopic('t4')">Load</button>
       </div>
 
-      <!-- Flight 4: 6.14 Nkai-First Skill Default -->
+      <!-- Flight 6: 6.14 Nkai-First Skill Default -->
       <div class="flight-card" id="flight-item-t14" style="display:flex; justify-content:space-between; align-items:flex-start; padding:8px 10px; border-radius:6px; background:rgba(255,255,255,0.02); border:1px solid rgba(48,54,61,0.5); margin-bottom:6px;">
         <div style="flex:1;">
           <div style="font-size:11px; font-weight:600; color:var(--text-main);">
-            <span style="color:var(--text-muted); font-weight:700;">F4.</span> N'kai-First Skill Default &amp; --chat Flag (was 6.14)
+            <span style="color:var(--text-muted); font-weight:700;">F6.</span> N'kai-First Skill Default &amp; --chat Flag (was 6.14)
           </div>
           <div style="font-size:10px; color:var(--text-muted); margin-top:2px;">
             Unifies Grill Lab into standard /grill-me default.
@@ -779,17 +812,17 @@
       </div>
     </div>
 
-    <!-- Phase 2: Canvas Layout & Ergonomics -->
+    <!-- Phase 3: Canvas Layout & Ergonomics -->
     <div style="margin-bottom:16px;">
       <div style="font-size:10px; font-family:var(--font-mono); color:var(--accent-blue); font-weight:700; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.05em; border-bottom:1px solid rgba(88,166,255,0.3); padding-bottom:4px;">
-        Phase 2: Canvas Layout &amp; Ergonomics (The Vessel)
+        Phase 3: Canvas Layout &amp; Ergonomics (The Vessel)
       </div>
 
-      <!-- Flight 5: 6.5 Nkai Ergonomics -->
+      <!-- Flight 7: 6.5 Nkai Ergonomics -->
       <div class="flight-card" id="flight-item-t5" style="display:flex; justify-content:space-between; align-items:flex-start; padding:8px 10px; border-radius:6px; background:rgba(255,255,255,0.02); border:1px solid rgba(48,54,61,0.5); margin-bottom:6px;">
         <div style="flex:1;">
           <div style="font-size:11px; font-weight:600; color:var(--text-main);">
-            <span style="color:var(--text-muted); font-weight:700;">F5.</span> N'kai Ergonomics: Asymmetric Split (was 6.5)
+            <span style="color:var(--text-muted); font-weight:700;">F7.</span> N'kai Ergonomics: Asymmetric Split (was 6.5)
           </div>
           <div style="font-size:10px; color:var(--text-muted); margin-top:2px;">
             Strict separation: terse chat steering vs rich sidecar canvas.
@@ -798,11 +831,11 @@
         <button class="interactive-btn" style="font-size:10px; padding:3px 7px;" onclick="loadItineraryTopic('t5')">Load</button>
       </div>
 
-      <!-- Flight 6: 6.9 Header Layout -->
+      <!-- Flight 8: 6.9 Header Layout -->
       <div class="flight-card" id="flight-item-t9" style="display:flex; justify-content:space-between; align-items:flex-start; padding:8px 10px; border-radius:6px; background:rgba(255,255,255,0.02); border:1px solid rgba(48,54,61,0.5); margin-bottom:6px;">
         <div style="flex:1;">
           <div style="font-size:11px; font-weight:600; color:var(--text-main);">
-            <span style="color:var(--text-muted); font-weight:700;">F6.</span> Header Layout &amp; Utility Cluster (was 6.9)
+            <span style="color:var(--text-muted); font-weight:700;">F8.</span> Header Layout &amp; Utility Cluster (was 6.9)
           </div>
           <div style="font-size:10px; color:var(--text-muted); margin-top:2px;">
             Two-tier header vs sidebar drawer for utility icons.
@@ -811,11 +844,11 @@
         <button class="interactive-btn" style="font-size:10px; padding:3px 7px;" onclick="loadItineraryTopic('t9')">Load</button>
       </div>
 
-      <!-- Flight 7: 6.10 Tab Density -->
+      <!-- Flight 9: 6.10 Tab Density -->
       <div class="flight-card" id="flight-item-t10" style="display:flex; justify-content:space-between; align-items:flex-start; padding:8px 10px; border-radius:6px; background:rgba(255,255,255,0.02); border:1px solid rgba(48,54,61,0.5); margin-bottom:6px;">
         <div style="flex:1;">
           <div style="font-size:11px; font-weight:600; color:var(--text-main);">
-            <span style="color:var(--text-muted); font-weight:700;">F7.</span> Tab Header Density (was 6.10)
+            <span style="color:var(--text-muted); font-weight:700;">F9.</span> Tab Header Density (was 6.10)
           </div>
           <div style="font-size:10px; color:var(--text-muted); margin-top:2px;">
             Compact numbers + emoji tooltips vs full text buttons.
@@ -825,17 +858,17 @@
       </div>
     </div>
 
-    <!-- Phase 3: The Board & Views -->
+    <!-- Phase 4: View Modes & Workflows -->
     <div style="margin-bottom:16px;">
       <div style="font-size:10px; font-family:var(--font-mono); color:var(--accent-green); font-weight:700; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.05em; border-bottom:1px solid rgba(63,185,80,0.3); padding-bottom:4px;">
-        Phase 3: The Board &amp; Views (The Content Layer)
+        Phase 4: View Modes &amp; Workflows (The Content &amp; Polish)
       </div>
 
-      <!-- Flight 8: 6.3 Topic Org (APPROVED) -->
+      <!-- Flight 10: 6.3 Topic Org (APPROVED) -->
       <div class="flight-card" id="flight-item-t3" style="display:flex; justify-content:space-between; align-items:flex-start; padding:8px 10px; border-radius:6px; background:rgba(63,185,80,0.05); border:1px solid rgba(63,185,80,0.3); margin-bottom:6px; opacity:0.8;">
         <div style="flex:1;">
           <div style="font-size:11px; font-weight:600; color:var(--text-main);">
-            <span style="color:var(--accent-green); font-weight:700;">F8.</span> Topic Org: Monolithic Board (was 6.3)
+            <span style="color:var(--accent-green); font-weight:700;">F10.</span> Topic Org: Monolithic Board (was 6.3)
           </div>
           <div style="font-size:10px; color:var(--accent-green); margin-top:2px;">
             ✓ APPROVED: Deep-Linked Monolithic Board
@@ -844,11 +877,11 @@
         <button class="interactive-btn green" style="font-size:10px; padding:3px 7px;" onclick="loadItineraryTopic('t3')">View</button>
       </div>
 
-      <!-- Flight 9: 6.1 Post-Mortem Arch (APPROVED) -->
+      <!-- Flight 11: 6.1 Post-Mortem Arch (APPROVED) -->
       <div class="flight-card" id="flight-item-t1" style="display:flex; justify-content:space-between; align-items:flex-start; padding:8px 10px; border-radius:6px; background:rgba(63,185,80,0.05); border:1px solid rgba(63,185,80,0.3); margin-bottom:6px; opacity:0.8;">
         <div style="flex:1;">
           <div style="font-size:11px; font-weight:600; color:var(--text-main);">
-            <span style="color:var(--accent-green); font-weight:700;">F9.</span> Post-Mortem Architecture (was 6.1)
+            <span style="color:var(--accent-green); font-weight:700;">F11.</span> Post-Mortem Architecture (was 6.1)
           </div>
           <div style="font-size:10px; color:var(--accent-green); margin-top:2px;">
             ✓ APPROVED: Continuous Live Triage
@@ -857,11 +890,11 @@
         <button class="interactive-btn green" style="font-size:10px; padding:3px 7px;" onclick="loadItineraryTopic('t1')">View</button>
       </div>
 
-      <!-- Flight 10: 6.8 Ongoing Autopsy -->
+      <!-- Flight 12: 6.8 Ongoing Autopsy -->
       <div class="flight-card" id="flight-item-t8" style="display:flex; justify-content:space-between; align-items:flex-start; padding:8px 10px; border-radius:6px; background:rgba(255,255,255,0.02); border:1px solid rgba(48,54,61,0.5); margin-bottom:6px;">
         <div style="flex:1;">
           <div style="font-size:11px; font-weight:600; color:var(--text-main);">
-            <span style="color:var(--text-muted); font-weight:700;">F10.</span> "Ongoing Autopsy" Mode (was 6.8)
+            <span style="color:var(--text-muted); font-weight:700;">F12.</span> "Ongoing Autopsy" Mode (was 6.8)
           </div>
           <div style="font-size:10px; color:var(--text-muted); margin-top:2px;">
             Continuous filterable scorecard feed in Slot 2.
@@ -870,11 +903,11 @@
         <button class="interactive-btn" style="font-size:10px; padding:3px 7px;" onclick="loadItineraryTopic('t8')">Load</button>
       </div>
 
-      <!-- Flight 11: 6.11 Check Mail -->
+      <!-- Flight 13: 6.11 Check Mail -->
       <div class="flight-card" id="flight-item-t11" style="display:flex; justify-content:space-between; align-items:flex-start; padding:8px 10px; border-radius:6px; background:rgba(255,255,255,0.02); border:1px solid rgba(48,54,61,0.5); margin-bottom:6px;">
         <div style="flex:1;">
           <div style="font-size:11px; font-weight:600; color:var(--text-main);">
-            <span style="color:var(--text-muted); font-weight:700;">F11.</span> "Check Mail" Vault Inbox Flow (was 6.11)
+            <span style="color:var(--text-muted); font-weight:700;">F13.</span> "Check Mail" Vault Inbox Flow (was 6.11)
           </div>
           <div style="font-size:10px; color:var(--text-muted); margin-top:2px;">
             Default to N'kai board with 1 card per inbox note.
@@ -882,19 +915,12 @@
         </div>
         <button class="interactive-btn" style="font-size:10px; padding:3px 7px;" onclick="loadItineraryTopic('t11')">Load</button>
       </div>
-    </div>
 
-    <!-- Phase 4: Context & Polish -->
-    <div style="margin-bottom:16px;">
-      <div style="font-size:10px; font-family:var(--font-mono); color:var(--accent-amber); font-weight:700; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.05em; border-bottom:1px solid rgba(255,171,112,0.3); padding-bottom:4px;">
-        Phase 4: Agentic Context &amp; QoL Tools (The Polish)
-      </div>
-
-      <!-- Flight 12: 6.2 Pros/Cons (APPROVED) -->
+      <!-- Flight 14: 6.2 Pros/Cons (APPROVED) -->
       <div class="flight-card" id="flight-item-t2" style="display:flex; justify-content:space-between; align-items:flex-start; padding:8px 10px; border-radius:6px; background:rgba(63,185,80,0.05); border:1px solid rgba(63,185,80,0.3); margin-bottom:6px; opacity:0.8;">
         <div style="flex:1;">
           <div style="font-size:11px; font-weight:600; color:var(--text-main);">
-            <span style="color:var(--accent-green); font-weight:700;">F12.</span> Pros &amp; Cons Strategy (was 6.2)
+            <span style="color:var(--accent-green); font-weight:700;">F14.</span> Pros &amp; Cons Strategy (was 6.2)
           </div>
           <div style="font-size:10px; color:var(--accent-green); margin-top:2px;">
             ✓ APPROVED: On-Demand SOTA + Action Buttons
@@ -903,11 +929,11 @@
         <button class="interactive-btn green" style="font-size:10px; padding:3px 7px;" onclick="loadItineraryTopic('t2')">View</button>
       </div>
 
-      <!-- Flight 13: 6.7 Context Clues -->
+      <!-- Flight 15: 6.7 Context Clues -->
       <div class="flight-card" id="flight-item-t7" style="display:flex; justify-content:space-between; align-items:flex-start; padding:8px 10px; border-radius:6px; background:rgba(255,255,255,0.02); border:1px solid rgba(48,54,61,0.5); margin-bottom:6px;">
         <div style="flex:1;">
           <div style="font-size:11px; font-weight:600; color:var(--text-main);">
-            <span style="color:var(--text-muted); font-weight:700;">F13.</span> Context Clues Architecture (was 6.7)
+            <span style="color:var(--text-muted); font-weight:700;">F15.</span> Context Clues Architecture (was 6.7)
           </div>
           <div style="font-size:10px; color:var(--text-muted); margin-top:2px;">
             Flat Markdown clues vs SQLite vector memory.
@@ -916,11 +942,11 @@
         <button class="interactive-btn" style="font-size:10px; padding:3px 7px;" onclick="loadItineraryTopic('t7')">Load</button>
       </div>
 
-      <!-- Flight 14: 6.6 AGY Shortcuts -->
+      <!-- Flight 16: 6.6 AGY Shortcuts -->
       <div class="flight-card" id="flight-item-t6" style="display:flex; justify-content:space-between; align-items:flex-start; padding:8px 10px; border-radius:6px; background:rgba(255,255,255,0.02); border:1px solid rgba(48,54,61,0.5); margin-bottom:6px;">
         <div style="flex:1;">
           <div style="font-size:11px; font-weight:600; color:var(--text-main);">
-            <span style="color:var(--text-muted); font-weight:700;">F14.</span> AGY Shortcuts &amp; Slash Commands (was 6.6)
+            <span style="color:var(--text-muted); font-weight:700;">F16.</span> AGY Shortcuts &amp; Slash Commands (was 6.6)
           </div>
           <div style="font-size:10px; color:var(--text-muted); margin-top:2px;">
             Power shortcuts and IDE palette integration.
@@ -931,7 +957,7 @@
     </div>
   </div>
 
-  <!-- Layout Container -->
+<!-- Layout Container -->
   <div class="layout-container">
     <aside class="sidebar">
       <div class="sidebar-section-title">Research Synthesis</div>
@@ -942,30 +968,32 @@
       <a class="sidebar-item" href="#sec-contrarian">4.0 Devil's Advocate &amp; 80/20</a>
       <a class="sidebar-item" href="#sec-upgrade">5.0 Upgrade Path &amp; Migration</a>
 
-      <div class="sidebar-section-title">Active Focus</div>
-      <a class="sidebar-item active" id="side-item-workshop" href="#tab-workshop">🛠️ Active Workshop (F1: 6.13)</a>
+            <div class="sidebar-section-title">Active Focus</div>
+      <a class="sidebar-item active" id="side-item-workshop" href="#tab-workshop">🛠️ Active Workshop (<span id="side-active-topic-num">F1: 6.15</span>)</a>
 
       <div class="sidebar-section-title">Audit Navigation</div>
       <button id="toggleItineraryBtn" class="interactive-btn purple" style="width: 100%; margin: 4px 0 10px 0; font-weight: 600; display: flex; align-items: center; justify-content: space-between; padding: 7px 10px; font-size: 11px;" onclick="toggleItineraryDrawer()">
         <span>📅 Audit Itinerary</span>
-        <span class="badge badge-amber" id="itinerary-pending-badge" style="font-size: 10px;">11 PENDING</span>
+        <span class="badge badge-amber" id="itinerary-pending-badge" style="font-size: 10px;">13 PENDING</span>
       </button>
 
       <div class="sidebar-section-title">Sequenced Flight Plan</div>
-      <a class="sidebar-item" href="#sec-audit-t13"><span>F1. 6.13 Host Portability</span> <span id="side-v-t13" class="badge badge-blue">ACTIVE</span></a>
-      <a class="sidebar-item" href="#sec-audit-t12"><span>F2. 6.12 All-in-One Bundle</span> <span id="side-v-t12" class="badge">PENDING</span></a>
-      <a class="sidebar-item" href="#sec-audit-t4"><span>F3. 6.4 Agent Skills</span> <span id="side-v-t4" class="badge">PENDING</span></a>
-      <a class="sidebar-item" href="#sec-audit-t14"><span>F4. 6.14 Nkai-First Default</span> <span id="side-v-t14" class="badge">PENDING</span></a>
-      <a class="sidebar-item" href="#sec-audit-t5"><span>F5. 6.5 N'kai Ergonomics</span> <span id="side-v-t5" class="badge">PENDING</span></a>
-      <a class="sidebar-item" href="#sec-audit-t9"><span>F6. 6.9 Header Layout</span> <span id="side-v-t9" class="badge">PENDING</span></a>
-      <a class="sidebar-item" href="#sec-audit-t10"><span>F7. 6.10 Tab Density</span> <span id="side-v-t10" class="badge">PENDING</span></a>
-      <a class="sidebar-item" href="#sec-audit-t3"><span>F8. 6.3 Topic Org</span> <span id="side-v-t3" class="badge badge-green">✓</span></a>
-      <a class="sidebar-item" href="#sec-audit-t1"><span>F9. 6.1 Post-Mortem Arch</span> <span id="side-v-t1" class="badge badge-green">✓</span></a>
-      <a class="sidebar-item" href="#sec-audit-t8"><span>F10. 6.8 Ongoing Autopsy</span> <span id="side-v-t8" class="badge">PENDING</span></a>
-      <a class="sidebar-item" href="#sec-audit-t11"><span>F11. 6.11 "Check Mail" Flow</span> <span id="side-v-t11" class="badge">PENDING</span></a>
-      <a class="sidebar-item" href="#sec-audit-t2"><span>F12. 6.2 Pros/Cons Strategy</span> <span id="side-v-t2" class="badge badge-green">✓</span></a>
-      <a class="sidebar-item" href="#sec-audit-t7"><span>F13. 6.7 Context Clues</span> <span id="side-v-t7" class="badge">PENDING</span></a>
-      <a class="sidebar-item" href="#sec-audit-t6"><span>F14. 6.6 AGY Shortcuts</span> <span id="side-v-t6" class="badge">PENDING</span></a>
+      <a class="sidebar-item" href="#sec-audit-t15"><span>F1. 6.15 Industry Precedents</span> <span id="side-v-t15" class="badge badge-blue">ACTIVE</span></a>
+      <a class="sidebar-item" href="#sec-audit-t13"><span>F2. 6.13 Host Portability</span> <span id="side-v-t13" class="badge">PENDING</span></a>
+      <a class="sidebar-item" href="#sec-audit-t12"><span>F3. 6.12 All-in-One Bundle</span> <span id="side-v-t12" class="badge">PENDING</span></a>
+      <a class="sidebar-item" href="#sec-audit-t16"><span>F4. 6.16 Backend Persistence</span> <span id="side-v-t16" class="badge">PENDING</span></a>
+      <a class="sidebar-item" href="#sec-audit-t4"><span>F5. 6.4 Agent Skills</span> <span id="side-v-t4" class="badge">PENDING</span></a>
+      <a class="sidebar-item" href="#sec-audit-t14"><span>F6. 6.14 Nkai-First Default</span> <span id="side-v-t14" class="badge">PENDING</span></a>
+      <a class="sidebar-item" href="#sec-audit-t5"><span>F7. 6.5 N'kai Ergonomics</span> <span id="side-v-t5" class="badge">PENDING</span></a>
+      <a class="sidebar-item" href="#sec-audit-t9"><span>F8. 6.9 Header Layout</span> <span id="side-v-t9" class="badge">PENDING</span></a>
+      <a class="sidebar-item" href="#sec-audit-t10"><span>F9. 6.10 Tab Density</span> <span id="side-v-t10" class="badge">PENDING</span></a>
+      <a class="sidebar-item" href="#sec-audit-t3"><span>F10. 6.3 Topic Org</span> <span id="side-v-t3" class="badge badge-green">✓</span></a>
+      <a class="sidebar-item" href="#sec-audit-t1"><span>F11. 6.1 Post-Mortem Arch</span> <span id="side-v-t1" class="badge badge-green">✓</span></a>
+      <a class="sidebar-item" href="#sec-audit-t8"><span>F12. 6.8 Ongoing Autopsy</span> <span id="side-v-t8" class="badge">PENDING</span></a>
+      <a class="sidebar-item" href="#sec-audit-t11"><span>F13. 6.11 "Check Mail" Flow</span> <span id="side-v-t11" class="badge">PENDING</span></a>
+      <a class="sidebar-item" href="#sec-audit-t2"><span>F14. 6.2 Pros/Cons Strategy</span> <span id="side-v-t2" class="badge badge-green">✓</span></a>
+      <a class="sidebar-item" href="#sec-audit-t7"><span>F15. 6.7 Context Clues</span> <span id="side-v-t7" class="badge">PENDING</span></a>
+      <a class="sidebar-item" href="#sec-audit-t6"><span>F16. 6.6 AGY Shortcuts</span> <span id="side-v-t6" class="badge">PENDING</span></a>
 
       <div class="sidebar-section-title">Interactive Labs</div>
       <a class="sidebar-item" href="#sec-matrix-lab">📊 2x2 Decision Matrix</a>
@@ -976,13 +1004,13 @@
       <!-- Tab 0: Active Workshop (Hero Stage) -->
       <div id="tab-workshop" class="tab-pane">
         <div class="hero-card" style="border-left: 4px solid var(--accent-amber); background: linear-gradient(180deg, rgba(255, 171, 112, 0.08) 0%, rgba(13, 17, 23, 0.98) 100%);">
-          <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:10px;">
+                    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:10px;">
             <div>
               <div class="hero-badge" style="color:var(--accent-amber); border-color:rgba(255,171,112,0.4); background:rgba(255,171,112,0.12);">
-                🛠️ Active Workshop: In-Flight Triage Stage • Flight 1 (Foundation)
+                🛠️ Active Workshop: In-Flight Triage Stage • Flight 1 (Root Prerequisite)
               </div>
               <h1 class="hero-title" id="ws-hero-title" style="margin-top:4px;">
-                Topic 6.13: Universal AI Harness Portability (Claude Code, Codex, Cursor, Antigravity)
+                Topic 6.15: Industry Workflow Precedents &amp; Competitive Teardowns
               </h1>
               <p class="hero-desc" id="ws-hero-desc" style="max-width:760px; margin-bottom:8px;">
                 Isolating the active triage topic for immediate evaluation, trade-off analysis, and instant verdict submission.
@@ -990,7 +1018,7 @@
             </div>
             <div style="text-align:right;">
               <span id="workshop-scorecard" class="badge badge-amber" style="font-size:11px; padding:4px 8px;">
-                [ 3 Approved | 0 Tabled | 0 Killed | 11 Pending ]
+                [ 3 Approved | 0 Tabled | 0 Killed | 13 Pending ]
               </span>
             </div>
           </div>
@@ -998,62 +1026,64 @@
           <!-- Workshop Topic Quick-Switch Pills (Sequenced Itinerary Order) -->
           <div style="display:flex; gap:6px; margin-top:12px; flex-wrap:wrap; align-items:center;">
             <span style="font-size:10px; font-family:var(--font-mono); color:var(--text-muted); text-transform:uppercase; margin-right:4px;">Flight Plan:</span>
-            <button class="header-btn amber active" id="btn-ws-t13" onclick="setWorkshopTopic('t13')" style="font-size:10px; padding:3px 7px; border-color:var(--accent-amber); background:rgba(255,171,112,0.25);">F1. Portability ★ ACTIVE</button>
-            <button class="header-btn" id="btn-ws-t12" onclick="setWorkshopTopic('t12')" style="font-size:10px; padding:3px 7px;">F2. Bundle</button>
-            <button class="header-btn" id="btn-ws-t4" onclick="setWorkshopTopic('t4')" style="font-size:10px; padding:3px 7px;">F3. Skills</button>
-            <button class="header-btn" id="btn-ws-t14" onclick="setWorkshopTopic('t14')" style="font-size:10px; padding:3px 7px;">F4. Nkai-First</button>
-            <button class="header-btn" id="btn-ws-t5" onclick="setWorkshopTopic('t5')" style="font-size:10px; padding:3px 7px;">F5. Ergonomics</button>
-            <button class="header-btn" id="btn-ws-t9" onclick="setWorkshopTopic('t9')" style="font-size:10px; padding:3px 7px;">F6. Header</button>
-            <button class="header-btn" id="btn-ws-t10" onclick="setWorkshopTopic('t10')" style="font-size:10px; padding:3px 7px;">F7. Tab Density</button>
-            <button class="header-btn green" id="btn-ws-t3" onclick="setWorkshopTopic('t3')" style="font-size:10px; padding:3px 7px;">F8. Topic Org ✓</button>
-            <button class="header-btn green" id="btn-ws-t1" onclick="setWorkshopTopic('t1')" style="font-size:10px; padding:3px 7px;">F9. Post-Mortem ✓</button>
-            <button class="header-btn" id="btn-ws-t8" onclick="setWorkshopTopic('t8')" style="font-size:10px; padding:3px 7px;">F10. Autopsy</button>
-            <button class="header-btn" id="btn-ws-t11" onclick="setWorkshopTopic('t11')" style="font-size:10px; padding:3px 7px;">F11. Check Mail</button>
-            <button class="header-btn green" id="btn-ws-t2" onclick="setWorkshopTopic('t2')" style="font-size:10px; padding:3px 7px;">F12. Pros/Cons ✓</button>
-            <button class="header-btn" id="btn-ws-t7" onclick="setWorkshopTopic('t7')" style="font-size:10px; padding:3px 7px;">F13. Context Clues</button>
-            <button class="header-btn" id="btn-ws-t6" onclick="setWorkshopTopic('t6')" style="font-size:10px; padding:3px 7px;">F14. AGY Shortcuts</button>
+            <button class="header-btn amber active" id="btn-ws-t15" onclick="setWorkshopTopic('t15')" style="font-size:10px; padding:3px 7px; border-color:var(--accent-amber); background:rgba(255,171,112,0.25);">F1. Precedents ★ ACTIVE</button>
+            <button class="header-btn" id="btn-ws-t13" onclick="setWorkshopTopic('t13')" style="font-size:10px; padding:3px 7px;">F2. Portability</button>
+            <button class="header-btn" id="btn-ws-t12" onclick="setWorkshopTopic('t12')" style="font-size:10px; padding:3px 7px;">F3. Bundle</button>
+            <button class="header-btn" id="btn-ws-t16" onclick="setWorkshopTopic('t16')" style="font-size:10px; padding:3px 7px;">F4. Backend</button>
+            <button class="header-btn" id="btn-ws-t4" onclick="setWorkshopTopic('t4')" style="font-size:10px; padding:3px 7px;">F5. Skills</button>
+            <button class="header-btn" id="btn-ws-t14" onclick="setWorkshopTopic('t14')" style="font-size:10px; padding:3px 7px;">F6. Nkai-First</button>
+            <button class="header-btn" id="btn-ws-t5" onclick="setWorkshopTopic('t5')" style="font-size:10px; padding:3px 7px;">F7. Ergonomics</button>
+            <button class="header-btn" id="btn-ws-t9" onclick="setWorkshopTopic('t9')" style="font-size:10px; padding:3px 7px;">F8. Header</button>
+            <button class="header-btn" id="btn-ws-t10" onclick="setWorkshopTopic('t10')" style="font-size:10px; padding:3px 7px;">F9. Tab Density</button>
+            <button class="header-btn green" id="btn-ws-t3" onclick="setWorkshopTopic('t3')" style="font-size:10px; padding:3px 7px;">F10. Topic Org ✓</button>
+            <button class="header-btn green" id="btn-ws-t1" onclick="setWorkshopTopic('t1')" style="font-size:10px; padding:3px 7px;">F11. Post-Mortem ✓</button>
+            <button class="header-btn" id="btn-ws-t8" onclick="setWorkshopTopic('t8')" style="font-size:10px; padding:3px 7px;">F12. Autopsy</button>
+            <button class="header-btn" id="btn-ws-t11" onclick="setWorkshopTopic('t11')" style="font-size:10px; padding:3px 7px;">F13. Check Mail</button>
+            <button class="header-btn green" id="btn-ws-t2" onclick="setWorkshopTopic('t2')" style="font-size:10px; padding:3px 7px;">F14. Pros/Cons ✓</button>
+            <button class="header-btn" id="btn-ws-t7" onclick="setWorkshopTopic('t7')" style="font-size:10px; padding:3px 7px;">F15. Context Clues</button>
+            <button class="header-btn" id="btn-ws-t6" onclick="setWorkshopTopic('t6')" style="font-size:10px; padding:3px 7px;">F16. AGY Shortcuts</button>
           </div>
         </div>
 
-        <!-- Active Topic Workshop Hero Card Mount -->
+                <!-- Active Topic Workshop Hero Card Mount -->
         <div id="workshop-card-mount">
-          <!-- Rendered dynamically by setWorkshopTopic, pre-populated with t13 -->
+          <!-- Rendered dynamically by setWorkshopTopic, pre-populated with t15 -->
           <div class="section-card" id="workshop-card">
             <div class="section-title">
-              <span id="ws-card-title">6.13 Universal AI Harness Portability (Claude Code, Codex, Cursor, Antigravity)</span>
-              <span id="ws-card-badge" class="badge badge-blue">Cross-Platform Runtime</span>
+              <span id="ws-card-title">6.15 Industry Workflow Precedents &amp; Competitive Teardowns</span>
+              <span id="ws-card-badge" class="badge badge-purple">Industry Benchmarking</span>
             </div>
             <p id="ws-card-desc" style="font-size: 12px; line-height: 1.6; color: var(--text-main);">
-              <strong>The Question:</strong> How do we ensure N'kai's asymmetric sidecar pattern, decision composer, and skills operate seamlessly across popular AI coding harnesses beyond Antigravity (such as Claude Code CLI, OpenAI Codex / ChatGPT developer harnesses, Cursor, and Windsurf)?
+              <strong>The Question:</strong> Are there existing major developer or AI tools that use N'kai's asymmetric sidecar workflow (chat in one panel, live rich interactive visual canvas in the other), and what architectural patterns, micro-interactions, or ergonomics can we adopt from them?
             </p>
 
             <div class="grid-3" id="ws-card-options" style="margin-top: 12px;">
               <div class="pill-card">
-                <div class="pill-title">Option A: Antigravity-Only Lock-in</div>
-                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Target strictly Antigravity's proprietary Sidecar SDK. Breaks or requires major re-writes if developing in Claude Code or Cursor.</p>
-              </div>
-              <div class="pill-card" style="border: 1px solid var(--accent-green);">
-                <div class="pill-title" style="color:var(--accent-green);">Option B: Standalone File + Localhost Adapter (Recommended)</div>
-                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Keep zero-dependency standalone HTML (<code>file:///</code>) for IDE webviews (Cursor, VS Code, AGY), and provide a tiny 30-line localhost server (<code>npx nkai serve</code>) that auto-opens a browser tab for terminal CLIs (Claude Code, Codex).</p>
+                <div class="pill-title">Option A: The Static Artifact Model (Claude Artifacts)</div>
+                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Isolated iframe rendered purely from agent markdown file output. Clean side-by-side view, but primarily a read-only preview with minimal bidirectional interaction or live workspace controls.</p>
               </div>
               <div class="pill-card">
-                <div class="pill-title">Option C: Markdown-Only Fallback</div>
-                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">If not in Antigravity, completely disable sidecars and dump massive text tables directly into chat. Defeats the asymmetric split.</p>
+                <div class="pill-title">Option B: The Local WebSocket Server Model (Playwright/Vitest UI)</div>
+                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Spins up a local background HTTP/WebSocket server streaming real-time JSON-RPC to a heavy SPA. Highly interactive, but introduces brittle daemon lifecycle management, port conflicts, and battery/CPU drain.</p>
+              </div>
+              <div class="pill-card" style="border: 1px solid var(--accent-green);">
+                <div class="pill-title" style="color:var(--accent-green);">Option C: The Hybrid File-URI Model (Recommended)</div>
+                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Leverage IDE webview interception via <code>file:///</code> URI to artifact directories. Zero background server daemons. Uses Web Workers, <code>localStorage</code>, and 1-click prompt-to-clipboard action chips for instant pairing with chat at zero token burn.</p>
               </div>
             </div>
 
             <!-- 3-Lens Pros & Cons -->
             <div id="ws-card-evaluation" style="margin-top: 14px; background: rgba(0,0,0,0.3); border: 1px solid rgba(48,54,61,0.6); border-radius: 6px; padding: 12px;">
-              <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option B: Standalone File + Localhost Adapter)</div>
+              <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option C: Hybrid File-URI Model)</div>
               <ul style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin: 0; padding-left: 18px;">
-                <li><strong>🌍 Real-World Ergonomics:</strong> Works seamlessly regardless of environment. In GUI IDEs it renders in the side panel; in terminal CLIs it opens in Chrome/Edge instantly.</li>
-                <li><strong>🏛️ Wider SOTA:</strong> Matches how modern developer tools operate across CLIs and IDEs (Playwright UI, Vitest UI, Storybook, Astro).</li>
-                <li><strong>🏆 Best Practices:</strong> Zero vendor lock-in. 100% standard web technologies (HTML5/CSS/ES Modules) with zero heavyweight runtime dependencies.</li>
+                <li><strong>🌍 Real-World Ergonomics:</strong> Zero setup. Click the link and the canvas renders instantly in the IDE side panel with persistent zoom, theme, and tab state. No server to crash or leave running.</li>
+                <li><strong>🏛️ Wider SOTA:</strong> Combines the lightweight elegance of Claude Artifacts with the interactive power of Storybook and Vitest UI without their heavy daemon baggage.</li>
+                <li><strong>🏆 Best Practices:</strong> Zero external dependencies. Indestructible offline portability with instant 100% testable DOM.</li>
               </ul>
               <div style="margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap;">
-                <button class="interactive-btn blue" onclick="copyPromptToChat('pros and cons for Universal AI Harness Portability across the 4 Lenses', this)">[ ⚖️ Request Pros &amp; Cons ]</button>
-                <button class="interactive-btn purple" onclick="copyPromptToChat('research online cross-harness compatibility for Claude Code Cursor Windsurf sidecar tools', this)">[ 🔬 Research Online ]</button>
-                <button class="interactive-btn amber" onclick="navigateToSection('sec-audit-t13')">[ 🔍 See in Full Context ]</button>
+                <button class="interactive-btn blue" onclick="copyPromptToChat('pros and cons for SOTA Sidecar Architectures (Claude vs Playwright vs Nkai) across the 4 Lenses', this)">[ ⚖️ Request Pros &amp; Cons ]</button>
+                <button class="interactive-btn purple" onclick="copyPromptToChat('research online developer ergonomics of webview sidecars and canvas interfaces in AI IDEs', this)">[ 🔬 Research Online ]</button>
+                <button class="interactive-btn amber" onclick="navigateToSection('sec-audit-t15')">[ 🔍 See in Full Context ]</button>
               </div>
             </div>
 
@@ -1063,16 +1093,16 @@
                 Verdict: <strong id="workshop-v-badge" class="badge">PENDING</strong>
               </div>
               <div style="display:flex; gap:6px; flex-wrap:wrap;">
-                <button class="interactive-btn" id="ws-btn-approve" style="color:var(--accent-green); border-color:var(--accent-green);" onclick="setAuditVerdict(window.currentWorkshopTopic || 't13', 'APPROVED', this)">[ ✅ APPROVE Option B ]</button>
-                <button class="interactive-btn amber" id="ws-btn-table" onclick="setAuditVerdict(window.currentWorkshopTopic || 't13', 'TABLED', this)">[ ⏳ TABLE ]</button>
-                <button class="interactive-btn" id="ws-btn-kill" style="color:var(--accent-red); border-color:var(--accent-red);" onclick="setAuditVerdict(window.currentWorkshopTopic || 't13', 'KILLED', this)">[ 💀 KEEP Option A ]</button>
+                <button class="interactive-btn" id="ws-btn-approve" style="color:var(--accent-green); border-color:var(--accent-green);" onclick="setAuditVerdict(window.currentWorkshopTopic || 't15', 'APPROVED', this)">[ ✅ APPROVE Option C ]</button>
+                <button class="interactive-btn amber" id="ws-btn-table" onclick="setAuditVerdict(window.currentWorkshopTopic || 't15', 'TABLED', this)">[ ⏳ TABLE ]</button>
+                <button class="interactive-btn" id="ws-btn-kill" style="color:var(--accent-red); border-color:var(--accent-red);" onclick="setAuditVerdict(window.currentWorkshopTopic || 't15', 'KILLED', this)">[ 💀 KEEP Option A ]</button>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Tab 1: Dynamic Roadmaps & Loaders -->
+<!-- Tab 1: Dynamic Roadmaps & Loaders -->
       <div id="tab-loaders" class="tab-pane" style="display: none;">
         <div class="hero-card" id="sec-overview">
           <div class="hero-badge">Deep Research Synthesis Complete</div>
@@ -2299,6 +2329,106 @@ class SidecarMigrator:
           </div>
         </div>
 
+        <!-- Topic 6.15: Industry Workflow Precedents & Competitive Teardowns -->
+        <div class="section-card" id="sec-audit-t15">
+          <div class="section-title">
+            <span>6.15 Industry Workflow Precedents &amp; Competitive Teardowns</span>
+            <span class="badge badge-purple">Industry Benchmarking</span>
+          </div>
+          <p style="font-size: 12px; line-height: 1.6; color: var(--text-main);">
+            <strong>The Question:</strong> Are there existing major developer or AI tools that use N'kai's asymmetric sidecar workflow (chat in one panel, live rich interactive visual canvas in the other), and what architectural patterns, micro-interactions, or ergonomics can we adopt from them?
+          </p>
+
+          <div class="grid-3" style="margin-top: 12px;">
+            <div class="pill-card">
+              <div class="pill-title">Option A: The Static Artifact Model (Claude Artifacts)</div>
+              <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Isolated iframe rendered purely from agent markdown file output. Clean side-by-side view, but primarily a read-only preview with minimal bidirectional interaction or live workspace controls.</p>
+            </div>
+            <div class="pill-card">
+              <div class="pill-title">Option B: The Local WebSocket Server Model (Playwright/Vitest UI)</div>
+              <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Spins up a local background HTTP/WebSocket server streaming real-time JSON-RPC to a heavy SPA. Highly interactive, but introduces brittle daemon lifecycle management, port conflicts, and battery/CPU drain.</p>
+            </div>
+            <div class="pill-card" style="border: 1px solid var(--accent-green);">
+              <div class="pill-title" style="color:var(--accent-green);">Option C: The Hybrid File-URI Model (Recommended)</div>
+              <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Leverage IDE webview interception via <code>file:///</code> URI to artifact directories. Zero background server daemons. Uses Web Workers, <code>localStorage</code>, and 1-click prompt-to-clipboard action chips for instant pairing with chat at zero token burn.</p>
+            </div>
+          </div>
+
+          <div style="margin-top: 14px; background: rgba(0,0,0,0.3); border: 1px solid rgba(48,54,61,0.6); border-radius: 6px; padding: 12px;">
+            <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option C: Hybrid File-URI Model)</div>
+            <ul style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin: 0; padding-left: 18px;">
+              <li><strong>🌍 Real-World Ergonomics:</strong> Zero setup. Click the link and the canvas renders instantly in the IDE side panel with persistent zoom, theme, and tab state. No server to crash or leave running.</li>
+              <li><strong>🏛️ Wider SOTA:</strong> Combines the lightweight elegance of Claude Artifacts with the interactive power of Storybook and Vitest UI without their heavy daemon baggage.</li>
+              <li><strong>🏆 Best Practices:</strong> Zero external dependencies. Indestructible offline portability with instant 100% testable DOM.</li>
+            </ul>
+            <div style="margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" onclick="copyPromptToChat('pros and cons for SOTA Sidecar Architectures (Claude vs Playwright vs Nkai) across the 4 Lenses', this)">[ ⚖️ Request Pros &amp; Cons ]</button>
+              <button class="interactive-btn purple" onclick="copyPromptToChat('research online developer ergonomics of webview sidecars and canvas interfaces in AI IDEs', this)">[ 🔬 Research Online ]</button>
+            </div>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:14px; padding-top:10px; border-top:1px solid rgba(48,54,61,0.5);">
+            <div style="font-family:var(--font-mono); font-size:11px; color:var(--text-muted);">
+              Verdict: <strong id="v-badge-t15" style="color:var(--text-muted);">PENDING</strong>
+            </div>
+            <div style="display:flex; gap:6px;">
+              <button class="interactive-btn" style="color:var(--accent-green); border-color:var(--accent-green);" onclick="setAuditVerdict('t15', 'APPROVED', this)">[ ✅ APPROVE Option C ]</button>
+              <button class="interactive-btn amber" onclick="setAuditVerdict('t15', 'TABLED', this)">[ ⏳ TABLE ]</button>
+              <button class="interactive-btn" style="color:var(--accent-red); border-color:var(--accent-red);" onclick="setAuditVerdict('t15', 'KILLED', this)">[ 💀 REJECT ]</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Topic 6.16: Backend Persistence & State Management Architecture -->
+        <div class="section-card" id="sec-audit-t16">
+          <div class="section-title">
+            <span>6.16 Backend Persistence &amp; State Management Architecture</span>
+            <span class="badge badge-purple">Data Architecture</span>
+          </div>
+          <p style="font-size: 12px; line-height: 1.6; color: var(--text-main);">
+            <strong>The Question:</strong> How should N'kai handle all data behind the scenes (audit verdicts, triage packages, roadmap milestones, session history, notes) for maximum usability, maximum stability, lowest CPU overhead, and lowest LLM token burn?
+          </p>
+
+          <div class="grid-3" style="margin-top: 12px;">
+            <div class="pill-card">
+              <div class="pill-title">Option A: Pure JSON Monoliths</div>
+              <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Store all data in raw JSON files in <code>.agents/sidecar/</code>. Easy for machine parsing, but causes painful Git merge conflicts for human teams and large token burn when read by agents.</p>
+            </div>
+            <div class="pill-card">
+              <div class="pill-title">Option B: Embedded SQLite Database</div>
+              <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Store data in an embedded SQLite database (<code>.agents/nkai.db</code>). Instant relational queries and ACID safety, but opaque binary format completely breaks Git line-diffs and PR review history.</p>
+            </div>
+            <div class="pill-card" style="border: 1px solid var(--accent-green);">
+              <div class="pill-title" style="color:var(--accent-green);">Option C: Hybrid Markdown + LocalStorage + JSON Catalog (Recommended)</div>
+              <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Markdown files with YAML frontmatter for human-readable, Git-friendly logs and notes. A lightweight <code>catalog.json</code> for agent lookups. Browser <code>localStorage</code> for transient UI state (zoom, tabs, drafts), keeping token burn near zero.</p>
+            </div>
+          </div>
+
+          <div style="margin-top: 14px; background: rgba(0,0,0,0.3); border: 1px solid rgba(48,54,61,0.6); border-radius: 6px; padding: 12px;">
+            <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option C: Hybrid Markdown + LocalStorage + JSON Catalog)</div>
+            <ul style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin: 0; padding-left: 18px;">
+              <li><strong>🌍 Real-World Ergonomics:</strong> Humans and Obsidian can edit notes and logs directly in plain Markdown. Git diffs are crystal clean.</li>
+              <li><strong>🏛️ Wider SOTA:</strong> Follows modern static-site generation (Astro content collections, Hugo, VitePress) and headless CMS architecture.</li>
+              <li><strong>🏆 Best Practices:</strong> Zero database overhead, zero CPU daemon, and slashes agent token burn by avoiding repetitive full-state re-reads.</li>
+            </ul>
+            <div style="margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" onclick="copyPromptToChat('pros and cons for Markdown Frontmatter vs SQLite vs JSON for AI state persistence across the 4 Lenses', this)">[ ⚖️ Request Pros &amp; Cons ]</button>
+              <button class="interactive-btn purple" onclick="copyPromptToChat('research online git-friendly local-first persistence patterns for AI agent tooling', this)">[ 🔬 Research Online ]</button>
+            </div>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:14px; padding-top:10px; border-top:1px solid rgba(48,54,61,0.5);">
+            <div style="font-family:var(--font-mono); font-size:11px; color:var(--text-muted);">
+              Verdict: <strong id="v-badge-t16" style="color:var(--text-muted);">PENDING</strong>
+            </div>
+            <div style="display:flex; gap:6px;">
+              <button class="interactive-btn" style="color:var(--accent-green); border-color:var(--accent-green);" onclick="setAuditVerdict('t16', 'APPROVED', this)">[ ✅ APPROVE Option C ]</button>
+              <button class="interactive-btn amber" onclick="setAuditVerdict('t16', 'TABLED', this)">[ ⏳ TABLE ]</button>
+              <button class="interactive-btn" style="color:var(--accent-red); border-color:var(--accent-red);" onclick="setAuditVerdict('t16', 'KILLED', this)">[ 💀 REJECT ]</button>
+            </div>
+          </div>
+        </div>
+
         <!-- Topic 6.14: N'kai-First Skill Default & --chat Flag -->
         <div class="section-card" id="sec-audit-t14">
           <div class="section-title">
@@ -2787,7 +2917,7 @@ function toggleDrawer(drawerId) {
     // ============================================================
     // Active Workshop & Sanity Audit Triage Engine
     // ============================================================
-    window.currentWorkshopTopic = 't13';
+    window.currentWorkshopTopic = 't15';
 
     const defaultAuditVerdicts = {
       t1: { title: '6.1 Post-Mortem Architecture', verdict: 'APPROVED' },
@@ -2803,7 +2933,69 @@ function toggleDrawer(drawerId) {
       t11: { title: '6.11 "Check the Mail" Workflow', verdict: 'PENDING' },
       t12: { title: '6.12 All-in-One Distribution Bundle', verdict: 'PENDING' },
       t13: { title: '6.13 Universal AI Harness Portability', verdict: 'PENDING' },
-      t14: { title: '6.14 Nkai-First Skill Default', verdict: 'PENDING' }
+      t15: {
+        title: '6.15 Industry Workflow Precedents & Competitive Teardowns',
+        badge: 'Industry Benchmarking',
+        desc: '<strong>The Question:</strong> Are there existing major developer or AI tools that use N\'kai\'s asymmetric sidecar workflow (chat in one panel, live rich interactive visual canvas in the other), and what architectural patterns, micro-interactions, or ergonomics can we adopt from them?',
+        optionsHtml: `
+          <div class="pill-card">
+            <div class="pill-title">Option A: The Static Artifact Model (Claude Artifacts)</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Isolated iframe rendered purely from agent markdown file output. Clean side-by-side view, but primarily a read-only preview with minimal bidirectional interaction or live workspace controls.</p>
+          </div>
+          <div class="pill-card">
+            <div class="pill-title">Option B: The Local WebSocket Server Model (Playwright/Vitest UI)</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Spins up a local background HTTP/WebSocket server streaming real-time JSON-RPC to a heavy SPA. Highly interactive, but introduces brittle daemon lifecycle management, port conflicts, and battery/CPU drain.</p>
+          </div>
+          <div class="pill-card" style="border: 1px solid var(--accent-green);">
+            <div class="pill-title" style="color:var(--accent-green);">Option C: The Hybrid File-URI Model (Recommended)</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Leverage IDE webview interception via <code>file:///</code> URI to artifact directories. Zero background server daemons. Uses Web Workers, <code>localStorage</code>, and 1-click prompt-to-clipboard action chips for instant pairing with chat at zero token burn.</p>
+          </div>`,
+        evalHtml: `
+          <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option C: Hybrid File-URI Model)</div>
+          <ul style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin: 0; padding-left: 18px;">
+            <li><strong>🌍 Real-World Ergonomics:</strong> Zero setup. Click the link and the canvas renders instantly in the IDE side panel with persistent zoom, theme, and tab state. No server to crash or leave running.</li>
+            <li><strong>🏛️ Wider SOTA:</strong> Combines the lightweight elegance of Claude Artifacts with the interactive power of Storybook and Vitest UI without their heavy daemon baggage.</li>
+            <li><strong>🏆 Best Practices:</strong> Zero external dependencies. Indestructible offline portability with instant 100% testable DOM.</li>
+          </ul>`,
+        recommendation: 'APPROVE Option C',
+        chips: [
+          { label: '⚖️ Request Pros & Cons', prompt: 'pros and cons for SOTA Sidecar Architectures (Claude vs Playwright vs Nkai) across the 4 Lenses' },
+          { label: '🔬 Research Online', prompt: 'research online developer ergonomics of webview sidecars and canvas interfaces in AI IDEs' }
+        ]
+      },
+      t16: {
+        title: '6.16 Backend Persistence & State Management Architecture',
+        badge: 'Data Architecture',
+        desc: '<strong>The Question:</strong> How should N\'kai handle all data behind the scenes (audit verdicts, triage packages, roadmap milestones, session history, notes) for maximum usability, maximum stability, lowest CPU overhead, and lowest LLM token burn?',
+        optionsHtml: `
+          <div class="pill-card">
+            <div class="pill-title">Option A: Pure JSON Monoliths</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Store all data in raw JSON files in <code>.agents/sidecar/</code>. Easy for machine parsing, but causes painful Git merge conflicts for human teams and large token burn when read by agents.</p>
+          </div>
+          <div class="pill-card">
+            <div class="pill-title">Option B: Embedded SQLite Database</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Store data in an embedded SQLite database (<code>.agents/nkai.db</code>). Instant relational queries and ACID safety, but opaque binary format completely breaks Git line-diffs and PR review history.</p>
+          </div>
+          <div class="pill-card" style="border: 1px solid var(--accent-green);">
+            <div class="pill-title" style="color:var(--accent-green);">Option C: Hybrid Markdown + LocalStorage + JSON Catalog (Recommended)</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Markdown files with YAML frontmatter for human-readable, Git-friendly logs and notes. A lightweight <code>catalog.json</code> for agent lookups. Browser <code>localStorage</code> for transient UI state (zoom, tabs, drafts), keeping token burn near zero.</p>
+          </div>`,
+        evalHtml: `
+          <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option C: Hybrid Markdown + LocalStorage + JSON Catalog)</div>
+          <ul style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin: 0; padding-left: 18px;">
+            <li><strong>🌍 Real-World Ergonomics:</strong> Humans and Obsidian can edit notes and logs directly in plain Markdown. Git diffs are crystal clean.</li>
+            <li><strong>🏛️ Wider SOTA:</strong> Follows modern static-site generation (Astro content collections, Hugo, VitePress) and headless CMS architecture.</li>
+            <li><strong>🏆 Best Practices:</strong> Zero database overhead, zero CPU daemon, and slashes agent token burn by avoiding repetitive full-state re-reads.</li>
+          </ul>`,
+        recommendation: 'APPROVE Option C',
+        chips: [
+          { label: '⚖️ Request Pros & Cons', prompt: 'pros and cons for Markdown Frontmatter vs SQLite vs JSON for AI state persistence across the 4 Lenses' },
+          { label: '🔬 Research Online', prompt: 'research online git-friendly local-first persistence patterns for AI agent tooling' }
+        ]
+      },
+      t14: { title: '6.14 Nkai-First Skill Default', verdict: 'PENDING' },
+      t15: { title: '6.15 Industry Workflow Precedents', verdict: 'PENDING' },
+      t16: { title: '6.16 Backend Persistence & State', verdict: 'PENDING' }
     };
 
     let auditVerdicts = { ...defaultAuditVerdicts };
@@ -3199,6 +3391,66 @@ function toggleDrawer(drawerId) {
           { label: '🔬 Research Online', prompt: 'research online cross-harness compatibility for Claude Code Cursor Windsurf sidecar tools' }
         ]
       },
+      t15: {
+        title: '6.15 Industry Workflow Precedents & Competitive Teardowns',
+        badge: 'Industry Benchmarking',
+        desc: '<strong>The Question:</strong> Are there existing major developer or AI tools that use N\'kai\'s asymmetric sidecar workflow (chat in one panel, live rich interactive visual canvas in the other), and what architectural patterns, micro-interactions, or ergonomics can we adopt from them?',
+        optionsHtml: `
+          <div class="pill-card">
+            <div class="pill-title">Option A: The Static Artifact Model (Claude Artifacts)</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Isolated iframe rendered purely from agent markdown file output. Clean side-by-side view, but primarily a read-only preview with minimal bidirectional interaction or live workspace controls.</p>
+          </div>
+          <div class="pill-card">
+            <div class="pill-title">Option B: The Local WebSocket Server Model (Playwright/Vitest UI)</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Spins up a local background HTTP/WebSocket server streaming real-time JSON-RPC to a heavy SPA. Highly interactive, but introduces brittle daemon lifecycle management, port conflicts, and battery/CPU drain.</p>
+          </div>
+          <div class="pill-card" style="border: 1px solid var(--accent-green);">
+            <div class="pill-title" style="color:var(--accent-green);">Option C: The Hybrid File-URI Model (Recommended)</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Leverage IDE webview interception via <code>file:///</code> URI to artifact directories. Zero background server daemons. Uses Web Workers, <code>localStorage</code>, and 1-click prompt-to-clipboard action chips for instant pairing with chat at zero token burn.</p>
+          </div>`,
+        evalHtml: `
+          <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option C: Hybrid File-URI Model)</div>
+          <ul style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin: 0; padding-left: 18px;">
+            <li><strong>🌍 Real-World Ergonomics:</strong> Zero setup. Click the link and the canvas renders instantly in the IDE side panel with persistent zoom, theme, and tab state. No server to crash or leave running.</li>
+            <li><strong>🏛️ Wider SOTA:</strong> Combines the lightweight elegance of Claude Artifacts with the interactive power of Storybook and Vitest UI without their heavy daemon baggage.</li>
+            <li><strong>🏆 Best Practices:</strong> Zero external dependencies. Indestructible offline portability with instant 100% testable DOM.</li>
+          </ul>`,
+        recommendation: 'APPROVE Option C',
+        chips: [
+          { label: '⚖️ Request Pros & Cons', prompt: 'pros and cons for SOTA Sidecar Architectures (Claude vs Playwright vs Nkai) across the 4 Lenses' },
+          { label: '🔬 Research Online', prompt: 'research online developer ergonomics of webview sidecars and canvas interfaces in AI IDEs' }
+        ]
+      },
+      t16: {
+        title: '6.16 Backend Persistence & State Management Architecture',
+        badge: 'Data Architecture',
+        desc: '<strong>The Question:</strong> How should N\'kai handle all data behind the scenes (audit verdicts, triage packages, roadmap milestones, session history, notes) for maximum usability, maximum stability, lowest CPU overhead, and lowest LLM token burn?',
+        optionsHtml: `
+          <div class="pill-card">
+            <div class="pill-title">Option A: Pure JSON Monoliths</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Store all data in raw JSON files in <code>.agents/sidecar/</code>. Easy for machine parsing, but causes painful Git merge conflicts for human teams and large token burn when read by agents.</p>
+          </div>
+          <div class="pill-card">
+            <div class="pill-title">Option B: Embedded SQLite Database</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Store data in an embedded SQLite database (<code>.agents/nkai.db</code>). Instant relational queries and ACID safety, but opaque binary format completely breaks Git line-diffs and PR review history.</p>
+          </div>
+          <div class="pill-card" style="border: 1px solid var(--accent-green);">
+            <div class="pill-title" style="color:var(--accent-green);">Option C: Hybrid Markdown + LocalStorage + JSON Catalog (Recommended)</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Markdown files with YAML frontmatter for human-readable, Git-friendly logs and notes. A lightweight <code>catalog.json</code> for agent lookups. Browser <code>localStorage</code> for transient UI state (zoom, tabs, drafts), keeping token burn near zero.</p>
+          </div>`,
+        evalHtml: `
+          <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option C: Hybrid Markdown + LocalStorage + JSON Catalog)</div>
+          <ul style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin: 0; padding-left: 18px;">
+            <li><strong>🌍 Real-World Ergonomics:</strong> Humans and Obsidian can edit notes and logs directly in plain Markdown. Git diffs are crystal clean.</li>
+            <li><strong>🏛️ Wider SOTA:</strong> Follows modern static-site generation (Astro content collections, Hugo, VitePress) and headless CMS architecture.</li>
+            <li><strong>🏆 Best Practices:</strong> Zero database overhead, zero CPU daemon, and slashes agent token burn by avoiding repetitive full-state re-reads.</li>
+          </ul>`,
+        recommendation: 'APPROVE Option C',
+        chips: [
+          { label: '⚖️ Request Pros & Cons', prompt: 'pros and cons for Markdown Frontmatter vs SQLite vs JSON for AI state persistence across the 4 Lenses' },
+          { label: '🔬 Research Online', prompt: 'research online git-friendly local-first persistence patterns for AI agent tooling' }
+        ]
+      },
       t14: {
         title: '6.14 N\'kai-First Skill Default & --chat Fallback Flag',
         badge: 'Workflow Ergonomics',
@@ -3239,7 +3491,7 @@ function toggleDrawer(drawerId) {
       const titleEl = document.getElementById('ws-hero-title');
       if (titleEl) titleEl.innerText = data.title;
 
-      for (let i = 1; i <= 14; i++) {
+      for (let i = 1; i <= 16; i++) {
         const btn = document.getElementById('btn-ws-t' + i);
         if (btn) {
           if ('t' + i === topicId) {
@@ -3535,21 +3787,23 @@ function toggleDrawer(drawerId) {
         });
       });
 
-      const flightMap = {
-        t13: 'F1: 6.13',
-        t12: 'F2: 6.12',
-        t4: 'F3: 6.4',
-        t14: 'F4: 6.14',
-        t5: 'F5: 6.5',
-        t9: 'F6: 6.9',
-        t10: 'F7: 6.10',
-        t3: 'F8: 6.3',
-        t1: 'F9: 6.1',
-        t8: 'F10: 6.8',
-        t11: 'F11: 6.11',
-        t2: 'F12: 6.2',
-        t7: 'F13: 6.7',
-        t6: 'F14: 6.6'
+            const flightMap = {
+        t15: 'F1: 6.15',
+        t13: 'F2: 6.13',
+        t12: 'F3: 6.12',
+        t16: 'F4: 6.16',
+        t4: 'F5: 6.4',
+        t14: 'F6: 6.14',
+        t5: 'F7: 6.5',
+        t9: 'F8: 6.9',
+        t10: 'F9: 6.10',
+        t3: 'F10: 6.3',
+        t1: 'F11: 6.1',
+        t8: 'F12: 6.8',
+        t11: 'F13: 6.11',
+        t2: 'F14: 6.2',
+        t7: 'F15: 6.7',
+        t6: 'F16: 6.6'
       };
 
       const sideActiveNum = document.getElementById('side-active-topic-num');
