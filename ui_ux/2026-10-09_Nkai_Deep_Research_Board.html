@@ -1103,6 +1103,21 @@
                 <button class="interactive-btn" id="ws-btn-kill" style="color:var(--accent-red); border-color:var(--accent-red);" onclick="setAuditVerdict(window.currentWorkshopTopic || 't16', 'KILLED', this)">[ 💀 KEEP Option A ]</button>
               </div>
             </div>
+
+            <!-- Dedicated Uneditable Chat Dispatch Box (Click / Double-Click to Highlight & Copy) -->
+            <div class="chat-dispatch-box" style="margin-top:12px; background:rgba(0,0,0,0.6); border:1px solid var(--border); border-radius:6px; padding:10px 12px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+                <span style="font-size:10px; font-family:var(--font-mono); color:var(--text-muted); text-transform:uppercase; letter-spacing:0.5px;">
+                  💬 Chat Dispatch Prompt (Click or Double-Click to Highlight &amp; Copy):
+                </span>
+                <span id="ws-prompt-status" style="font-size:10px; font-family:var(--font-mono); color:var(--accent-amber);">Click to highlight</span>
+              </div>
+              <input type="text" id="ws-prompt-input" readonly
+                     value="[6.16 Backend Persistence &amp; State] VERDICT: APPROVED"
+                     onclick="this.select(); flashSelectStatus('ws-prompt-status');"
+                     ondblclick="this.select(); flashSelectStatus('ws-prompt-status');"
+                     style="width:100%; box-sizing:border-box; background:rgba(13,17,23,0.9); border:1px solid var(--accent-green); border-radius:4px; color:var(--accent-neon); font-family:var(--font-mono); font-size:11px; padding:8px 10px; cursor:pointer; user-select:all;" />
+            </div>
           </div>
         </div>
       </div>
@@ -3303,14 +3318,17 @@ function toggleDrawer(drawerId) {
 - [ ] Step 6: Automated BeautifulSoup Tag Balance Test (opens == closes)
 - [ ] Step 7: Tri-Location Mirroring & IDE Verification`;
       const btn = document.querySelector('button[onclick="copyMigrationChecklist()"]');
-      const success = await copyToClipboard(text);
-      if (btn) flashButtonSuccess(btn, success ? '📋 Copied!' : '📋 Ready');
+      copyToClipboardSilently(text);
+      if (btn) flashButtonSuccess(btn, '📋 Highlighted in Box!');
       playHapticTick();
-      if (success) {
-        showAudioToast('📋 Migration Checklist copied to clipboard!', text);
-      } else {
-        showFallbackModal(text);
+      const wsInput = document.getElementById('ws-prompt-input');
+      if (wsInput) {
+        wsInput.value = text.replace(/\n/g, ' ');
+        wsInput.focus();
+        wsInput.select();
+        flashSelectStatus('ws-prompt-status', '✓ Checklist highlighted! Press Ctrl+C');
       }
+      showAudioToast('📋 Migration Checklist highlighted in box! Press Ctrl+C to copy', text);
     }
 
     // Sidebar navigation bindings
@@ -3492,9 +3510,15 @@ function toggleDrawer(drawerId) {
 
       panel.innerHTML = `
         ${detailHtml}
-        <div style="margin-top:8px; padding-top:6px; border-top:1px solid rgba(255,255,255,0.08); display:flex; justify-content:space-between; align-items:center;">
-          <span style="font-size:10px; color:var(--text-muted);">Need agent reasoning in chat?</span>
-          <button class="interactive-btn blue" style="font-size:10px; padding:2px 8px;" onclick="copyPromptToChat('${prompt}', this)">[ 📋 Copy Prompt for Chat ]</button>
+        <div style="margin-top:8px; padding-top:6px; border-top:1px solid rgba(255,255,255,0.08);">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+            <span style="font-size:10px; color:var(--text-muted);">Chat Prompt (Click or Double-Click to Highlight &amp; Copy):</span>
+            <button class="interactive-btn blue" style="font-size:10px; padding:2px 8px;" onclick="copyPromptToChat('${prompt}', this)">[ 📋 Select ]</button>
+          </div>
+          <input type="text" readonly value="${prompt}"
+                 onclick="this.select(); flashSelectStatus('ws-prompt-status', '✓ Option prompt highlighted! Press Ctrl+C');"
+                 ondblclick="this.select(); flashSelectStatus('ws-prompt-status', '✓ Option prompt highlighted! Press Ctrl+C');"
+                 style="width:100%; box-sizing:border-box; background:rgba(13,17,23,0.9); border:1px solid var(--accent-blue); border-radius:4px; color:var(--accent-neon); font-family:var(--font-mono); font-size:10px; padding:6px 8px; cursor:pointer; user-select:all;" />
         </div>
       `;
       
@@ -4366,6 +4390,21 @@ function toggleDrawer(drawerId) {
                 <button class="interactive-btn" id="ws-btn-kill" style="color:var(--accent-red); border-color:var(--accent-red);" onclick="setAuditVerdict('${topicId}', 'KILLED', this)">[ 💀 KEEP Option A ]</button>
               </div>
             </div>
+
+            <!-- Dedicated Uneditable Chat Dispatch Box -->
+            <div class="chat-dispatch-box" style="margin-top:12px; background:rgba(0,0,0,0.6); border:1px solid var(--border); border-radius:6px; padding:10px 12px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+                <span style="font-size:10px; font-family:var(--font-mono); color:var(--text-muted); text-transform:uppercase; letter-spacing:0.5px;">
+                  💬 Chat Dispatch Prompt (Click or Double-Click to Highlight &amp; Copy):
+                </span>
+                <span id="ws-prompt-status" style="font-size:10px; font-family:var(--font-mono); color:var(--accent-amber);">Click to highlight</span>
+              </div>
+              <input type="text" id="ws-prompt-input" readonly
+                     value="[${data.title}] VERDICT: ${auditVerdicts['${topicId}'] ? auditVerdicts['${topicId}'].verdict : 'PENDING'}"
+                     onclick="this.select(); flashSelectStatus('ws-prompt-status');"
+                     ondblclick="this.select(); flashSelectStatus('ws-prompt-status');"
+                     style="width:100%; box-sizing:border-box; background:rgba(13,17,23,0.9); border:1px solid var(--accent-amber); border-radius:4px; color:var(--accent-neon); font-family:var(--font-mono); font-size:11px; padding:8px 10px; cursor:pointer; user-select:all;" />
+            </div>
           </div>
         `;
       }
@@ -4451,108 +4490,27 @@ function toggleDrawer(drawerId) {
       return copyToClipboardSilently(text);
     }
 
-    function showFallbackModal(text) {
-      const existing = document.getElementById('nkai-copy-modal');
-      if (existing) existing.remove();
-      const existingOverlay = document.getElementById('nkai-copy-modal-overlay');
-      if (existingOverlay) existingOverlay.remove();
-
-      const overlay = document.createElement('div');
-      overlay.id = 'nkai-copy-modal-overlay';
-      overlay.style.position = 'fixed';
-      overlay.style.top = '0';
-      overlay.style.left = '0';
-      overlay.style.width = '100vw';
-      overlay.style.height = '100vh';
-      overlay.style.background = 'rgba(0,0,0,0.65)';
-      overlay.style.backdropFilter = 'blur(4px)';
-      overlay.style.zIndex = '99998';
-      overlay.onclick = () => { overlay.remove(); modal.remove(); };
-      document.body.appendChild(overlay);
-
-      const modal = document.createElement('div');
-      modal.id = 'nkai-copy-modal';
-      modal.style.position = 'fixed';
-      modal.style.top = '50%';
-      modal.style.left = '50%';
-      modal.style.transform = 'translate(-50%, -50%)';
-      modal.style.background = 'var(--bg-panel)';
-      modal.style.border = '2px solid var(--accent-amber)';
-      modal.style.padding = '22px';
-      modal.style.zIndex = '99999';
-      modal.style.borderRadius = '10px';
-      modal.style.boxShadow = '0 16px 48px rgba(0,0,0,0.95)';
-      modal.style.width = '520px';
-      modal.style.maxWidth = '92vw';
-      
-      const title = document.createElement('h3');
-      title.innerText = '📋 Prompt Ready to Paste into Chat';
-      title.style.marginTop = '0';
-      title.style.marginBottom = '6px';
-      title.style.fontSize = '14px';
-      title.style.color = 'var(--accent-amber)';
-      title.style.fontFamily = 'var(--font-mono)';
-      modal.appendChild(title);
-
-      const subtitle = document.createElement('p');
-      subtitle.innerText = 'Text is pre-selected below. Press Ctrl+C (or click Copy), then paste into Antigravity chat (Ctrl+V):';
-      subtitle.style.fontSize = '11px';
-      subtitle.style.color = 'var(--text-muted)';
-      subtitle.style.marginTop = '0';
-      subtitle.style.marginBottom = '12px';
-      modal.appendChild(subtitle);
-      
-      const textarea = document.createElement('textarea');
-      textarea.value = text;
-      textarea.style.width = '100%';
-      textarea.style.height = '120px';
-      textarea.style.background = 'rgba(0,0,0,0.6)';
-      textarea.style.color = 'var(--accent-blue)';
-      textarea.style.border = '1px solid var(--border)';
-      textarea.style.borderRadius = '6px';
-      textarea.style.fontFamily = 'var(--font-mono)';
-      textarea.style.fontSize = '11px';
-      textarea.style.padding = '10px';
-      textarea.style.boxSizing = 'border-box';
-      textarea.style.resize = 'vertical';
-      modal.appendChild(textarea);
-      
-      const btnRow = document.createElement('div');
-      btnRow.style.display = 'flex';
-      btnRow.style.justifyContent = 'space-between';
-      btnRow.style.alignItems = 'center';
-      btnRow.style.marginTop = '14px';
-
-      const copyBtn = document.createElement('button');
-      copyBtn.innerText = '📋 Copy & Close';
-      copyBtn.className = 'interactive-btn green';
-      copyBtn.onclick = () => {
-        textarea.focus();
-        textarea.select();
-        let ok = false;
-        try { ok = document.execCommand('copy'); } catch(e) {}
-        if (!ok && navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(text).catch(() => {});
-        }
-        showAudioToast('📋 Copied to clipboard! Ready to paste into chat.');
-        overlay.remove();
-        modal.remove();
-      };
-      btnRow.appendChild(copyBtn);
-
-      const closeBtn = document.createElement('button');
-      closeBtn.innerText = '✕ Dismiss';
-      closeBtn.className = 'interactive-btn';
-      closeBtn.onclick = () => { overlay.remove(); modal.remove(); };
-      btnRow.appendChild(closeBtn);
-
-      modal.appendChild(btnRow);
-      
-      document.body.appendChild(modal);
+    function flashSelectStatus(statusId, msg = '✓ Pre-selected! Press Ctrl+C') {
+      const el = document.getElementById(statusId);
+      if (!el) return;
+      el.innerText = msg;
+      el.style.color = 'var(--accent-green)';
       setTimeout(() => {
-        textarea.focus();
-        textarea.select();
-      }, 50);
+        el.innerText = 'Click to highlight';
+        el.style.color = 'var(--accent-amber)';
+      }, 3000);
+    }
+
+    function showFallbackModal(text) {
+      // Table modal popups for v0.2.0: highlight in-canvas text box instead
+      const wsInput = document.getElementById('ws-prompt-input');
+      if (wsInput) {
+        wsInput.value = text;
+        wsInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        wsInput.focus();
+        wsInput.select();
+        flashSelectStatus('ws-prompt-status', '✓ Highlighted! Press Ctrl+C');
+      }
     }
 
     function flashButtonSuccess(btn, msg) {
@@ -4577,19 +4535,37 @@ function toggleDrawer(drawerId) {
       const targetBtn = btn || (evt && evt.currentTarget ? evt.currentTarget : null);
       playHapticTick();
 
-      // Perform copy FIRST
-      const success = await copyToClipboard(promptText);
+      // 1. Highlight in active workshop box if available
+      const wsInput = document.getElementById('ws-prompt-input');
+      if (wsInput) {
+        wsInput.value = promptText;
+        wsInput.focus();
+        wsInput.select();
+        flashSelectStatus('ws-prompt-status', '✓ Highlighted! Press Ctrl+C');
+      }
+
+      // 2. Also check if clicked button is inside an option-expansion-panel with its own input
       if (targetBtn) {
-        flashButtonSuccess(targetBtn, success ? '📋 Copied! Paste in Chat' : '📋 Prompt Ready');
+        const parentPanel = targetBtn.closest ? targetBtn.closest('.option-expansion-panel') : null;
+        if (parentPanel) {
+          const panelInput = parentPanel.querySelector('input[type="text"]');
+          if (panelInput) {
+            panelInput.value = promptText;
+            panelInput.focus();
+            panelInput.select();
+          }
+        }
+      }
+
+      // 3. Silent background copy attempt (zero popups / zero modals)
+      copyToClipboardSilently(promptText);
+
+      if (targetBtn) {
+        flashButtonSuccess(targetBtn, '📋 Highlighted in Box!');
       }
       playHapticChime();
 
-      if (success) {
-        showAudioToast('📋 Copied prompt! Paste into chat (Ctrl+V) & press Enter', promptText);
-      } else {
-        showFallbackModal(promptText);
-        showAudioToast('⚠️ Browser blocked auto-copy: Press Ctrl+C in popup to copy', promptText);
-      }
+      showAudioToast('📋 Prompt highlighted in box below! Press Ctrl+C to copy', promptText);
 
       // Passive telemetry log if bridge is active
       if (window.nkaiBridgeOnline) {
@@ -4617,26 +4593,41 @@ function toggleDrawer(drawerId) {
       const topicTitle = auditVerdicts[topicId].title || topicId;
       const verdictPrompt = `[${topicTitle}] VERDICT: ${verdict}`;
 
-      // 2. Perform copy FIRST before DOM modifications steal focus
-      const success = await copyToClipboard(verdictPrompt);
-
-      // 3. Update UI state locally immediately
+      // 2. Update UI state locally immediately
       applyAuditVerdictsUI();
       playHapticChime();
 
+      // 3. Highlight and select the prompt in the active workshop input and/or audit card input!
+      const wsInput = document.getElementById('ws-prompt-input');
+      if (wsInput) {
+        wsInput.value = verdictPrompt;
+        wsInput.style.borderColor = verdict === 'APPROVED' ? 'var(--accent-green)' : verdict === 'TABLED' ? 'var(--accent-amber)' : 'var(--accent-red)';
+        wsInput.focus();
+        wsInput.select();
+        flashSelectStatus('ws-prompt-status', '✓ Highlighted! Press Ctrl+C');
+      }
+
+      const auditInput = document.getElementById('audit-prompt-input-' + topicId);
+      if (auditInput) {
+        auditInput.value = verdictPrompt;
+        auditInput.style.borderColor = verdict === 'APPROVED' ? 'var(--accent-green)' : verdict === 'TABLED' ? 'var(--accent-amber)' : 'var(--accent-red)';
+        if (!wsInput || (window.location.hash && window.location.hash.includes('tab-audit'))) {
+          auditInput.focus();
+          auditInput.select();
+          flashSelectStatus('audit-prompt-status-' + topicId, '✓ Highlighted! Press Ctrl+C');
+        }
+      }
+
+      // 4. Background silent copy attempt (zero popups / zero modals)
+      copyToClipboardSilently(verdictPrompt);
+
       if (btn) {
-        flashButtonSuccess(btn, success ? '📋 Copied! Paste in Chat' : '📋 Prompt Ready');
+        flashButtonSuccess(btn, '📋 Highlighted in Box!');
       }
 
-      if (success) {
-        showAudioToast(`📋 ${verdict} copied! Paste into chat (Ctrl+V) & press Enter to advance`, verdictPrompt);
-      } else {
-        // Guaranteed fallback modal if browser sandbox blocked clipboard!
-        showFallbackModal(verdictPrompt);
-        showAudioToast(`⚠️ Browser blocked auto-copy: Press Ctrl+C in popup to copy`, verdictPrompt);
-      }
+      showAudioToast(`📋 ${verdict} prompt highlighted below — press Ctrl+C to copy, then paste into chat (Ctrl+V)`, verdictPrompt);
 
-      // 4. Passive telemetry log (silent background logging)
+      // 5. Passive telemetry log (silent background logging)
       if (window.nkaiBridgeOnline) {
         const port = window.nkaiBridgePort || 4040;
         fetch(`http://127.0.0.1:${port}/api/action`, {
@@ -4721,6 +4712,51 @@ function toggleDrawer(drawerId) {
           } else {
             flightCard.style.borderColor = 'rgba(48,54,61,0.5)';
             flightCard.style.background = 'rgba(255,255,255,0.02)';
+          }
+        }
+
+        // Ensure dedicated uneditable dispatch box exists on each audit section
+        const sec = document.getElementById('sec-audit-' + tid);
+        if (sec) {
+          let box = document.getElementById('audit-dispatch-box-' + tid);
+          if (!box) {
+            box = document.createElement('div');
+            box.id = 'audit-dispatch-box-' + tid;
+            box.className = 'chat-dispatch-box';
+            box.style.marginTop = '10px';
+            box.style.background = 'rgba(0,0,0,0.5)';
+            box.style.border = '1px solid var(--border)';
+            box.style.borderRadius = '6px';
+            box.style.padding = '8px 10px';
+            
+            box.innerHTML = `
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                <span style="font-size:10px; font-family:var(--font-mono); color:var(--text-muted); text-transform:uppercase; letter-spacing:0.5px;">
+                  💬 Chat Dispatch Prompt (Click or Double-Click to Highlight &amp; Copy):
+                </span>
+                <span id="audit-prompt-status-${tid}" style="font-size:10px; font-family:var(--font-mono); color:var(--accent-amber);">Click to highlight</span>
+              </div>
+              <input type="text" id="audit-prompt-input-${tid}" readonly
+                     value="[${item.title || tid}] VERDICT: ${verdict}"
+                     onclick="this.select(); flashSelectStatus('audit-prompt-status-${tid}');"
+                     ondblclick="this.select(); flashSelectStatus('audit-prompt-status-${tid}');"
+                     style="width:100%; box-sizing:border-box; background:rgba(13,17,23,0.9); border:1px solid ${verdict === 'APPROVED' ? 'var(--accent-green)' : verdict === 'TABLED' ? 'var(--accent-amber)' : verdict === 'KILLED' ? 'var(--accent-red)' : 'var(--border)'}; border-radius:4px; color:var(--accent-neon); font-family:var(--font-mono); font-size:11px; padding:6px 8px; cursor:pointer; user-select:all;" />
+            `;
+            sec.appendChild(box);
+          } else {
+            const input = document.getElementById('audit-prompt-input-' + tid);
+            if (input) {
+              input.value = `[${item.title || tid}] VERDICT: ${verdict}`;
+              input.style.borderColor = verdict === 'APPROVED' ? 'var(--accent-green)' : verdict === 'TABLED' ? 'var(--accent-amber)' : verdict === 'KILLED' ? 'var(--accent-red)' : 'var(--border)';
+            }
+          }
+        }
+
+        if (window.currentWorkshopTopic === tid) {
+          const wsInput = document.getElementById('ws-prompt-input');
+          if (wsInput && !wsInput.value.includes('Please provide') && !wsInput.value.includes('research online')) {
+            wsInput.value = `[${item.title || tid}] VERDICT: ${verdict}`;
+            wsInput.style.borderColor = verdict === 'APPROVED' ? 'var(--accent-green)' : verdict === 'TABLED' ? 'var(--accent-amber)' : verdict === 'KILLED' ? 'var(--accent-red)' : 'var(--border)';
           }
         }
 
@@ -4855,17 +4891,21 @@ function toggleDrawer(drawerId) {
         const icon = v.verdict === 'APPROVED' ? '✅' : v.verdict === 'TABLED' ? '⏳' : v.verdict === 'KILLED' ? '💀' : '❓';
         md += '- ' + icon + ' **' + v.title + '**: `' + v.verdict + '`\n';
       });
+
+      const wsInput = document.getElementById('ws-prompt-input');
+      if (wsInput) {
+        wsInput.value = md.replace(/\n/g, ' ');
+        wsInput.focus();
+        wsInput.select();
+        flashSelectStatus('ws-prompt-status', '✓ Summary highlighted! Press Ctrl+C');
+      }
+
       const btn = document.querySelector('button[onclick="copyAuditVerdictsToClipboard()"]');
-      const success = await copyToClipboard(md);
-      if (btn) flashButtonSuccess(btn, success ? '📋 Copied All Verdicts!' : '📋 Summary Ready');
+      copyToClipboardSilently(md);
+      if (btn) flashButtonSuccess(btn, '📋 Highlighted in Box!');
       playHapticChime();
 
-      if (success) {
-        showAudioToast('📋 All audit decisions copied to clipboard! Paste in chat', md);
-      } else {
-        showFallbackModal(md);
-        showAudioToast('⚠️ Browser blocked auto-copy: Press Ctrl+C in popup to copy', md);
-      }
+      showAudioToast('📋 All audit decisions highlighted in box below! Press Ctrl+C to copy', md);
     }
 
     // Kickoff Lifecycle
