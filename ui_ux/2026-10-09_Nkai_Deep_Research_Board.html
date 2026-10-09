@@ -1040,83 +1040,110 @@
 
                                 <!-- Active Topic Workshop Hero Card Mount -->
         <div id="workshop-card-mount">
-          <!-- Rendered dynamically by setWorkshopTopic, pre-populated with t16 -->
+          <!-- Rendered dynamically by setWorkshopTopic, pre-populated with t7 -->
           <div class="section-card" id="workshop-card">
             <div class="section-title">
-              <span id="ws-card-title">6.16 Backend Persistence &amp; State Management Architecture</span>
-              <span id="ws-card-badge" class="badge badge-amber">Data Architecture</span>
+              <span id="ws-card-title">6.7 Context Clues Architecture &amp; Factory Handshake Gate</span>
+              <span id="ws-card-badge" class="badge badge-blue">Pipeline Architecture</span>
             </div>
             <p id="ws-card-desc" style="font-size: 12px; line-height: 1.6; color: var(--text-main);">
-              <strong>The Question:</strong> How should N'kai handle all data behind the scenes (audit verdicts, triage packages, roadmap milestones, session history, notes) for maximum usability, maximum stability, lowest CPU overhead, and lowest LLM token burn?
+              <strong>The Question:</strong> How should subagents and factory builder agents be seeded with project context, documentation catalog links, and active branch state to prevent hallucination?
             </p>
 
             <div class="grid-3" id="ws-card-options" style="margin-top: 12px;">
-          <div class="pill-card">
-            <div class="pill-title">Option A: Pure JSON Monoliths</div>
-            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Store all data in raw JSON files in <code>.agents/sidecar/</code>. Easy for machine parsing, but causes painful Git merge conflicts for human teams and large token burn when read by agents.</p>
-            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
-              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t16', 'A', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
-              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t16', 'A', 'research', this)">[ 🔬 Research ]</button>
-            </div>
-          </div>
-          <div class="pill-card">
-            <div class="pill-title">Option B: Embedded SQLite Database</div>
-            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Store data in an embedded SQLite database (<code>.agents/nkai.db</code>). Instant relational queries and ACID safety, but opaque binary format completely breaks Git line-diffs and PR review history.</p>
-            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
-              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t16', 'B', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
-              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t16', 'B', 'research', this)">[ 🔬 Research ]</button>
-            </div>
-          </div>
-          <div class="pill-card" style="border: 1px solid var(--accent-green);">
-            <div class="pill-title" style="color:var(--accent-green);">Option C: Hybrid Markdown + LocalStorage + JSON Catalog (Recommended)</div>
-            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Markdown files with YAML frontmatter for human-readable, Git-friendly logs and notes. A lightweight <code>catalog.json</code> for agent lookups. Browser <code>localStorage</code> for transient UI state (zoom, tabs, drafts), keeping token burn near zero.</p>
-            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
-              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t16', 'C', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
-              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t16', 'C', 'research', this)">[ 🔬 Research ]</button>
-            </div>
-          </div>
+              <div class="pill-card">
+                <div class="pill-title">Option A: Static Chat History</div>
+                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Rely entirely on conversation transcript. Degrades as conversations grow past 30+ turns.</p>
+                <div style="margin-top: 8px;">
+                  <input type="text" readonly value="[6.7 Context Clues] pros and cons for Option A Static Chat History"
+                         onclick="this.select();" ondblclick="this.select();"
+                         style="width:100%; box-sizing:border-box; background:rgba(0,0,0,0.5); border:1px solid var(--border); border-radius:3px; color:var(--text-muted); font-family:var(--font-mono); font-size:10px; padding:4px 6px; cursor:text; user-select:all;" />
+                </div>
+              </div>
+              <div class="pill-card" style="border: 1px solid var(--accent-green);">
+                <div class="pill-title" style="color:var(--accent-green);">Option B: Structured Context Clues (Recommended)</div>
+                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Dedicated context clue files (<code>context_clues_build.md</code>, <code>context_clues_research.md</code>) with canonical links to <code>DOCS_CATALOG.json</code> and <code>SYSTEM_MAP.md</code>.</p>
+                <div style="margin-top: 8px;">
+                  <input type="text" readonly value="[6.7 Context Clues] pros and cons for Option B Structured Context Clues"
+                         onclick="this.select();" ondblclick="this.select();"
+                         style="width:100%; box-sizing:border-box; background:rgba(0,0,0,0.5); border:1px solid rgba(63,185,80,0.4); border-radius:3px; color:var(--accent-green); font-family:var(--font-mono); font-size:10px; padding:4px 6px; cursor:text; user-select:all;" />
+                </div>
+              </div>
+              <div class="pill-card">
+                <div class="pill-title">Option C: Dynamic SQLite Memory Store</div>
+                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Store agent memory in SQLite database. High maintenance and opaque to git diffs.</p>
+                <div style="margin-top: 8px;">
+                  <input type="text" readonly value="[6.7 Context Clues] pros and cons for Option C SQLite Memory Store"
+                         onclick="this.select();" ondblclick="this.select();"
+                         style="width:100%; box-sizing:border-box; background:rgba(0,0,0,0.5); border:1px solid var(--border); border-radius:3px; color:var(--text-muted); font-family:var(--font-mono); font-size:10px; padding:4px 6px; cursor:text; user-select:all;" />
+                </div>
+              </div>
             </div>
 
             <!-- 3-Lens Pros & Cons -->
             <div id="ws-card-evaluation" style="margin-top: 14px; background: rgba(0,0,0,0.3); border: 1px solid rgba(48,54,61,0.6); border-radius: 6px; padding: 12px;">
-          <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option C: Hybrid Markdown + LocalStorage + JSON Catalog)</div>
-          <ul style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin: 0; padding-left: 18px;">
-            <li><strong>🌍 Real-World Ergonomics:</strong> Humans and Obsidian can edit notes and logs directly in plain Markdown. Git diffs are crystal clean.</li>
-            <li><strong>🏛️ Wider SOTA:</strong> Follows modern static-site generation (Astro content collections, Hugo, VitePress) and headless CMS architecture.</li>
-            <li><strong>🏆 Best Practices:</strong> Zero database overhead, zero CPU daemon, and slashes agent token burn by avoiding repetitive full-state re-reads.</li>
-          </ul>
-              <div style="margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap;">
-                <button class="interactive-btn blue" onclick="copyPromptToChat('pros and cons for Markdown Frontmatter vs SQLite vs JSON for AI state persistence across the 4 Lenses', this)">[ ⚖️ Request Pros &amp; Cons ]</button>
-                <button class="interactive-btn purple" onclick="copyPromptToChat('research online git-friendly local-first persistence patterns for AI agent tooling', this)">[ 🔬 Research Online ]</button>
-                <button class="interactive-btn amber" onclick="navigateToSection('sec-audit-t16')">[ 🔍 See in Full Context ]</button>
+              <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option B: Structured Context Clues)</div>
+              <ul style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin: 0; padding-left: 18px;">
+                <li><strong>🌍 Real-World Ergonomics:</strong> Subagents spin up fully grounded in seconds with zero prompt hallucination or broken paths.</li>
+                <li><strong>🏛️ Wider SOTA:</strong> Aligns with industry leading practice for autonomous agents (LLM context pre-loading, Agent Scratchpads).</li>
+                <li><strong>🏆 Best Practices:</strong> 100% plain Markdown, git-tracked, version-controlled, zero binary database dependencies.</li>
+              </ul>
+              <div style="margin-top: 10px; display: flex; flex-direction: column; gap: 6px;">
+                <span style="font-family:var(--font-mono); font-size:10px; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.5px;">🔬 Deep Dive Prompts (Click to Highlight, Ctrl+C to Copy):</span>
+                <div style="display:flex; align-items:center; gap:6px; background:rgba(88,166,255,0.06); border:1px solid rgba(88,166,255,0.25); border-radius:4px; padding:4px 8px;">
+                  <span style="font-size:10px; font-family:var(--font-mono); color:var(--accent-blue); width:130px; flex-shrink:0;">⚖️ Pros &amp; Cons:</span>
+                  <input type="text" readonly value="pros and cons for Structured Context Clues vs SQLite Memory across the 4 Lenses"
+                         onclick="this.select();" ondblclick="this.select();"
+                         style="flex:1; background:rgba(0,0,0,0.5); border:1px solid rgba(88,166,255,0.2); border-radius:3px; color:var(--accent-neon); font-family:var(--font-mono); font-size:10px; padding:4px 8px; cursor:text; user-select:all;" />
+                </div>
+                <div style="display:flex; align-items:center; gap:6px; background:rgba(88,166,255,0.06); border:1px solid rgba(88,166,255,0.25); border-radius:4px; padding:4px 8px;">
+                  <span style="font-size:10px; font-family:var(--font-mono); color:var(--accent-blue); width:130px; flex-shrink:0;">🔬 Research Online:</span>
+                  <input type="text" readonly value="research online AI coding agent context management best practices 2026"
+                         onclick="this.select();" ondblclick="this.select();"
+                         style="flex:1; background:rgba(0,0,0,0.5); border:1px solid rgba(88,166,255,0.2); border-radius:3px; color:var(--accent-neon); font-family:var(--font-mono); font-size:10px; padding:4px 8px; cursor:text; user-select:all;" />
+                </div>
+                <div style="margin-top:4px;">
+                  <button class="interactive-btn amber" style="font-size:10px; padding:2px 8px;" onclick="navigateToSection('sec-audit-t7')">[ 🔍 Jump to Topic in Full Context ]</button>
+                </div>
               </div>
             </div>
 
-            <!-- Interactive Verdict Submission Row -->
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:14px; padding-top:10px; border-top:1px solid rgba(48,54,61,0.5); flex-wrap:wrap; gap:8px;">
-              <div style="font-family:var(--font-mono); font-size:11px; color:var(--text-muted);">
-                Verdict: <strong id="workshop-v-badge" class="badge">PENDING</strong>
-              </div>
-              <div style="display:flex; gap:6px; flex-wrap:wrap;">
-                <button class="interactive-btn" id="ws-btn-approve" style="color:var(--accent-green); border-color:var(--accent-green);" onclick="setAuditVerdict(window.currentWorkshopTopic || 't16', 'APPROVED', this)">[ ✅ APPROVE Option C ]</button>
-                <button class="interactive-btn amber" id="ws-btn-table" onclick="setAuditVerdict(window.currentWorkshopTopic || 't16', 'TABLED', this)">[ ⏳ TABLE ]</button>
-                <button class="interactive-btn" id="ws-btn-kill" style="color:var(--accent-red); border-color:var(--accent-red);" onclick="setAuditVerdict(window.currentWorkshopTopic || 't16', 'KILLED', this)">[ 💀 KEEP Option A ]</button>
-              </div>
-            </div>
-
-            <!-- Dedicated Uneditable Chat Dispatch Box (Click / Double-Click to Highlight & Copy) -->
-            <div class="chat-dispatch-box" style="margin-top:12px; background:rgba(0,0,0,0.6); border:1px solid var(--border); border-radius:6px; padding:10px 12px;">
-              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
-                <span style="font-size:10px; font-family:var(--font-mono); color:var(--text-muted); text-transform:uppercase; letter-spacing:0.5px;">
-                  💬 Chat Dispatch Prompt (Click or Double-Click to Highlight &amp; Copy):
+            <!-- Decision Prompts Row (Boxes replace buttons) -->
+            <div style="margin-top:16px; padding-top:12px; border-top:1px solid rgba(48,54,61,0.5);">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                <span style="font-family:var(--font-mono); font-size:11px; font-weight:700; color:var(--accent-neon); text-transform:uppercase; letter-spacing:0.5px;">
+                  📋 Decision Prompts (Click to Highlight, Ctrl+C to Copy):
                 </span>
-                <span id="ws-prompt-status" style="font-size:10px; font-family:var(--font-mono); color:var(--accent-amber);">Click to highlight</span>
+                <span style="font-family:var(--font-mono); font-size:11px; color:var(--text-muted);">
+                  Verdict: <strong id="workshop-v-badge" class="badge">PENDING</strong>
+                </span>
               </div>
-              <input type="text" id="ws-prompt-input" readonly
-                     value="[6.16 Backend Persistence &amp; State] VERDICT: APPROVED"
-                     onclick="this.select(); flashSelectStatus('ws-prompt-status');"
-                     ondblclick="this.select(); flashSelectStatus('ws-prompt-status');"
-                     style="width:100%; box-sizing:border-box; background:rgba(13,17,23,0.9); border:1px solid var(--accent-green); border-radius:4px; color:var(--accent-neon); font-family:var(--font-mono); font-size:11px; padding:8px 10px; cursor:pointer; user-select:all;" />
+
+              <div style="display:flex; flex-direction:column; gap:8px;">
+                <!-- Approve Box -->
+                <div style="display:flex; align-items:center; gap:8px; background:rgba(63,185,80,0.08); border:1px solid rgba(63,185,80,0.35); border-radius:6px; padding:6px 10px;">
+                  <span style="font-size:10px; font-family:var(--font-mono); color:var(--accent-green); font-weight:700; width:75px; flex-shrink:0;">✅ APPROVE:</span>
+                  <input type="text" readonly value="[6.7 Context Clues Architecture] VERDICT: APPROVED (APPROVE Option B)"
+                         onclick="this.select();" ondblclick="this.select();"
+                         style="flex:1; background:rgba(0,0,0,0.6); border:1px solid rgba(63,185,80,0.4); border-radius:4px; color:var(--accent-green); font-family:var(--font-mono); font-size:11px; padding:6px 10px; cursor:text; user-select:all;" />
+                </div>
+
+                <!-- Table Box -->
+                <div style="display:flex; align-items:center; gap:8px; background:rgba(255,171,112,0.08); border:1px solid rgba(255,171,112,0.3); border-radius:6px; padding:6px 10px;">
+                  <span style="font-size:10px; font-family:var(--font-mono); color:var(--accent-amber); font-weight:700; width:75px; flex-shrink:0;">⏳ TABLE:</span>
+                  <input type="text" readonly value="[6.7 Context Clues Architecture] VERDICT: TABLED"
+                         onclick="this.select();" ondblclick="this.select();"
+                         style="flex:1; background:rgba(0,0,0,0.6); border:1px solid rgba(255,171,112,0.3); border-radius:4px; color:var(--accent-amber); font-family:var(--font-mono); font-size:11px; padding:6px 10px; cursor:text; user-select:all;" />
+                </div>
+
+                <!-- Reject Box -->
+                <div style="display:flex; align-items:center; gap:8px; background:rgba(248,81,73,0.08); border:1px solid rgba(248,81,73,0.3); border-radius:6px; padding:6px 10px;">
+                  <span style="font-size:10px; font-family:var(--font-mono); color:var(--accent-red); font-weight:700; width:75px; flex-shrink:0;">💀 REJECT:</span>
+                  <input type="text" readonly value="[6.7 Context Clues Architecture] VERDICT: KILLED"
+                         onclick="this.select();" ondblclick="this.select();"
+                         style="flex:1; background:rgba(0,0,0,0.6); border:1px solid rgba(248,81,73,0.3); border-radius:4px; color:var(--accent-red); font-family:var(--font-mono); font-size:11px; padding:6px 10px; cursor:text; user-select:all;" />
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -3589,7 +3616,7 @@ function toggleDrawer(drawerId) {
     // ============================================================
     // Active Workshop & Sanity Audit Triage Engine
     // ============================================================
-    window.currentWorkshopTopic = 't16';
+    window.currentWorkshopTopic = 't7';
 
     const defaultAuditVerdicts = {
       t1: { title: '6.1 Post-Mortem Architecture', verdict: 'APPROVED' },
@@ -3607,7 +3634,7 @@ function toggleDrawer(drawerId) {
       t13: { title: '6.13 Universal AI Harness Portability', verdict: 'PENDING' },
       t14: { title: '6.14 Nkai-First Skill Default', verdict: 'PENDING' },
       t15: { title: '6.15 Industry Workflow Precedents', verdict: 'APPROVED' },
-      t16: { title: '6.16 Backend Persistence & State', verdict: 'PENDING' },
+      t16: { title: '6.16 Backend Persistence & State', verdict: 'APPROVED' },
       t17: { title: '6.17 Bidirectional Click-to-Agent Bridge', verdict: 'APPROVED' },
       t18: { title: '6.18 Parallel Subagent Delegation for Sidecar Actions', verdict: 'PENDING' },
       t19: { title: '6.19 Cumulative Allowance & Token Impact Ledger', verdict: 'PENDING' }
@@ -4374,36 +4401,58 @@ function toggleDrawer(drawerId) {
 
             <div id="ws-card-evaluation" style="margin-top: 14px; background: rgba(0,0,0,0.3); border: 1px solid rgba(48,54,61,0.6); border-radius: 6px; padding: 12px;">
               ${data.evalHtml}
-              <div style="margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap;">
-                ${data.chips.map(c => `<button class="interactive-btn blue" onclick="copyPromptToChat('[${data.title}] ${c.prompt}', this)">[ ${c.label} ]</button>`).join('')}
-                <button class="interactive-btn amber" onclick="navigateToSection('sec-audit-${topicId}')">[ 🔍 See in Full Context ]</button>
+              <div style="margin-top: 10px; display: flex; flex-direction: column; gap: 6px;">
+                <span style="font-family:var(--font-mono); font-size:10px; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.5px;">🔬 Deep Dive Prompts (Click to Highlight, Ctrl+C to Copy):</span>
+                ${data.chips.map(c => `
+                  <div style="display:flex; align-items:center; gap:6px; background:rgba(88,166,255,0.06); border:1px solid rgba(88,166,255,0.25); border-radius:4px; padding:4px 8px;">
+                    <span style="font-size:10px; font-family:var(--font-mono); color:var(--accent-blue); width:130px; flex-shrink:0;">${c.label}:</span>
+                    <input type="text" readonly value="[${data.title}] ${c.prompt}"
+                           onclick="this.select();" ondblclick="this.select();"
+                           style="flex:1; background:rgba(0,0,0,0.5); border:1px solid rgba(88,166,255,0.2); border-radius:3px; color:var(--accent-neon); font-family:var(--font-mono); font-size:10px; padding:4px 8px; cursor:text; user-select:all;" />
+                  </div>
+                `).join('')}
+                <div style="margin-top:4px;">
+                  <button class="interactive-btn amber" style="font-size:10px; padding:2px 8px;" onclick="navigateToSection('sec-audit-${topicId}')">[ 🔍 Jump to Topic in Full Context ]</button>
+                </div>
               </div>
             </div>
 
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:14px; padding-top:10px; border-top:1px solid rgba(48,54,61,0.5); flex-wrap:wrap; gap:8px;">
-              <div style="font-family:var(--font-mono); font-size:11px; color:var(--text-muted);">
-                Verdict: <strong id="workshop-v-badge" class="badge">PENDING</strong>
-              </div>
-              <div style="display:flex; gap:6px; flex-wrap:wrap;">
-                <button class="interactive-btn" id="ws-btn-approve" style="color:var(--accent-green); border-color:var(--accent-green);" onclick="setAuditVerdict('${topicId}', 'APPROVED', this)">[ ✅ ${data.recommendation} ]</button>
-                <button class="interactive-btn amber" id="ws-btn-table" onclick="setAuditVerdict('${topicId}', 'TABLED', this)">[ ⏳ TABLE ]</button>
-                <button class="interactive-btn" id="ws-btn-kill" style="color:var(--accent-red); border-color:var(--accent-red);" onclick="setAuditVerdict('${topicId}', 'KILLED', this)">[ 💀 KEEP Option A ]</button>
-              </div>
-            </div>
-
-            <!-- Dedicated Uneditable Chat Dispatch Box -->
-            <div class="chat-dispatch-box" style="margin-top:12px; background:rgba(0,0,0,0.6); border:1px solid var(--border); border-radius:6px; padding:10px 12px;">
-              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
-                <span style="font-size:10px; font-family:var(--font-mono); color:var(--text-muted); text-transform:uppercase; letter-spacing:0.5px;">
-                  💬 Chat Dispatch Prompt (Click or Double-Click to Highlight &amp; Copy):
+            <!-- Decision Prompts Row (Boxes replace buttons) -->
+            <div style="margin-top:16px; padding-top:12px; border-top:1px solid rgba(48,54,61,0.5);">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                <span style="font-family:var(--font-mono); font-size:11px; font-weight:700; color:var(--accent-neon); text-transform:uppercase; letter-spacing:0.5px;">
+                  📋 Decision Prompts (Click to Highlight, Ctrl+C to Copy):
                 </span>
-                <span id="ws-prompt-status" style="font-size:10px; font-family:var(--font-mono); color:var(--accent-amber);">Click to highlight</span>
+                <span style="font-family:var(--font-mono); font-size:11px; color:var(--text-muted);">
+                  Verdict: <strong id="workshop-v-badge" class="badge">${auditVerdicts[topicId] ? auditVerdicts[topicId].verdict : 'PENDING'}</strong>
+                </span>
               </div>
-              <input type="text" id="ws-prompt-input" readonly
-                     value="[${data.title}] VERDICT: ${auditVerdicts['${topicId}'] ? auditVerdicts['${topicId}'].verdict : 'PENDING'}"
-                     onclick="this.select(); flashSelectStatus('ws-prompt-status');"
-                     ondblclick="this.select(); flashSelectStatus('ws-prompt-status');"
-                     style="width:100%; box-sizing:border-box; background:rgba(13,17,23,0.9); border:1px solid var(--accent-amber); border-radius:4px; color:var(--accent-neon); font-family:var(--font-mono); font-size:11px; padding:8px 10px; cursor:pointer; user-select:all;" />
+
+              <div style="display:flex; flex-direction:column; gap:8px;">
+                <!-- Approve Box -->
+                <div style="display:flex; align-items:center; gap:8px; background:rgba(63,185,80,0.08); border:1px solid rgba(63,185,80,0.35); border-radius:6px; padding:6px 10px;">
+                  <span style="font-size:10px; font-family:var(--font-mono); color:var(--accent-green); font-weight:700; width:75px; flex-shrink:0;">✅ APPROVE:</span>
+                  <input type="text" readonly value="[${data.title}] VERDICT: APPROVED (${data.recommendation})"
+                         onclick="this.select();" ondblclick="this.select();"
+                         style="flex:1; background:rgba(0,0,0,0.6); border:1px solid rgba(63,185,80,0.4); border-radius:4px; color:var(--accent-green); font-family:var(--font-mono); font-size:11px; padding:6px 10px; cursor:text; user-select:all;" />
+                </div>
+
+                <!-- Table Box -->
+                <div style="display:flex; align-items:center; gap:8px; background:rgba(255,171,112,0.08); border:1px solid rgba(255,171,112,0.3); border-radius:6px; padding:6px 10px;">
+                  <span style="font-size:10px; font-family:var(--font-mono); color:var(--accent-amber); font-weight:700; width:75px; flex-shrink:0;">⏳ TABLE:</span>
+                  <input type="text" readonly value="[${data.title}] VERDICT: TABLED"
+                         onclick="this.select();" ondblclick="this.select();"
+                         style="flex:1; background:rgba(0,0,0,0.6); border:1px solid rgba(255,171,112,0.3); border-radius:4px; color:var(--accent-amber); font-family:var(--font-mono); font-size:11px; padding:6px 10px; cursor:text; user-select:all;" />
+                </div>
+
+                <!-- Reject Box -->
+                <div style="display:flex; align-items:center; gap:8px; background:rgba(248,81,73,0.08); border:1px solid rgba(248,81,73,0.3); border-radius:6px; padding:6px 10px;">
+                  <span style="font-size:10px; font-family:var(--font-mono); color:var(--accent-red); font-weight:700; width:75px; flex-shrink:0;">💀 REJECT:</span>
+                  <input type="text" readonly value="[${data.title}] VERDICT: KILLED"
+                         onclick="this.select();" ondblclick="this.select();"
+                         style="flex:1; background:rgba(0,0,0,0.6); border:1px solid rgba(248,81,73,0.3); border-radius:4px; color:var(--accent-red); font-family:var(--font-mono); font-size:11px; padding:6px 10px; cursor:text; user-select:all;" />
+                </div>
+              </div>
             </div>
           </div>
         `;
@@ -4723,33 +4772,42 @@ function toggleDrawer(drawerId) {
             box = document.createElement('div');
             box.id = 'audit-dispatch-box-' + tid;
             box.className = 'chat-dispatch-box';
-            box.style.marginTop = '10px';
+            box.style.marginTop = '12px';
             box.style.background = 'rgba(0,0,0,0.5)';
             box.style.border = '1px solid var(--border)';
             box.style.borderRadius = '6px';
-            box.style.padding = '8px 10px';
-            
-            box.innerHTML = `
-              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
-                <span style="font-size:10px; font-family:var(--font-mono); color:var(--text-muted); text-transform:uppercase; letter-spacing:0.5px;">
-                  💬 Chat Dispatch Prompt (Click or Double-Click to Highlight &amp; Copy):
-                </span>
-                <span id="audit-prompt-status-${tid}" style="font-size:10px; font-family:var(--font-mono); color:var(--accent-amber);">Click to highlight</span>
-              </div>
-              <input type="text" id="audit-prompt-input-${tid}" readonly
-                     value="[${item.title || tid}] VERDICT: ${verdict}"
-                     onclick="this.select(); flashSelectStatus('audit-prompt-status-${tid}');"
-                     ondblclick="this.select(); flashSelectStatus('audit-prompt-status-${tid}');"
-                     style="width:100%; box-sizing:border-box; background:rgba(13,17,23,0.9); border:1px solid ${verdict === 'APPROVED' ? 'var(--accent-green)' : verdict === 'TABLED' ? 'var(--accent-amber)' : verdict === 'KILLED' ? 'var(--accent-red)' : 'var(--border)'}; border-radius:4px; color:var(--accent-neon); font-family:var(--font-mono); font-size:11px; padding:6px 8px; cursor:pointer; user-select:all;" />
-            `;
+            box.style.padding = '10px';
             sec.appendChild(box);
-          } else {
-            const input = document.getElementById('audit-prompt-input-' + tid);
-            if (input) {
-              input.value = `[${item.title || tid}] VERDICT: ${verdict}`;
-              input.style.borderColor = verdict === 'APPROVED' ? 'var(--accent-green)' : verdict === 'TABLED' ? 'var(--accent-amber)' : verdict === 'KILLED' ? 'var(--accent-red)' : 'var(--border)';
-            }
           }
+          
+          box.innerHTML = `
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <span style="font-size:10px; font-family:var(--font-mono); color:var(--text-muted); text-transform:uppercase; letter-spacing:0.5px;">
+                📋 Decision Prompts (Click to Highlight, Ctrl+C to Copy):
+              </span>
+              <span class="badge" style="font-size:10px;">${verdict}</span>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:6px;">
+              <div style="display:flex; align-items:center; gap:6px; background:${verdict === 'APPROVED' ? 'rgba(63,185,80,0.15)' : 'rgba(63,185,80,0.06)'}; border:1px solid ${verdict === 'APPROVED' ? 'var(--accent-green)' : 'rgba(63,185,80,0.3)'}; border-radius:4px; padding:4px 8px;">
+                <span style="font-size:10px; font-family:var(--font-mono); color:var(--accent-green); font-weight:700; width:70px; flex-shrink:0;">✅ APPROVE:</span>
+                <input type="text" readonly value="[${item.title || tid}] VERDICT: APPROVED"
+                       onclick="this.select();" ondblclick="this.select();"
+                       style="flex:1; background:rgba(0,0,0,0.6); border:1px solid rgba(63,185,80,0.3); border-radius:3px; color:var(--accent-green); font-family:var(--font-mono); font-size:10px; padding:4px 8px; cursor:text; user-select:all;" />
+              </div>
+              <div style="display:flex; align-items:center; gap:6px; background:${verdict === 'TABLED' ? 'rgba(255,171,112,0.15)' : 'rgba(255,171,112,0.06)'}; border:1px solid ${verdict === 'TABLED' ? 'var(--accent-amber)' : 'rgba(255,171,112,0.25)'}; border-radius:4px; padding:4px 8px;">
+                <span style="font-size:10px; font-family:var(--font-mono); color:var(--accent-amber); font-weight:700; width:70px; flex-shrink:0;">⏳ TABLE:</span>
+                <input type="text" readonly value="[${item.title || tid}] VERDICT: TABLED"
+                       onclick="this.select();" ondblclick="this.select();"
+                       style="flex:1; background:rgba(0,0,0,0.6); border:1px solid rgba(255,171,112,0.25); border-radius:3px; color:var(--accent-amber); font-family:var(--font-mono); font-size:10px; padding:4px 8px; cursor:text; user-select:all;" />
+              </div>
+              <div style="display:flex; align-items:center; gap:6px; background:${verdict === 'KILLED' ? 'rgba(248,81,73,0.15)' : 'rgba(248,81,73,0.06)'}; border:1px solid ${verdict === 'KILLED' ? 'var(--accent-red)' : 'rgba(248,81,73,0.25)'}; border-radius:4px; padding:4px 8px;">
+                <span style="font-size:10px; font-family:var(--font-mono); color:var(--accent-red); font-weight:700; width:70px; flex-shrink:0;">💀 REJECT:</span>
+                <input type="text" readonly value="[${item.title || tid}] VERDICT: KILLED"
+                       onclick="this.select();" ondblclick="this.select();"
+                       style="flex:1; background:rgba(0,0,0,0.6); border:1px solid rgba(248,81,73,0.25); border-radius:3px; color:var(--accent-red); font-family:var(--font-mono); font-size:10px; padding:4px 8px; cursor:text; user-select:all;" />
+              </div>
+            </div>
+          `;
         }
 
         if (window.currentWorkshopTopic === tid) {
@@ -4882,6 +4940,11 @@ function toggleDrawer(drawerId) {
       } catch (e) {
         console.warn('Could not load saved audit verdicts:', e);
       }
+      // Force 6.16 APPROVED per user order
+      auditVerdicts.t16.verdict = 'APPROVED';
+      try {
+        localStorage.setItem('nkai_audit_verdicts', JSON.stringify(auditVerdicts));
+      } catch (e) {}
       applyAuditVerdictsUI();
     }
 
@@ -4910,13 +4973,13 @@ function toggleDrawer(drawerId) {
 
     // Kickoff Lifecycle
     initAuditVerdicts();
-      checkBridgeStatus();
-      setWorkshopTopic('t16');
+    checkBridgeStatus();
+    setWorkshopTopic('t7');
     handleHashNavigation();
     window.addEventListener('DOMContentLoaded', () => {
       initAuditVerdicts();
       checkBridgeStatus();
-      setWorkshopTopic('t16');
+      setWorkshopTopic('t7');
       handleHashNavigation();
     });
     window.addEventListener('hashchange', handleHashNavigation);
@@ -4928,73 +4991,6 @@ function toggleDrawer(drawerId) {
     <span id="fab-icon">🔍</span> <span id="fab-text">See in Context</span>
   </button>
 
-
-    <!-- DYNAMIC INJECTION FOR QA -->
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-          for (let i = 1; i <= 19; i++) {
-              let tid = 't' + i;
-              
-              // Find or create buttons in tab-audit
-              let section = document.getElementById('sec-audit-' + tid);
-              if (section) {
-                  // Find the evaluation div
-                  let evalDiv = section.querySelector('div[style*="background: rgba(0,0,0,0.3)"]');
-                  if (!evalDiv) {
-                      // Some sections might not have evalDiv, we can just append one before the verdict chips
-                      evalDiv = document.createElement('div');
-                      evalDiv.style.marginTop = '14px';
-                      evalDiv.style.background = 'rgba(0,0,0,0.3)';
-                      evalDiv.style.border = '1px solid rgba(48,54,61,0.6)';
-                      evalDiv.style.borderRadius = '6px';
-                      evalDiv.style.padding = '12px';
-                      
-                      let verdictDiv = section.querySelector('div[style*="border-top:1px solid rgba(48,54,61,0.5)"]');
-                      if (verdictDiv) {
-                          section.insertBefore(evalDiv, verdictDiv);
-                      } else {
-                          section.appendChild(evalDiv);
-                      }
-                  }
-                  
-                  // Check if buttons container exists inside evalDiv
-                  let btnContainer = evalDiv.querySelector('div[style*="display: flex; gap: 8px"]');
-                  if (!btnContainer) {
-                      btnContainer = document.createElement('div');
-                      btnContainer.style.marginTop = '10px';
-                      btnContainer.style.display = 'flex';
-                      btnContainer.style.gap = '8px';
-                      btnContainer.style.flexWrap = 'wrap';
-                      evalDiv.appendChild(btnContainer);
-                  }
-                  
-                  // Check for Pros btn
-                  let prosBtn = btnContainer.querySelector('.interactive-btn.blue');
-                  if (!prosBtn) {
-                      prosBtn = document.createElement('button');
-                      prosBtn.className = 'interactive-btn blue';
-                      prosBtn.innerHTML = '[ ⚖️ Request Pros & Cons ]';
-                      prosBtn.setAttribute('onclick', `copyPromptToChat('pros and cons for topic ${tid}', this)`);
-                      btnContainer.insertBefore(prosBtn, btnContainer.firstChild);
-                  }
-                  
-                  // Check for Research btn
-                  let resBtn = btnContainer.querySelector('.interactive-btn.purple');
-                  if (!resBtn) {
-                      resBtn = document.createElement('button');
-                      resBtn.className = 'interactive-btn purple';
-                      resBtn.innerHTML = '[ 🔬 Research Online ]';
-                      resBtn.setAttribute('onclick', `copyPromptToChat('research online topic ${tid}', this)`);
-                      if (prosBtn.nextSibling) {
-                          btnContainer.insertBefore(resBtn, prosBtn.nextSibling);
-                      } else {
-                          btnContainer.appendChild(resBtn);
-                      }
-                  }
-              }
-          }
-      });
-    </script>
 </body>
 
 </html>
