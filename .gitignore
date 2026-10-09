@@ -16,3 +16,12 @@ __pycache__/
 
 # Local scratch
 scratch/
+
+# Upstream third-party hardware repositories (reference code)
+hardware/upstream/
+hardware/external/
+hardware/CTAG-TBD/
+hardware/TBD-16-DSP/
+hardware/TBD-16-UI/
+third_party/
+external/

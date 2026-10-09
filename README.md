@@ -13,8 +13,10 @@ This repository serves as the shared, centralized research and architectural des
 
 ```text
 TheKlangResearch/
+├── guides/         # Canonical living field guides (Audio DSP, Vibe Coding & Agent Workflows)
+├── lore/           # Published in-universe creative chronicles (Mayor Toad, New Klang City)
 ├── dsp/            # Pure DSP mathematics, filter topologies, oversampling derivations
-├── hardware/       # dadamachines TBD-16 (ESP32-P4 / RP2350B), CTAG-TBD, OLED drivers
+├── hardware/       # dadamachines TBD-16 (ESP32-P4 / RP2350B), upstream ledger, OLED drivers
 ├── ui_ux/          # Standalone HTML research boards, micro-scope prototypes, ergonomic benchmarks
 ├── subagents/      # Granular soul harvests & raw mathematical proofs from AI subagents
 ├── agentic/        # AI pair-programming harness research, guardrail audits, tool benchmarks

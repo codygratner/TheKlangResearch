@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>N'kai Ecosystem Roadmap &amp; Backlog Navigator</title>
+<style>
+:root {
+  --bg-base: #0d1117;
+  --bg-panel: #161b22;
+  --bg-card: #21262d;
+  --bg-recessed: #090d13;
+  --border: #30363d;
+  --border-focus: #58a6ff;
+  --text-main: #c9d1d9;
+  --text-dim: #8b949e;
+  --text-bright: #f0f6fc;
+  --accent-amber: #ffab70;
+  --accent-cyan: #38bdf8;
+  --accent-green: #3fb950;
+  --accent-purple: #bc8cff;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --zoom: 1;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg-base);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  font-size: calc(13px * var(--zoom));
+  line-height: 1.5;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Header */
+.app-header {
+  background: var(--bg-panel);
+  border-bottom: 1px solid var(--border);
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  z-index: 100;
+}
+.header-left { display: flex; align-items: center; gap: 12px; }
+.logo {
+  font-family: var(--font-mono);
+  font-weight: bold;
+  font-size: 15px;
+  color: var(--accent-amber);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.semver-badge {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  background: var(--bg-card);
+  padding: 3px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+}
+
+.repo-tabs { display: flex; gap: 6px; }
+.repo-btn {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  transition: all 0.15s ease;
+}
+.repo-btn:hover { color: var(--text-bright); border-color: var(--text-dim); }
+.repo-btn.active {
+  background: #1f2a37;
+  color: var(--accent-amber);
+  border-color: var(--accent-amber);
+  box-shadow: 0 0 10px rgba(255, 171, 112, 0.2);
+}
+
+/* Main Viewport */
+.content-viewport {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 900px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Milestone Cards */
+.milestone-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 18px;
+  transition: all 0.2s ease;
+  position: relative;
+}
+.milestone-card.status-active {
+  border-color: var(--accent-amber);
+  background: #181e26;
+  box-shadow: 0 0 16px rgba(255, 171, 112, 0.15);
+}
+.milestone-card.status-completed {
+  opacity: 0.85;
+  border-color: rgba(63, 185, 80, 0.4);
+}
+.milestone-card.status-planned {
+  opacity: 0.7;
+  border-style: dashed;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.milestone-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-bright);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.status-pill {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+.pill-active { background: rgba(255, 171, 112, 0.15); color: var(--accent-amber); border: 1px solid var(--accent-amber); }
+.pill-completed { background: rgba(63, 185, 80, 0.15); color: var(--accent-green); border: 1px solid var(--accent-green); }
+.pill-planned { background: rgba(139, 148, 158, 0.15); color: var(--text-dim); border: 1px solid var(--border); }
+
+/* Progress Bar */
+.progress-bar-bg {
+  background: var(--bg-recessed);
+  border-radius: 4px;
+  height: 8px;
+  width: 100%;
+  overflow: hidden;
+  margin: 10px 0 14px 0;
+  border: 1px solid var(--border);
+}
+.progress-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #38bdf8, #3fb950);
+  transition: width 0.3s ease;
+}
+.progress-bar-fill.fill-active {
+  background: linear-gradient(90deg, #38bdf8, #ffab70);
+}
+
+/* Tasks List */
+.tasks-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 10px;
+}
+.task-item {
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-main);
+}
+.task-item.done {
+  color: var(--text-dim);
+  text-decoration: line-through;
+}
+
+/* Amber Focus Pulse */
+@keyframes milestonePulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 171, 112, 0.8), 0 0 20px rgba(255, 171, 112, 0.5);
+    border-color: #ffab70;
+  }
+  40% {
+    box-shadow: 0 0 0 10px rgba(255, 171, 112, 0.2), 0 0 35px rgba(255, 171, 112, 0.8);
+    border-color: #ffd0a8;
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 171, 112, 0);
+    border-color: var(--accent-amber);
+  }
+}
+.focus-pulse {
+  animation: milestonePulse 2.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+</style>
+</head>
+<body>
+
+<header class="app-header">
+  <div class="header-left">
+    <div class="logo">🗺️ ECOSYSTEM ROADMAP</div>
+    <div class="semver-badge" id="header-badge">TKS: v0.4.0-dev | TT: v0.1.0 | NK: v0.1.0</div>
+  </div>
+
+  <div class="repo-tabs">
+    <button class="repo-btn active" id="tab-tks" onclick="switchRepo('tks')">🎹 The Klang Suite</button>
+    <button class="repo-btn" id="tab-tt" onclick="switchRepo('tt')">🐸 ToadTracker</button>
+    <button class="repo-btn" id="tab-nk" onclick="switchRepo('nk')">🌌 N'kai Framework</button>
+  </div>
+
+  <div style="display:flex; gap:6px;">
+    <button class="repo-btn" onclick="location.reload()">🔄 Refresh</button>
+  </div>
+</header>
+
+<main class="content-viewport" id="milestones-container">
+  <!-- Dynamically Populated -->
+</main>
+
+<script>
+window.ECOSYSTEM_ROADMAP = {
+  "last_synced": "2026-10-09T07:42:49.235160",
+  "active_repo": "tks",
+  "repos": {
+    "tks": {
+      "name": "The Klang Suite",
+      "icon": "\ud83c\udfb9",
+      "active_version": "v0.4.0-dev",
+      "milestones": [
+        {
+          "id": "v0.3.1",
+          "title": "Editor Quality & Data Schema",
+          "status": "completed",
+          "tasks_total": 9,
+          "tasks_completed": 9,
+          "percentage": 100,
+          "tasks": [
+            {
+              "text": "Editor GUI Test Suite Expansion & Tree View UX",
+              "completed": true
+            },
+            {
+              "text": "Extract Hardcoded C++ Parameter Metadata into JSON (Parity Preservation)",
+              "completed": true
+            },
+            {
+              "text": "Intensive GUI Test Suite for Plugins & Standalone (Farmer & Planter)",
+              "completed": true
+            },
+            {
+              "text": "Planter Header Interactions: VU Meter Panic & Limiter CalloutBox",
+              "completed": true
+            },
+            {
+              "text": "Interactive Two-Line Status Bar (Values, Mouse Shortcuts & Tooltip Feed)",
+              "completed": true
+            },
+            {
+              "text": "Restore Two-Line Status Bar Visibility & Universal Hover Feed",
+              "completed": true
+            },
+            {
+              "text": "Automated VST3 Parameter Validation Suite & Headless `pluginval` Runner",
+              "completed": true
+            },
+            {
+              "text": "Planter Header Visualizer Optimization & Latency Remediation",
+              "completed": true
+            },
+            {
+              "text": "Schema Separation of Concerns & Cross-Reference \"Where Used\" Inspector",
+              "completed": true
+            }
+          ]
+        },
+        {
+          "id": "v0.3.2",
+          "title": "Agent Infrastructure & Guardrails Audit",
+          "status": "completed",
+          "tasks_total": 3,
+          "tasks_completed": 3,
+          "percentage": 100,
+          "tasks": [
+            {
+              "text": "Comprehensive Guardrails & Skills Optimization Audit",
+              "completed": true
+            },
+            {
+              "text": "Unified Filterable Master Tree & Dedicated Text/Localization Schema",
+              "completed": true
+            },
+            {
+              "text": "Developer Logging Subsystem (`TKS_LOG`) & Diagnostics Engine",
+              "completed": true
+            }
+          ]
+        },
+        {
+          "id": "v0.3.3",
+          "title": "The Hardening Gauntlet",
+          "status": "completed",
+          "tasks_total": 1,
+          "tasks_completed": 1,
+          "percentage": 100,
+          "tasks": [
+            {
+              "text": "Hardening Gauntlet Execution",
+              "completed": true
+            }
+          ]
+        },
+        {
+          "id": "v0.4.0",
+          "title": "The Interface & Experience Update",
+          "status": "completed",
+          "tasks_total": 8,
+          "tasks_completed": 8,
+          "percentage": 100,
+          "tasks": [
+            {
+              "text": "Obsidian Knowledge Base & Asymmetric Sync Bridge",
+              "completed": true
+            },
+            {
+              "text": "SQA Automation Hardening: Timeout Guardrails, Failure Snapshots & Metric Profiling",
+              "completed": true
+            },
+            {
+              "text": "Dynamic Modulation Matrix Engine & Hydra 1-to-Many Architecture",
+              "completed": true
+            },
+            {
+              "text": "Single-Tab Drag-and-Drop FX Rack & Pre-Amp Console Strip",
+              "completed": true
+            },
+            {
+              "text": "The Neo-Slate Vector Design System & Bundled JetBrains Mono",
+              "completed": true
+            },
+            {
+              "text": "Interactive Parameter & Curve Audit Tool in The Klang Editor",
+              "completed": true
+            },
+            {
+              "text": "Switchable Studio Theme Engine (`Cykranosh`, `Nord`, `Dracula`, `Cyberpunk`)",
+              "completed": true
+            },
+            {
+              "text": "Desktop Feedback, Interaction Remediation & Theme Polish Patch",
+              "completed": true
+            }
+          ]
+        },
+        {
+          "id": "v0.4.1",
+          "title": "The Complete Control Surface & UI Shells",
+          "status": "active",
+          "tasks_total": 5,
+          "tasks_completed": 0,
+          "percentage": 0,
+          "tasks": [
+            {
+              "text": "Persistent Lower Modulator Dock Strip (`ModulatorDock`)",
+              "completed": false
+            },
+            {
+              "text": "Alt+Click Flip Cards (`FlipCardContainer`)",
+              "completed": false
+            },
+            {
+              "text": "3-Column Slide-Over Preset Browser (`PresetBrowserOverlay`)",
+              "completed": false
+            },
+            {
+              "text": "Fullscreen Modulation Matrix Table (`ModMatrixModal`)",
+              "completed": false
+            },
+            {
+              "text": "Macro & Performance \"Play View\" Page",
+              "completed": false
+            }
+          ]
+        },
+        {
+          "id": "v0.4.5",
+          "title": "The Klang Planter Refresh",
+          "status": "planned",
+          "tasks_total": 4,
+          "tasks_completed": 0,
+          "percentage": 0,
+          "tasks": [
+            {
+              "text": "Planter 4-Controls-Per-Card & Chassis Architecture",
+              "completed": false
+            },
+            {
+              "text": "Neo-Slate Vector UI & Theming Parity",
+              "completed": false
+            },
+            {
+              "text": "Popover Callouts & Interaction Scheme",
+              "completed": false
+            },
+            {
+              "text": "Regression & Parity Validation",
+              "completed": false
+            }
+          ]
+        },
+        {
+          "id": "v0.5.0",
+          "title": "The Sound & Chaos Update",
+          "status": "planned",
+          "tasks_total": 14,
+          "tasks_completed": 5,
+          "percentage": 35,
+          "tasks": [
+            {
+              "text": "DSP Modulation Engine & Real-Time Matrix Routing",
+              "completed": false
+            },
+            {
+              "text": "Transparent Quota Telemetry & Language Server Probe (`/quota` Skill)",
+              "completed": false
+            },
+            {
+              "text": "Automated Version Bump Guardrail (`/cut-release` Skill)",
+              "completed": true
+            },
+            {
+              "text": "Parameter Randomization Engine (d6) \u2014 \u26a1 PULLED FORWARD INTO v0.4.0",
+              "completed": true
+            },
+            {
+              "text": "New Effects Processors Catalog Expansion (Effects 14\u201327), Universal Mix, & 5-Column Browser Modal",
+              "completed": false
+            },
+            {
+              "text": "Modular 3-Slot Transient Engine (Noise, Sample Players & Impulse Clicks) with Sub-Mixer",
+              "completed": false
+            },
+            {
+              "text": "Advanced Typography Engine (JUCE 9)",
+              "completed": false
+            },
+            {
+              "text": "Continuous Fuzz Testing (DSP Stability)",
+              "completed": false
+            },
+            {
+              "text": "Selector Right-Click Callout 'Reset to Default' Action",
+              "completed": false
+            },
+            {
+              "text": "Voice & Articulation Engine: Gated Staccato Bass, Note-Off Release & Portamento Glide",
+              "completed": false
+            },
+            {
+              "text": "Sound Design Safety: Undo / Redo & A/B State Comparison \u2014 \u26a1 PULLED FORWARD INTO v0.4.0",
+              "completed": true
+            },
+            {
+              "text": "Velocity Sensitivity Curves & MIDI CC Learn \u2014 \u26a1 PULLED FORWARD INTO v0.4.0",
+              "completed": true
+            }
+          ]
+        },
+        {
+          "id": "v0.6.0",
+          "title": "The Pro Workflow Update",
+          "status": "planned",
+          "tasks_total": 10,
+          "tasks_completed": 0,
+          "percentage": 0,
+          "tasks": [
+            {
+              "text": "JSON Preset Browser, Tagging & State Migration",
+              "completed": false
+            },
+            {
+              "text": "Curated Factory Preset Library & Sound Design Pack (64\u2013128 Patches)",
+              "completed": false
+            },
+            {
+              "text": "One-Click Preset Bank Sharing (`.tkfbank` / `.zip` Import/Export)",
+              "completed": false
+            },
+            {
+              "text": "WAV Render, Multi-Sample & SF2 Export Dialog + Instant DAW Drag 'n' Drop (Features #16 & #17)",
+              "completed": false
+            },
+            {
+              "text": "Headless Linux CLAP / VST3 Automated CI/CD Runner",
+              "completed": false
+            },
+            {
+              "text": "Dual-Tier 2x / 4x Oversampling Engine (Anti-Aliasing)",
+              "completed": false
+            },
+            {
+              "text": "4 Performance Macro Knobs (TBD-16 Hardware Aligned) \u2014 \u26a1 PULLED FORWARD INTO v0.4.0",
+              "completed": false
+            },
+            {
+              "text": "Zero-Server GitHub Crash Reporting Engine",
+              "completed": false
+            },
+            {
+              "text": "One-Time Quick Tour & Gesture Revelation (\"Right-Click is the Way\")",
+              "completed": false
+            },
+            {
+              "text": "Comprehensive FOSS & POSS Attribution, License Ledger & About Modal Expansion",
+              "completed": false
+            }
+          ]
+        },
+        {
+          "id": "v0.7.0",
+          "title": "The Visual Polish & UI Mastery Update",
+          "status": "planned",
+          "tasks_total": 4,
+          "tasks_completed": 0,
+          "percentage": 0,
+          "tasks": [
+            {
+              "text": "Dynamic UI Scaling (100% to 200%) & High-DPI Vector Crispness",
+              "completed": false
+            },
+            {
+              "text": "Tactile Industrial Chassis Shading & Depth (Baby Audio / Elektron Aesthetic)",
+              "completed": false
+            },
+            {
+              "text": "60 FPS Smooth Visualizers, Peak Meters & Realistic LED Glow",
+              "completed": false
+            },
+            {
+              "text": "Curated Theme Palette Presets (JSON Driven)",
+              "completed": false
+            }
+          ]
+        },
+        {
+          "id": "v1.0.0",
+          "title": "The General Availability Launch",
+          "status": "planned",
+          "tasks_total": 3,
+          "tasks_completed": 0,
+          "percentage": 0,
+          "tasks": [
+            {
+              "text": "Multi-Platform Automated Installers & Distribution Packaging",
+              "completed": false
+            },
+            {
+              "text": "Comprehensive User Manual & Interactive Guide",
+              "completed": false
+            },
+            {
+              "text": "Launch Demo Reel & Audio Showcase",
+              "completed": false
+            }
+          ]
+        },
+        {
+          "id": "v1.1.0",
+          "title": "The Klang Box Hardware Universe (Post-1.0)",
+          "status": "planned",
+          "tasks_total": 9,
+          "tasks_completed": 0,
+          "percentage": 0,
+          "tasks": [
+            {
+              "text": "dadamachines tbd-16 Groovebox Integration (TKB-TBD)",
+              "completed": false
+            },
+            {
+              "text": "The Klang Box: Daisy Edition (TKB-Daisy) \u2014 Stereo Desktop & Eurorack Hardware",
+              "completed": false
+            },
+            {
+              "text": "The Klang Box: Studio Edition (TKB-8) \u2014 Teensy 4.1 8-Voice Multi-Output Drum Machine",
+              "completed": false
+            },
+            {
+              "text": "Zynthian V5 / V4 Standalone Hardware Port (TENTATIVE)",
+              "completed": false
+            },
+            {
+              "text": "The Klang Mill (Standalone VST) \u2014 Industrial 1x6 Multi-FX Pedalboard Rack",
+              "completed": false
+            },
+            {
+              "text": "The Klang Boilerplate \u2014 Modern C++20 / JUCE 9 FOSS Plugin Starter Template",
+              "completed": false
+            },
+            {
+              "text": "ToadTracker Core Migration & Architectural Port",
+              "completed": false
+            },
+            {
+              "text": "The Klang R1 (TKR-1) \u2014 7-Voice Rhythm Synthesizer (Electribe ER-1 Tribute)",
+              "completed": false
+            },
+            {
+              "text": "The Klang Cultivator (TKC) \u2014 Standalone MIDI CC / CV / MPE Modulation Generator Rack",
+              "completed": false
+            }
+          ]
+        }
+      ]
+    },
+    "tt": {
+      "name": "ToadTracker",
+      "icon": "\ud83d\udc38",
+      "active_version": "v0.1.0",
+      "milestones": [
+        {
+          "id": "v0.1.0",
+          "title": "Alpha Juno Synthesizer Engine & SPSC Queue",
+          "status": "active",
+          "tasks_total": 5,
+          "tasks_completed": 3,
+          "percentage": 60,
+          "tasks": [
+            {
+              "text": "Dual 2-Pole IR3R05 Resonant Lowpass Filter",
+              "completed": true
+            },
+            {
+              "text": "Lock-Free SPSC FIFO Queue between UI and Audio",
+              "completed": true
+            },
+            {
+              "text": "Sub-oscillator pulse division & PWM",
+              "completed": true
+            },
+            {
+              "text": "2D Grid Spatial Navigation (Song/Chain/Phrase)",
+              "completed": false
+            },
+            {
+              "text": "dadamachines TBD-16 SPI DMA Hardware HAL",
+              "completed": false
+            }
+          ]
+        },
+        {
+          "id": "v0.2.0",
+          "title": "Tracker Core Replay Engine & Table Commands",
+          "status": "planned",
+          "tasks_total": 4,
+          "tasks_completed": 0,
+          "percentage": 0,
+          "tasks": [
+            {
+              "text": "Hexadecimal 00-FF Parameter Locks",
+              "completed": false
+            },
+            {
+              "text": "Tick-based Table Modulations",
+              "completed": false
+            },
+            {
+              "text": "WAV Song Exporter CLI",
+              "completed": false
+            },
+            {
+              "text": "Steam Deck Linux Gamepad UI",
+              "completed": false
+            }
+          ]
+        }
+      ]
+    },
+    "nk": {
+      "name": "N'kai Framework",
+      "icon": "\ud83c\udf0c",
+      "active_version": "v0.1.0",
+      "milestones": [
+        {
+          "id": "v0.1.0",
+          "title": "Asymmetric Sidecar Framework & Triage Lab",
+          "status": "active",
+          "tasks_total": 5,
+          "tasks_completed": 4,
+          "percentage": 80,
+          "tasks": [
+            {
+              "text": "Standalone Zero-Dependency HTML Template",
+              "completed": true
+            },
+            {
+              "text": "Antigravity UI Extension Node Plugin Bundle",
+              "completed": true
+            },
+            {
+              "text": "Decision Composer & Triage Package JSON Schema",
+              "completed": true
+            },
+            {
+              "text": "NkaiBridge Unified Adapter Pattern",
+              "completed": true
+            },
+            {
+              "text": "Deep-Linking Hash Router & Milestone Pulse",
+              "completed": false
+            }
+          ]
+        },
+        {
+          "id": "v0.2.0",
+          "title": "Two-Way MCP Agent Dispatcher & State Sync",
+          "status": "planned",
+          "tasks_total": 3,
+          "tasks_completed": 0,
+          "percentage": 0,
+          "tasks": [
+            {
+              "text": "agentapi direct prompt dispatch from side panel",
+              "completed": false
+            },
+            {
+              "text": "Live Web Worker State Heartbeat Sync",
+              "completed": false
+            },
+            {
+              "text": "Interactive Audio DSP Waveform Canvas Widgets",
+              "completed": false
+            }
+          ]
+        }
+      ]
+    }
+  }
+};
+
+let activeRepo = 'tks';
+
+function switchRepo(repoId) {
+  activeRepo = repoId;
+  document.querySelectorAll('.repo-btn').forEach(b => b.classList.remove('active'));
+  const btn = document.getElementById('tab-' + repoId);
+  if (btn) btn.classList.add('active');
+
+  renderMilestones();
+}
+
+function renderMilestones() {
+  const container = document.getElementById('milestones-container');
+  const repo = window.ECOSYSTEM_ROADMAP.repos[activeRepo];
+  if (!repo) return;
+
+  container.innerHTML = repo.milestones.map(m => {
+    const pillClass = m.status === 'active' ? 'pill-active' : (m.status === 'completed' ? 'pill-completed' : 'pill-planned');
+    const fillClass = m.status === 'active' ? 'fill-active' : '';
+    const badgeText = m.status === 'active' ? `🔨 ACTIVE (${m.percentage}%)` : (m.status === 'completed' ? `✅ COMPLETED` : `⏳ PLANNED`);
+    
+    return `
+      <div class="milestone-card status-${m.status}" id="${activeRepo}-${m.id}">
+        <div class="card-header">
+          <div class="milestone-title">
+            <span>${repo.icon}</span>
+            <span>Milestone ${m.id}: ${m.title}</span>
+          </div>
+          <span class="status-pill ${pillClass}">${badgeText}</span>
+        </div>
+
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill ${fillClass}" style="width: ${m.percentage}%;"></div>
+        </div>
+
+        <div class="tasks-list">
+          ${m.tasks.map(t => `
+            <div class="task-item ${t.completed ? 'done' : ''}">
+              <span>${t.completed ? '✅' : '⏳'}</span>
+              <span>${t.text}</span>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function handleHashRouting() {
+  const rawHash = window.location.hash.replace(/^#/, '');
+  if (!rawHash) {
+    renderMilestones();
+    return;
+  }
+
+  const parts = rawHash.split('-');
+  const repo = parts[0];
+  const ver = parts.slice(1).join('-');
+
+  if (['tks', 'tt', 'nk'].includes(repo)) {
+    switchRepo(repo);
+    
+    setTimeout(() => {
+      const target = document.getElementById(`${repo}-${ver}`) || document.querySelector(`.status-active`);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        target.classList.add('focus-pulse');
+        setTimeout(() => target.classList.remove('focus-pulse'), 2500);
+      }
+    }, 100);
+  }
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  handleHashRouting();
+});
+
+window.addEventListener('hashchange', () => {
+  handleHashRouting();
+});
+</script>
+</body>
+</html>
