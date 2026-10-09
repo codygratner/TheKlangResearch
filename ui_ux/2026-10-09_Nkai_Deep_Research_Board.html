@@ -1043,37 +1043,37 @@
           <!-- Rendered dynamically by setWorkshopTopic, pre-populated with t7 -->
           <div class="section-card" id="workshop-card">
             <div class="section-title">
-              <span id="ws-card-title">6.7 Context Clues Architecture &amp; Factory Handshake Gate</span>
-              <span id="ws-card-badge" class="badge badge-blue">Pipeline Architecture</span>
+              <span id="ws-card-title">6.13 Universal AI Harness Portability (Claude Code, Codex, Cursor, Antigravity)</span>
+              <span id="ws-card-badge" class="badge badge-blue">Cross-Platform Runtime</span>
             </div>
             <p id="ws-card-desc" style="font-size: 12px; line-height: 1.6; color: var(--text-main);">
-              <strong>The Question:</strong> How should subagents and factory builder agents be seeded with project context, documentation catalog links, and active branch state to prevent hallucination?
+              <strong>The Question:</strong> How do we ensure N'kai's asymmetric sidecar pattern, decision composer, and skills operate seamlessly across popular AI coding harnesses beyond Antigravity (such as Claude Code CLI, OpenAI Codex / ChatGPT developer harnesses, Cursor, and Windsurf)?
             </p>
 
             <div class="grid-3" id="ws-card-options" style="margin-top: 12px;">
               <div class="pill-card">
-                <div class="pill-title">Option A: Static Chat History</div>
-                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Rely entirely on conversation transcript. Degrades as conversations grow past 30+ turns.</p>
+                <div class="pill-title">Option A: Antigravity-Only Lock-in</div>
+                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Target strictly Antigravity's proprietary Sidecar SDK. Breaks or requires major re-writes if developing in Claude Code or Cursor.</p>
                 <div style="margin-top: 8px;">
-                  <input type="text" readonly value="[6.7 Context Clues] pros and cons for Option A Static Chat History"
+                  <input type="text" readonly value="[6.13 Portability] pros and cons for Option A Antigravity-Only Lock-in"
                          onclick="this.select();" ondblclick="this.select();"
                          style="width:100%; box-sizing:border-box; background:rgba(0,0,0,0.5); border:1px solid var(--border); border-radius:3px; color:var(--text-muted); font-family:var(--font-mono); font-size:10px; padding:4px 6px; cursor:text; user-select:all;" />
                 </div>
               </div>
               <div class="pill-card" style="border: 1px solid var(--accent-green);">
-                <div class="pill-title" style="color:var(--accent-green);">Option B: Structured Context Clues (Recommended)</div>
-                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Dedicated context clue files (<code>context_clues_build.md</code>, <code>context_clues_research.md</code>) with canonical links to <code>DOCS_CATALOG.json</code> and <code>SYSTEM_MAP.md</code>.</p>
+                <div class="pill-title" style="color:var(--accent-green);">Option B: Standalone File + Localhost Adapter (Recommended)</div>
+                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Keep zero-dependency standalone HTML (<code>file:///</code>) for IDE webviews (Cursor, VS Code, AGY), and provide a tiny 30-line localhost server (<code>npx nkai serve</code>) that auto-opens a browser tab for terminal CLIs (Claude Code, Codex).</p>
                 <div style="margin-top: 8px;">
-                  <input type="text" readonly value="[6.7 Context Clues] pros and cons for Option B Structured Context Clues"
-                         onclick="this.select();" ondblclick="this.select();"
-                         style="width:100%; box-sizing:border-box; background:rgba(0,0,0,0.5); border:1px solid rgba(63,185,80,0.4); border-radius:3px; color:var(--accent-green); font-family:var(--font-mono); font-size:10px; padding:4px 6px; cursor:text; user-select:all;" />
+                  <input type="text" readonly value="[6.13 Portability] pros and cons for Option B Standalone File + Localhost Adapter"
+                     onclick="this.select();" ondblclick="this.select();"
+                     style="width:100%; box-sizing:border-box; background:rgba(0,0,0,0.5); border:1px solid rgba(63,185,80,0.4); border-radius:3px; color:var(--accent-green); font-family:var(--font-mono); font-size:10px; padding:4px 6px; cursor:text; user-select:all;" />
                 </div>
               </div>
               <div class="pill-card">
-                <div class="pill-title">Option C: Dynamic SQLite Memory Store</div>
-                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Store agent memory in SQLite database. High maintenance and opaque to git diffs.</p>
+                <div class="pill-title">Option C: Markdown-Only Fallback</div>
+                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">If not in Antigravity, completely disable sidecars and dump massive text tables directly into chat. Defeats the asymmetric split.</p>
                 <div style="margin-top: 8px;">
-                  <input type="text" readonly value="[6.7 Context Clues] pros and cons for Option C SQLite Memory Store"
+                  <input type="text" readonly value="[6.13 Portability] pros and cons for Option C Markdown-Only Fallback"
                          onclick="this.select();" ondblclick="this.select();"
                          style="width:100%; box-sizing:border-box; background:rgba(0,0,0,0.5); border:1px solid var(--border); border-radius:3px; color:var(--text-muted); font-family:var(--font-mono); font-size:10px; padding:4px 6px; cursor:text; user-select:all;" />
                 </div>
@@ -1082,28 +1082,28 @@
 
             <!-- 3-Lens Pros & Cons -->
             <div id="ws-card-evaluation" style="margin-top: 14px; background: rgba(0,0,0,0.3); border: 1px solid rgba(48,54,61,0.6); border-radius: 6px; padding: 12px;">
-              <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option B: Structured Context Clues)</div>
+              <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option B: Standalone File + Localhost Adapter)</div>
               <ul style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin: 0; padding-left: 18px;">
-                <li><strong>🌍 Real-World Ergonomics:</strong> Subagents spin up fully grounded in seconds with zero prompt hallucination or broken paths.</li>
-                <li><strong>🏛️ Wider SOTA:</strong> Aligns with industry leading practice for autonomous agents (LLM context pre-loading, Agent Scratchpads).</li>
-                <li><strong>🏆 Best Practices:</strong> 100% plain Markdown, git-tracked, version-controlled, zero binary database dependencies.</li>
+                <li><strong>🌍 Real-World Ergonomics:</strong> Works seamlessly regardless of environment. In GUI IDEs it renders in the side panel; in terminal CLIs it opens in Chrome/Edge instantly.</li>
+                <li><strong>🏛️ Wider SOTA:</strong> Matches how modern developer tools operate across CLIs and IDEs (Playwright UI, Vitest UI, Storybook, Astro).</li>
+                <li><strong>🏆 Best Practices:</strong> Zero vendor lock-in. 100% standard web technologies (HTML5/CSS/ES Modules) with zero heavyweight runtime dependencies.</li>
               </ul>
               <div style="margin-top: 10px; display: flex; flex-direction: column; gap: 6px;">
                 <span style="font-family:var(--font-mono); font-size:10px; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.5px;">🔬 Deep Dive Prompts (Click to Highlight, Ctrl+C to Copy):</span>
                 <div style="display:flex; align-items:center; gap:6px; background:rgba(88,166,255,0.06); border:1px solid rgba(88,166,255,0.25); border-radius:4px; padding:4px 8px;">
                   <span style="font-size:10px; font-family:var(--font-mono); color:var(--accent-blue); width:130px; flex-shrink:0;">⚖️ Pros &amp; Cons:</span>
-                  <input type="text" readonly value="pros and cons for Structured Context Clues vs SQLite Memory across the 4 Lenses"
+                  <input type="text" readonly value="pros and cons for Universal AI Harness Portability across the 4 Lenses"
                          onclick="this.select();" ondblclick="this.select();"
                          style="flex:1; background:rgba(0,0,0,0.5); border:1px solid rgba(88,166,255,0.2); border-radius:3px; color:var(--accent-neon); font-family:var(--font-mono); font-size:10px; padding:4px 8px; cursor:text; user-select:all;" />
                 </div>
                 <div style="display:flex; align-items:center; gap:6px; background:rgba(88,166,255,0.06); border:1px solid rgba(88,166,255,0.25); border-radius:4px; padding:4px 8px;">
                   <span style="font-size:10px; font-family:var(--font-mono); color:var(--accent-blue); width:130px; flex-shrink:0;">🔬 Research Online:</span>
-                  <input type="text" readonly value="research online AI coding agent context management best practices 2026"
+                  <input type="text" readonly value="research online cross-harness compatibility for Claude Code Cursor Windsurf sidecar tools"
                          onclick="this.select();" ondblclick="this.select();"
                          style="flex:1; background:rgba(0,0,0,0.5); border:1px solid rgba(88,166,255,0.2); border-radius:3px; color:var(--accent-neon); font-family:var(--font-mono); font-size:10px; padding:4px 8px; cursor:text; user-select:all;" />
                 </div>
                 <div style="margin-top:4px;">
-                  <button class="interactive-btn amber" style="font-size:10px; padding:2px 8px;" onclick="navigateToSection('sec-audit-t7')">[ 🔍 Jump to Topic in Full Context ]</button>
+                  <button class="interactive-btn amber" style="font-size:10px; padding:2px 8px;" onclick="navigateToSection('sec-audit-t13')">[ 🔍 Jump to Topic in Full Context ]</button>
                 </div>
               </div>
             </div>
@@ -1123,7 +1123,7 @@
                 <!-- Approve Box -->
                 <div style="display:flex; align-items:center; gap:8px; background:rgba(63,185,80,0.08); border:1px solid rgba(63,185,80,0.35); border-radius:6px; padding:6px 10px;">
                   <span style="font-size:10px; font-family:var(--font-mono); color:var(--accent-green); font-weight:700; width:75px; flex-shrink:0;">✅ APPROVE:</span>
-                  <input type="text" readonly value="[6.7 Context Clues Architecture] VERDICT: APPROVED (APPROVE Option B)"
+                  <input type="text" readonly value="[6.13 Universal AI Harness Portability] VERDICT: APPROVED (APPROVE Option B)"
                          onclick="this.select();" ondblclick="this.select();"
                          style="flex:1; background:rgba(0,0,0,0.6); border:1px solid rgba(63,185,80,0.4); border-radius:4px; color:var(--accent-green); font-family:var(--font-mono); font-size:11px; padding:6px 10px; cursor:text; user-select:all;" />
                 </div>
@@ -1131,7 +1131,7 @@
                 <!-- Table Box -->
                 <div style="display:flex; align-items:center; gap:8px; background:rgba(255,171,112,0.08); border:1px solid rgba(255,171,112,0.3); border-radius:6px; padding:6px 10px;">
                   <span style="font-size:10px; font-family:var(--font-mono); color:var(--accent-amber); font-weight:700; width:75px; flex-shrink:0;">⏳ TABLE:</span>
-                  <input type="text" readonly value="[6.7 Context Clues Architecture] VERDICT: TABLED"
+                  <input type="text" readonly value="[6.13 Universal AI Harness Portability] VERDICT: TABLED"
                          onclick="this.select();" ondblclick="this.select();"
                          style="flex:1; background:rgba(0,0,0,0.6); border:1px solid rgba(255,171,112,0.3); border-radius:4px; color:var(--accent-amber); font-family:var(--font-mono); font-size:11px; padding:6px 10px; cursor:text; user-select:all;" />
                 </div>
@@ -1139,7 +1139,7 @@
                 <!-- Reject Box -->
                 <div style="display:flex; align-items:center; gap:8px; background:rgba(248,81,73,0.08); border:1px solid rgba(248,81,73,0.3); border-radius:6px; padding:6px 10px;">
                   <span style="font-size:10px; font-family:var(--font-mono); color:var(--accent-red); font-weight:700; width:75px; flex-shrink:0;">💀 REJECT:</span>
-                  <input type="text" readonly value="[6.7 Context Clues Architecture] VERDICT: KILLED"
+                  <input type="text" readonly value="[6.13 Universal AI Harness Portability] VERDICT: KILLED"
                          onclick="this.select();" ondblclick="this.select();"
                          style="flex:1; background:rgba(0,0,0,0.6); border:1px solid rgba(248,81,73,0.3); border-radius:4px; color:var(--accent-red); font-family:var(--font-mono); font-size:11px; padding:6px 10px; cursor:text; user-select:all;" />
                 </div>
@@ -3616,7 +3616,7 @@ function toggleDrawer(drawerId) {
     // ============================================================
     // Active Workshop & Sanity Audit Triage Engine
     // ============================================================
-    window.currentWorkshopTopic = 't7';
+    window.currentWorkshopTopic = 't13';
 
     const defaultAuditVerdicts = {
       t1: { title: '6.1 Post-Mortem Architecture', verdict: 'APPROVED' },
@@ -3625,7 +3625,7 @@ function toggleDrawer(drawerId) {
       t4: { title: '6.4 Agent Skills Organization', verdict: 'PENDING' },
       t5: { title: "6.5 N'kai Ergonomics", verdict: 'PENDING' },
       t6: { title: '6.6 AGY Keyboard Shortcuts', verdict: 'PENDING' },
-      t7: { title: '6.7 Context Clues Architecture', verdict: 'PENDING' },
+      t7: { title: '6.7 Context Clues Architecture', verdict: 'APPROVED' },
       t8: { title: '6.8 Ongoing Autopsy', verdict: 'PENDING' },
       t9: { title: '6.9 Header Layout & Utility Cluster', verdict: 'PENDING' },
       t10: { title: '6.10 Tab Header Density', verdict: 'PENDING' },
@@ -3635,7 +3635,7 @@ function toggleDrawer(drawerId) {
       t14: { title: '6.14 Nkai-First Skill Default', verdict: 'PENDING' },
       t15: { title: '6.15 Industry Workflow Precedents', verdict: 'APPROVED' },
       t16: { title: '6.16 Backend Persistence & State', verdict: 'APPROVED' },
-      t17: { title: '6.17 Bidirectional Click-to-Agent Bridge', verdict: 'APPROVED' },
+      t17: { title: '6.17 Bidirectional Click-to-Agent Bridge', verdict: 'TABLED' },
       t18: { title: '6.18 Parallel Subagent Delegation for Sidecar Actions', verdict: 'PENDING' },
       t19: { title: '6.19 Cumulative Allowance & Token Impact Ledger', verdict: 'PENDING' }
     };
@@ -3777,25 +3777,28 @@ function toggleDrawer(drawerId) {
           <div class="pill-card">
             <div class="pill-title">Option A: 16 Micro-Skills (Current)</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Every command is its own atomic skill (build-validate, step-verify, audiothread-guard, web-qa). High granularity, but requires knowing multiple commands.</p>
-            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
-              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t4', 'A', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
-              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t4', 'A', 'research', this)">[ 🔬 Research ]</button>
+            <div style="margin-top: 8px;">
+              <input type="text" readonly value="[6.4 Skills] pros and cons for Option A 16 Micro-Skills"
+                     onclick="this.select();" ondblclick="this.select();"
+                     style="width:100%; box-sizing:border-box; background:rgba(0,0,0,0.5); border:1px solid var(--border); border-radius:3px; color:var(--text-muted); font-family:var(--font-mono); font-size:10px; padding:4px 6px; cursor:text; user-select:all;" />
             </div>
           </div>
           <div class="pill-card">
             <div class="pill-title">Option B: 4 Consolidated Macro-Suites</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Merged into 4 monolithic skills: /architect, /factory, /maintain, /qa. Simpler menu, but reduces flexibility for targeted single operations.</p>
-            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
-              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t4', 'B', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
-              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t4', 'B', 'research', this)">[ 🔬 Research ]</button>
+            <div style="margin-top: 8px;">
+              <input type="text" readonly value="[6.4 Skills] pros and cons for Option B 4 Consolidated Macro-Suites"
+                     onclick="this.select();" ondblclick="this.select();"
+                     style="width:100%; box-sizing:border-box; background:rgba(0,0,0,0.5); border:1px solid var(--border); border-radius:3px; color:var(--text-muted); font-family:var(--font-mono); font-size:10px; padding:4px 6px; cursor:text; user-select:all;" />
             </div>
           </div>
           <div class="pill-card" style="border: 1px solid var(--accent-green);">
             <div class="pill-title" style="color:var(--accent-green);">Option C: Layered Hybrid (Recommended)</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Keep atomic micro-skills as the underlying engine, while macro-commands (like /execute-task or unified qa) chain them deterministically. Zero loss of composability.</p>
-            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
-              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t4', 'C', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
-              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t4', 'C', 'research', this)">[ 🔬 Research ]</button>
+            <div style="margin-top: 8px;">
+              <input type="text" readonly value="[6.4 Skills] pros and cons for Option C Layered Hybrid"
+                     onclick="this.select();" ondblclick="this.select();"
+                     style="width:100%; box-sizing:border-box; background:rgba(0,0,0,0.5); border:1px solid rgba(63,185,80,0.4); border-radius:3px; color:var(--accent-green); font-family:var(--font-mono); font-size:10px; padding:4px 6px; cursor:text; user-select:all;" />
             </div>
           </div>`,
         evalHtml: `
@@ -4158,25 +4161,28 @@ function toggleDrawer(drawerId) {
           <div class="pill-card">
             <div class="pill-title">Option A: Antigravity-Only Lock-in</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Target strictly Antigravity's proprietary Sidecar SDK. Breaks or requires major re-writes if developing in Claude Code or Cursor.</p>
-            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
-              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t13', 'A', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
-              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t13', 'A', 'research', this)">[ 🔬 Research ]</button>
+            <div style="margin-top: 8px;">
+              <input type="text" readonly value="[6.13 Portability] pros and cons for Option A Antigravity-Only Lock-in"
+                     onclick="this.select();" ondblclick="this.select();"
+                     style="width:100%; box-sizing:border-box; background:rgba(0,0,0,0.5); border:1px solid var(--border); border-radius:3px; color:var(--text-muted); font-family:var(--font-mono); font-size:10px; padding:4px 6px; cursor:text; user-select:all;" />
             </div>
           </div>
           <div class="pill-card" style="border: 1px solid var(--accent-green);">
             <div class="pill-title" style="color:var(--accent-green);">Option B: Standalone File + Localhost Adapter (Recommended)</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Keep zero-dependency standalone HTML (<code>file:///</code>) for IDE webviews (Cursor, VS Code, AGY), and provide a tiny 30-line localhost server (<code>npx nkai serve</code>) that auto-opens a browser tab for terminal CLIs (Claude Code, Codex).</p>
-            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
-              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t13', 'B', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
-              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t13', 'B', 'research', this)">[ 🔬 Research ]</button>
+            <div style="margin-top: 8px;">
+              <input type="text" readonly value="[6.13 Portability] pros and cons for Option B Standalone File + Localhost Adapter"
+                     onclick="this.select();" ondblclick="this.select();"
+                     style="width:100%; box-sizing:border-box; background:rgba(0,0,0,0.5); border:1px solid rgba(63,185,80,0.4); border-radius:3px; color:var(--accent-green); font-family:var(--font-mono); font-size:10px; padding:4px 6px; cursor:text; user-select:all;" />
             </div>
           </div>
           <div class="pill-card">
             <div class="pill-title">Option C: Markdown-Only Fallback</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">If not in Antigravity, completely disable sidecars and dump massive text tables directly into chat. Defeats the asymmetric split.</p>
-            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
-              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t13', 'C', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
-              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t13', 'C', 'research', this)">[ 🔬 Research ]</button>
+            <div style="margin-top: 8px;">
+              <input type="text" readonly value="[6.13 Portability] pros and cons for Option C Markdown-Only Fallback"
+                     onclick="this.select();" ondblclick="this.select();"
+                     style="width:100%; box-sizing:border-box; background:rgba(0,0,0,0.5); border:1px solid var(--border); border-radius:3px; color:var(--text-muted); font-family:var(--font-mono); font-size:10px; padding:4px 6px; cursor:text; user-select:all;" />
             </div>
           </div>`,
         evalHtml: `
@@ -4943,8 +4949,10 @@ function toggleDrawer(drawerId) {
       } catch (e) {
         console.warn('Could not load saved audit verdicts:', e);
       }
-      // Force 6.16 APPROVED per user order
+      // Force 6.16 & 6.7 APPROVED per user order
       auditVerdicts.t16.verdict = 'APPROVED';
+      auditVerdicts.t7.verdict = 'APPROVED';
+      auditVerdicts.t17.verdict = 'TABLED';
       try {
         localStorage.setItem('nkai_audit_verdicts', JSON.stringify(auditVerdicts));
       } catch (e) {}
@@ -4977,12 +4985,12 @@ function toggleDrawer(drawerId) {
     // Kickoff Lifecycle
     initAuditVerdicts();
     checkBridgeStatus();
-    setWorkshopTopic('t7');
+    setWorkshopTopic('t13');
     handleHashNavigation();
     window.addEventListener('DOMContentLoaded', () => {
       initAuditVerdicts();
       checkBridgeStatus();
-      setWorkshopTopic('t7');
+      setWorkshopTopic('t13');
       handleHashNavigation();
     });
     window.addEventListener('hashchange', handleHashNavigation);
