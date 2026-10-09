@@ -149,6 +149,12 @@
       background: rgba(88, 166, 255, 0.1);
     }
 
+    .header-btn.green {
+      color: var(--accent-green);
+      border-color: rgba(63, 185, 80, 0.4);
+      background: rgba(63, 185, 80, 0.1);
+    }
+
     .zoom-group {
       display: flex;
       gap: 2px;
@@ -537,6 +543,7 @@
         <button class="header-btn" onclick="adjustZoom(-0.05)">A-</button>
         <button class="header-btn" onclick="adjustZoom(0.05)">A+</button>
       </div>
+      <button id="header-mute-btn" class="header-btn green" onclick="toggleAudioMute()" title="Master Audio Haptics Mute Toggle">🔊 Sound: ON</button>
       <button class="header-btn" onclick="location.reload()" title="Force Refresh">🔄</button>
     </div>
   </header>
@@ -799,10 +806,12 @@ class NkaiDataLoader {
               <p style="font-size: 12px; color: var(--text-muted); line-height: 1.5;">
                 Physical detent clicks and subtle harmonic chimes rendered via pure Web Audio oscillators (with master mute toggle).
               </p>
-              <div style="margin-top:8px; display:flex; gap:6px;">
+              <div style="margin-top:8px; display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+                <button id="card-mute-btn" class="interactive-btn" onclick="toggleAudioMute()">🔊 Active (Click to Mute)</button>
                 <button class="interactive-btn" onclick="playHapticTick()">🔊 Test Tick (800Hz)</button>
-                <button class="interactive-btn" onclick="playHapticChime()">✨ Test Chime (Major 3rd)</button>
+                <button class="interactive-btn" onclick="playHapticChime()">✨ Test Chime (Major Triad)</button>
               </div>
+              <div id="audio-toast" style="margin-top:8px; font-family:var(--font-mono); font-size:11px; color:var(--accent-neon); min-height:16px;"></div>
             </div>
 
             <div class="pill-card">
@@ -937,59 +946,129 @@ class NkaiDataLoader {
       if (overlay) overlay.classList.remove('active');
     }
 
-    // Zero-Dependency Procedural Web Audio Synthesis
+    // Zero-Dependency Procedural Web Audio Synthesis & Mute Architecture
     let audioCtx = null;
-    function getAudioContext() {
+    let isAudioMuted = (localStorage.getItem('nkai_audio_muted') === 'true');
+
+    function updateMuteUI() {
+      const headerBtn = document.getElementById('header-mute-btn');
+      const cardBtn = document.getElementById('card-mute-btn');
+      if (isAudioMuted) {
+        if (headerBtn) {
+          headerBtn.innerHTML = '🔇 Sound: OFF';
+          headerBtn.className = 'header-btn amber';
+          headerBtn.title = 'Sound is Muted (Click to Unmute)';
+        }
+        if (cardBtn) {
+          cardBtn.innerHTML = '🔇 Muted (Click to Unmute)';
+          cardBtn.className = 'interactive-btn amber';
+        }
+      } else {
+        if (headerBtn) {
+          headerBtn.innerHTML = '🔊 Sound: ON';
+          headerBtn.className = 'header-btn green';
+          headerBtn.title = 'Sound is Active (Click to Mute)';
+        }
+        if (cardBtn) {
+          cardBtn.innerHTML = '🔊 Active (Click to Mute)';
+          cardBtn.className = 'interactive-btn';
+        }
+      }
+    }
+
+    function toggleAudioMute() {
+      isAudioMuted = !isAudioMuted;
+      localStorage.setItem('nkai_audio_muted', isAudioMuted.toString());
+      updateMuteUI();
+      showAudioToast(isAudioMuted ? '🔇 Audio Haptics Muted (Saved to LocalStorage)' : '🔊 Audio Haptics Active (Saved to LocalStorage)');
+    }
+
+    let toastTimer = null;
+    function showAudioToast(msg) {
+      const toast = document.getElementById('audio-toast');
+      if (!toast) return;
+      toast.innerText = msg;
+      toast.style.opacity = '1';
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.style.opacity = '0.5';
+      }, 2500);
+    }
+
+    async function getAudioContext() {
       if (!audioCtx) {
-        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        audioCtx = new AudioContextClass();
+      }
+      if (audioCtx.state === 'suspended') {
+        await audioCtx.resume();
       }
       return audioCtx;
     }
 
-    function playHapticTick() {
+    async function playHapticTick() {
+      if (isAudioMuted) {
+        showAudioToast('🔇 Audio Muted — Click "Muted" or header button to unmute!');
+        return;
+      }
       try {
-        const ctx = getAudioContext();
+        const ctx = await getAudioContext();
+        const now = ctx.currentTime;
         const osc = ctx.createOscillator();
         const gain = ctx.createGain();
         osc.connect(gain);
         gain.connect(ctx.destination);
 
         osc.type = 'sine';
-        osc.frequency.setValueAtTime(800, ctx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(120, ctx.currentTime + 0.025);
+        osc.frequency.setValueAtTime(850, now);
+        osc.frequency.exponentialRampToValueAtTime(140, now + 0.035);
 
-        gain.gain.setValueAtTime(0.08, ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.025);
+        gain.gain.setValueAtTime(0.18, now);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.035);
 
-        osc.start();
-        osc.stop(ctx.currentTime + 0.025);
+        osc.start(now);
+        osc.stop(now + 0.035);
+        showAudioToast('🔊 Tick played (850Hz -> 140Hz detent click)');
       } catch (e) {
-        console.warn('Web Audio not allowed without user gesture:', e);
+        console.warn('Web Audio error:', e);
+        showAudioToast('⚠️ Web Audio Error: ' + e.message);
       }
     }
 
-    function playHapticChime() {
+    async function playHapticChime() {
+      if (isAudioMuted) {
+        showAudioToast('🔇 Audio Muted — Click "Muted" or header button to unmute!');
+        return;
+      }
       try {
-        const ctx = getAudioContext();
-        [523.25, 659.25].forEach((freq, i) => { // C5 and E5
+        const ctx = await getAudioContext();
+        const now = ctx.currentTime;
+        const triad = [523.25, 659.25, 783.99]; // C5, E5, G5 major triad
+        triad.forEach((freq, i) => {
           const osc = ctx.createOscillator();
           const gain = ctx.createGain();
           osc.connect(gain);
           gain.connect(ctx.destination);
 
-          osc.type = 'sine';
-          osc.frequency.setValueAtTime(freq, ctx.currentTime + (i * 0.04));
+          const noteStart = now + (i * 0.045);
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(freq, noteStart);
 
-          gain.gain.setValueAtTime(0.06, ctx.currentTime + (i * 0.04));
-          gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + (i * 0.04) + 0.25);
+          gain.gain.setValueAtTime(0.12, noteStart);
+          gain.gain.exponentialRampToValueAtTime(0.0001, noteStart + 0.38);
 
-          osc.start(ctx.currentTime + (i * 0.04));
-          osc.stop(ctx.currentTime + (i * 0.04) + 0.25);
+          osc.start(noteStart);
+          osc.stop(noteStart + 0.38);
         });
+        showAudioToast('✨ Major Triad Approval Chime played (C5-E5-G5)');
       } catch (e) {
-        console.warn('Web Audio not allowed without user gesture:', e);
+        console.warn('Web Audio error:', e);
+        showAudioToast('⚠️ Web Audio Error: ' + e.message);
       }
     }
+
+    // Initialize Mute UI state on page load
+    updateMuteUI();
 
     // Close drawers on Escape key
     window.addEventListener('keydown', (e) => {
