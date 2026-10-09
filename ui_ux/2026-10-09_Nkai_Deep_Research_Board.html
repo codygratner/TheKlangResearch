@@ -1236,12 +1236,12 @@ class SidecarMigrator:
           <!-- Interactive Verdict Chips -->
           <div style="display:flex; justify-content:space-between; align-items:center; margin-top:14px; padding-top:10px; border-top:1px solid rgba(48,54,61,0.5);">
             <div style="font-family:var(--font-mono); font-size:11px; color:var(--text-muted);">
-              Verdict: <strong id="v-badge-t1" style="color:var(--text-muted);">PENDING</strong>
+              Verdict: <strong id="v-badge-t1" style="color:var(--accent-green);">APPROVED (Option B: Continuous In-Flight Triage)</strong>
             </div>
             <div style="display:flex; gap:6px;">
-              <button class="interactive-btn" style="color:var(--accent-green); border-color:var(--accent-green);" onclick="setAuditVerdict('t1', 'APPROVED', this)">[ ✅ APPROVE Option B ]</button>
-              <button class="interactive-btn amber" onclick="setAuditVerdict('t1', 'TABLED', this)">[ ⏳ TABLE ]</button>
-              <button class="interactive-btn" style="color:var(--accent-red); border-color:var(--accent-red);" onclick="setAuditVerdict('t1', 'KILLED', this)">[ 💀 KEEP Option A ]</button>
+              <button class="interactive-btn" style="color:var(--accent-green); border-color:var(--accent-green); transform:scale(1.05);" onclick="setAuditVerdict('t1', 'APPROVED', this)">[ ✅ APPROVE Option B ]</button>
+              <button class="interactive-btn amber" style="opacity:0.5;" onclick="setAuditVerdict('t1', 'TABLED', this)">[ ⏳ TABLE ]</button>
+              <button class="interactive-btn" style="color:var(--accent-red); border-color:var(--accent-red); opacity:0.5;" onclick="setAuditVerdict('t1', 'KILLED', this)">[ 💀 KEEP Option A ]</button>
             </div>
           </div>
         </div>
@@ -1840,6 +1840,72 @@ class SidecarMigrator:
         item.classList.add('active');
       });
     });
+
+    // ==========================================
+    // System Sanity Audit Verdict State & Composer
+    // ==========================================
+    const auditVerdicts = {
+      t1: { title: '6.1 Post-Mortem Architecture', verdict: 'APPROVED' },
+      t2: { title: '6.2 Pros/Cons: On-Demand vs Always', verdict: 'PENDING' },
+      t3: { title: '6.3 Topic Organization Strategy', verdict: 'PENDING' },
+      t4: { title: '6.4 Agent Skills Organization', verdict: 'PENDING' },
+      t5: { title: '6.5 N\'kai View Ergonomics', verdict: 'PENDING' },
+      t6: { title: '6.6 AGY Keyboard Shortcuts', verdict: 'PENDING' },
+      t7: { title: '6.7 Context Clues Architecture', verdict: 'PENDING' }
+    };
+
+    function setAuditVerdict(topicId, verdict, btn) {
+      if (!auditVerdicts[topicId]) return;
+      auditVerdicts[topicId].verdict = verdict;
+
+      const badge = document.getElementById('v-badge-' + topicId);
+      if (badge) {
+        badge.innerText = verdict;
+        if (verdict === 'APPROVED') {
+          badge.style.color = 'var(--accent-green)';
+        } else if (verdict === 'TABLED') {
+          badge.style.color = 'var(--accent-amber)';
+        } else if (verdict === 'KILLED') {
+          badge.style.color = 'var(--accent-red)';
+        }
+      }
+
+      if (btn && btn.parentElement) {
+        btn.parentElement.querySelectorAll('button').forEach(b => {
+          b.style.opacity = '0.5';
+          b.style.transform = 'scale(0.95)';
+        });
+        btn.style.opacity = '1';
+        btn.style.transform = 'scale(1.05)';
+      }
+
+      updateAuditScorecard();
+      if (typeof playHapticTick === 'function') playHapticTick();
+    }
+
+    function updateAuditScorecard() {
+      const tally = { APPROVED: 0, TABLED: 0, KILLED: 0, PENDING: 0 };
+      Object.values(auditVerdicts).forEach(v => tally[v.verdict] = (tally[v.verdict] || 0) + 1);
+      const scorecardEl = document.getElementById('audit-scorecard');
+      if (scorecardEl) {
+        scorecardEl.innerText = `[ ${tally.APPROVED} Approved | ${tally.TABLED} Tabled | ${tally.KILLED} Killed | ${tally.PENDING} Pending ]`;
+      }
+    }
+
+    function copyAuditVerdictsToClipboard() {
+      let md = '### 🩺 System Sanity Audit Verdicts\\n\\n';
+      Object.entries(auditVerdicts).forEach(([k, v]) => {
+        const icon = v.verdict === 'APPROVED' ? '✅' : v.verdict === 'TABLED' ? '⏳' : v.verdict === 'KILLED' ? '💀' : '❓';
+        md += `- ${icon} **${v.title}**: \\`${v.verdict}\\`\\n`;
+      });
+      navigator.clipboard.writeText(md).then(() => {
+        showAudioToast('📋 Audit Verdicts copied to clipboard!');
+      }).catch(() => {
+        prompt('Copy verdicts:', md);
+      });
+    }
+
+    updateAuditScorecard();
 
   </script>
 </body>
