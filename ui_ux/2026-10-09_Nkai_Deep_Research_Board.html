@@ -103,11 +103,17 @@
       border-color: #8b949e;
     }
 
+    .mode-btn:focus,
+    .mode-btn:focus-visible {
+      outline: none !important;
+      box-shadow: none;
+    }
+
     .mode-btn.active {
-      background: rgba(88, 166, 255, 0.15);
-      color: var(--accent-blue);
-      border-color: var(--accent-blue);
-      box-shadow: 0 0 10px rgba(88, 166, 255, 0.2);
+      background: rgba(88, 166, 255, 0.15) !important;
+      color: var(--accent-blue) !important;
+      border-color: var(--accent-blue) !important;
+      box-shadow: 0 0 10px rgba(88, 166, 255, 0.2) !important;
     }
 
     .header-controls {
@@ -534,12 +540,12 @@
     </div>
 
     <div class="header-modes">
-      <button class="mode-btn active" onclick="switchTab('tab-loaders')">🗺️ DYNAMIC ROADMAPS</button>
-      <button class="mode-btn" onclick="switchTab('tab-sessions')">📦 SESSIONS &amp; HISTORY</button>
-      <button class="mode-btn" onclick="switchTab('tab-bluesky')">🚀 BLUE-SKY INNOVATIONS</button>
-      <button class="mode-btn" onclick="switchTab('tab-contrarian')">⚖️ DEVIL'S ADVOCATE &amp; 80/20</button>
-      <button class="mode-btn" onclick="switchTab('tab-upgrade')">🔄 UPGRADE &amp; MIGRATION</button>
-      <button class="mode-btn" onclick="switchTab('tab-audit')">🩺 SANITY AUDIT &amp; TRIAGE</button>
+      <button id="btn-tab-loaders" class="mode-btn active" onclick="switchTab('tab-loaders')">🗺️ DYNAMIC ROADMAPS</button>
+      <button id="btn-tab-sessions" class="mode-btn" onclick="switchTab('tab-sessions')">📦 SESSIONS &amp; HISTORY</button>
+      <button id="btn-tab-bluesky" class="mode-btn" onclick="switchTab('tab-bluesky')">🚀 BLUE-SKY INNOVATIONS</button>
+      <button id="btn-tab-contrarian" class="mode-btn" onclick="switchTab('tab-contrarian')">⚖️ DEVIL'S ADVOCATE &amp; 80/20</button>
+      <button id="btn-tab-upgrade" class="mode-btn" onclick="switchTab('tab-upgrade')">🔄 UPGRADE &amp; MIGRATION</button>
+      <button id="btn-tab-audit" class="mode-btn" onclick="switchTab('tab-audit')">🩺 SANITY AUDIT &amp; TRIAGE</button>
     </div>
 
     <div class="header-controls">
@@ -1604,7 +1610,7 @@ class SidecarMigrator:
       document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active'));
       const target = document.getElementById(tabId);
       if (target) target.style.display = 'block';
-      const activeBtn = document.querySelector(`.mode-btn[onclick*="${tabId}"]`);
+      const activeBtn = document.getElementById('btn-' + tabId) || document.querySelector(`.mode-btn[onclick*="${tabId}"]`);
       if (activeBtn) activeBtn.classList.add('active');
 
       if (scrollToTop) {
@@ -1954,9 +1960,9 @@ class SidecarMigrator:
       }
     }
 
+    handleHashNavigation();
     window.addEventListener('DOMContentLoaded', handleHashNavigation);
     window.addEventListener('hashchange', handleHashNavigation);
-    setTimeout(handleHashNavigation, 80);
 
     // ==========================================
     // System Sanity Audit Verdict State & Composer
@@ -2019,10 +2025,10 @@ class SidecarMigrator:
     }
 
     function copyAuditVerdictsToClipboard() {
-      let md = '### 🩺 System Sanity Audit Verdicts\\n\\n';
+      let md = '### 🩺 System Sanity Audit Verdicts\n\n';
       Object.entries(auditVerdicts).forEach(([k, v]) => {
         const icon = v.verdict === 'APPROVED' ? '✅' : v.verdict === 'TABLED' ? '⏳' : v.verdict === 'KILLED' ? '💀' : '❓';
-        md += `- ${icon} **${v.title}**: \\`${v.verdict}\\`\\n`;
+        md += '- ' + icon + ' **' + v.title + '**: `' + v.verdict + '`\n';
       });
       navigator.clipboard.writeText(md).then(() => {
         showAudioToast('📋 Audit Verdicts copied to clipboard!');
