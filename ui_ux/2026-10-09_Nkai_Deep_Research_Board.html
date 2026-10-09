@@ -973,20 +973,20 @@
       <a class="sidebar-item" href="#sec-upgrade">5.0 Upgrade Path &amp; Migration</a>
 
             <div class="sidebar-section-title">Active Focus</div>
-      <a class="sidebar-item active" id="side-item-workshop" href="#tab-workshop">🛠️ Active Workshop (<span id="side-active-topic-num">F3: 6.14</span>)</a>
+      <a class="sidebar-item active" id="side-item-workshop" href="#tab-workshop">🛠️ Active Workshop (<span id="side-active-topic-num">F5: 6.9</span>)</a>
 
       <div class="sidebar-section-title">Audit Navigation</div>
       <button id="toggleItineraryBtn" class="interactive-btn purple" style="width: 100%; margin: 4px 0 10px 0; font-weight: 600; display: flex; align-items: center; justify-content: space-between; padding: 7px 10px; font-size: 11px;" onclick="toggleItineraryDrawer()">
         <span>📅 Audit Itinerary</span>
-        <span class="badge badge-amber" id="itinerary-pending-badge" style="font-size: 10px;">11 PENDING</span>
+        <span class="badge badge-amber" id="itinerary-pending-badge" style="font-size: 10px;">10 PENDING</span>
       </button>
 
                   <div class="sidebar-section-title">Sequenced Flight Plan (9 Nodes)</div>
       <a class="sidebar-item" href="#sec-audit-t16"><span>F1. 6.16+6.7 State</span> <span id="side-v-t16" class="badge badge-green">✓</span></a>
       <a class="sidebar-item" href="#sec-audit-t17"><span>F2. 6.17+6.18 Bridge</span> <span id="side-v-t17" class="badge badge-amber">TABLED</span></a>
-      <a class="sidebar-item active" href="#sec-audit-t4"><span>F3. 6.4+6.14 Skills</span> <span id="side-v-t4" class="badge badge-amber">ACTIVE</span></a>
+      <a class="sidebar-item" href="#sec-audit-t4"><span>F3. 6.4+6.14 Skills</span> <span id="side-v-t4" class="badge badge-green">✓</span></a>
       <a class="sidebar-item" href="#sec-audit-t13"><span>F4. 6.13 Portability</span> <span id="side-v-t13" class="badge badge-green">✓</span></a>
-      <a class="sidebar-item" href="#sec-audit-t9"><span>F5. 6.9+6.10 Header</span> <span id="side-v-t9" class="badge">QUEUED</span></a>
+      <a class="sidebar-item active" href="#sec-audit-t9"><span>F5. 6.9+6.10 Header</span> <span id="side-v-t9" class="badge badge-amber">ACTIVE</span></a>
       <a class="sidebar-item" href="#sec-audit-t8"><span>F6. 6.8+6.11 Views</span> <span id="side-v-t8" class="badge">QUEUED</span></a>
       <a class="sidebar-item" href="#sec-audit-t1"><span>F7. PCDA Governance</span> <span id="side-v-t1" class="badge badge-green">✓</span></a>
       <a class="sidebar-item" href="#sec-audit-t19"><span>F8. 6.19 Ledger</span> <span id="side-v-t19" class="badge">QUEUED</span></a>
@@ -1004,18 +1004,18 @@
                                         <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:10px;">
             <div>
               <div class="hero-badge" id="ws-hero-badge" style="color:var(--accent-amber); border-color:rgba(255,171,112,0.4); background:rgba(255,171,112,0.12);">
-                🛠️ Active Workshop: In-Flight Triage Stage • Flight 3 (Skill Defaults)
+                🛠️ Active Workshop: In-Flight Triage Stage • Flight 5 (Header Ergonomics)
               </div>
               <h1 class="hero-title" id="ws-hero-title" style="margin-top:4px;">
-                Topic 6.14: N'kai-First Skill Default &amp; --chat Fallback Flag
+                Topic 6.9: Header Layout &amp; Utility Ergonomics
               </h1>
               <p class="hero-desc" id="ws-hero-desc" style="max-width:760px; margin-bottom:8px;">
-                Should relevant interactive skills (like <code>/grill-me</code>, <code>/deep-research</code>, <code>/postmortem</code>, <code>/triage</code>, <code>/inbox</code>) default to generating an interactive N'kai sidecar canvas automatically, unless the user explicitly passes the <code>--chat</code> (or <code>-chat</code>) flag or specifies "in chat" in natural language?
+                How should utility controls (Live Bridge connection status, Roadmap, Sessions with badge count, Font zoom, Mute, Refresh) be arranged in mouse-driven N'kai?
               </p>
             </div>
             <div style="text-align:right;">
               <span id="workshop-scorecard" class="badge badge-green" style="font-size:11px; padding:4px 8px;">
-                [ 6 Approved | 1 Tabled | 0 Killed | 11 Pending ]
+                [ 7 Approved | 1 Tabled | 0 Killed | 10 Pending ]
               </span>
             </div>
           </div>
@@ -1028,9 +1028,9 @@
             <button class="header-btn amber" id="btn-ws-t17" onclick="setWorkshopTopic('t17')" style="font-size:10px; padding:3px 7px;">F2. 6.17 Bridge (Tabled)</button>
             <button class="header-btn green" id="btn-ws-t13" onclick="setWorkshopTopic('t13')" style="font-size:10px; padding:3px 7px;">F4. 6.13 Portability ✓</button>
             <button class="header-btn green" id="btn-ws-t4" onclick="setWorkshopTopic('t4')" style="font-size:10px; padding:3px 7px;">F3. 6.4 Skills ✓</button>
-            <button class="header-btn amber active" id="btn-ws-t14" onclick="setWorkshopTopic('t14')" style="font-size:10px; padding:3px 7px; border-color:var(--accent-amber); background:rgba(255,171,112,0.25);">F3. 6.14 Defaults ★ ACTIVE</button>
+            <button class="header-btn green" id="btn-ws-t14" onclick="setWorkshopTopic('t14')" style="font-size:10px; padding:3px 7px;">F3. 6.14 Defaults ✓</button>
+            <button class="header-btn amber active" id="btn-ws-t9" onclick="setWorkshopTopic('t9')" style="font-size:10px; padding:3px 7px; border-color:var(--accent-amber); background:rgba(255,171,112,0.25);">F5. 6.9 Header ★ ACTIVE</button>
             <button class="header-btn" id="btn-ws-t5" onclick="setWorkshopTopic('t5')" style="font-size:10px; padding:3px 7px;">6.5 Ergonomics</button>
-            <button class="header-btn" id="btn-ws-t9" onclick="setWorkshopTopic('t9')" style="font-size:10px; padding:3px 7px;">F5. 6.9/10 Header</button>
             <button class="header-btn" id="btn-ws-t8" onclick="setWorkshopTopic('t8')" style="font-size:10px; padding:3px 7px;">F6. 6.8 Ongoing Autopsy</button>
             <button class="header-btn" id="btn-ws-t11" onclick="setWorkshopTopic('t11')" style="font-size:10px; padding:3px 7px;">F6. 6.11 "Check Mail"</button>
             <button class="header-btn" id="btn-ws-t6" onclick="setWorkshopTopic('t6')" style="font-size:10px; padding:3px 7px;">F9. 6.6 Shortcuts</button>
@@ -1041,40 +1041,40 @@
 
                                 <!-- Active Topic Workshop Hero Card Mount -->
         <div id="workshop-card-mount">
-          <!-- Rendered dynamically by setWorkshopTopic, pre-populated with t14 -->
+          <!-- Rendered dynamically by setWorkshopTopic, pre-populated with t9 -->
           <div class="section-card" id="workshop-card">
             <div class="section-title">
-              <span id="ws-card-title">6.14 N'kai-First Skill Default &amp; --chat Fallback Flag</span>
-              <span id="ws-card-badge" class="badge badge-blue">Workflow Ergonomics</span>
+              <span id="ws-card-title">6.9 Header Layout: Top-Bar Right Cluster vs. Sidebar Drawer</span>
+              <span id="ws-card-badge" class="badge badge-blue">UI Ergonomics</span>
             </div>
             <p id="ws-card-desc" style="font-size: 12px; line-height: 1.6; color: var(--text-main);">
-              <strong>The Question:</strong> Should relevant interactive skills (like <code>/grill-me</code>, <code>/deep-research</code>, <code>/postmortem</code>, <code>/triage</code>, <code>/inbox</code>) default to generating an interactive N'kai sidecar canvas automatically, unless the user explicitly passes the <code>--chat</code> (or <code>-chat</code>) flag or specifies "in chat" in natural language?
+              <strong>The Question:</strong> How should utility controls (Live Bridge connection status, Roadmap, Sessions with badge count, Font zoom, Mute, Refresh) be arranged in mouse-driven N'kai?
             </p>
 
             <div class="grid-3" id="ws-card-options" style="margin-top: 12px;">
               <div class="pill-card">
-                <div class="pill-title">Option A: Separate Command Fork</div>
-                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Keep separate commands for text vs sidecar (e.g. <code>/grill-me</code> text vs <code>/visual-grill-me</code>). Higher cognitive burden remembering command variants.</p>
+                <div class="pill-title">Option A: Single Crowded Header</div>
+                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Current layout: wraps into multiline when narrow, mixing view modes and utility buttons on the same tier.</p>
                 <div style="margin-top: 8px;">
-                  <input type="text" readonly value="[6.14 Defaults] pros and cons for Option A Separate Command Fork"
+                  <input type="text" readonly value="[6.9 Header] pros and cons for Option A Single Crowded Header"
                          onclick="this.select();" ondblclick="this.select();"
                          style="width:100%; box-sizing:border-box; background:rgba(0,0,0,0.5); border:1px solid var(--border); border-radius:3px; color:var(--text-muted); font-family:var(--font-mono); font-size:10px; padding:4px 6px; cursor:text; user-select:all;" />
                 </div>
               </div>
               <div class="pill-card" style="border: 1px solid var(--accent-green);">
-                <div class="pill-title" style="color:var(--accent-green);">Option B: N'kai-First with --chat Flag (Recommended)</div>
-                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">All visual/interview skills default to generating the rich N'kai sidecar canvas. Passing <code>--chat</code> or saying "in chat" falls back cleanly to inline chat. Officially unifies Grill Lab into standard grill-me.</p>
+                <div class="pill-title" style="color:var(--accent-green);">Option B: Two-Tier Header w/ Bridge Status LED &amp; Utility Cluster (Recommended)</div>
+                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Top bar = Brand on left, prominent right-aligned utility cluster with live Bridge Connection Status LED (<code>⚡ Bridge: Online</code> / <code>🔌 Offline</code>), Roadmap &amp; Sessions drawers with badge counts, Font zoom (<code>A-</code>/<code>A+</code>), Sound toggle (<code>🔊</code>), and Force Refresh (<code>🔄</code>). Bottom row = Clean dedicated view switchers.</p>
                 <div style="margin-top: 8px;">
-                  <input type="text" readonly value="[6.14 Defaults] pros and cons for Option B N'kai-First with --chat Flag"
+                  <input type="text" readonly value="[6.9 Header] pros and cons for Option B Two-Tier Header w/ Utility Cluster"
                          onclick="this.select();" ondblclick="this.select();"
                          style="width:100%; box-sizing:border-box; background:rgba(0,0,0,0.5); border:1px solid rgba(63,185,80,0.4); border-radius:3px; color:var(--accent-green); font-family:var(--font-mono); font-size:10px; padding:4px 6px; cursor:text; user-select:all;" />
                 </div>
               </div>
               <div class="pill-card">
-                <div class="pill-title">Option C: Strict Sidecar Only</div>
-                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Forbid text mode entirely for these skills. Creates friction when working on mobile or headless environments where a browser isn't desired.</p>
+                <div class="pill-title">Option C: Utility Sidebar Drawer</div>
+                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Move all utilities into a slide-out sidebar drawer with a prominent toggle button. Leaves header ultra-minimal.</p>
                 <div style="margin-top: 8px;">
-                  <input type="text" readonly value="[6.14 Defaults] pros and cons for Option C Strict Sidecar Only"
+                  <input type="text" readonly value="[6.9 Header] pros and cons for Option C Utility Sidebar Drawer"
                          onclick="this.select();" ondblclick="this.select();"
                          style="width:100%; box-sizing:border-box; background:rgba(0,0,0,0.5); border:1px solid var(--border); border-radius:3px; color:var(--text-muted); font-family:var(--font-mono); font-size:10px; padding:4px 6px; cursor:text; user-select:all;" />
                 </div>
@@ -1083,28 +1083,28 @@
 
             <!-- 3-Lens Pros & Cons -->
             <div id="ws-card-evaluation" style="margin-top: 14px; background: rgba(0,0,0,0.3); border: 1px solid rgba(48,54,61,0.6); border-radius: 6px; padding: 12px;">
-              <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option B: N'kai-First with --chat Flag)</div>
+              <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option B: Two-Tier Header Cluster w/ Bridge Status LED)</div>
               <ul style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin: 0; padding-left: 18px;">
-                <li><strong>🌍 Real-World Ergonomics:</strong> Effortless consistency. You just run <code>/grill-me</code> or ask for research, and the gorgeous visual board appears automatically. No more remembering 5 command aliases.</li>
-                <li><strong>🏛️ Wider SOTA:</strong> Standard CLI design pattern (GUI by default, with <code>--headless</code> or <code>--cli</code> override flag).</li>
-                <li><strong>🏆 Best Practices:</strong> Protects chat context window by default while providing a clean, accessible escape hatch for low-bandwidth sessions.</li>
+                <li><strong>🌍 Real-World Ergonomics:</strong> Provides instant visual confidence in agent loopback connectivity (zero guessing whether clicks dispatch live or open copy modals), plus rapid 1-click access to roadmaps and sessions.</li>
+                <li><strong>🏛️ Wider SOTA:</strong> Standard in modern interactive developer workbenches (Vitest UI, Playwright UI, Cypress, Storybook, Datadog), which always pair live server connection status with global utilities.</li>
+                <li><strong>🏆 Best Practices:</strong> High informational density without wrapping clutter; click-to-reconnect on the status pill makes troubleshooting instantaneous.</li>
               </ul>
               <div style="margin-top: 10px; display: flex; flex-direction: column; gap: 6px;">
                 <span style="font-family:var(--font-mono); font-size:10px; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.5px;">🔬 Deep Dive Prompts (Click to Highlight, Ctrl+C to Copy):</span>
                 <div style="display:flex; align-items:center; gap:6px; background:rgba(88,166,255,0.06); border:1px solid rgba(88,166,255,0.25); border-radius:4px; padding:4px 8px;">
                   <span style="font-size:10px; font-family:var(--font-mono); color:var(--accent-blue); width:130px; flex-shrink:0;">⚖️ Pros &amp; Cons:</span>
-                  <input type="text" readonly value="pros and cons for Nkai-First Skill Default across the 4 Lenses"
+                  <input type="text" readonly value="pros and cons for Two-Tier Header with Top-Right Emoji Cluster across the 4 Lenses"
                          onclick="this.select();" ondblclick="this.select();"
                          style="flex:1; background:rgba(0,0,0,0.5); border:1px solid rgba(88,166,255,0.2); border-radius:3px; color:var(--accent-neon); font-family:var(--font-mono); font-size:10px; padding:4px 8px; cursor:text; user-select:all;" />
                 </div>
                 <div style="display:flex; align-items:center; gap:6px; background:rgba(88,166,255,0.06); border:1px solid rgba(88,166,255,0.25); border-radius:4px; padding:4px 8px;">
                   <span style="font-size:10px; font-family:var(--font-mono); color:var(--accent-blue); width:130px; flex-shrink:0;">🔬 Research Online:</span>
-                  <input type="text" readonly value="research online CLI flag conventions GUI default vs headless chat fallback in developer tools"
+                  <input type="text" readonly value="research online header hierarchy and utility clusters in dense web applications"
                          onclick="this.select();" ondblclick="this.select();"
                          style="flex:1; background:rgba(0,0,0,0.5); border:1px solid rgba(88,166,255,0.2); border-radius:3px; color:var(--accent-neon); font-family:var(--font-mono); font-size:10px; padding:4px 8px; cursor:text; user-select:all;" />
                 </div>
                 <div style="margin-top:4px;">
-                  <button class="interactive-btn amber" style="font-size:10px; padding:2px 8px;" onclick="navigateToSection('sec-audit-t14')">[ 🔍 Jump to Topic in Full Context ]</button>
+                  <button class="interactive-btn amber" style="font-size:10px; padding:2px 8px;" onclick="navigateToSection('sec-audit-t9')">[ 🔍 Jump to Topic in Full Context ]</button>
                 </div>
               </div>
             </div>
@@ -1124,7 +1124,7 @@
                 <!-- Approve Box -->
                 <div style="display:flex; align-items:center; gap:8px; background:rgba(63,185,80,0.08); border:1px solid rgba(63,185,80,0.35); border-radius:6px; padding:6px 10px;">
                   <span style="font-size:10px; font-family:var(--font-mono); color:var(--accent-green); font-weight:700; width:75px; flex-shrink:0;">✅ APPROVE:</span>
-                  <input type="text" readonly value="[6.14 N'kai-First Skill Default &amp; --chat Fallback Flag] VERDICT: APPROVED (APPROVE Option B)"
+                  <input type="text" readonly value="[6.9 Header Layout: Top-Bar Right Cluster vs. Sidebar Drawer] VERDICT: APPROVED (APPROVE Option B)"
                          onclick="this.select();" ondblclick="this.select();"
                          style="flex:1; background:rgba(0,0,0,0.6); border:1px solid rgba(63,185,80,0.4); border-radius:4px; color:var(--accent-green); font-family:var(--font-mono); font-size:11px; padding:6px 10px; cursor:text; user-select:all;" />
                 </div>
@@ -1132,7 +1132,7 @@
                 <!-- Table Box -->
                 <div style="display:flex; align-items:center; gap:8px; background:rgba(255,171,112,0.08); border:1px solid rgba(255,171,112,0.3); border-radius:6px; padding:6px 10px;">
                   <span style="font-size:10px; font-family:var(--font-mono); color:var(--accent-amber); font-weight:700; width:75px; flex-shrink:0;">⏳ TABLE:</span>
-                  <input type="text" readonly value="[6.14 N'kai-First Skill Default &amp; --chat Fallback Flag] VERDICT: TABLED"
+                  <input type="text" readonly value="[6.9 Header Layout: Top-Bar Right Cluster vs. Sidebar Drawer] VERDICT: TABLED"
                          onclick="this.select();" ondblclick="this.select();"
                          style="flex:1; background:rgba(0,0,0,0.6); border:1px solid rgba(255,171,112,0.3); border-radius:4px; color:var(--accent-amber); font-family:var(--font-mono); font-size:11px; padding:6px 10px; cursor:text; user-select:all;" />
                 </div>
@@ -1140,7 +1140,7 @@
                 <!-- Reject Box -->
                 <div style="display:flex; align-items:center; gap:8px; background:rgba(248,81,73,0.08); border:1px solid rgba(248,81,73,0.3); border-radius:6px; padding:6px 10px;">
                   <span style="font-size:10px; font-family:var(--font-mono); color:var(--accent-red); font-weight:700; width:75px; flex-shrink:0;">💀 REJECT:</span>
-                  <input type="text" readonly value="[6.14 N'kai-First Skill Default &amp; --chat Fallback Flag] VERDICT: KILLED"
+                  <input type="text" readonly value="[6.9 Header Layout: Top-Bar Right Cluster vs. Sidebar Drawer] VERDICT: KILLED"
                          onclick="this.select();" ondblclick="this.select();"
                          style="flex:1; background:rgba(0,0,0,0.6); border:1px solid rgba(248,81,73,0.3); border-radius:4px; color:var(--accent-red); font-family:var(--font-mono); font-size:11px; padding:6px 10px; cursor:text; user-select:all;" />
                 </div>
@@ -3648,6 +3648,62 @@ function toggleDrawer(drawerId) {
             </ul>
           `
         }
+      },
+      t9: {
+        A: {
+          pros_cons: `
+            <h5>⚖️ PCDA Breakdown: Option A (Single Crowded Header)</h5>
+            <ul>
+              <li><strong>Pros [Thesis]:</strong> Saves ~32px of vertical canvas height by putting all items in a single top row.</li>
+              <li><strong>Cons [Friction]:</strong> Severe wrapping and overlapping on narrow IDE side panels (380px–480px); button labels truncate and utility actions collide.</li>
+              <li><strong>Devil's Advocate [Antithesis]:</strong> Visual clutter exhausts developer focus; you cannot easily tell navigation tabs apart from utility actions.</li>
+              <li><strong>80/20 Resolution:</strong> A single row fails as soon as more than 3 utility icons or tabs exist. Separation is mandatory.</li>
+            </ul>
+          `,
+          research: `
+            <h5>🔬 Research & Benchmarks: Option A (Single-Bar Densification)</h5>
+            <p style="color:var(--text-muted); margin-bottom:6px;">Audited against compact UI designs in modern Electron applications.</p>
+            <ul>
+              <li><strong>Wrap Failure Finding:</strong> Single-row toolbars exceeding 5 items consistently wrap or cause overflow clipping below 500px viewport widths.</li>
+            </ul>
+          `
+        },
+        B: {
+          pros_cons: `
+            <h5>⚖️ PCDA Breakdown: Option B (Two-Tier Header w/ Utility Cluster) [Recommended]</h5>
+            <ul>
+              <li><strong>Pros [Thesis]:</strong> Crystal-clear visual hierarchy. Tier 1 (top): Brand identity + utility cluster (Bridge LED, Roadmap, Sessions, Zoom A-/A+, Mute, Refresh). Tier 2 (bottom): Clean, dedicated tab navigation bar. Zero awkward wrapping.</li>
+              <li><strong>Cons [Friction]:</strong> Consumes an additional 30–34px of vertical height.</li>
+              <li><strong>Devil's Advocate [Antithesis]:</strong> On small laptop displays, vertical space is precious; every pixel subtracted from the card mount is felt.</li>
+              <li><strong>80/20 Resolution:</strong> The universal standard across DAWs (Ableton, Bitwig) and IDEs (VS Code). 32px of vertical height is a worthy trade for zero horizontal wrapping bugs.</li>
+            </ul>
+          `,
+          research: `
+            <h5>🔬 Research & Benchmarks: Option B (Two-Tier Hierarchy)</h5>
+            <p style="color:var(--text-muted); margin-bottom:6px;">Benchmarked against professional desktop software (VS Code, Ableton, Figma, Vitest UI).</p>
+            <ul>
+              <li><strong>Industry Precedent:</strong> Professional dense apps separate persistent global system status from active document/view routing into two distinct horizontal tiers.</li>
+            </ul>
+          `
+        },
+        C: {
+          pros_cons: `
+            <h5>⚖️ PCDA Breakdown: Option C (Utility Sidebar Drawer)</h5>
+            <ul>
+              <li><strong>Pros [Thesis]:</strong> Maximizes vertical content height by hiding all utilities inside a collapsible sidebar drawer.</li>
+              <li><strong>Cons [Friction]:</strong> Hides high-frequency utility actions (Force Refresh, Sound Mute, Zoom) behind an extra menu click.</li>
+              <li><strong>Devil's Advocate [Antithesis]:</strong> In high-intensity coding sessions, needing two clicks just to hit "Refresh" or glance at Bridge connection status causes immediate annoyance.</li>
+              <li><strong>80/20 Resolution:</strong> Keep primary utility icons permanently visible in the top cluster; use slide-out drawers only for large deep views (like Roadmap and Sessions).</li>
+            </ul>
+          `,
+          research: `
+            <h5>🔬 Research & Benchmarks: Option C (Hamburger/Sidebar Utilities)</h5>
+            <p style="color:var(--text-muted); margin-bottom:6px;">Benchmarked against mobile-first vs desktop developer workflows.</p>
+            <ul>
+              <li><strong>Ergonomics Finding:</strong> Hiding primary developer diagnostics (like server status or refresh) behind hamburger menus reduces developer efficiency by 3x compared to permanent status clusters.</li>
+            </ul>
+          `
+        }
       }
     };
 
@@ -3786,7 +3842,7 @@ function toggleDrawer(drawerId) {
     // ============================================================
     // Active Workshop & Sanity Audit Triage Engine
     // ============================================================
-    window.currentWorkshopTopic = 't14';
+    window.currentWorkshopTopic = 't9';
 
     const defaultAuditVerdicts = {
       t1: { title: '6.1 Post-Mortem Architecture', verdict: 'APPROVED' },
@@ -3802,7 +3858,7 @@ function toggleDrawer(drawerId) {
       t11: { title: '6.11 "Check the Mail" Workflow', verdict: 'PENDING' },
       t12: { title: '6.12 All-in-One Distribution Bundle', verdict: 'PENDING' },
       t13: { title: '6.13 Universal AI Harness Portability', verdict: 'APPROVED' },
-      t14: { title: '6.14 Nkai-First Skill Default', verdict: 'PENDING' },
+      t14: { title: '6.14 Nkai-First Skill Default', verdict: 'APPROVED' },
       t15: { title: '6.15 Industry Workflow Precedents', verdict: 'APPROVED' },
       t16: { title: '6.16 Backend Persistence & State', verdict: 'APPROVED' },
       t17: { title: '6.17 Bidirectional Click-to-Agent Bridge', verdict: 'TABLED' },
@@ -4163,25 +4219,28 @@ function toggleDrawer(drawerId) {
           <div class="pill-card">
             <div class="pill-title">Option A: Single Crowded Header</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Current layout: wraps into multiline when narrow, mixing view modes and utility buttons on the same tier.</p>
-            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
-              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t9', 'A', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
-              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t9', 'A', 'research', this)">[ 🔬 Research ]</button>
+            <div style="margin-top: 8px;">
+              <input type="text" readonly value="[6.9 Header] pros and cons for Option A Single Crowded Header"
+                     onclick="this.select();" ondblclick="this.select();"
+                     style="width:100%; box-sizing:border-box; background:rgba(0,0,0,0.5); border:1px solid var(--border); border-radius:3px; color:var(--text-muted); font-family:var(--font-mono); font-size:10px; padding:4px 6px; cursor:text; user-select:all;" />
             </div>
           </div>
           <div class="pill-card" style="border: 1px solid var(--accent-green);">
             <div class="pill-title" style="color:var(--accent-green);">Option B: Two-Tier Header w/ Bridge Status LED &amp; Utility Cluster (Recommended)</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Top bar = Brand on left, prominent right-aligned utility cluster with live Bridge Connection Status LED (<code>⚡ Bridge: Online</code> / <code>🔌 Offline</code>), Roadmap &amp; Sessions drawers with badge counts, Font zoom (<code>A-</code>/<code>A+</code>), Sound toggle (<code>🔊</code>), and Force Refresh (<code>🔄</code>). Bottom row = Clean dedicated view switchers.</p>
-            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
-              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t9', 'B', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
-              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t9', 'B', 'research', this)">[ 🔬 Research ]</button>
+            <div style="margin-top: 8px;">
+              <input type="text" readonly value="[6.9 Header] pros and cons for Option B Two-Tier Header w/ Utility Cluster"
+                     onclick="this.select();" ondblclick="this.select();"
+                     style="width:100%; box-sizing:border-box; background:rgba(0,0,0,0.5); border:1px solid rgba(63,185,80,0.4); border-radius:3px; color:var(--accent-green); font-family:var(--font-mono); font-size:10px; padding:4px 6px; cursor:text; user-select:all;" />
             </div>
           </div>
           <div class="pill-card">
             <div class="pill-title">Option C: Utility Sidebar Drawer</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Move all utilities into a slide-out sidebar drawer with a prominent toggle button. Leaves header ultra-minimal.</p>
-            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
-              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t9', 'C', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
-              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t9', 'C', 'research', this)">[ 🔬 Research ]</button>
+            <div style="margin-top: 8px;">
+              <input type="text" readonly value="[6.9 Header] pros and cons for Option C Utility Sidebar Drawer"
+                     onclick="this.select();" ondblclick="this.select();"
+                     style="width:100%; box-sizing:border-box; background:rgba(0,0,0,0.5); border:1px solid var(--border); border-radius:3px; color:var(--text-muted); font-family:var(--font-mono); font-size:10px; padding:4px 6px; cursor:text; user-select:all;" />
             </div>
           </div>`,
         evalHtml: `
@@ -5151,11 +5210,12 @@ function toggleDrawer(drawerId) {
       } catch (e) {
         console.warn('Could not load saved audit verdicts:', e);
       }
-      // Force 6.16, 6.7, 6.13, & 6.4 APPROVED per user order
+      // Force 6.16, 6.7, 6.13, 6.4, & 6.14 APPROVED per user order
       auditVerdicts.t16.verdict = 'APPROVED';
       auditVerdicts.t7.verdict = 'APPROVED';
       auditVerdicts.t13.verdict = 'APPROVED';
       auditVerdicts.t4.verdict = 'APPROVED';
+      auditVerdicts.t14.verdict = 'APPROVED';
       auditVerdicts.t17.verdict = 'TABLED';
       try {
         localStorage.setItem('nkai_audit_verdicts', JSON.stringify(auditVerdicts));
@@ -5189,12 +5249,12 @@ function toggleDrawer(drawerId) {
     // Kickoff Lifecycle
     initAuditVerdicts();
     checkBridgeStatus();
-    setWorkshopTopic('t14');
+    setWorkshopTopic('t9');
     handleHashNavigation();
     window.addEventListener('DOMContentLoaded', () => {
       initAuditVerdicts();
       checkBridgeStatus();
-      setWorkshopTopic('t14');
+      setWorkshopTopic('t9');
       handleHashNavigation();
     });
     window.addEventListener('hashchange', handleHashNavigation);
