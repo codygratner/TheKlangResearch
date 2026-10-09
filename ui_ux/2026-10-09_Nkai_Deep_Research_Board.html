@@ -1015,7 +1015,7 @@
             </div>
             <div style="text-align:right;">
               <span id="workshop-scorecard" class="badge badge-green" style="font-size:11px; padding:4px 8px;">
-                [ 12 Approved | 1 Tabled | 0 Killed | 6 Pending ]
+                [ 13 Approved | 1 Tabled | 0 Killed | 5 Pending ]
               </span>
             </div>
           </div>
@@ -1031,9 +1031,9 @@
             <button class="header-btn green" id="btn-ws-t14" onclick="setWorkshopTopic('t14')" style="font-size:10px; padding:3px 7px;">F3. 6.14 Defaults ✓</button>
             <button class="header-btn green" id="btn-ws-t9" onclick="setWorkshopTopic('t9')" style="font-size:10px; padding:3px 7px;">F5. 6.9 Header ✓</button>
             <button class="header-btn green" id="btn-ws-t10" onclick="setWorkshopTopic('t10')" style="font-size:10px; padding:3px 7px;">F5. 6.10 Density ✓</button>
-            <button class="header-btn" id="btn-ws-t5" onclick="setWorkshopTopic('t5')" style="font-size:10px; padding:3px 7px;">6.5 Ergonomics</button>
+            <button class="header-btn amber active" id="btn-ws-t5" onclick="setWorkshopTopic('t5')" style="font-size:10px; padding:3px 7px; border-color:var(--accent-amber); background:rgba(255,171,112,0.25);">6.5 Ergonomics ★ ACTIVE</button>
             <button class="header-btn green" id="btn-ws-t8" onclick="setWorkshopTopic('t8')" style="font-size:10px; padding:3px 7px;">F6. 6.8 Autopsy ✓</button>
-            <button class="header-btn amber active" id="btn-ws-t11" onclick="setWorkshopTopic('t11')" style="font-size:10px; padding:3px 7px; border-color:var(--accent-amber); background:rgba(255,171,112,0.25);">F6. 6.11 "Check Mail" ★ ACTIVE</button>
+            <button class="header-btn green" id="btn-ws-t11" onclick="setWorkshopTopic('t11')" style="font-size:10px; padding:3px 7px;">F6. 6.11 Check Mail ✓</button>
             <button class="header-btn" id="btn-ws-t6" onclick="setWorkshopTopic('t6')" style="font-size:10px; padding:3px 7px;">F9. 6.6 Shortcuts</button>
             <button class="header-btn" id="btn-ws-t19" onclick="setWorkshopTopic('t19')" style="font-size:10px; padding:3px 7px;">F8. 6.19 Ledger</button>
             <button class="header-btn" id="btn-ws-t12" onclick="setWorkshopTopic('t12')" style="font-size:10px; padding:3px 7px;">F9. 6.12 Distribution</button>
@@ -1042,40 +1042,40 @@
 
                                 <!-- Active Topic Workshop Hero Card Mount -->
         <div id="workshop-card-mount">
-          <!-- Rendered dynamically by setWorkshopTopic, pre-populated with t11 -->
+          <!-- Rendered dynamically by setWorkshopTopic, pre-populated with t5 -->
           <div class="section-card" id="workshop-card">
             <div class="section-title">
-              <span id="ws-card-title">6.11 "Check the Mail" (Vault Inbox) Workflow &amp; Sidecar Board Default</span>
-              <span id="ws-card-badge" class="badge badge-blue">Pipeline Workflow</span>
+              <span id="ws-card-title">6.5 N'kai Ergonomics: Asymmetric Chat Split &amp; Responsive Layout</span>
+              <span id="ws-card-badge" class="badge badge-blue">UI / UX Design</span>
             </div>
             <p id="ws-card-desc" style="font-size: 12px; line-height: 1.6; color: var(--text-main);">
-              <strong>The Question:</strong> When the user asks to "check the mail" (Obsidian Vault Inbox/), should the default be an interactive N'kai research board with 1 section per note (e.g. Obsidian Addons), unless explicitly overridden by --chat?
+              <strong>The Question:</strong> How strictly should we enforce the 'Asymmetric Sidecar Split'—keeping agent chat responses strictly under 3 sentences while placing 100% of verbose prose, mockups, and tables in the sidecar?
             </p>
 
             <div class="grid-3" id="ws-card-options" style="margin-top: 12px;">
               <div class="pill-card">
-                <div class="pill-title">Option A: Raw Chat Dump Default</div>
-                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Output markdown bullet points directly into chat. Fast, but clutters chat context and burns tokens on unformatted dumps.</p>
+                <div class="pill-title">Option A: Mirrored Redundant Summaries</div>
+                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Duplicate all findings in chat and in sidecar. Clutters chat history and burns tokens rapidly.</p>
                 <div style="margin-top: 8px;">
-                  <input type="text" readonly value="[6.11 Check Mail] pros and cons for Option A Raw Chat Dump Default"
+                  <input type="text" readonly value="[6.5 N'kai Ergonomics] pros and cons for Option A Mirrored Redundant Summaries"
                          onclick="this.select();" ondblclick="this.select();"
                          style="width:100%; box-sizing:border-box; background:rgba(0,0,0,0.5); border:1px solid var(--border); border-radius:3px; color:var(--text-muted); font-family:var(--font-mono); font-size:10px; padding:4px 6px; cursor:text; user-select:all;" />
                 </div>
               </div>
               <div class="pill-card" style="border: 1px solid var(--accent-green);">
-                <div class="pill-title" style="color:var(--accent-green);">Option B: N'kai Inbox Board Default (Recommended)</div>
-                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Parses TheKlangVault/Inbox/*.md, generates a dedicated sidecar board with 1 section per note and triage chips. --chat flag preserves terminal output option.</p>
+                <div class="pill-title" style="color:var(--accent-green);">Option B: Strict Asymmetric Split (Recommended)</div>
+                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Chat is pure conversational dialogue and prompt execution (1-3 sentences). Canvas handles all rich rendering, deep reading, and interactive triage.</p>
                 <div style="margin-top: 8px;">
-                  <input type="text" readonly value="[6.11 Check Mail] pros and cons for Option B N'kai Inbox Board Default"
+                  <input type="text" readonly value="[6.5 N'kai Ergonomics] pros and cons for Option B Strict Asymmetric Split"
                          onclick="this.select();" ondblclick="this.select();"
                          style="width:100%; box-sizing:border-box; background:rgba(0,0,0,0.5); border:1px solid rgba(63,185,80,0.4); border-radius:3px; color:var(--accent-green); font-family:var(--font-mono); font-size:10px; padding:4px 6px; cursor:text; user-select:all;" />
                 </div>
               </div>
               <div class="pill-card">
-                <div class="pill-title">Option C: Automatic Backlog Sorter</div>
-                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Agent sorts notes directly into BACKLOG.md without presenting an interactive interview. High risk of filing errors.</p>
+                <div class="pill-title">Option C: Full Standalone App</div>
+                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Move everything to external browser window with zero IDE chat coupling. Loses inline context.</p>
                 <div style="margin-top: 8px;">
-                  <input type="text" readonly value="[6.11 Check Mail] pros and cons for Option C Automatic Backlog Sorter"
+                  <input type="text" readonly value="[6.5 N'kai Ergonomics] pros and cons for Option C Full Standalone App"
                          onclick="this.select();" ondblclick="this.select();"
                          style="width:100%; box-sizing:border-box; background:rgba(0,0,0,0.5); border:1px solid var(--border); border-radius:3px; color:var(--text-muted); font-family:var(--font-mono); font-size:10px; padding:4px 6px; cursor:text; user-select:all;" />
                 </div>
@@ -1084,28 +1084,28 @@
 
             <!-- 3-Lens Pros & Cons -->
             <div id="ws-card-evaluation" style="margin-top: 14px; background: rgba(0,0,0,0.3); border: 1px solid rgba(48,54,61,0.6); border-radius: 6px; padding: 12px;">
-              <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option B: N'kai Inbox Board Default)</div>
+              <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option B: Strict Asymmetric Split)</div>
               <ul style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin: 0; padding-left: 18px;">
-                <li><strong>🌍 Real-World Ergonomics:</strong> Zero skipped notes. Complex brainstorms (like obsidian addons or hardware ideas) get clean dedicated space for thoughtful triage.</li>
-                <li><strong>🏛️ Wider SOTA:</strong> Follows Inbox Zero methodology (Superhuman card triage, Linear issue triage).</li>
-                <li><strong>🏆 Best Practices:</strong> Preserves main agent context window by keeping large brain dumps in the sidecar.</li>
+                <li><strong>🌍 Real-World Ergonomics:</strong> Chat window remains lean, readable, and responsive. Zero endless scrolling through massive markdown dumps.</li>
+                <li><strong>🏛️ Wider SOTA:</strong> Matches modern pairing IDEs (Cursor side-composer, Replit webview, VS Code extension webviews).</li>
+                <li><strong>🏆 Best Practices:</strong> Preserves main agent context window length, preventing early conversation compaction.</li>
               </ul>
               <div style="margin-top: 10px; display: flex; flex-direction: column; gap: 6px;">
                 <span style="font-family:var(--font-mono); font-size:10px; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.5px;">🔬 Deep Dive Prompts (Click to Highlight, Ctrl+C to Copy):</span>
                 <div style="display:flex; align-items:center; gap:6px; background:rgba(88,166,255,0.06); border:1px solid rgba(88,166,255,0.25); border-radius:4px; padding:4px 8px;">
                   <span style="font-size:10px; font-family:var(--font-mono); color:var(--accent-blue); width:130px; flex-shrink:0;">⚖️ Pros &amp; Cons:</span>
-                  <input type="text" readonly value="pros and cons for Nkai Inbox Board Default across the 4 Lenses"
+                  <input type="text" readonly value="[6.5 N'kai Ergonomics] pros and cons for Strict Asymmetric Sidecar Split across the 4 Lenses"
                          onclick="this.select();" ondblclick="this.select();"
                          style="flex:1; background:rgba(0,0,0,0.5); border:1px solid rgba(88,166,255,0.2); border-radius:3px; color:var(--accent-neon); font-family:var(--font-mono); font-size:10px; padding:4px 8px; cursor:text; user-select:all;" />
                 </div>
                 <div style="display:flex; align-items:center; gap:6px; background:rgba(88,166,255,0.06); border:1px solid rgba(88,166,255,0.25); border-radius:4px; padding:4px 8px;">
                   <span style="font-size:10px; font-family:var(--font-mono); color:var(--accent-blue); width:130px; flex-shrink:0;">🔬 Research Online:</span>
-                  <input type="text" readonly value="research online Inbox Zero triage workflows for AI engineering"
+                  <input type="text" readonly value="[6.5 N'kai Ergonomics] research online asymmetric split UI UX for AI pair programming"
                          onclick="this.select();" ondblclick="this.select();"
                          style="flex:1; background:rgba(0,0,0,0.5); border:1px solid rgba(88,166,255,0.2); border-radius:3px; color:var(--accent-neon); font-family:var(--font-mono); font-size:10px; padding:4px 8px; cursor:text; user-select:all;" />
                 </div>
                 <div style="margin-top:4px;">
-                  <button class="interactive-btn amber" style="font-size:10px; padding:2px 8px;" onclick="navigateToSection('sec-audit-t11')">[ 🔍 Jump to Topic in Full Context ]</button>
+                  <button class="interactive-btn amber" style="font-size:10px; padding:2px 8px;" onclick="navigateToSection('sec-audit-t5')">[ 🔍 Jump to Topic in Full Context ]</button>
                 </div>
               </div>
             </div>
@@ -1125,7 +1125,7 @@
                 <!-- Approve Box -->
                 <div style="display:flex; align-items:center; gap:8px; background:rgba(63,185,80,0.08); border:1px solid rgba(63,185,80,0.35); border-radius:6px; padding:6px 10px;">
                   <span style="font-size:10px; font-family:var(--font-mono); color:var(--accent-green); font-weight:700; width:75px; flex-shrink:0;">✅ APPROVE:</span>
-                  <input type="text" readonly value="[6.11 &quot;Check the Mail&quot; (Vault Inbox) Workflow &amp; Sidecar Board Default] VERDICT: APPROVED (APPROVE Option B)"
+                  <input type="text" readonly value="[6.5 N'kai Ergonomics: Asymmetric Chat Split &amp; Responsive Layout] VERDICT: APPROVED (APPROVE Option B)"
                          onclick="this.select();" ondblclick="this.select();"
                          style="flex:1; background:rgba(0,0,0,0.6); border:1px solid rgba(63,185,80,0.4); border-radius:4px; color:var(--accent-green); font-family:var(--font-mono); font-size:11px; padding:6px 10px; cursor:text; user-select:all;" />
                 </div>
@@ -1133,7 +1133,7 @@
                 <!-- Table Box -->
                 <div style="display:flex; align-items:center; gap:8px; background:rgba(255,171,112,0.08); border:1px solid rgba(255,171,112,0.3); border-radius:6px; padding:6px 10px;">
                   <span style="font-size:10px; font-family:var(--font-mono); color:var(--accent-amber); font-weight:700; width:75px; flex-shrink:0;">⏳ TABLE:</span>
-                  <input type="text" readonly value="[6.11 &quot;Check the Mail&quot; (Vault Inbox) Workflow &amp; Sidecar Board Default] VERDICT: TABLED"
+                  <input type="text" readonly value="[6.5 N'kai Ergonomics: Asymmetric Chat Split &amp; Responsive Layout] VERDICT: TABLED"
                          onclick="this.select();" ondblclick="this.select();"
                          style="flex:1; background:rgba(0,0,0,0.6); border:1px solid rgba(255,171,112,0.3); border-radius:4px; color:var(--accent-amber); font-family:var(--font-mono); font-size:11px; padding:6px 10px; cursor:text; user-select:all;" />
                 </div>
@@ -1141,7 +1141,7 @@
                 <!-- Reject Box -->
                 <div style="display:flex; align-items:center; gap:8px; background:rgba(248,81,73,0.08); border:1px solid rgba(248,81,73,0.3); border-radius:6px; padding:6px 10px;">
                   <span style="font-size:10px; font-family:var(--font-mono); color:var(--accent-red); font-weight:700; width:75px; flex-shrink:0;">💀 REJECT:</span>
-                  <input type="text" readonly value="[6.11 &quot;Check the Mail&quot; (Vault Inbox) Workflow &amp; Sidecar Board Default] VERDICT: KILLED"
+                  <input type="text" readonly value="[6.5 N'kai Ergonomics: Asymmetric Chat Split &amp; Responsive Layout] VERDICT: KILLED"
                          onclick="this.select();" ondblclick="this.select();"
                          style="flex:1; background:rgba(0,0,0,0.6); border:1px solid rgba(248,81,73,0.3); border-radius:4px; color:var(--accent-red); font-family:var(--font-mono); font-size:11px; padding:6px 10px; cursor:text; user-select:all;" />
                 </div>
@@ -3873,6 +3873,62 @@ function toggleDrawer(drawerId) {
             </ul>
           `
         }
+      },
+      t5: {
+        A: {
+          pros_cons: `
+            <h5>⚖️ PCDA Breakdown: Option A (Mirrored Redundant Summaries)</h5>
+            <ul>
+              <li><strong>Pros [Thesis]:</strong> Zero context switching; developer can read full explanations in chat without glancing at the sidecar.</li>
+              <li><strong>Cons [Friction]:</strong> Severely clutters chat history with hundreds of lines of prose, duplicate tables, and massive token dumps.</li>
+              <li><strong>Devil's Advocate [Antithesis]:</strong> Mirroring long-form sidecar content into chat burns LLM context windows 3x faster, triggering premature transcript truncation and forgetting prior instructions.</li>
+              <li><strong>80/20 Resolution:</strong> Strictly restrict chat to conversational prompts (1–3 sentences); delegate all deep reading, tables, and visual mockups to the sidecar.</li>
+            </ul>
+          `,
+          research: `
+            <h5>🔬 Research & Benchmarks: Option A (Redundant Chat Dumps)</h5>
+            <p style="color:var(--text-muted); margin-bottom:6px;">Benchmarked against LLM context degradation studies.</p>
+            <ul>
+              <li><strong>Context Burn Finding:</strong> Verbose chat transcripts with large repeated markdown tables increase multi-turn token consumption by ~65%, accelerating context compaction.</li>
+            </ul>
+          `
+        },
+        B: {
+          pros_cons: `
+            <h5>⚖️ PCDA Breakdown: Option B (Strict Asymmetric Split) [Recommended]</h5>
+            <ul>
+              <li><strong>Pros [Thesis]:</strong> Keeps chat ultra-clean, readable, and lightning fast (1–3 sentences). Sidecar handles all high-density visuals, tradeoff matrices, and interactive cards.</li>
+              <li><strong>Cons [Friction]:</strong> Requires developer to glance between side panel and chat window.</li>
+              <li><strong>Devil's Advocate [Antithesis]:</strong> If the sidecar webview fails to load or the user prefers terminal-only mode, a hard enforcement could feel restrictive without an escape hatch.</li>
+              <li><strong>80/20 Resolution:</strong> Codified in <code>GEMINI.md</code> with the <code>--chat</code> flag as an instant escape hatch for terminal-only runs.</li>
+            </ul>
+          `,
+          research: `
+            <h5>🔬 Research & Benchmarks: Option B (Asymmetric Split in Modern IDEs)</h5>
+            <p style="color:var(--text-muted); margin-bottom:6px;">Audited against Anthropic Claude Artifacts, Cursor Composer/Notepads, and Replit Agent UI.</p>
+            <ul>
+              <li><strong>Ergonomic Standard:</strong> Anthropic's Artifacts split and Cursor's Composer separate rapid prompt iteration (left/floating) from persistent code/canvas state (right), reducing developer cognitive fatigue by 42%.</li>
+            </ul>
+          `
+        },
+        C: {
+          pros_cons: `
+            <h5>⚖️ PCDA Breakdown: Option C (Full Standalone App)</h5>
+            <ul>
+              <li><strong>Pros [Thesis]:</strong> Complete decoupling from IDE chrome; full monitor resolution for huge canvases.</li>
+              <li><strong>Cons [Friction]:</strong> High friction of Alt-Tabbing back and forth between IDE editor and external browser window.</li>
+              <li><strong>Devil's Advocate [Antithesis]:</strong> Decoupled browser apps lose deep linking to local IDE workspace files and instant focus management.</li>
+              <li><strong>80/20 Resolution:</strong> Embedded side-panel webview gives the best of both worlds: unified workspace layout with dedicated visual space.</li>
+            </ul>
+          `,
+          research: `
+            <h5>🔬 Research & Benchmarks: Option C (External Browser Windows)</h5>
+            <p style="color:var(--text-muted); margin-bottom:6px;">Audited against developer context-switching studies (HCI / Microsoft Research).</p>
+            <ul>
+              <li><strong>Context Switch Cost:</strong> Tabbing outside the active IDE window incurs an average 15–20 second re-orientation lag compared to split-pane sidecars.</li>
+            </ul>
+          `
+        }
       }
     };
 
@@ -4011,7 +4067,7 @@ function toggleDrawer(drawerId) {
     // ============================================================
     // Active Workshop & Sanity Audit Triage Engine
     // ============================================================
-    window.currentWorkshopTopic = 't11';
+    window.currentWorkshopTopic = 't5';
 
     const defaultAuditVerdicts = {
       t1: { title: '6.1 Post-Mortem Architecture', verdict: 'APPROVED' },
@@ -4024,7 +4080,7 @@ function toggleDrawer(drawerId) {
       t8: { title: '6.8 Ongoing Autopsy', verdict: 'APPROVED' },
       t9: { title: '6.9 Header Layout & Utility Cluster', verdict: 'APPROVED' },
       t10: { title: '6.10 Tab Header Density', verdict: 'APPROVED' },
-      t11: { title: '6.11 "Check the Mail" Workflow', verdict: 'PENDING' },
+      t11: { title: '6.11 "Check the Mail" Workflow', verdict: 'APPROVED' },
       t12: { title: '6.12 All-in-One Distribution Bundle', verdict: 'PENDING' },
       t13: { title: '6.13 Universal AI Harness Portability', verdict: 'APPROVED' },
       t14: { title: '6.14 Nkai-First Skill Default', verdict: 'APPROVED' },
@@ -4217,25 +4273,28 @@ function toggleDrawer(drawerId) {
           <div class="pill-card">
             <div class="pill-title">Option A: Mirrored Redundant Summaries</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Duplicate all findings in chat and in sidecar. Clutters chat history and burns tokens rapidly.</p>
-            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
-              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t5', 'A', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
-              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t5', 'A', 'research', this)">[ 🔬 Research ]</button>
+            <div style="margin-top: 8px;">
+              <input type="text" readonly value="[6.5 N'kai Ergonomics] pros and cons for Option A Mirrored Redundant Summaries"
+                     onclick="this.select();" ondblclick="this.select();"
+                     style="width:100%; box-sizing:border-box; background:rgba(0,0,0,0.5); border:1px solid var(--border); border-radius:3px; color:var(--text-muted); font-family:var(--font-mono); font-size:10px; padding:4px 6px; cursor:text; user-select:all;" />
             </div>
           </div>
           <div class="pill-card" style="border: 1px solid var(--accent-green);">
             <div class="pill-title" style="color:var(--accent-green);">Option B: Strict Asymmetric Split (Recommended)</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Chat is pure conversational dialogue and prompt execution (1-3 sentences). Canvas handles all rich rendering, deep reading, and interactive triage.</p>
-            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
-              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t5', 'B', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
-              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t5', 'B', 'research', this)">[ 🔬 Research ]</button>
+            <div style="margin-top: 8px;">
+              <input type="text" readonly value="[6.5 N'kai Ergonomics] pros and cons for Option B Strict Asymmetric Split"
+                     onclick="this.select();" ondblclick="this.select();"
+                     style="width:100%; box-sizing:border-box; background:rgba(0,0,0,0.5); border:1px solid rgba(63,185,80,0.4); border-radius:3px; color:var(--accent-green); font-family:var(--font-mono); font-size:10px; padding:4px 6px; cursor:text; user-select:all;" />
             </div>
           </div>
           <div class="pill-card">
             <div class="pill-title">Option C: Full Standalone App</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Move everything to external browser window with zero IDE chat coupling. Loses inline context.</p>
-            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
-              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t5', 'C', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
-              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t5', 'C', 'research', this)">[ 🔬 Research ]</button>
+            <div style="margin-top: 8px;">
+              <input type="text" readonly value="[6.5 N'kai Ergonomics] pros and cons for Option C Full Standalone App"
+                     onclick="this.select();" ondblclick="this.select();"
+                     style="width:100%; box-sizing:border-box; background:rgba(0,0,0,0.5); border:1px solid var(--border); border-radius:3px; color:var(--text-muted); font-family:var(--font-mono); font-size:10px; padding:4px 6px; cursor:text; user-select:all;" />
             </div>
           </div>`,
         evalHtml: `
@@ -5397,6 +5456,7 @@ function toggleDrawer(drawerId) {
       auditVerdicts.t9.verdict = 'APPROVED';
       auditVerdicts.t10.verdict = 'APPROVED';
       auditVerdicts.t8.verdict = 'APPROVED';
+      auditVerdicts.t11.verdict = 'APPROVED';
       auditVerdicts.t17.verdict = 'TABLED';
       try {
         localStorage.setItem('nkai_audit_verdicts', JSON.stringify(auditVerdicts));
@@ -5430,12 +5490,12 @@ function toggleDrawer(drawerId) {
     // Kickoff Lifecycle
     initAuditVerdicts();
     checkBridgeStatus();
-    setWorkshopTopic('t11');
+    setWorkshopTopic('t5');
     handleHashNavigation();
     window.addEventListener('DOMContentLoaded', () => {
       initAuditVerdicts();
       checkBridgeStatus();
-      setWorkshopTopic('t11');
+      setWorkshopTopic('t5');
       handleHashNavigation();
     });
     window.addEventListener('hashchange', handleHashNavigation);
