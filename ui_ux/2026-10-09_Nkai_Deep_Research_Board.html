@@ -514,6 +514,8 @@
       color: var(--text-muted);
       margin-bottom: 6px;
     }
+      @keyframes spin { 100% { transform: rotate(360deg); } }
+    .is-spinning { animation: spin 1s linear infinite; }
   </style>
 </head>
 <body>
@@ -546,7 +548,7 @@
         <button class="header-btn" onclick="adjustZoom(0.05)">A+</button>
       </div>
       <button id="header-mute-btn" class="header-btn green" onclick="toggleAudioMute()" title="Master Audio Haptics Mute Toggle">🔊 Sound: ON</button>
-      <button class="header-btn" onclick="location.reload()" title="Force Refresh">🔄</button>
+      <button class="header-btn" onclick="forceReloadCanvas(this)" title="Force Refresh">🔄</button>
     </div>
   </header>
 
@@ -1091,6 +1093,20 @@ class NkaiDataLoader {
     window.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') closeAllDrawers();
     });
+      function forceReloadCanvas(btn) {
+      if (btn) btn.classList.add('is-spinning');
+      setTimeout(() => {
+        try {
+          const url = new URL(window.location.href);
+          url.searchParams.set('_t', Date.now());
+          window.location.replace(url.toString());
+        } catch(e) {
+          showAudioToast('Refreshing canvas... If webview is locked, click the chat link.');
+          window.location.reload();
+        }
+      }, 50);
+    }
   </script>
 </body>
 </html>
+
