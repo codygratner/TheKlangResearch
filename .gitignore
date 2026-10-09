@@ -1,0 +1,18 @@
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editor & Temp
+.vscode/
+.idea/
+*.swp
+*.tmp
+*~
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Local scratch
+scratch/
