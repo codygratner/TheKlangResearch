@@ -4546,7 +4546,7 @@ function toggleDrawer(drawerId) {
     }
 
 
-        function setAuditVerdict(topicId, verdict, btn) {
+    function setAuditVerdict(topicId, verdict, btn) {
       if (!auditVerdicts[topicId]) return;
       auditVerdicts[topicId].verdict = verdict;
 
@@ -4556,18 +4556,35 @@ function toggleDrawer(drawerId) {
         console.warn('Could not save audit verdicts to localStorage:', e);
       }
 
-      // Update UI state locally immediately
+      // 1. Update UI state locally immediately
       applyAuditVerdictsUI();
+      playHapticChime();
 
-      // Dispatch directly to agent queue via Bidirectional Bridge
-      // The bridge success/fail handler will manage the haptic sounds, toasts, and fallback modals.
-      dispatchNkaiAction({
-        action: 'setVerdict',
-        topicId: topicId,
-        verdict: verdict,
-        title: auditVerdicts[topicId].title,
-        prompt: `[VERDICT SUBMITTED via N'kai Bridge] Topic ${topicId}: ${verdict} - ${auditVerdicts[topicId].title}`
-      }, btn);
+      // 2. Prepare the exact verdict text to paste into chat
+      const topicTitle = auditVerdicts[topicId].title || topicId;
+      const verdictPrompt = `[${topicTitle}] VERDICT: ${verdict}`;
+
+      // 3. Rock-solid clipboard copy (Table bridge to v0.2.0)
+      const success = copyToClipboardSilently(verdictPrompt);
+      if (btn) {
+        flashButtonSuccess(btn, '📋 Copied! Paste in Chat');
+      }
+      showAudioToast(`📋 ${verdict} copied! Paste into chat (Ctrl+V) & press Enter to advance`);
+
+      if (!success) {
+        showFallbackModal(verdictPrompt);
+      }
+
+      // 4. Passive telemetry log (silent background logging)
+      if (window.nkaiBridgeOnline) {
+        const port = window.nkaiBridgePort || 4040;
+        fetch(`http://127.0.0.1:${port}/api/action`, {
+          method: 'POST',
+          mode: 'cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'setVerdict', topicId: topicId, verdict: verdict, prompt: verdictPrompt })
+        }).catch(() => {});
+      }
     }
 
     function applyAuditVerdictsUI() {
