@@ -3383,7 +3383,7 @@ function toggleDrawer(drawerId) {
       t12: { title: '6.12 All-in-One Distribution Bundle', verdict: 'PENDING' },
       t13: { title: '6.13 Universal AI Harness Portability', verdict: 'PENDING' },
       t14: { title: '6.14 Nkai-First Skill Default', verdict: 'PENDING' },
-      t15: { title: '6.15 Industry Workflow Precedents', verdict: 'PENDING' },
+      t15: { title: '6.15 Industry Workflow Precedents', verdict: 'APPROVED' },
       t16: { title: '6.16 Backend Persistence & State', verdict: 'PENDING' },
       t17: { title: '6.17 Bidirectional Click-to-Agent Bridge', verdict: 'APPROVED' },
       t18: { title: '6.18 Parallel Subagent Delegation for Sidecar Actions', verdict: 'PENDING' },
@@ -3948,24 +3948,24 @@ function toggleDrawer(drawerId) {
             <div class="pill-title">Option A: Native Antigravity Plugin (Sidecar SDK / MCP)</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Run N\'kai as an installed IDE extension (<code>nkai/plugin/</code>). Buttons call <code>window.sidecar.sendAction()</code>, which routes directly through Antigravity\'s MCP server into the agent conversation. 100% native, zero terminal daemons, but requires installing the plugin.</p>
             <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
-              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t13', 'A', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
-              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t13', 'A', 'research', this)">[ 🔬 Research ]</button>
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t17', 'A', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t17', 'A', 'research', this)">[ 🔬 Research ]</button>
             </div>
           </div>
           <div class="pill-card">
             <div class="pill-title">Option B: Universal Localhost Loopback Micro-Server (npx nkai serve)</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">A lightweight 40-line Node or Python daemon on <code>localhost:4040</code>. Buttons call <code>fetch(\'http://localhost:4040/action\')</code>, writing to <code>.agents/pipeline/actions.json</code> which triggers an agent notification. Works across ALL harnesses (AGY, Claude Code, Cursor, Chrome).</p>
             <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
-              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t13', 'B', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
-              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t13', 'B', 'research', this)">[ 🔬 Research ]</button>
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t17', 'B', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t17', 'B', 'research', this)">[ 🔬 Research ]</button>
             </div>
           </div>
           <div class="pill-card" style="border: 1px solid var(--accent-green);">
             <div class="pill-title" style="color:var(--accent-green);">Option C: Hybrid Resilient Adapter (Plugin SDK + Localhost + Clipboard Fallback) [Recommended]</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Checks for <code>window.sidecar</code> first (native AGY plugin mode). If absent, attempts loopback <code>fetch(\'localhost:4040\')</code>. If offline, gracefully falls back to the hardened in-canvas expansion and clipboard modal. Guarantees zero broken clicks anywhere.</p>
             <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
-              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t13', 'C', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
-              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t13', 'C', 'research', this)">[ 🔬 Research ]</button>
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t17', 'C', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t17', 'C', 'research', this)">[ 🔬 Research ]</button>
             </div>
           </div>`,
         evalHtml: `
@@ -3990,24 +3990,24 @@ function toggleDrawer(drawerId) {
             <div class="pill-title">Option A: The Static Artifact Model (Claude Artifacts)</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Isolated iframe rendered purely from agent markdown file output. Clean side-by-side view, but primarily a read-only preview with minimal bidirectional interaction or live workspace controls.</p>
             <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
-              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t13', 'A', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
-              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t13', 'A', 'research', this)">[ 🔬 Research ]</button>
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t15', 'A', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t15', 'A', 'research', this)">[ 🔬 Research ]</button>
             </div>
           </div>
           <div class="pill-card">
             <div class="pill-title">Option B: The Local WebSocket Server Model (Playwright/Vitest UI)</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Spins up a local background HTTP/WebSocket server streaming real-time JSON-RPC to a heavy SPA. Highly interactive, but introduces brittle daemon lifecycle management, port conflicts, and battery/CPU drain.</p>
             <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
-              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t13', 'B', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
-              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t13', 'B', 'research', this)">[ 🔬 Research ]</button>
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t15', 'B', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t15', 'B', 'research', this)">[ 🔬 Research ]</button>
             </div>
           </div>
           <div class="pill-card" style="border: 1px solid var(--accent-green);">
             <div class="pill-title" style="color:var(--accent-green);">Option C: The Hybrid File-URI + Micro-Bridge Model (Recommended)</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Leverage IDE webview interception via <code>file:///</code> URI for zero-bundle instant rendering, paired with an optional micro-bridge daemon (or native IDE extension SDK) for zero-copy 1-click agent dispatch. If the bridge is offline, it gracefully degrades to the hardened in-canvas expansion and copy modal. Combines the indestructible zero-build simplicity of Claude Artifacts with the interactive dispatch power of Playwright/Vitest UI!</p>
             <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
-              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t13', 'C', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
-              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t13', 'C', 'research', this)">[ 🔬 Research ]</button>
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t15', 'C', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t15', 'C', 'research', this)">[ 🔬 Research ]</button>
             </div>
           </div>`,
         evalHtml: `
@@ -4032,24 +4032,24 @@ function toggleDrawer(drawerId) {
             <div class="pill-title">Option A: Pure JSON Monoliths</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Store all data in raw JSON files in <code>.agents/sidecar/</code>. Easy for machine parsing, but causes painful Git merge conflicts for human teams and large token burn when read by agents.</p>
             <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
-              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t13', 'A', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
-              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t13', 'A', 'research', this)">[ 🔬 Research ]</button>
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t16', 'A', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t16', 'A', 'research', this)">[ 🔬 Research ]</button>
             </div>
           </div>
           <div class="pill-card">
             <div class="pill-title">Option B: Embedded SQLite Database</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Store data in an embedded SQLite database (<code>.agents/nkai.db</code>). Instant relational queries and ACID safety, but opaque binary format completely breaks Git line-diffs and PR review history.</p>
             <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
-              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t13', 'B', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
-              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t13', 'B', 'research', this)">[ 🔬 Research ]</button>
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t16', 'B', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t16', 'B', 'research', this)">[ 🔬 Research ]</button>
             </div>
           </div>
           <div class="pill-card" style="border: 1px solid var(--accent-green);">
             <div class="pill-title" style="color:var(--accent-green);">Option C: Hybrid Markdown + LocalStorage + JSON Catalog (Recommended)</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Markdown files with YAML frontmatter for human-readable, Git-friendly logs and notes. A lightweight <code>catalog.json</code> for agent lookups. Browser <code>localStorage</code> for transient UI state (zoom, tabs, drafts), keeping token burn near zero.</p>
             <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
-              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t13', 'C', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
-              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t13', 'C', 'research', this)">[ 🔬 Research ]</button>
+              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t16', 'C', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
+              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t16', 'C', 'research', this)">[ 🔬 Research ]</button>
             </div>
           </div>`,
         evalHtml: `
