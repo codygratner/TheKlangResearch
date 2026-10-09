@@ -1081,18 +1081,18 @@
                 <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Spins up a local background HTTP/WebSocket server streaming real-time JSON-RPC to a heavy SPA. Highly interactive, but introduces brittle daemon lifecycle management, port conflicts, and battery/CPU drain.</p>
               </div>
               <div class="pill-card" style="border: 1px solid var(--accent-green);">
-                <div class="pill-title" style="color:var(--accent-green);">Option C: The Hybrid File-URI Model (Recommended)</div>
-                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Leverage IDE webview interception via <code>file:///</code> URI to artifact directories. Zero background server daemons. Uses Web Workers, <code>localStorage</code>, and 1-click prompt-to-clipboard action chips for instant pairing with chat at zero token burn.</p>
+                <div class="pill-title" style="color:var(--accent-green);">Option C: The Hybrid File-URI + Micro-Bridge Model (Recommended)</div>
+                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Leverage IDE webview interception via <code>file:///</code> URI for zero-bundle instant rendering, paired with an optional micro-bridge daemon (or native IDE extension SDK) for zero-copy 1-click agent dispatch. If the bridge is offline, it gracefully degrades to the hardened in-canvas expansion and copy modal. Combines the indestructible zero-build simplicity of Claude Artifacts with the interactive dispatch power of Playwright/Vitest UI!</p>
               </div>
             </div>
 
             <!-- 3-Lens Pros & Cons -->
             <div id="ws-card-evaluation" style="margin-top: 14px; background: rgba(0,0,0,0.3); border: 1px solid rgba(48,54,61,0.6); border-radius: 6px; padding: 12px;">
-              <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option C: Hybrid File-URI Model)</div>
+              <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option C: Hybrid File-URI + Micro-Bridge Model)</div>
               <ul style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin: 0; padding-left: 18px;">
-                <li><strong>🌍 Real-World Ergonomics:</strong> Zero setup. Click the link and the canvas renders instantly in the IDE side panel with persistent zoom, theme, and tab state. No server to crash or leave running.</li>
-                <li><strong>🏛️ Wider SOTA:</strong> Combines the lightweight elegance of Claude Artifacts with the interactive power of Storybook and Vitest UI without their heavy daemon baggage.</li>
-                <li><strong>🏆 Best Practices:</strong> Zero external dependencies. Indestructible offline portability with instant 100% testable DOM.</li>
+                <li><strong>🌍 Real-World Ergonomics:</strong> Zero build steps. Instant loading via <code>file:///</code> URI, with direct 1-click actions to the agent when the bridge is running, and seamless copy modal fallback when standalone.</li>
+                <li><strong>🏛️ Wider SOTA:</strong> Sits directly in the sweet spot between Claude Artifacts (clean but passive/read-only) and Playwright/Storybook (interactive but heavy node/daemon overhead).</li>
+                <li><strong>🏆 Best Practices:</strong> Resilient progressive enhancement: works 100% offline without servers or internet, but unlocks full bidirectional live control when paired with the harness bridge.</li>
               </ul>
               <div style="margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap;">
                 <button class="interactive-btn blue" onclick="copyPromptToChat('pros and cons for SOTA Sidecar Architectures (Claude vs Playwright vs Nkai) across the 4 Lenses', this)">[ ⚖️ Request Pros &amp; Cons ]</button>
@@ -2413,17 +2413,17 @@ class SidecarMigrator:
               <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Spins up a local background HTTP/WebSocket server streaming real-time JSON-RPC to a heavy SPA. Highly interactive, but introduces brittle daemon lifecycle management, port conflicts, and battery/CPU drain.</p>
             </div>
             <div class="pill-card" style="border: 1px solid var(--accent-green);">
-              <div class="pill-title" style="color:var(--accent-green);">Option C: The Hybrid File-URI Model (Recommended)</div>
-              <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Leverage IDE webview interception via <code>file:///</code> URI to artifact directories. Zero background server daemons. Uses Web Workers, <code>localStorage</code>, and 1-click prompt-to-clipboard action chips for instant pairing with chat at zero token burn.</p>
+              <div class="pill-title" style="color:var(--accent-green);">Option C: The Hybrid File-URI + Micro-Bridge Model (Recommended)</div>
+              <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Leverage IDE webview interception via <code>file:///</code> URI for zero-bundle instant rendering, paired with an optional micro-bridge daemon (or native IDE extension SDK) for zero-copy 1-click agent dispatch. If the bridge is offline, it gracefully degrades to the hardened in-canvas expansion and copy modal. Combines the indestructible zero-build simplicity of Claude Artifacts with the interactive dispatch power of Playwright/Vitest UI!</p>
             </div>
           </div>
 
           <div style="margin-top: 14px; background: rgba(0,0,0,0.3); border: 1px solid rgba(48,54,61,0.6); border-radius: 6px; padding: 12px;">
-            <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option C: Hybrid File-URI Model)</div>
+            <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option C: Hybrid File-URI + Micro-Bridge Model)</div>
             <ul style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin: 0; padding-left: 18px;">
-              <li><strong>🌍 Real-World Ergonomics:</strong> Zero setup. Click the link and the canvas renders instantly in the IDE side panel with persistent zoom, theme, and tab state. No server to crash or leave running.</li>
-              <li><strong>🏛️ Wider SOTA:</strong> Combines the lightweight elegance of Claude Artifacts with the interactive power of Storybook and Vitest UI without their heavy daemon baggage.</li>
-              <li><strong>🏆 Best Practices:</strong> Zero external dependencies. Indestructible offline portability with instant 100% testable DOM.</li>
+              <li><strong>🌍 Real-World Ergonomics:</strong> Zero build steps. Instant loading via <code>file:///</code> URI, with direct 1-click actions to the agent when the bridge is running, and seamless copy modal fallback when standalone.</li>
+              <li><strong>🏛️ Wider SOTA:</strong> Sits directly in the sweet spot between Claude Artifacts (clean but passive/read-only) and Playwright/Storybook (interactive but heavy node/daemon overhead).</li>
+              <li><strong>🏆 Best Practices:</strong> Resilient progressive enhancement: works 100% offline without servers or internet, but unlocks full bidirectional live control when paired with the harness bridge.</li>
             </ul>
             <div style="margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap;">
               <button class="interactive-btn blue" onclick="copyPromptToChat('pros and cons for SOTA Sidecar Architectures (Claude vs Playwright vs Nkai) across the 4 Lenses', this)">[ ⚖️ Request Pros &amp; Cons ]</button>
@@ -3543,15 +3543,15 @@ function toggleDrawer(drawerId) {
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Spins up a local background HTTP/WebSocket server streaming real-time JSON-RPC to a heavy SPA. Highly interactive, but introduces brittle daemon lifecycle management, port conflicts, and battery/CPU drain.</p>
           </div>
           <div class="pill-card" style="border: 1px solid var(--accent-green);">
-            <div class="pill-title" style="color:var(--accent-green);">Option C: The Hybrid File-URI Model (Recommended)</div>
-            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Leverage IDE webview interception via <code>file:///</code> URI to artifact directories. Zero background server daemons. Uses Web Workers, <code>localStorage</code>, and 1-click prompt-to-clipboard action chips for instant pairing with chat at zero token burn.</p>
+            <div class="pill-title" style="color:var(--accent-green);">Option C: The Hybrid File-URI + Micro-Bridge Model (Recommended)</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Leverage IDE webview interception via <code>file:///</code> URI for zero-bundle instant rendering, paired with an optional micro-bridge daemon (or native IDE extension SDK) for zero-copy 1-click agent dispatch. If the bridge is offline, it gracefully degrades to the hardened in-canvas expansion and copy modal. Combines the indestructible zero-build simplicity of Claude Artifacts with the interactive dispatch power of Playwright/Vitest UI!</p>
           </div>`,
         evalHtml: `
-          <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option C: Hybrid File-URI Model)</div>
+          <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option C: Hybrid File-URI + Micro-Bridge Model)</div>
           <ul style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin: 0; padding-left: 18px;">
-            <li><strong>🌍 Real-World Ergonomics:</strong> Zero setup. Click the link and the canvas renders instantly in the IDE side panel with persistent zoom, theme, and tab state. No server to crash or leave running.</li>
-            <li><strong>🏛️ Wider SOTA:</strong> Combines the lightweight elegance of Claude Artifacts with the interactive power of Storybook and Vitest UI without their heavy daemon baggage.</li>
-            <li><strong>🏆 Best Practices:</strong> Zero external dependencies. Indestructible offline portability with instant 100% testable DOM.</li>
+            <li><strong>🌍 Real-World Ergonomics:</strong> Zero build steps. Instant loading via <code>file:///</code> URI, with direct 1-click actions to the agent when the bridge is running, and seamless copy modal fallback when standalone.</li>
+            <li><strong>🏛️ Wider SOTA:</strong> Sits directly in the sweet spot between Claude Artifacts (clean but passive/read-only) and Playwright/Storybook (interactive but heavy node/daemon overhead).</li>
+            <li><strong>🏆 Best Practices:</strong> Resilient progressive enhancement: works 100% offline without servers or internet, but unlocks full bidirectional live control when paired with the harness bridge.</li>
           </ul>`,
         recommendation: 'APPROVE Option C',
         chips: [
