@@ -3903,25 +3903,28 @@ function toggleDrawer(drawerId) {
           <div class="pill-card">
             <div class="pill-title">Option A: Static Chat History</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Rely entirely on conversation transcript. Degrades as conversations grow past 30+ turns.</p>
-            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
-              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t7', 'A', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
-              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t7', 'A', 'research', this)">[ 🔬 Research ]</button>
+            <div style="margin-top: 8px;">
+              <input type="text" readonly value="[6.7 Context Clues] pros and cons for Option A Static Chat History"
+                     onclick="this.select();" ondblclick="this.select();"
+                     style="width:100%; box-sizing:border-box; background:rgba(0,0,0,0.5); border:1px solid var(--border); border-radius:3px; color:var(--text-muted); font-family:var(--font-mono); font-size:10px; padding:4px 6px; cursor:text; user-select:all;" />
             </div>
           </div>
           <div class="pill-card" style="border: 1px solid var(--accent-green);">
             <div class="pill-title" style="color:var(--accent-green);">Option B: Structured Context Clues (Recommended)</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Dedicated context clue files (context_clues_build.md, context_clues_research.md) with canonical links to DOCS_CATALOG.json and SYSTEM_MAP.md.</p>
-            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
-              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t7', 'B', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
-              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t7', 'B', 'research', this)">[ 🔬 Research ]</button>
+            <div style="margin-top: 8px;">
+              <input type="text" readonly value="[6.7 Context Clues] pros and cons for Option B Structured Context Clues"
+                     onclick="this.select();" ondblclick="this.select();"
+                     style="width:100%; box-sizing:border-box; background:rgba(0,0,0,0.5); border:1px solid rgba(63,185,80,0.4); border-radius:3px; color:var(--accent-green); font-family:var(--font-mono); font-size:10px; padding:4px 6px; cursor:text; user-select:all;" />
             </div>
           </div>
           <div class="pill-card">
             <div class="pill-title">Option C: Dynamic SQLite Memory Store</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Store agent memory in SQLite database. High maintenance and opaque to git diffs.</p>
-            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
-              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t7', 'C', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
-              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t7', 'C', 'research', this)">[ 🔬 Research ]</button>
+            <div style="margin-top: 8px;">
+              <input type="text" readonly value="[6.7 Context Clues] pros and cons for Option C SQLite Memory Store"
+                     onclick="this.select();" ondblclick="this.select();"
+                     style="width:100%; box-sizing:border-box; background:rgba(0,0,0,0.5); border:1px solid var(--border); border-radius:3px; color:var(--text-muted); font-family:var(--font-mono); font-size:10px; padding:4px 6px; cursor:text; user-select:all;" />
             </div>
           </div>`,
         evalHtml: `
