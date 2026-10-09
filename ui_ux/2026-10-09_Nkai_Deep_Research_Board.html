@@ -528,6 +528,51 @@
     }
       @keyframes spin { 100% { transform: rotate(360deg); } }
     .is-spinning { animation: spin 1s linear infinite; }
+  
+    /* Floating Action Button (See in Context <-> Back to Workshop) */
+    .fab-btn {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 9999;
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      color: var(--text-main);
+      padding: 10px 18px;
+      border-radius: 30px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .fab-btn:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.7);
+    }
+    .fab-btn.amber {
+      border-color: rgba(255, 171, 112, 0.6);
+      color: var(--accent-amber);
+      background: rgba(22, 27, 34, 0.95);
+    }
+    .fab-btn.amber:hover {
+      background: rgba(255, 171, 112, 0.15);
+      box-shadow: 0 0 16px rgba(255, 171, 112, 0.4);
+    }
+    .fab-btn.blue {
+      border-color: rgba(88, 166, 255, 0.6);
+      color: var(--accent-blue);
+      background: rgba(22, 27, 34, 0.95);
+    }
+    .fab-btn.blue:hover {
+      background: rgba(88, 166, 255, 0.15);
+      box-shadow: 0 0 16px rgba(88, 166, 255, 0.4);
+    }
+
   </style>
 </head>
 <body>
@@ -540,7 +585,8 @@
     </div>
 
     <div class="header-modes">
-      <button id="btn-tab-loaders" class="mode-btn active" onclick="switchTab('tab-loaders')">🗺️ DYNAMIC ROADMAPS</button>
+      <button id="btn-tab-workshop" class="mode-btn active" onclick="switchTab('tab-workshop')">🛠️ ACTIVE WORKSHOP</button>
+      <button id="btn-tab-loaders" class="mode-btn" onclick="switchTab('tab-loaders')">🗺️ DYNAMIC ROADMAPS</button>
       <button id="btn-tab-sessions" class="mode-btn" onclick="switchTab('tab-sessions')">📦 SESSIONS &amp; HISTORY</button>
       <button id="btn-tab-bluesky" class="mode-btn" onclick="switchTab('tab-bluesky')">🚀 BLUE-SKY INNOVATIONS</button>
       <button id="btn-tab-contrarian" class="mode-btn" onclick="switchTab('tab-contrarian')">⚖️ DEVIL'S ADVOCATE &amp; 80/20</button>
@@ -674,15 +720,18 @@
       <a class="sidebar-item" href="#sec-contrarian">4.0 Devil's Advocate &amp; 80/20</a>
       <a class="sidebar-item" href="#sec-upgrade">5.0 Upgrade Path &amp; Migration</a>
 
+      <div class="sidebar-section-title">Active Focus</div>
+      <a class="sidebar-item active" id="side-item-workshop" href="#tab-workshop">🛠️ Active Workshop (6.4)</a>
+
       <div class="sidebar-section-title">System Sanity Audit</div>
       <a class="sidebar-item" href="#sec-audit-summary">🩺 Audit Overview</a>
-      <a class="sidebar-item" href="#sec-audit-t1">6.1 Post-Mortem Architecture</a>
-      <a class="sidebar-item" href="#sec-audit-t2">6.2 Pros/Cons: On-Demand vs Always</a>
-      <a class="sidebar-item" href="#sec-audit-t3">6.3 Topic Organization</a>
-      <a class="sidebar-item" href="#sec-audit-t4">6.4 Agent Skills Structure</a>
-      <a class="sidebar-item" href="#sec-audit-t5">6.5 N'kai View Ergonomics</a>
-      <a class="sidebar-item" href="#sec-audit-t6">6.6 AGY Keyboard Shortcuts</a>
-      <a class="sidebar-item" href="#sec-audit-t7">6.7 Context Clues &amp; Pipelines</a>
+      <a class="sidebar-item" href="#sec-audit-t1"><span>6.1 Post-Mortem Arch</span> <span id="side-v-t1" class="badge badge-green">✓</span></a>
+      <a class="sidebar-item" href="#sec-audit-t2"><span>6.2 Pros/Cons Strategy</span> <span id="side-v-t2" class="badge badge-green">✓</span></a>
+      <a class="sidebar-item" href="#sec-audit-t3"><span>6.3 Topic Organization</span> <span id="side-v-t3" class="badge badge-green">✓</span></a>
+      <a class="sidebar-item" href="#sec-audit-t4"><span>6.4 Agent Skills Structure</span> <span id="side-v-t4" class="badge badge-amber">ACTIVE</span></a>
+      <a class="sidebar-item" href="#sec-audit-t5"><span>6.5 N'kai Ergonomics</span> <span id="side-v-t5" class="badge">PENDING</span></a>
+      <a class="sidebar-item" href="#sec-audit-t6"><span>6.6 AGY Shortcuts</span> <span id="side-v-t6" class="badge">PENDING</span></a>
+      <a class="sidebar-item" href="#sec-audit-t7"><span>6.7 Context Clues</span> <span id="side-v-t7" class="badge">PENDING</span></a>
 
       <div class="sidebar-section-title">Interactive Labs</div>
       <a class="sidebar-item" href="#sec-matrix-lab">📊 2x2 Decision Matrix</a>
@@ -690,21 +739,118 @@
     </aside>
 
     <main class="content-area">
-      <div class="hero-card" id="sec-overview">
-        <div class="hero-badge">Deep Research Synthesis Complete</div>
-        <h1 class="hero-title">N'kai Evolution: Dynamic Loaders, Drawers &amp; Blue-Sky Cockpit</h1>
-        <p class="hero-desc">
-          Tri-engine subagent synthesis on decoupling roadmap data, exposing paused triage sessions directly in the header, and elevating N'kai into a transcendent pair-programming cockpit.
-        </p>
-        <div style="display:flex; gap:12px; font-family:var(--font-mono); font-size:11px; flex-wrap:wrap;">
-          <span style="color:var(--accent-blue);">🔬 Pro High: Schemas &amp; Systems Architecture</span>
-          <span style="color:var(--accent-neon);">⚡ Flash Explorer: Hybrid Universal Adapter</span>
-          <span style="color:var(--accent-red);">⚖️ Contrarian: CORS Trap &amp; 80/20 Guardrails</span>
+      <!-- Tab 0: Active Workshop (Hero Stage) -->
+      <div id="tab-workshop" class="tab-pane">
+        <div class="hero-card" style="border-left: 4px solid var(--accent-amber); background: linear-gradient(180deg, rgba(255, 171, 112, 0.08) 0%, rgba(13, 17, 23, 0.98) 100%);">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:10px;">
+            <div>
+              <div class="hero-badge" style="color:var(--accent-amber); border-color:rgba(255,171,112,0.4); background:rgba(255,171,112,0.12);">
+                🛠️ Active Workshop: In-Flight Triage Stage
+              </div>
+              <h1 class="hero-title" id="ws-hero-title" style="margin-top:4px;">
+                Topic 6.4: Agent Skills Organization: Micro-Skills vs. Macro-Suites
+              </h1>
+              <p class="hero-desc" id="ws-hero-desc" style="max-width:760px; margin-bottom:8px;">
+                Isolating the active triage topic for immediate evaluation, trade-off analysis, and instant verdict submission.
+              </p>
+            </div>
+            <div style="text-align:right;">
+              <span id="workshop-scorecard" class="badge badge-amber" style="font-size:11px; padding:4px 8px;">
+                [ 3 Approved | 0 Tabled | 0 Killed | 4 Pending ]
+              </span>
+            </div>
+          </div>
+
+          <!-- Workshop Topic Quick-Switch Pills -->
+          <div style="display:flex; gap:6px; margin-top:12px; flex-wrap:wrap; align-items:center;">
+            <span style="font-size:10px; font-family:var(--font-mono); color:var(--text-muted); text-transform:uppercase; margin-right:4px;">Triage Flight:</span>
+            <button class="header-btn" id="btn-ws-t1" onclick="setWorkshopTopic('t1')" style="font-size:10px; padding:3px 7px;">6.1 Post-Mortem ✓</button>
+            <button class="header-btn" id="btn-ws-t2" onclick="setWorkshopTopic('t2')" style="font-size:10px; padding:3px 7px;">6.2 Pros/Cons ✓</button>
+            <button class="header-btn" id="btn-ws-t3" onclick="setWorkshopTopic('t3')" style="font-size:10px; padding:3px 7px;">6.3 Organization ✓</button>
+            <button class="header-btn amber active" id="btn-ws-t4" onclick="setWorkshopTopic('t4')" style="font-size:10px; padding:3px 7px; border-color:var(--accent-amber); background:rgba(255,171,112,0.25);">6.4 Agent Skills ★ ACTIVE</button>
+            <button class="header-btn" id="btn-ws-t5" onclick="setWorkshopTopic('t5')" style="font-size:10px; padding:3px 7px;">6.5 N'kai View</button>
+            <button class="header-btn" id="btn-ws-t6" onclick="setWorkshopTopic('t6')" style="font-size:10px; padding:3px 7px;">6.6 AGY Shortcuts</button>
+            <button class="header-btn" id="btn-ws-t7" onclick="setWorkshopTopic('t7')" style="font-size:10px; padding:3px 7px;">6.7 Context Clues</button>
+          </div>
+        </div>
+
+        <!-- Active Topic Workshop Hero Card Mount -->
+        <div id="workshop-card-mount">
+          <!-- Rendered dynamically by setWorkshopTopic, pre-populated with t4 -->
+          <div class="section-card" id="workshop-card">
+            <div class="section-title">
+              <span id="ws-card-title">6.4 Agent Skills Organization: Micro-Skills vs. Macro-Suites</span>
+              <span id="ws-card-badge" class="badge badge-blue">Skill Architecture</span>
+            </div>
+            <p id="ws-card-desc" style="font-size: 12px; line-height: 1.6; color: var(--text-main);">
+              <strong>The Question:</strong> We currently have 16 distinct skills in <code>.agents/skills/</code>. Is this too fragmented, or does Unix-style modular composability provide superior reliability?
+            </p>
+
+            <div class="grid-3" id="ws-card-options" style="margin-top: 12px;">
+              <div class="pill-card">
+                <div class="pill-title">Option A: 16 Micro-Skills (Current)</div>
+                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
+                  Every command is its own atomic skill (<code>build-validate</code>, <code>step-verify</code>, <code>audiothread-guard</code>, <code>web-qa</code>). High granularity, but requires knowing multiple commands.
+                </p>
+              </div>
+              <div class="pill-card">
+                <div class="pill-title">Option B: 4 Consolidated Macro-Suites</div>
+                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
+                  Merged into 4 monolithic skills: <code>/architect</code>, <code>/factory</code>, <code>/maintain</code>, <code>/qa</code>. Simpler menu, but reduces flexibility for targeted single operations.
+                </p>
+              </div>
+              <div class="pill-card" style="border: 1px solid var(--accent-green);">
+                <div class="pill-title" style="color:var(--accent-green);">Option C: Layered Hybrid (Recommended)</div>
+                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
+                  Keep atomic micro-skills as the underlying engine, while macro-commands (like <code>/execute-task</code> or unified <code>qa</code>) chain them deterministically. Zero loss of composability.
+                </p>
+              </div>
+            </div>
+
+            <!-- 3-Lens Pros & Cons -->
+            <div id="ws-card-evaluation" style="margin-top: 14px; background: rgba(0,0,0,0.3); border: 1px solid rgba(48,54,61,0.6); border-radius: 6px; padding: 12px;">
+              <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option C: Layered Hybrid)</div>
+              <ul style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin: 0; padding-left: 18px;">
+                <li><strong>🌍 Real-World Ergonomics:</strong> You don't have to remember 16 individual command names—you just say <code>qa</code> or <code>/execute-task</code>. But when an isolated test fails, the agent or user can still run <code>audiothread-guard</code> directly.</li>
+                <li><strong>🏛️ Wider SOTA Industry:</strong> Follows standard CLI &amp; API layered architectures (e.g. Git: porcelain vs. plumbing commands, Docker, AWS CLI). High-level intents invoke specialized low-level tools.</li>
+                <li><strong>🏆 Best Practices:</strong> Avoids giant monolithic skill files that burn excessive prompt tokens on every activation. Keeps tool schemas clean and single-purpose.</li>
+              </ul>
+              <div style="margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap;">
+                <button class="interactive-btn blue" onclick="copyPromptToChat('pros and cons for Layered Hybrid Skills across the 4 Lenses')">[ ⚖️ Request Pros &amp; Cons ]</button>
+                <button class="interactive-btn purple" onclick="copyPromptToChat('research online AI agent skills architecture micro vs macro suites')">[ 🔬 Research Online ]</button>
+                <button class="interactive-btn amber" onclick="navigateToSection('sec-audit-t4')">[ 🔍 See in Full Context ]</button>
+              </div>
+            </div>
+
+            <!-- Interactive Verdict Submission Row -->
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:14px; padding-top:10px; border-top:1px solid rgba(48,54,61,0.5); flex-wrap:wrap; gap:8px;">
+              <div style="font-family:var(--font-mono); font-size:11px; color:var(--text-muted);">
+                Verdict: <strong id="workshop-v-badge" class="badge">PENDING</strong>
+              </div>
+              <div style="display:flex; gap:6px; flex-wrap:wrap;">
+                <button class="interactive-btn" id="ws-btn-approve" style="color:var(--accent-green); border-color:var(--accent-green);" onclick="setAuditVerdict(window.currentWorkshopTopic || 't4', 'APPROVED', this)">[ ✅ APPROVE Option C ]</button>
+                <button class="interactive-btn amber" id="ws-btn-table" onclick="setAuditVerdict(window.currentWorkshopTopic || 't4', 'TABLED', this)">[ ⏳ TABLE ]</button>
+                <button class="interactive-btn" id="ws-btn-kill" style="color:var(--accent-red); border-color:var(--accent-red);" onclick="setAuditVerdict(window.currentWorkshopTopic || 't4', 'KILLED', this)">[ 💀 KEEP Option A ]</button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
       <!-- Tab 1: Dynamic Roadmaps & Loaders -->
-      <div id="tab-loaders" class="tab-pane">
+      <div id="tab-loaders" class="tab-pane" style="display: none;">
+        <div class="hero-card" id="sec-overview">
+          <div class="hero-badge">Deep Research Synthesis Complete</div>
+          <h1 class="hero-title">N'kai Evolution: Dynamic Loaders, Drawers &amp; Blue-Sky Cockpit</h1>
+          <p class="hero-desc">
+            Tri-engine subagent synthesis on decoupling roadmap data, exposing paused triage sessions directly in the header, and elevating N'kai into a transcendent pair-programming cockpit.
+          </p>
+          <div style="display:flex; gap:12px; font-family:var(--font-mono); font-size:11px; flex-wrap:wrap;">
+            <span style="color:var(--accent-blue);">🔬 Pro High: Schemas &amp; Systems Architecture</span>
+            <span style="color:var(--accent-neon);">⚡ Flash Explorer: Hybrid Universal Adapter</span>
+            <span style="color:var(--accent-red);">⚖️ Contrarian: CORS Trap &amp; 80/20 Guardrails</span>
+          </div>
+        </div>
         <div class="section-card" id="sec-loaders">
           <div class="section-title">
             <span>1.0 Dynamic Data Loading: The file:/// CORS Wall &amp; The Universal Adapter</span>
@@ -1605,6 +1751,9 @@ class SidecarMigrator:
       localStorage.setItem('nkai_zoom', currentZoom.toFixed(2));
     }
 
+    // ==========================================
+    // Navigation & Tab Switching
+    // ==========================================
     function switchTab(tabId, scrollToTop = true) {
       document.querySelectorAll('.tab-pane').forEach(el => el.style.display = 'none');
       document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active'));
@@ -1612,6 +1761,9 @@ class SidecarMigrator:
       if (target) target.style.display = 'block';
       const activeBtn = document.getElementById('btn-' + tabId) || document.querySelector(`.mode-btn[onclick*="${tabId}"]`);
       if (activeBtn) activeBtn.classList.add('active');
+
+      // Update Floating Action Button
+      updateFab(tabId);
 
       if (scrollToTop) {
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1626,6 +1778,32 @@ class SidecarMigrator:
           }
         }
       }
+    }
+
+    function updateFab(tabId) {
+      const fab = document.getElementById('fab-action');
+      if (!fab) return;
+      if (tabId === 'tab-workshop') {
+        fab.innerHTML = '<span id="fab-icon">🔍</span> <span id="fab-text">See in Context</span>';
+        fab.setAttribute('title', 'Jump to this topic in the full Sanity Audit tab');
+        fab.className = 'fab-btn amber';
+      } else {
+        fab.innerHTML = '<span id="fab-icon">🔙</span> <span id="fab-text">Back to Workshop</span>';
+        fab.setAttribute('title', 'Return to Active Workshop Hero Stage');
+        fab.className = 'fab-btn blue';
+      }
+    }
+
+    function handleFabClick() {
+      const activeTab = document.querySelector('.tab-pane:not([style*="display: none"])');
+      const activeTabId = activeTab ? activeTab.id : 'tab-workshop';
+      if (activeTabId === 'tab-workshop') {
+        const targetId = 'sec-audit-' + (window.currentWorkshopTopic || 't4');
+        navigateToSection(targetId, true);
+      } else {
+        switchTab('tab-workshop');
+      }
+      playHapticTick();
     }
 
     function navigateToSection(targetId, updateHash = true) {
@@ -1645,27 +1823,23 @@ class SidecarMigrator:
       // 2. Highlight matching sidebar item
       document.querySelectorAll('.sidebar-item').forEach(item => {
         const href = (item.getAttribute('href') || '').replace(/^#/, '');
-        if (href === cleanId) {
-          item.classList.add('active');
-        } else {
-          item.classList.remove('active');
-        }
+        if (href === cleanId) item.classList.add('active');
+        else item.classList.remove('active');
       });
 
-      // 3. Update hash in browser URL
-      if (updateHash && window.location.hash !== '#' + cleanId) {
-        try {
-          history.pushState(null, '', '#' + cleanId);
-        } catch (e) {}
-      }
+      // 3. Smooth scroll into view
+      targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-      // 4. Smooth scroll to target after DOM reflow
-      setTimeout(() => {
-        targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 50);
+      // 4. Update URL anchor hash without page jump
+      if (updateHash && window.history && window.history.pushState) {
+        window.history.pushState(null, null, '#' + cleanId);
+      }
     }
 
-    function toggleDrawer(drawerId) {
+    // ==========================================
+    // Slide-Over Drawers & Multi-Engine Audio
+    // ==========================================
+function toggleDrawer(drawerId) {
       const drawer = document.getElementById(drawerId);
       const overlay = document.getElementById('drawer-overlay');
       const isCurrentlyActive = drawer.classList.contains('active');
@@ -1879,13 +2053,36 @@ class SidecarMigrator:
           window.location.replace(url.toString());
         } catch(e) {
           showAudioToast('Refreshing canvas... If webview is locked, click the chat link.');
-          window.location.reload();
+          window.location.href = window.location.href;
         }
       }, 50);
     }
   
     // ==========================================
     // Interactive Migration Simulator & Diff Inspector
+    // ==========================================
+    
+
+    // Sound Helpers
+    function playHapticTick() {
+      if (window.NkaiAudio && typeof NkaiAudio.playTick === 'function') {
+        NkaiAudio.playTick();
+      }
+    }
+
+    function playHapticChime() {
+      if (window.NkaiAudio && typeof NkaiAudio.playChime === 'function') {
+        NkaiAudio.playChime();
+      } else {
+        playHapticTick();
+      }
+    }
+
+    function playTick() { playHapticTick(); }
+    function playChime() { playHapticChime(); }
+
+    // ==========================================
+    // Interactive Migration Simulator
     // ==========================================
     function simulateUpgradeDiff() {
       const consoleEl = document.getElementById('sim-console');
@@ -1905,7 +2102,7 @@ class SidecarMigrator:
 + &lt;div class="slide-drawer" id="roadmap-drawer"&gt;...&lt;/div&gt;
 + &lt;div class="slide-drawer" id="sessions-drawer"&gt;...&lt;/div&gt;
 <span style="color:#8b949e;">@@ -850,2 +862,6 @@</span>
-- &lt;button onclick="location.reload()"&gt;🔄&lt;/button&gt;
+- &lt;button onclick="location.reload_legacy()"&gt;🔄&lt;/button&gt;
 + &lt;button onclick="forceReloadCanvas(this)"&gt;🔄&lt;/button&gt;
 <span style="color:#7ee787;">[Diff Complete: 3 DOM hooks modified, 0 content cards touched]</span>`;
     }
@@ -1922,7 +2119,7 @@ class SidecarMigrator:
 <span style="color:#d2a8ff;">[STEP 3] Injecting v1.1.0 Drawer Overlay &amp; Slide-Over Containers...</span>
 <span style="color:#7ee787;">  ✓ Injected #drawer-overlay, #roadmap-drawer, #sessions-drawer.</span>
 <span style="color:#d2a8ff;">[STEP 4] Upgrading Header Controls &amp; Cache-Busting Reload...</span>
-<span style="color:#7ee787;">  ✓ Upgraded header to multi-line flex-wrap. Replaced location.reload().</span>
+<span style="color:#7ee787;">  ✓ Upgraded header to multi-line flex-wrap. Replaced legacy reload.</span>
 <span style="color:#d2a8ff;">[STEP 5] Validating Tag Balance &amp; HTML5 Compliance...</span>
 <span style="color:#7ee787;">  ✓ Balance test PASSED: opens == closes (diff = 0).</span>
 <span style="color:#ffa657;">[DRY-RUN SUCCESS] Ready to execute on disk. Zero breaking changes detected.</span>`;
@@ -1944,7 +2141,7 @@ class SidecarMigrator:
       });
     }
 
-    // Auto-switch tabs and smooth-scroll when clicking sidebar anchor links
+    // Sidebar navigation bindings
     document.querySelectorAll('.sidebar-item').forEach(item => {
       item.addEventListener('click', (e) => {
         e.preventDefault();
@@ -1953,29 +2150,310 @@ class SidecarMigrator:
       });
     });
 
-    // Deep linking: navigate to hash on page load and on hashchange
+    // Hash navigation
     function handleHashNavigation() {
       if (window.location.hash) {
         navigateToSection(window.location.hash, false);
+      } else {
+        switchTab('tab-workshop', false);
       }
     }
 
-    handleHashNavigation();
-    window.addEventListener('DOMContentLoaded', handleHashNavigation);
-    window.addEventListener('hashchange', handleHashNavigation);
+    // ============================================================
+    // Active Workshop & Sanity Audit Triage Engine
+    // ============================================================
+    window.currentWorkshopTopic = 't4';
 
-    // ==========================================
-    // System Sanity Audit Verdict State & Composer
-    // ==========================================
-    const auditVerdicts = {
+    const defaultAuditVerdicts = {
       t1: { title: '6.1 Post-Mortem Architecture', verdict: 'APPROVED' },
-      t2: { title: '6.2 Pros/Cons: On-Demand vs Always', verdict: 'APPROVED' },
+      t2: { title: '6.2 Pros/Cons Strategy', verdict: 'APPROVED' },
       t3: { title: '6.3 Topic Organization Strategy', verdict: 'APPROVED' },
       t4: { title: '6.4 Agent Skills Organization', verdict: 'PENDING' },
-      t5: { title: '6.5 N\'kai View Ergonomics', verdict: 'PENDING' },
+      t5: { title: "6.5 N'kai Ergonomics", verdict: 'PENDING' },
       t6: { title: '6.6 AGY Keyboard Shortcuts', verdict: 'PENDING' },
       t7: { title: '6.7 Context Clues Architecture', verdict: 'PENDING' }
     };
+
+    let auditVerdicts = { ...defaultAuditVerdicts };
+
+    const workshopTopicsData = {
+      t1: {
+        title: '6.1 Post-Mortem Architecture: Continuous Live Triage vs. Separate Batch Skill',
+        badge: 'Workflow Architecture',
+        desc: '<strong>The Question:</strong> Should Post-Mortem triage be a separate, standalone batch session at the end of milestones, or a continuous in-flight triage workflow baked directly into the active research loop?',
+        optionsHtml: `
+          <div class="pill-card">
+            <div class="pill-title">Option A: Retrospective Batch</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Accumulate dozens of raw ideas across research sprints, then run a separate dedicated /postmortem skill at the end.</p>
+          </div>
+          <div class="pill-card" style="border: 1px solid var(--accent-green);">
+            <div class="pill-title" style="color:var(--accent-green);">Option B: Continuous In-Flight Triage (APPROVED)</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Triage each card in real-time as research completes. The post-mortem tab is a live dashboard compiling verdicts automatically.</p>
+          </div>
+          <div class="pill-card">
+            <div class="pill-title">Option C: Event-Driven Incident Triage</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Trigger triage only on architectural breaks or test regressions. Leaves open-ended brainstorming unpruned.</p>
+          </div>`,
+        evalHtml: `
+          <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option B: Continuous Live Triage)</div>
+          <ul style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin: 0; padding-left: 18px;">
+            <li><strong>🌍 Real-World Ergonomics:</strong> Zero cognitive debt buildup. Decisions happen while research is fresh in memory.</li>
+            <li><strong>🏛️ Wider SOTA:</strong> Matches agile continuous integration and Kanban flow. Eliminates dreaded end-of-quarter batch reviews.</li>
+            <li><strong>🏆 Best Practices:</strong> Prevents research documents from ballooning into unread 500KB monoliths.</li>
+          </ul>`,
+        recommendation: 'APPROVE Option B',
+        chips: [
+          { label: '⚖️ Request Pros & Cons', prompt: 'pros and cons for Continuous Live Triage vs Retrospective Batch across the 4 Lenses' },
+          { label: '🔬 Research Online', prompt: 'research online modern agile architectural triage continuous vs batch' }
+        ]
+      },
+      t2: {
+        title: '6.2 Pros & Cons Strategy: On-Demand vs. Always-Grabbed',
+        badge: 'Ergonomics',
+        desc: '<strong>The Question:</strong> Should the agent proactively generate exhaustive 4-Lens pros & cons tables for every proposal, or generate them <em>on-demand</em> (via explicit prompt or 1-click sidecar action)?',
+        optionsHtml: `
+          <div class="pill-card">
+            <div class="pill-title">Option A: Proactive Exhaustive Tables</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Output full 4-lens tables for every turn. Burns 1,500+ tokens per turn and causes reader fatigue.</p>
+          </div>
+          <div class="pill-card" style="border: 1px solid var(--accent-green);">
+            <div class="pill-title" style="color:var(--accent-green);">Option B: On-Demand SOTA (APPROVED)</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Keep default chat responses punchy (1-3 sentences). Generate deep 4-lens analysis on demand with 1-click prompt chips.</p>
+          </div>
+          <div class="pill-card">
+            <div class="pill-title">Option C: Hybrid Keyword Trigger</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Trigger tables only on architectural keywords. Unpredictable and prone to spurious activations.</p>
+          </div>`,
+        evalHtml: `
+          <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option B+: On-Demand with Live Online Research)</div>
+          <ul style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin: 0; padding-left: 18px;">
+            <li><strong>🌍 Real-World Ergonomics:</strong> Keeps chat ultra-clean and fast. You only read exhaustive tradeoff tables when you need them.</li>
+            <li><strong>🏛️ Wider SOTA:</strong> Progressive disclosure pattern used by top agent harnesses (Anthropic Claude artifacts, Cursor composer).</li>
+            <li><strong>🏆 Best Practices:</strong> Protects token allowance and avoids repetitive wall-of-text fatigue.</li>
+          </ul>`,
+        recommendation: 'APPROVE Option B+',
+        chips: [
+          { label: '⚖️ Request Pros & Cons', prompt: 'pros and cons for On-Demand Progressive Disclosure across the 4 Lenses' },
+          { label: '🔬 Research Online', prompt: 'research online progressive disclosure UI patterns in AI developer tools' }
+        ]
+      },
+      t3: {
+        title: '6.3 Topic Organization Strategy: Domain vs. Milestone vs. Lifecycle',
+        badge: 'Information Architecture',
+        desc: '<strong>The Question:</strong> How should N\\\'kai organize research topics across the project lifecycle so navigating active, completed, and blue-sky concepts is effortless?',
+        optionsHtml: `
+          <div class="pill-card">
+            <div class="pill-title">Option A: Domain Silos</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Strict separation into UI, DSP, Blue Sky. Easy to categorize, but blurs what needs immediate attention.</p>
+          </div>
+          <div class="pill-card">
+            <div class="pill-title">Option B: Chronological Milestones</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Grouped strictly by release (v0.4.0, v0.5.0). Fragmented when research spans multiple phases.</p>
+          </div>
+          <div class="pill-card" style="border: 1px solid var(--accent-green);">
+            <div class="pill-title" style="color:var(--accent-green);">Option C: Lifecycle Hierarchy (APPROVED)</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Slot 1: Active Workshop (Hero Focus) -> Middle Slots: Category Research Tabs -> Final Slot: Full Post-Mortem & Roadmap.</p>
+          </div>`,
+        evalHtml: `
+          <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option C: Lifecycle Hierarchy)</div>
+          <ul style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin: 0; padding-left: 18px;">
+            <li><strong>🌍 Real-World Ergonomics:</strong> Instant focus on load. The user is never dropped into an intimidating 30-card list.</li>
+            <li><strong>🏛️ Wider SOTA:</strong> Modeled after focused task-switching in modern IDEs and Elektron hardware pagination.</li>
+            <li><strong>🏆 Best Practices:</strong> Strict separation of the Active Focus item from broad archival documentation.</li>
+          </ul>`,
+        recommendation: 'APPROVE Option C',
+        chips: [
+          { label: '⚖️ Request Pros & Cons', prompt: 'pros and cons for Lifecycle Hierarchy vs Domain Silos across the 4 Lenses' },
+          { label: '🔬 Research Online', prompt: 'research online information architecture patterns for developer sidecars' }
+        ]
+      },
+      t4: {
+        title: '6.4 Agent Skills Organization: Micro-Skills vs. Macro-Suites',
+        badge: 'Skill Architecture',
+        desc: '<strong>The Question:</strong> We currently have 16 distinct skills in <code>.agents/skills/</code>. Is this too fragmented, or does Unix-style modular composability provide superior reliability?',
+        optionsHtml: `
+          <div class="pill-card">
+            <div class="pill-title">Option A: 16 Micro-Skills (Current)</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Every command is its own atomic skill (build-validate, step-verify, audiothread-guard, web-qa). High granularity, but requires knowing multiple commands.</p>
+          </div>
+          <div class="pill-card">
+            <div class="pill-title">Option B: 4 Consolidated Macro-Suites</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Merged into 4 monolithic skills: /architect, /factory, /maintain, /qa. Simpler menu, but reduces flexibility for targeted single operations.</p>
+          </div>
+          <div class="pill-card" style="border: 1px solid var(--accent-green);">
+            <div class="pill-title" style="color:var(--accent-green);">Option C: Layered Hybrid (Recommended)</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Keep atomic micro-skills as the underlying engine, while macro-commands (like /execute-task or unified qa) chain them deterministically. Zero loss of composability.</p>
+          </div>`,
+        evalHtml: `
+          <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option C: Layered Hybrid)</div>
+          <ul style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin: 0; padding-left: 18px;">
+            <li><strong>🌍 Real-World Ergonomics:</strong> You don't have to remember 16 individual command names—you just say <code>qa</code> or <code>/execute-task</code>. But when an isolated test fails, the agent or user can still run <code>audiothread-guard</code> directly.</li>
+            <li><strong>🏛️ Wider SOTA:</strong> Follows standard CLI &amp; API layered architectures (e.g. Git porcelain vs plumbing commands, Docker, AWS CLI). High-level intents invoke specialized low-level tools.</li>
+            <li><strong>🏆 Best Practices:</strong> Avoids giant monolithic skill files that burn excessive prompt tokens on every activation. Keeps tool schemas clean and single-purpose.</li>
+          </ul>`,
+        recommendation: 'APPROVE Option C',
+        chips: [
+          { label: '⚖️ Request Pros & Cons', prompt: 'pros and cons for Layered Hybrid Skills across the 4 Lenses' },
+          { label: '🔬 Research Online', prompt: 'research online AI agent skills architecture micro vs macro suites' }
+        ]
+      },
+      t5: {
+        title: "6.5 N'kai Ergonomics: Asymmetric Chat Split & Responsive Layout",
+        badge: 'UI / UX Design',
+        desc: "<strong>The Question:</strong> How strictly should we enforce the 'Asymmetric Sidecar Split'—keeping agent chat responses strictly under 3 sentences while placing 100% of verbose prose, mockups, and tables in the sidecar?",
+        optionsHtml: `
+          <div class="pill-card">
+            <div class="pill-title">Option A: Mirrored Redundant Summaries</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Duplicate all findings in chat and in sidecar. Clutters chat history and burns tokens rapidly.</p>
+          </div>
+          <div class="pill-card" style="border: 1px solid var(--accent-green);">
+            <div class="pill-title" style="color:var(--accent-green);">Option B: Strict Asymmetric Split (Recommended)</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Chat is pure conversational dialogue and prompt execution (1-3 sentences). Canvas handles all rich rendering, deep reading, and interactive triage.</p>
+          </div>
+          <div class="pill-card">
+            <div class="pill-title">Option C: Full Standalone App</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Move everything to external browser window with zero IDE chat coupling. Loses inline context.</p>
+          </div>`,
+        evalHtml: `
+          <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option B: Strict Asymmetric Split)</div>
+          <ul style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin: 0; padding-left: 18px;">
+            <li><strong>🌍 Real-World Ergonomics:</strong> Chat window remains lean, readable, and responsive. Zero endless scrolling through massive markdown dumps.</li>
+            <li><strong>🏛️ Wider SOTA:</strong> Matches modern pairing IDEs (Cursor side-composer, Replit webview, VS Code extension webviews).</li>
+            <li><strong>🏆 Best Practices:</strong> Preserves main agent context window length, preventing early conversation compaction.</li>
+          </ul>`,
+        recommendation: 'APPROVE Option B',
+        chips: [
+          { label: '⚖️ Request Pros & Cons', prompt: 'pros and cons for Strict Asymmetric Sidecar Split across the 4 Lenses' },
+          { label: '🔬 Research Online', prompt: 'research online asymmetric split UI UX for AI pair programming' }
+        ]
+      },
+      t6: {
+        title: '6.6 AGY Keyboard Shortcuts & Power Tools Integration',
+        badge: 'IDE Integration',
+        desc: '<strong>The Question:</strong> What Antigravity IDE keyboard shortcuts and slash commands should we systematically leverage to supercharge developer workflow?',
+        optionsHtml: `
+          <div class="pill-card">
+            <div class="pill-title">Option A: Passive Reference Only</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Document AGY shortcuts in BACKLOG.md without integrating into workflows. Rarely used.</p>
+          </div>
+          <div class="pill-card" style="border: 1px solid var(--accent-green);">
+            <div class="pill-title" style="color:var(--accent-green);">Option B: Dynamic Shortcut Bar (Recommended)</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Display key AGY shortcuts in N\\\'kai footer and sidecar tooltips: Ctrl+K (Quick Prompt), Ctrl+Shift+P (Command Palette), Ctrl+Enter (Execute), /refresh-context.</p>
+          </div>
+          <div class="pill-card">
+            <div class="pill-title">Option C: Sidecar Command Palette</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Build a custom Cmd+K palette inside N\\\'kai webview. Powerful, but adds JS complexity.</p>
+          </div>`,
+        evalHtml: `
+          <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option B: Dynamic Shortcut Bar)</div>
+          <ul style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin: 0; padding-left: 18px;">
+            <li><strong>🌍 Real-World Ergonomics:</strong> Keeps muscle memory sharp. Accelerates common actions like refresh, inspect, and branch switching.</li>
+            <li><strong>🏛️ Wider SOTA:</strong> Standard practice in modern developer environments (GitHub CLI, VS Code status bar hints).</li>
+            <li><strong>🏆 Best Practices:</strong> Zero JS overhead; pure visual ergonomic enablement.</li>
+          </ul>`,
+        recommendation: 'APPROVE Option B',
+        chips: [
+          { label: '⚖️ Request Pros & Cons', prompt: 'pros and cons for AGY Shortcut Bar vs Built-in Palette across the 4 Lenses' },
+          { label: '🔬 Research Online', prompt: 'research online Google Antigravity IDE power shortcuts and slash commands' }
+        ]
+      },
+      t7: {
+        title: '6.7 Context Clues Architecture & Factory Handshake Gate',
+        badge: 'Pipeline Architecture',
+        desc: '<strong>The Question:</strong> How should subagents and factory builder agents be seeded with project context, documentation catalog links, and active branch state to prevent hallucination?',
+        optionsHtml: `
+          <div class="pill-card">
+            <div class="pill-title">Option A: Static Chat History</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Rely entirely on conversation transcript. Degrades as conversations grow past 30+ turns.</p>
+          </div>
+          <div class="pill-card" style="border: 1px solid var(--accent-green);">
+            <div class="pill-title" style="color:var(--accent-green);">Option B: Structured Context Clues (Recommended)</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Dedicated context clue files (context_clues_build.md, context_clues_research.md) with canonical links to DOCS_CATALOG.json and SYSTEM_MAP.md.</p>
+          </div>
+          <div class="pill-card">
+            <div class="pill-title">Option C: Dynamic SQLite Memory Store</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Store agent memory in SQLite database. High maintenance and opaque to git diffs.</p>
+          </div>`,
+        evalHtml: `
+          <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option B: Structured Context Clues)</div>
+          <ul style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin: 0; padding-left: 18px;">
+            <li><strong>🌍 Real-World Ergonomics:</strong> Subagents spin up fully grounded in seconds with zero prompt hallucination or broken paths.</li>
+            <li><strong>🏛️ Wider SOTA:</strong> Aligns with industry leading practice for autonomous agents (LLM context pre-loading, Agent Scratchpads).</li>
+            <li><strong>🏆 Best Practices:</strong> 100% plain Markdown, git-tracked, version-controlled, zero binary database dependencies.</li>
+          </ul>`,
+        recommendation: 'APPROVE Option B',
+        chips: [
+          { label: '⚖️ Request Pros & Cons', prompt: 'pros and cons for Structured Context Clues vs SQLite Memory across the 4 Lenses' },
+          { label: '🔬 Research Online', prompt: 'research online AI coding agent context management best practices 2026' }
+        ]
+      }
+    };
+
+    function setWorkshopTopic(topicId) {
+      if (!workshopTopicsData[topicId]) return;
+      window.currentWorkshopTopic = topicId;
+      const data = workshopTopicsData[topicId];
+
+      const titleEl = document.getElementById('ws-hero-title');
+      if (titleEl) titleEl.innerText = data.title;
+
+      for (let i = 1; i <= 7; i++) {
+        const btn = document.getElementById('btn-ws-t' + i);
+        if (btn) {
+          if ('t' + i === topicId) {
+            btn.className = 'header-btn amber active';
+            btn.style.borderColor = 'var(--accent-amber)';
+            btn.style.background = 'rgba(255,171,112,0.25)';
+          } else {
+            const v = auditVerdicts['t' + i] ? auditVerdicts['t' + i].verdict : 'PENDING';
+            btn.className = v === 'APPROVED' ? 'header-btn green' : v === 'TABLED' ? 'header-btn amber' : 'header-btn';
+            btn.style.borderColor = '';
+            btn.style.background = '';
+          }
+        }
+      }
+
+      const mount = document.getElementById('workshop-card-mount');
+      if (mount) {
+        mount.innerHTML = `
+          <div class="section-card" id="workshop-card">
+            <div class="section-title">
+              <span id="ws-card-title">${data.title}</span>
+              <span id="ws-card-badge" class="badge badge-blue">${data.badge}</span>
+            </div>
+            <p id="ws-card-desc" style="font-size: 12px; line-height: 1.6; color: var(--text-main);">
+              ${data.desc}
+            </p>
+
+            <div class="grid-3" id="ws-card-options" style="margin-top: 12px;">
+              ${data.optionsHtml}
+            </div>
+
+            <div id="ws-card-evaluation" style="margin-top: 14px; background: rgba(0,0,0,0.3); border: 1px solid rgba(48,54,61,0.6); border-radius: 6px; padding: 12px;">
+              ${data.evalHtml}
+              <div style="margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap;">
+                ${data.chips.map(c => `<button class="interactive-btn blue" onclick="copyPromptToChat('${c.prompt}')">[ ${c.label} ]</button>`).join('')}
+                <button class="interactive-btn amber" onclick="navigateToSection('sec-audit-${topicId}')">[ 🔍 See in Full Context ]</button>
+              </div>
+            </div>
+
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:14px; padding-top:10px; border-top:1px solid rgba(48,54,61,0.5); flex-wrap:wrap; gap:8px;">
+              <div style="font-family:var(--font-mono); font-size:11px; color:var(--text-muted);">
+                Verdict: <strong id="workshop-v-badge" class="badge">PENDING</strong>
+              </div>
+              <div style="display:flex; gap:6px; flex-wrap:wrap;">
+                <button class="interactive-btn" id="ws-btn-approve" style="color:var(--accent-green); border-color:var(--accent-green);" onclick="setAuditVerdict('${topicId}', 'APPROVED', this)">[ ✅ ${data.recommendation} ]</button>
+                <button class="interactive-btn amber" id="ws-btn-table" onclick="setAuditVerdict('${topicId}', 'TABLED', this)">[ ⏳ TABLE ]</button>
+                <button class="interactive-btn" id="ws-btn-kill" style="color:var(--accent-red); border-color:var(--accent-red);" onclick="setAuditVerdict('${topicId}', 'KILLED', this)">[ 💀 KEEP Option A ]</button>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      applyAuditVerdictsUI();
+      playHapticTick();
+    }
 
     function copyPromptToChat(promptText) {
       navigator.clipboard.writeText(promptText).then(() => {
@@ -1983,45 +2461,178 @@ class SidecarMigrator:
       }).catch(() => {
         prompt('Copy prompt to chat:', promptText);
       });
-      if (typeof playHapticTick === 'function') playHapticTick();
+      playHapticTick();
     }
 
     function setAuditVerdict(topicId, verdict, btn) {
       if (!auditVerdicts[topicId]) return;
       auditVerdicts[topicId].verdict = verdict;
 
-      const badge = document.getElementById('v-badge-' + topicId);
-      if (badge) {
-        badge.innerText = verdict;
-        if (verdict === 'APPROVED') {
-          badge.style.color = 'var(--accent-green)';
-        } else if (verdict === 'TABLED') {
-          badge.style.color = 'var(--accent-amber)';
-        } else if (verdict === 'KILLED') {
-          badge.style.color = 'var(--accent-red)';
-        }
+      try {
+        localStorage.setItem('nkai_audit_verdicts', JSON.stringify(auditVerdicts));
+      } catch (e) {
+        console.warn('Could not save audit verdicts to localStorage:', e);
       }
 
-      if (btn && btn.parentElement) {
-        btn.parentElement.querySelectorAll('button').forEach(b => {
-          b.style.opacity = '0.5';
-          b.style.transform = 'scale(0.95)';
-        });
-        btn.style.opacity = '1';
-        btn.style.transform = 'scale(1.05)';
+      applyAuditVerdictsUI();
+
+      if (verdict === 'APPROVED') {
+        playHapticChime();
+      } else {
+        playHapticTick();
       }
 
-      updateAuditScorecard();
-      if (typeof playHapticTick === 'function') playHapticTick();
+      const prefix = verdict === 'APPROVED' ? '✅ Approved: ' : verdict === 'TABLED' ? '⏳ Tabled: ' : '💀 Strategy Graveyard: ';
+      showAudioToast(prefix + auditVerdicts[topicId].title);
     }
 
-    function updateAuditScorecard() {
+    function applyAuditVerdictsUI() {
       const tally = { APPROVED: 0, TABLED: 0, KILLED: 0, PENDING: 0 };
       Object.values(auditVerdicts).forEach(v => tally[v.verdict] = (tally[v.verdict] || 0) + 1);
-      const scorecardEl = document.getElementById('audit-scorecard');
-      if (scorecardEl) {
-        scorecardEl.innerText = `[ ${tally.APPROVED} Approved | ${tally.TABLED} Tabled | ${tally.KILLED} Killed | ${tally.PENDING} Pending ]`;
+
+      const scorecardText = `[ ${tally.APPROVED} Approved | ${tally.TABLED} Tabled | ${tally.KILLED} Killed | ${tally.PENDING} Pending ]`;
+      ['audit-scorecard', 'workshop-scorecard'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.innerText = scorecardText;
+      });
+
+      Object.entries(auditVerdicts).forEach(([tid, item]) => {
+        const verdict = item.verdict;
+
+        const badges = [
+          document.getElementById('v-badge-' + tid),
+          (window.currentWorkshopTopic === tid ? document.getElementById('workshop-v-badge') : null)
+        ].filter(Boolean);
+
+        badges.forEach(badge => {
+          badge.innerText = verdict;
+          if (verdict === 'APPROVED') {
+            badge.style.color = 'var(--accent-green)';
+            badge.style.borderColor = 'rgba(63, 185, 80, 0.4)';
+            badge.style.background = 'rgba(63, 185, 80, 0.15)';
+          } else if (verdict === 'TABLED') {
+            badge.style.color = 'var(--accent-amber)';
+            badge.style.borderColor = 'rgba(255, 171, 112, 0.4)';
+            badge.style.background = 'rgba(255, 171, 112, 0.15)';
+          } else if (verdict === 'KILLED') {
+            badge.style.color = 'var(--accent-red)';
+            badge.style.borderColor = 'rgba(248, 81, 73, 0.4)';
+            badge.style.background = 'rgba(248, 81, 73, 0.15)';
+          } else {
+            badge.style.color = 'var(--text-muted)';
+            badge.style.borderColor = 'var(--border)';
+            badge.style.background = 'transparent';
+          }
+        });
+
+        const sideBadge = document.getElementById('side-v-' + tid);
+        if (sideBadge) {
+          if (verdict === 'APPROVED') {
+            sideBadge.className = 'badge badge-green';
+            sideBadge.innerText = '✓';
+          } else if (verdict === 'TABLED') {
+            sideBadge.className = 'badge badge-amber';
+            sideBadge.innerText = '⏳';
+          } else if (verdict === 'KILLED') {
+            sideBadge.className = 'badge badge-red';
+            sideBadge.innerText = '💀';
+          } else {
+            sideBadge.className = tid === 't4' ? 'badge badge-amber' : 'badge';
+            sideBadge.innerText = tid === 't4' ? 'ACTIVE' : 'PENDING';
+          }
+        }
+
+        const pillBtn = document.getElementById('btn-ws-' + tid);
+        if (pillBtn && window.currentWorkshopTopic !== tid) {
+          if (verdict === 'APPROVED') {
+            pillBtn.className = 'header-btn green';
+          } else if (verdict === 'TABLED') {
+            pillBtn.className = 'header-btn amber';
+          } else if (verdict === 'KILLED') {
+            pillBtn.className = 'header-btn';
+            pillBtn.style.color = 'var(--accent-red)';
+          }
+        }
+
+        document.querySelectorAll('button').forEach(btn => {
+          const oc = btn.getAttribute('onclick') || '';
+          if (!oc.includes(`'${tid}'`) && !oc.includes(`"${tid}"`) && !(window.currentWorkshopTopic === tid && oc.includes('currentWorkshopTopic'))) return;
+
+          const isApprove = oc.includes("'APPROVED'") || oc.includes('"APPROVED"');
+          const isTable = oc.includes("'TABLED'") || oc.includes('"TABLED"');
+          const isKill = oc.includes("'KILLED'") || oc.includes('"KILLED"');
+
+          if (verdict === 'APPROVED') {
+            if (isApprove) {
+              btn.style.opacity = '1';
+              btn.style.transform = 'scale(1.04)';
+              btn.style.borderColor = 'var(--accent-green)';
+              btn.style.background = 'rgba(63, 185, 80, 0.2)';
+              btn.style.boxShadow = '0 0 10px rgba(63, 185, 80, 0.3)';
+              btn.style.fontWeight = '700';
+            } else {
+              btn.style.opacity = '0.45';
+              btn.style.transform = 'scale(0.96)';
+              btn.style.background = 'transparent';
+              btn.style.boxShadow = 'none';
+              btn.style.fontWeight = 'normal';
+            }
+          } else if (verdict === 'TABLED') {
+            if (isTable) {
+              btn.style.opacity = '1';
+              btn.style.transform = 'scale(1.04)';
+              btn.style.borderColor = 'var(--accent-amber)';
+              btn.style.background = 'rgba(255, 171, 112, 0.2)';
+              btn.style.boxShadow = '0 0 10px rgba(255, 171, 112, 0.3)';
+              btn.style.fontWeight = '700';
+            } else {
+              btn.style.opacity = '0.45';
+              btn.style.transform = 'scale(0.96)';
+              btn.style.background = 'transparent';
+              btn.style.boxShadow = 'none';
+              btn.style.fontWeight = 'normal';
+            }
+          } else if (verdict === 'KILLED') {
+            if (isKill) {
+              btn.style.opacity = '1';
+              btn.style.transform = 'scale(1.04)';
+              btn.style.borderColor = 'var(--accent-red)';
+              btn.style.background = 'rgba(248, 81, 73, 0.2)';
+              btn.style.boxShadow = '0 0 10px rgba(248, 81, 73, 0.3)';
+              btn.style.fontWeight = '700';
+            } else {
+              btn.style.opacity = '0.45';
+              btn.style.transform = 'scale(0.96)';
+              btn.style.background = 'transparent';
+              btn.style.boxShadow = 'none';
+              btn.style.fontWeight = 'normal';
+            }
+          } else {
+            btn.style.opacity = '0.9';
+            btn.style.transform = 'scale(1)';
+            btn.style.background = 'transparent';
+            btn.style.boxShadow = 'none';
+            btn.style.fontWeight = 'normal';
+          }
+        });
+      });
+    }
+
+    function initAuditVerdicts() {
+      try {
+        const saved = localStorage.getItem('nkai_audit_verdicts');
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          Object.keys(parsed).forEach(k => {
+            if (auditVerdicts[k]) {
+              auditVerdicts[k].verdict = parsed[k].verdict || parsed[k];
+            }
+          });
+        }
+      } catch (e) {
+        console.warn('Could not load saved audit verdicts:', e);
       }
+      applyAuditVerdictsUI();
     }
 
     function copyAuditVerdictsToClipboard() {
@@ -2037,9 +2648,22 @@ class SidecarMigrator:
       });
     }
 
-    updateAuditScorecard();
+    // Kickoff Lifecycle
+    initAuditVerdicts();
+    handleHashNavigation();
+    window.addEventListener('DOMContentLoaded', () => {
+      initAuditVerdicts();
+      handleHashNavigation();
+    });
+    window.addEventListener('hashchange', handleHashNavigation);
 
-  </script>
+</script>
+
+  <!-- Dual-State Floating Action Button (See in Context <-> Back to Workshop) -->
+  <button id="fab-action" class="fab-btn amber" onclick="handleFabClick()" title="Jump to this topic in the full Sanity Audit tab">
+    <span id="fab-icon">🔍</span> <span id="fab-text">See in Context</span>
+  </button>
+
 </body>
 </html>
 
