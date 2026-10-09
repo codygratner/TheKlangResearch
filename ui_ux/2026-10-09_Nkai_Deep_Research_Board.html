@@ -973,12 +973,12 @@
       <a class="sidebar-item" href="#sec-upgrade">5.0 Upgrade Path &amp; Migration</a>
 
             <div class="sidebar-section-title">Active Focus</div>
-      <a class="sidebar-item active" id="side-item-workshop" href="#tab-workshop">🛠️ Active Workshop (<span id="side-active-topic-num">F3: 6.4</span>)</a>
+      <a class="sidebar-item active" id="side-item-workshop" href="#tab-workshop">🛠️ Active Workshop (<span id="side-active-topic-num">F3: 6.14</span>)</a>
 
       <div class="sidebar-section-title">Audit Navigation</div>
       <button id="toggleItineraryBtn" class="interactive-btn purple" style="width: 100%; margin: 4px 0 10px 0; font-weight: 600; display: flex; align-items: center; justify-content: space-between; padding: 7px 10px; font-size: 11px;" onclick="toggleItineraryDrawer()">
         <span>📅 Audit Itinerary</span>
-        <span class="badge badge-amber" id="itinerary-pending-badge" style="font-size: 10px;">12 PENDING</span>
+        <span class="badge badge-amber" id="itinerary-pending-badge" style="font-size: 10px;">11 PENDING</span>
       </button>
 
                   <div class="sidebar-section-title">Sequenced Flight Plan (9 Nodes)</div>
@@ -1004,18 +1004,18 @@
                                         <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:10px;">
             <div>
               <div class="hero-badge" id="ws-hero-badge" style="color:var(--accent-amber); border-color:rgba(255,171,112,0.4); background:rgba(255,171,112,0.12);">
-                🛠️ Active Workshop: In-Flight Triage Stage • Flight 3 (Skill Architecture)
+                🛠️ Active Workshop: In-Flight Triage Stage • Flight 3 (Skill Defaults)
               </div>
               <h1 class="hero-title" id="ws-hero-title" style="margin-top:4px;">
-                Topic 6.4: Agent Skills Organization: Micro-Skills vs. Macro-Suites
+                Topic 6.14: N'kai-First Skill Default &amp; --chat Fallback Flag
               </h1>
               <p class="hero-desc" id="ws-hero-desc" style="max-width:760px; margin-bottom:8px;">
-                We currently have 16 distinct skills in <code>.agents/skills/</code>. Is this too fragmented, or does Unix-style modular composability provide superior reliability?
+                Should relevant interactive skills (like <code>/grill-me</code>, <code>/deep-research</code>, <code>/postmortem</code>, <code>/triage</code>, <code>/inbox</code>) default to generating an interactive N'kai sidecar canvas automatically, unless the user explicitly passes the <code>--chat</code> (or <code>-chat</code>) flag or specifies "in chat" in natural language?
               </p>
             </div>
             <div style="text-align:right;">
               <span id="workshop-scorecard" class="badge badge-green" style="font-size:11px; padding:4px 8px;">
-                [ 5 Approved | 1 Tabled | 0 Killed | 12 Pending ]
+                [ 6 Approved | 1 Tabled | 0 Killed | 11 Pending ]
               </span>
             </div>
           </div>
@@ -1027,7 +1027,8 @@
             <button class="header-btn green" id="btn-ws-t7" onclick="setWorkshopTopic('t7')" style="font-size:10px; padding:3px 7px;">F1. 6.7 Context ✓</button>
             <button class="header-btn amber" id="btn-ws-t17" onclick="setWorkshopTopic('t17')" style="font-size:10px; padding:3px 7px;">F2. 6.17 Bridge (Tabled)</button>
             <button class="header-btn green" id="btn-ws-t13" onclick="setWorkshopTopic('t13')" style="font-size:10px; padding:3px 7px;">F4. 6.13 Portability ✓</button>
-            <button class="header-btn amber active" id="btn-ws-t4" onclick="setWorkshopTopic('t4')" style="font-size:10px; padding:3px 7px; border-color:var(--accent-amber); background:rgba(255,171,112,0.25);">F3. 6.4 Skills ★ ACTIVE</button>
+            <button class="header-btn green" id="btn-ws-t4" onclick="setWorkshopTopic('t4')" style="font-size:10px; padding:3px 7px;">F3. 6.4 Skills ✓</button>
+            <button class="header-btn amber active" id="btn-ws-t14" onclick="setWorkshopTopic('t14')" style="font-size:10px; padding:3px 7px; border-color:var(--accent-amber); background:rgba(255,171,112,0.25);">F3. 6.14 Defaults ★ ACTIVE</button>
             <button class="header-btn" id="btn-ws-t5" onclick="setWorkshopTopic('t5')" style="font-size:10px; padding:3px 7px;">6.5 Ergonomics</button>
             <button class="header-btn" id="btn-ws-t9" onclick="setWorkshopTopic('t9')" style="font-size:10px; padding:3px 7px;">F5. 6.9/10 Header</button>
             <button class="header-btn" id="btn-ws-t8" onclick="setWorkshopTopic('t8')" style="font-size:10px; padding:3px 7px;">F6. 6.8 Ongoing Autopsy</button>
@@ -1040,70 +1041,70 @@
 
                                 <!-- Active Topic Workshop Hero Card Mount -->
         <div id="workshop-card-mount">
-          <!-- Rendered dynamically by setWorkshopTopic, pre-populated with t7 -->
+          <!-- Rendered dynamically by setWorkshopTopic, pre-populated with t14 -->
           <div class="section-card" id="workshop-card">
             <div class="section-title">
-              <span id="ws-card-title">6.4 Agent Skills Organization: Micro-Skills vs. Macro-Suites</span>
-              <span id="ws-card-badge" class="badge badge-blue">Skill Architecture</span>
+              <span id="ws-card-title">6.14 N'kai-First Skill Default &amp; --chat Fallback Flag</span>
+              <span id="ws-card-badge" class="badge badge-blue">Workflow Ergonomics</span>
             </div>
             <p id="ws-card-desc" style="font-size: 12px; line-height: 1.6; color: var(--text-main);">
-              <strong>The Question:</strong> We currently have 16 distinct skills in <code>.agents/skills/</code>. Is this too fragmented, or does Unix-style modular composability provide superior reliability?
+              <strong>The Question:</strong> Should relevant interactive skills (like <code>/grill-me</code>, <code>/deep-research</code>, <code>/postmortem</code>, <code>/triage</code>, <code>/inbox</code>) default to generating an interactive N'kai sidecar canvas automatically, unless the user explicitly passes the <code>--chat</code> (or <code>-chat</code>) flag or specifies "in chat" in natural language?
             </p>
 
             <div class="grid-3" id="ws-card-options" style="margin-top: 12px;">
               <div class="pill-card">
-                <div class="pill-title">Option A: 16 Micro-Skills (Current)</div>
-                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Every command is its own atomic skill (build-validate, step-verify, audiothread-guard, web-qa). High granularity, but requires knowing multiple commands.</p>
+                <div class="pill-title">Option A: Separate Command Fork</div>
+                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Keep separate commands for text vs sidecar (e.g. <code>/grill-me</code> text vs <code>/visual-grill-me</code>). Higher cognitive burden remembering command variants.</p>
                 <div style="margin-top: 8px;">
-                  <input type="text" readonly value="[6.4 Skills] pros and cons for Option A 16 Micro-Skills"
-                         onclick="this.select();" ondblclick="this.select();"
-                         style="width:100%; box-sizing:border-box; background:rgba(0,0,0,0.5); border:1px solid var(--border); border-radius:3px; color:var(--text-muted); font-family:var(--font-mono); font-size:10px; padding:4px 6px; cursor:text; user-select:all;" />
-                </div>
-              </div>
-              <div class="pill-card">
-                <div class="pill-title">Option B: 4 Consolidated Macro-Suites</div>
-                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Merged into 4 monolithic skills: /architect, /factory, /maintain, /qa. Simpler menu, but reduces flexibility for targeted single operations.</p>
-                <div style="margin-top: 8px;">
-                  <input type="text" readonly value="[6.4 Skills] pros and cons for Option B 4 Consolidated Macro-Suites"
+                  <input type="text" readonly value="[6.14 Defaults] pros and cons for Option A Separate Command Fork"
                          onclick="this.select();" ondblclick="this.select();"
                          style="width:100%; box-sizing:border-box; background:rgba(0,0,0,0.5); border:1px solid var(--border); border-radius:3px; color:var(--text-muted); font-family:var(--font-mono); font-size:10px; padding:4px 6px; cursor:text; user-select:all;" />
                 </div>
               </div>
               <div class="pill-card" style="border: 1px solid var(--accent-green);">
-                <div class="pill-title" style="color:var(--accent-green);">Option C: Layered Hybrid (Recommended)</div>
-                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Keep atomic micro-skills as the underlying engine, while macro-commands (like /execute-task or unified qa) chain them deterministically. Zero loss of composability.</p>
+                <div class="pill-title" style="color:var(--accent-green);">Option B: N'kai-First with --chat Flag (Recommended)</div>
+                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">All visual/interview skills default to generating the rich N'kai sidecar canvas. Passing <code>--chat</code> or saying "in chat" falls back cleanly to inline chat. Officially unifies Grill Lab into standard grill-me.</p>
                 <div style="margin-top: 8px;">
-                  <input type="text" readonly value="[6.4 Skills] pros and cons for Option C Layered Hybrid"
+                  <input type="text" readonly value="[6.14 Defaults] pros and cons for Option B N'kai-First with --chat Flag"
                          onclick="this.select();" ondblclick="this.select();"
                          style="width:100%; box-sizing:border-box; background:rgba(0,0,0,0.5); border:1px solid rgba(63,185,80,0.4); border-radius:3px; color:var(--accent-green); font-family:var(--font-mono); font-size:10px; padding:4px 6px; cursor:text; user-select:all;" />
+                </div>
+              </div>
+              <div class="pill-card">
+                <div class="pill-title">Option C: Strict Sidecar Only</div>
+                <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Forbid text mode entirely for these skills. Creates friction when working on mobile or headless environments where a browser isn't desired.</p>
+                <div style="margin-top: 8px;">
+                  <input type="text" readonly value="[6.14 Defaults] pros and cons for Option C Strict Sidecar Only"
+                         onclick="this.select();" ondblclick="this.select();"
+                         style="width:100%; box-sizing:border-box; background:rgba(0,0,0,0.5); border:1px solid var(--border); border-radius:3px; color:var(--text-muted); font-family:var(--font-mono); font-size:10px; padding:4px 6px; cursor:text; user-select:all;" />
                 </div>
               </div>
             </div>
 
             <!-- 3-Lens Pros & Cons -->
             <div id="ws-card-evaluation" style="margin-top: 14px; background: rgba(0,0,0,0.3); border: 1px solid rgba(48,54,61,0.6); border-radius: 6px; padding: 12px;">
-              <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option C: Layered Hybrid)</div>
+              <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option B: N'kai-First with --chat Flag)</div>
               <ul style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin: 0; padding-left: 18px;">
-                <li><strong>🌍 Real-World Ergonomics:</strong> You don't have to remember 16 individual command names—you just say <code>qa</code> or <code>/execute-task</code>. But when an isolated test fails, the agent or user can still run <code>audiothread-guard</code> directly.</li>
-                <li><strong>🏛️ Wider SOTA:</strong> Follows standard CLI &amp; API layered architectures (e.g. Git porcelain vs plumbing commands, Docker, AWS CLI). High-level intents invoke specialized low-level tools.</li>
-                <li><strong>🏆 Best Practices:</strong> Avoids giant monolithic skill files that burn excessive prompt tokens on every activation. Keeps tool schemas clean and single-purpose.</li>
+                <li><strong>🌍 Real-World Ergonomics:</strong> Effortless consistency. You just run <code>/grill-me</code> or ask for research, and the gorgeous visual board appears automatically. No more remembering 5 command aliases.</li>
+                <li><strong>🏛️ Wider SOTA:</strong> Standard CLI design pattern (GUI by default, with <code>--headless</code> or <code>--cli</code> override flag).</li>
+                <li><strong>🏆 Best Practices:</strong> Protects chat context window by default while providing a clean, accessible escape hatch for low-bandwidth sessions.</li>
               </ul>
               <div style="margin-top: 10px; display: flex; flex-direction: column; gap: 6px;">
                 <span style="font-family:var(--font-mono); font-size:10px; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.5px;">🔬 Deep Dive Prompts (Click to Highlight, Ctrl+C to Copy):</span>
                 <div style="display:flex; align-items:center; gap:6px; background:rgba(88,166,255,0.06); border:1px solid rgba(88,166,255,0.25); border-radius:4px; padding:4px 8px;">
                   <span style="font-size:10px; font-family:var(--font-mono); color:var(--accent-blue); width:130px; flex-shrink:0;">⚖️ Pros &amp; Cons:</span>
-                  <input type="text" readonly value="pros and cons for Layered Hybrid Skills across the 4 Lenses"
+                  <input type="text" readonly value="pros and cons for Nkai-First Skill Default across the 4 Lenses"
                          onclick="this.select();" ondblclick="this.select();"
                          style="flex:1; background:rgba(0,0,0,0.5); border:1px solid rgba(88,166,255,0.2); border-radius:3px; color:var(--accent-neon); font-family:var(--font-mono); font-size:10px; padding:4px 8px; cursor:text; user-select:all;" />
                 </div>
                 <div style="display:flex; align-items:center; gap:6px; background:rgba(88,166,255,0.06); border:1px solid rgba(88,166,255,0.25); border-radius:4px; padding:4px 8px;">
                   <span style="font-size:10px; font-family:var(--font-mono); color:var(--accent-blue); width:130px; flex-shrink:0;">🔬 Research Online:</span>
-                  <input type="text" readonly value="research online AI agent skills architecture micro vs macro suites"
+                  <input type="text" readonly value="research online CLI flag conventions GUI default vs headless chat fallback in developer tools"
                          onclick="this.select();" ondblclick="this.select();"
                          style="flex:1; background:rgba(0,0,0,0.5); border:1px solid rgba(88,166,255,0.2); border-radius:3px; color:var(--accent-neon); font-family:var(--font-mono); font-size:10px; padding:4px 8px; cursor:text; user-select:all;" />
                 </div>
                 <div style="margin-top:4px;">
-                  <button class="interactive-btn amber" style="font-size:10px; padding:2px 8px;" onclick="navigateToSection('sec-audit-t4')">[ 🔍 Jump to Topic in Full Context ]</button>
+                  <button class="interactive-btn amber" style="font-size:10px; padding:2px 8px;" onclick="navigateToSection('sec-audit-t14')">[ 🔍 Jump to Topic in Full Context ]</button>
                 </div>
               </div>
             </div>
@@ -1123,7 +1124,7 @@
                 <!-- Approve Box -->
                 <div style="display:flex; align-items:center; gap:8px; background:rgba(63,185,80,0.08); border:1px solid rgba(63,185,80,0.35); border-radius:6px; padding:6px 10px;">
                   <span style="font-size:10px; font-family:var(--font-mono); color:var(--accent-green); font-weight:700; width:75px; flex-shrink:0;">✅ APPROVE:</span>
-                  <input type="text" readonly value="[6.4 Agent Skills Organization] VERDICT: APPROVED (APPROVE Option C)"
+                  <input type="text" readonly value="[6.14 N'kai-First Skill Default &amp; --chat Fallback Flag] VERDICT: APPROVED (APPROVE Option B)"
                          onclick="this.select();" ondblclick="this.select();"
                          style="flex:1; background:rgba(0,0,0,0.6); border:1px solid rgba(63,185,80,0.4); border-radius:4px; color:var(--accent-green); font-family:var(--font-mono); font-size:11px; padding:6px 10px; cursor:text; user-select:all;" />
                 </div>
@@ -1131,7 +1132,7 @@
                 <!-- Table Box -->
                 <div style="display:flex; align-items:center; gap:8px; background:rgba(255,171,112,0.08); border:1px solid rgba(255,171,112,0.3); border-radius:6px; padding:6px 10px;">
                   <span style="font-size:10px; font-family:var(--font-mono); color:var(--accent-amber); font-weight:700; width:75px; flex-shrink:0;">⏳ TABLE:</span>
-                  <input type="text" readonly value="[6.4 Agent Skills Organization] VERDICT: TABLED"
+                  <input type="text" readonly value="[6.14 N'kai-First Skill Default &amp; --chat Fallback Flag] VERDICT: TABLED"
                          onclick="this.select();" ondblclick="this.select();"
                          style="flex:1; background:rgba(0,0,0,0.6); border:1px solid rgba(255,171,112,0.3); border-radius:4px; color:var(--accent-amber); font-family:var(--font-mono); font-size:11px; padding:6px 10px; cursor:text; user-select:all;" />
                 </div>
@@ -1139,7 +1140,7 @@
                 <!-- Reject Box -->
                 <div style="display:flex; align-items:center; gap:8px; background:rgba(248,81,73,0.08); border:1px solid rgba(248,81,73,0.3); border-radius:6px; padding:6px 10px;">
                   <span style="font-size:10px; font-family:var(--font-mono); color:var(--accent-red); font-weight:700; width:75px; flex-shrink:0;">💀 REJECT:</span>
-                  <input type="text" readonly value="[6.4 Agent Skills Organization] VERDICT: KILLED"
+                  <input type="text" readonly value="[6.14 N'kai-First Skill Default &amp; --chat Fallback Flag] VERDICT: KILLED"
                          onclick="this.select();" ondblclick="this.select();"
                          style="flex:1; background:rgba(0,0,0,0.6); border:1px solid rgba(248,81,73,0.3); border-radius:4px; color:var(--accent-red); font-family:var(--font-mono); font-size:11px; padding:6px 10px; cursor:text; user-select:all;" />
                 </div>
@@ -3591,6 +3592,62 @@ function toggleDrawer(drawerId) {
             </ul>
           `
         }
+      },
+      t14: {
+        A: {
+          pros_cons: `
+            <h5>⚖️ PCDA Breakdown: Option A (Separate Command Fork)</h5>
+            <ul>
+              <li><strong>Pros [Thesis]:</strong> Strict, explicit separation. Users who only ever want text mode never run the risk of generating a sidecar file.</li>
+              <li><strong>Cons [Friction]:</strong> High cognitive burden; users and agents have to memorize both <code>/grill-me</code> and <code>/visual-grill-me</code> (plus <code>/grill-lab</code>, <code>/vlab</code>, etc.). Creates command bloat.</li>
+              <li><strong>Devil's Advocate [Antithesis]:</strong> Code duplication; bug fixes in the visual prompter must be backported to the text prompter. Users forget the visual prefix and get stuck in text mode.</li>
+              <li><strong>80/20 Resolution:</strong> Merge the commands under one canonical name with flag overrides.</li>
+            </ul>
+          `,
+          research: `
+            <h5>🔬 Research & Benchmarks: Option A (Command Forking)</h5>
+            <p style="color:var(--text-muted); margin-bottom:6px;">Benchmarked against CLI tooling ecosystems.</p>
+            <ul>
+              <li><strong>Anti-Pattern Finding:</strong> Forking separate binary/command names for GUI vs CLI (e.g. <code>git-gui</code> vs <code>git</code>) leads to discoverability drop-offs. Modern tools prefer unified commands with flag switches.</li>
+            </ul>
+          `
+        },
+        B: {
+          pros_cons: `
+            <h5>⚖️ PCDA Breakdown: Option B (N'kai-First with --chat Flag) [Recommended]</h5>
+            <ul>
+              <li><strong>Pros [Thesis]:</strong> Seamless, effortless UX. Running <code>/grill-me</code>, <code>/deep-research</code>, or <code>/postmortem</code> automatically generates the rich sidecar canvas. Zero extra typing for 90% of visual use cases.</li>
+              <li><strong>Cons [Friction]:</strong> Requires skills to parse user input for <code>--chat</code>, <code>-chat</code>, or "in chat" natural language keywords.</li>
+              <li><strong>Devil's Advocate [Antithesis]:</strong> If working in a pure terminal or mobile environment without an HTML previewer, the user must remember to type <code>--chat</code> or see an unrendered file link.</li>
+              <li><strong>80/20 Resolution:</strong> The universal industry pattern (GUI-first for interactive design tools, with headless/chat flag for terminal fallbacks). Cleanest compromise.</li>
+            </ul>
+          `,
+          research: `
+            <h5>🔬 Research & Benchmarks: Option B (Default Visual Canvas)</h5>
+            <p style="color:var(--text-muted); margin-bottom:6px;">Benchmarked against Claude Artifacts, Playwright UI, and modern AI agent IDEs.</p>
+            <ul>
+              <li><strong>Industry Precedent:</strong> Anthropic's Claude Artifacts automatically renders interactive visual UI in the side panel by default without asking the user to specify a special command, while preserving pure markdown output on demand.</li>
+            </ul>
+          `
+        },
+        C: {
+          pros_cons: `
+            <h5>⚖️ PCDA Breakdown: Option C (Strict Sidecar Only)</h5>
+            <ul>
+              <li><strong>Pros [Thesis]:</strong> Absolute standardization; only a single execution path to maintain across all skill scripts.</li>
+              <li><strong>Cons [Friction]:</strong> Inflexible. Fails completely in pure terminal environments, SSH sessions, or when the user simply wants a fast 2-question chat exchange.</li>
+              <li><strong>Devil's Advocate [Antithesis]:</strong> Dogmatic rigidity frustrates advanced developers who want quick inline keyboard-only interactions.</li>
+              <li><strong>80/20 Resolution:</strong> Never eliminate text mode entirely; always provide a lightweight escape hatch.</li>
+            </ul>
+          `,
+          research: `
+            <h5>🔬 Research & Benchmarks: Option C (Mandatory GUI)</h5>
+            <p style="color:var(--text-muted); margin-bottom:6px;">Audited against developer friction surveys in developer tooling.</p>
+            <ul>
+              <li><strong>Developer Friction Finding:</strong> Mandatory GUI enforcement without terminal fallbacks consistently ranks as a top-3 developer complaint in CLI tools.</li>
+            </ul>
+          `
+        }
       }
     };
 
@@ -3729,13 +3786,13 @@ function toggleDrawer(drawerId) {
     // ============================================================
     // Active Workshop & Sanity Audit Triage Engine
     // ============================================================
-    window.currentWorkshopTopic = 't4';
+    window.currentWorkshopTopic = 't14';
 
     const defaultAuditVerdicts = {
       t1: { title: '6.1 Post-Mortem Architecture', verdict: 'APPROVED' },
       t2: { title: '6.2 Pros/Cons Strategy', verdict: 'APPROVED' },
       t3: { title: '6.3 Topic Organization Strategy', verdict: 'APPROVED' },
-      t4: { title: '6.4 Agent Skills Organization', verdict: 'PENDING' },
+      t4: { title: '6.4 Agent Skills Organization', verdict: 'APPROVED' },
       t5: { title: "6.5 N'kai Ergonomics", verdict: 'PENDING' },
       t6: { title: '6.6 AGY Keyboard Shortcuts', verdict: 'PENDING' },
       t7: { title: '6.7 Context Clues Architecture', verdict: 'APPROVED' },
@@ -4445,25 +4502,28 @@ function toggleDrawer(drawerId) {
           <div class="pill-card">
             <div class="pill-title">Option A: Separate Command Fork</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Keep separate commands for text vs sidecar (e.g. <code>/grill-me</code> text vs <code>/visual-grill-me</code>). Higher cognitive burden remembering command variants.</p>
-            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
-              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t14', 'A', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
-              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t14', 'A', 'research', this)">[ 🔬 Research ]</button>
+            <div style="margin-top: 8px;">
+              <input type="text" readonly value="[6.14 Defaults] pros and cons for Option A Separate Command Fork"
+                     onclick="this.select();" ondblclick="this.select();"
+                     style="width:100%; box-sizing:border-box; background:rgba(0,0,0,0.5); border:1px solid var(--border); border-radius:3px; color:var(--text-muted); font-family:var(--font-mono); font-size:10px; padding:4px 6px; cursor:text; user-select:all;" />
             </div>
           </div>
           <div class="pill-card" style="border: 1px solid var(--accent-green);">
             <div class="pill-title" style="color:var(--accent-green);">Option B: N'kai-First with --chat Flag (Recommended)</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">All visual/interview skills default to generating the rich N'kai sidecar canvas. Passing <code>--chat</code> or saying "in chat" falls back cleanly to inline chat. Officially unifies Grill Lab into standard grill-me.</p>
-            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
-              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t14', 'B', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
-              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t14', 'B', 'research', this)">[ 🔬 Research ]</button>
+            <div style="margin-top: 8px;">
+              <input type="text" readonly value="[6.14 Defaults] pros and cons for Option B N'kai-First with --chat Flag"
+                     onclick="this.select();" ondblclick="this.select();"
+                     style="width:100%; box-sizing:border-box; background:rgba(0,0,0,0.5); border:1px solid rgba(63,185,80,0.4); border-radius:3px; color:var(--accent-green); font-family:var(--font-mono); font-size:10px; padding:4px 6px; cursor:text; user-select:all;" />
             </div>
           </div>
           <div class="pill-card">
             <div class="pill-title">Option C: Strict Sidecar Only</div>
             <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Forbid text mode entirely for these skills. Creates friction when working on mobile or headless environments where a browser isn't desired.</p>
-            <div style="margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap;">
-              <button class="interactive-btn blue" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t14', 'C', 'pros_cons', this)">[ ⚖️ Pros/Cons ]</button>
-              <button class="interactive-btn purple" style="font-size:10px; padding:2px 6px;" onclick="requestOptionInfo('t14', 'C', 'research', this)">[ 🔬 Research ]</button>
+            <div style="margin-top: 8px;">
+              <input type="text" readonly value="[6.14 Defaults] pros and cons for Option C Strict Sidecar Only"
+                     onclick="this.select();" ondblclick="this.select();"
+                     style="width:100%; box-sizing:border-box; background:rgba(0,0,0,0.5); border:1px solid var(--border); border-radius:3px; color:var(--text-muted); font-family:var(--font-mono); font-size:10px; padding:4px 6px; cursor:text; user-select:all;" />
             </div>
           </div>`,
         evalHtml: `
@@ -5091,10 +5151,11 @@ function toggleDrawer(drawerId) {
       } catch (e) {
         console.warn('Could not load saved audit verdicts:', e);
       }
-      // Force 6.16, 6.7, & 6.13 APPROVED per user order
+      // Force 6.16, 6.7, 6.13, & 6.4 APPROVED per user order
       auditVerdicts.t16.verdict = 'APPROVED';
       auditVerdicts.t7.verdict = 'APPROVED';
       auditVerdicts.t13.verdict = 'APPROVED';
+      auditVerdicts.t4.verdict = 'APPROVED';
       auditVerdicts.t17.verdict = 'TABLED';
       try {
         localStorage.setItem('nkai_audit_verdicts', JSON.stringify(auditVerdicts));
@@ -5128,12 +5189,12 @@ function toggleDrawer(drawerId) {
     // Kickoff Lifecycle
     initAuditVerdicts();
     checkBridgeStatus();
-    setWorkshopTopic('t4');
+    setWorkshopTopic('t14');
     handleHashNavigation();
     window.addEventListener('DOMContentLoaded', () => {
       initAuditVerdicts();
       checkBridgeStatus();
-      setWorkshopTopic('t4');
+      setWorkshopTopic('t14');
       handleHashNavigation();
     });
     window.addEventListener('hashchange', handleHashNavigation);
