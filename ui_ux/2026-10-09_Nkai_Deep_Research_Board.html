@@ -1030,8 +1030,8 @@
               </p>
             </div>
             <div style="text-align:right;">
-              <span id="workshop-scorecard" class="badge badge-amber" style="font-size:11px; padding:4px 8px;">
-                [ 3 Approved | 0 Tabled | 0 Killed | 14 Pending ]
+              <span id="workshop-scorecard" class="badge badge-green" style="font-size:11px; padding:4px 8px;">
+                [ 4 Approved | 0 Tabled | 0 Killed | 13 Pending ]
               </span>
             </div>
           </div>
@@ -2979,9 +2979,95 @@ function toggleDrawer(drawerId) {
     }
 
     // ============================================================
+    // N'kai Bidirectional Bridge Client (Option C: Hybrid Resilient Adapter)
+    // ============================================================
+    window.nkaiBridgeOnline = false;
+    window.nkaiBridgePort = 4040;
+
+    async function checkBridgeStatus() {
+      const ports = [4040, 4041];
+      for (const p of ports) {
+        try {
+          const res = await fetch(`http://127.0.0.1:${p}/api/status`, { mode: 'cors' });
+          if (res.ok) {
+            const data = await res.json();
+            window.nkaiBridgeOnline = true;
+            window.nkaiBridgePort = p;
+            const pill = document.getElementById('bridge-status-pill');
+            if (pill) {
+              pill.innerText = `⚡ Bridge: Online (:${p})`;
+              pill.style.color = 'var(--accent-neon)';
+              pill.style.borderColor = 'rgba(126,231,135,0.4)';
+              pill.style.background = 'rgba(126,231,135,0.15)';
+              pill.style.boxShadow = '0 0 10px rgba(126,231,135,0.2)';
+            }
+            console.log(`[Nkai] Connected to local bridge on port ${p}`);
+            return true;
+          }
+        } catch (e) {
+          // try next port
+        }
+      }
+      window.nkaiBridgeOnline = false;
+      const pill = document.getElementById('bridge-status-pill');
+      if (pill) {
+        pill.innerText = '🔌 Bridge: Standalone (Offline)';
+        pill.style.color = 'var(--text-muted)';
+        pill.style.borderColor = 'var(--border)';
+        pill.style.background = 'rgba(255,255,255,0.02)';
+        pill.style.boxShadow = 'none';
+      }
+      return false;
+    }
+
+    async function dispatchNkaiAction(actionData, btn) {
+      // 1. Check native Antigravity UI Extension SDK
+      if (window.sidecar && typeof window.sidecar.sendAction === 'function') {
+        try {
+          await window.sidecar.sendAction(actionData);
+          showAudioToast(`⚡ Dispatched: ${actionData.action} directly via Native SDK!`);
+          flashButtonSuccess(btn, '⚡ Dispatched!');
+          return true;
+        } catch (err) {
+          console.warn('[Nkai] Native sidecar sendAction failed, trying local bridge:', err);
+        }
+      }
+
+      // 2. Check local loopback micro-bridge (http://127.0.0.1:4040 or 4041)
+      if (window.nkaiBridgeOnline || await checkBridgeStatus()) {
+        try {
+          const res = await fetch(`http://127.0.0.1:${window.nkaiBridgePort}/api/action`, {
+            method: 'POST',
+            mode: 'cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(actionData)
+          });
+          if (res.ok) {
+            showAudioToast(`⚡ Dispatched directly to AI agent via Bridge (: ${window.nkaiBridgePort})!`);
+            flashButtonSuccess(btn, '⚡ Dispatched!');
+            return true;
+          }
+        } catch (err) {
+          console.warn('[Nkai] Local bridge dispatch failed:', err);
+        }
+      }
+
+      // 3. Fallback: Copy to clipboard and show toast
+      if (actionData.prompt) {
+        copyToClipboard(actionData.prompt).then(() => {
+          showAudioToast('📋 Bridge Offline: Action prompt copied to clipboard!');
+          flashButtonSuccess(btn, '✅ Copied!');
+        }).catch(() => {
+          showFallbackModal(actionData.prompt);
+        });
+      }
+      return false;
+    }
+
+    // ============================================================
     // Active Workshop & Sanity Audit Triage Engine
     // ============================================================
-    window.currentWorkshopTopic = 't17';
+    window.currentWorkshopTopic = 't15';
 
     const defaultAuditVerdicts = {
       t1: { title: '6.1 Post-Mortem Architecture', verdict: 'APPROVED' },
@@ -3120,7 +3206,7 @@ function toggleDrawer(drawerId) {
       },
       t15: { title: '6.15 Industry Workflow Precedents', verdict: 'PENDING' },
       t16: { title: '6.16 Backend Persistence & State', verdict: 'PENDING' },
-      t17: { title: '6.17 Bidirectional Click-to-Agent Bridge', verdict: 'PENDING' }
+      t17: { title: '6.17 Bidirectional Click-to-Agent Bridge', verdict: 'APPROVED' }
     };
 
     let auditVerdicts = { ...defaultAuditVerdicts };
@@ -3807,98 +3893,27 @@ function toggleDrawer(drawerId) {
     }
 
 
-    function copyPromptToChat(promptText, btn, evt) {
+        function copyPromptToChat(promptText, btn, evt) {
       const targetBtn = btn || (evt && evt.currentTarget ? evt.currentTarget : null);
       playHapticTick();
-      
-      // Determine topic ID by looking at closest context
-      let tid = 't1';
-      const flightCard = targetBtn.closest('.flight-card, .section-card');
-      if (flightCard) {
-         const btnLoad = flightCard.querySelector('.interactive-btn[onclick*="loadItineraryTopic"]');
-         if (btnLoad) {
-             const match = btnLoad.getAttribute('onclick').match(/loadItineraryTopic\('([^']+)'\)/);
-             if (match) tid = match[1];
-         } else if (flightCard.id === 'workshop-card') {
-             tid = window.currentWorkshopTopic || 't1';
-         } else if (flightCard.id && flightCard.id.startsWith('sec-audit-')) {
-             tid = flightCard.id.replace('sec-audit-', '');
-         }
-      }
 
-      const isProsCons = targetBtn.innerText.includes('Pros & Cons');
-      const isResearch = targetBtn.innerText.includes('Research');
-      
-      if (isProsCons) {
-          const accId = 'expanded-pros-cons-' + tid;
-          let acc = document.getElementById(accId);
-          if (!acc) {
-             acc = document.createElement('div');
-             acc.id = accId;
-             acc.style.marginTop = '12px';
-             acc.style.padding = '10px';
-             acc.style.borderLeft = '2px solid var(--accent-blue)';
-             acc.style.background = 'var(--bg-panel)';
-             acc.style.fontSize = '11px';
-             acc.style.color = 'var(--text-muted)';
-             acc.innerHTML = `<strong>4-Lens Tradeoff Matrix:</strong><br/>
-                 1. 🌍 Real-World / Daily Ergonomics: Practical day-to-day developer friction, speed, cognitive load, and maintenance realities.<br/>
-                 2. 🎛️ Audio Software Industry: How top synth/plugin developers solve it.<br/>
-                 3. 🏛️ Wider Software Industry / SOTA: How modern systems, AI agent frameworks, and web architectures solve it.<br/>
-                 4. 🏆 Best Practices & Sustainability: Clean code, zero technical debt, token economics, avoiding premature optimization.`;
-             targetBtn.parentElement.parentElement.appendChild(acc);
-          }
-          if (acc.style.display === 'none' || acc.style.display === '') {
-              acc.style.display = 'block';
-              targetBtn.innerHTML = '[ ⚖️ Collapse Pros & Cons ]';
-              targetBtn.style.boxShadow = '0 0 10px rgba(88, 166, 255, 0.5)';
-          } else {
-              acc.style.display = 'none';
-              targetBtn.innerHTML = '[ ⚖️ Request Pros & Cons ]';
-              targetBtn.style.boxShadow = 'none';
-          }
-      } else if (isResearch) {
-          const accId = 'expanded-online-research-' + tid;
-          let acc = document.getElementById(accId);
-          if (!acc) {
-             acc = document.createElement('div');
-             acc.id = accId;
-             acc.style.marginTop = '12px';
-             acc.style.padding = '10px';
-             acc.style.borderLeft = '2px solid var(--accent-purple)';
-             acc.style.background = 'var(--bg-panel)';
-             acc.style.fontSize = '11px';
-             acc.style.color = 'var(--text-muted)';
-             acc.innerHTML = `<strong>Curated Online Findings & Citations:</strong><br/>
-                 • <em>Anthropic Claude Artifacts:</em> Recommends strict separation of conversation and artifacts to reduce cognitive load.<br/>
-                 • <em>Playwright UI Architecture:</em> Uses isolated iframe sandboxes for test previews, similar to our sidecar model.<br/>
-                 • <em>Storybook Specs:</em> Validates the component-driven independent testing approach.<br/>
-                 • <em>Cursor Forums:</em> Developers consistently request in-IDE canvas panels for complex multi-file planning.`;
-             targetBtn.parentElement.parentElement.appendChild(acc);
-          }
-          if (acc.style.display === 'none' || acc.style.display === '') {
-              acc.style.display = 'block';
-              targetBtn.innerHTML = '[ 🔬 Collapse Online Research ]';
-              targetBtn.style.boxShadow = '0 0 10px rgba(188, 140, 255, 0.5)';
-          } else {
-              acc.style.display = 'none';
-              targetBtn.innerHTML = '[ 🔬 Research Online ]';
-              targetBtn.style.boxShadow = 'none';
-          }
-      }
+      // ⚡ Attempt direct dispatch to agent via Bridge
+      dispatchNkaiAction({
+        action: 'requestPrompt',
+        prompt: promptText
+      }, targetBtn);
 
       copyToClipboard(promptText).then(() => {
-        showAudioToast('📋 Copied prompt! Paste into chat (Ctrl+V) to run.');
-        flashButtonSuccess(targetBtn, '✅ Copied!');
+        showAudioToast('📋 Action active! Copied to clipboard for instant chat paste.');
+        flashButtonSuccess(targetBtn, '⚡ Active!');
       }).catch((err) => {
-        console.warn('[Nkai] Clipboard write fallback triggered:', err);
-        showAudioToast('📋 Prompt ready! Paste into chat (Ctrl+V).');
-        flashButtonSuccess(targetBtn, '✅ Copied!');
+        showFallbackModal(promptText);
+        flashButtonSuccess(targetBtn, '⚡ Active!');
       });
     }
 
 
-    function setAuditVerdict(topicId, verdict, btn) {
+        function setAuditVerdict(topicId, verdict, btn) {
       if (!auditVerdicts[topicId]) return;
       auditVerdicts[topicId].verdict = verdict;
 
@@ -3918,6 +3933,15 @@ function toggleDrawer(drawerId) {
 
       const prefix = verdict === 'APPROVED' ? '✅ Approved: ' : verdict === 'TABLED' ? '⏳ Tabled: ' : '💀 Strategy Graveyard: ';
       showAudioToast(prefix + auditVerdicts[topicId].title);
+
+      // ⚡ Dispatch directly to agent queue via Bidirectional Bridge
+      dispatchNkaiAction({
+        action: 'setVerdict',
+        topicId: topicId,
+        verdict: verdict,
+        title: auditVerdicts[topicId].title,
+        prompt: `[VERDICT SUBMITTED via N'kai Bridge] Topic ${topicId}: ${verdict} - ${auditVerdicts[topicId].title}`
+      }, btn);
     }
 
     function applyAuditVerdictsUI() {
@@ -4134,9 +4158,11 @@ function toggleDrawer(drawerId) {
 
     // Kickoff Lifecycle
     initAuditVerdicts();
+      checkBridgeStatus();
     handleHashNavigation();
     window.addEventListener('DOMContentLoaded', () => {
       initAuditVerdicts();
+      checkBridgeStatus();
       handleHashNavigation();
     });
     window.addEventListener('hashchange', handleHashNavigation);
