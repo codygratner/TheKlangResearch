@@ -736,6 +736,9 @@
       <a class="sidebar-item" href="#sec-audit-t9"><span>6.9 Header Layout</span> <span id="side-v-t9" class="badge">PENDING</span></a>
       <a class="sidebar-item" href="#sec-audit-t10"><span>6.10 Tab Density</span> <span id="side-v-t10" class="badge">PENDING</span></a>
       <a class="sidebar-item" href="#sec-audit-t11"><span>6.11 "Check Mail" Flow</span> <span id="side-v-t11" class="badge">PENDING</span></a>
+      <a class="sidebar-item" href="#sec-audit-t12"><span>6.12 All-in-One Bundle</span> <span id="side-v-t12" class="badge">PENDING</span></a>
+      <a class="sidebar-item" href="#sec-audit-t13"><span>6.13 Cross-Harness Portability</span> <span id="side-v-t13" class="badge">PENDING</span></a>
+      <a class="sidebar-item" href="#sec-audit-t14"><span>6.14 Nkai-First Skill Default</span> <span id="side-v-t14" class="badge">PENDING</span></a>
 
       <div class="sidebar-section-title">Interactive Labs</div>
       <a class="sidebar-item" href="#sec-matrix-lab">📊 2x2 Decision Matrix</a>
@@ -760,7 +763,7 @@
             </div>
             <div style="text-align:right;">
               <span id="workshop-scorecard" class="badge badge-amber" style="font-size:11px; padding:4px 8px;">
-                [ 3 Approved | 0 Tabled | 0 Killed | 8 Pending ]
+                [ 3 Approved | 0 Tabled | 0 Killed | 11 Pending ]
               </span>
             </div>
           </div>
@@ -779,6 +782,9 @@
             <button class="header-btn" id="btn-ws-t9" onclick="setWorkshopTopic('t9')" style="font-size:10px; padding:3px 7px;">6.9 Header</button>
             <button class="header-btn" id="btn-ws-t10" onclick="setWorkshopTopic('t10')" style="font-size:10px; padding:3px 7px;">6.10 Tab Density</button>
             <button class="header-btn" id="btn-ws-t11" onclick="setWorkshopTopic('t11')" style="font-size:10px; padding:3px 7px;">6.11 Check Mail</button>
+            <button class="header-btn" id="btn-ws-t12" onclick="setWorkshopTopic('t12')" style="font-size:10px; padding:3px 7px;">6.12 All-in-One</button>
+            <button class="header-btn" id="btn-ws-t13" onclick="setWorkshopTopic('t13')" style="font-size:10px; padding:3px 7px;">6.13 Cross-Harness</button>
+            <button class="header-btn" id="btn-ws-t14" onclick="setWorkshopTopic('t14')" style="font-size:10px; padding:3px 7px;">6.14 Nkai-First</button>
           </div>
         </div>
 
@@ -1972,6 +1978,156 @@ class SidecarMigrator:
           </div>
         </div>
 
+        <!-- Topic 6.12: All-in-One N'kai Distribution Bundle -->
+        <div class="section-card" id="sec-audit-t12">
+          <div class="section-title">
+            <span>6.12 The "All-in-One" N'kai Distribution Bundle</span>
+            <span class="badge badge-purple">Ecosystem Packaging</span>
+          </div>
+          <p style="font-size: 12px; line-height: 1.6; color: var(--text-main);">
+            <strong>The Question:</strong> Should we compile and bundle the agent tools, custom skills (deep-research, post-mortem, web-qa, audiothread-guard), guardrails (<code>GEMINI.md</code> rules), and sidecar templates directly into the <code>nkai</code> repository so anyone who wants to use this harness gets the complete "shebang" out-of-the-box?
+          </p>
+
+          <div class="grid-3" style="margin-top: 12px;">
+            <div class="pill-card">
+              <div class="pill-title">Option A: Dispersed Across Repos</div>
+              <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Keep skills in TheKlangSuite, tracker specs in ToadTracker, and sidecar in nkai. New users or fresh repos must cherry-pick files across multiple repositories.</p>
+            </div>
+            <div class="pill-card" style="border: 1px solid var(--accent-green);">
+              <div class="pill-title" style="color:var(--accent-green);">Option B: Monolithic All-in-One Bundle (Recommended)</div>
+              <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Bundle canonical skills, templates, guardrail rules, and sidecar runner inside <code>nkai/bundle/</code> with a 1-command installer script (<code>npx nkai init</code> or <code>./install_nkai_bundle.ps1</code>).</p>
+            </div>
+            <div class="pill-card">
+              <div class="pill-title">Option C: Multi-Package Monorepo</div>
+              <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Split into <code>@nkai/core</code>, <code>@nkai/skills</code>, and <code>@nkai/guardrails</code> with separate versioning. Higher coordination overhead for small teams.</p>
+            </div>
+          </div>
+
+          <div style="margin-top: 14px; background: rgba(0,0,0,0.3); border: 1px solid rgba(48,54,61,0.6); border-radius: 6px; padding: 12px;">
+            <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option B: Monolithic All-in-One Bundle)</div>
+            <ul style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin: 0; padding-left: 18px;">
+              <li><strong>🌍 Real-World Ergonomics:</strong> Instant onboarding. 1-click clone or install gives any developer the full pair-programming superpower without configuring 16 disconnected components.</li>
+              <li><strong>🏛️ Wider SOTA:</strong> Matches how leading agent harnesses distribute starter kits (e.g. Cline bundles, OpenDevin packages, Cursor rules templates).</li>
+              <li><strong>🏆 Best Practices:</strong> Single source of truth for agent behaviors and sidecar templates, versioned together cleanly.</li>
+            </ul>
+            <div style="margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" onclick="copyPromptToChat('pros and cons for All-in-One Nkai Bundle across the 4 Lenses', this)">[ ⚖️ Request Pros &amp; Cons ]</button>
+              <button class="interactive-btn purple" onclick="copyPromptToChat('research online best practices for distributing AI agent skills and guardrails bundles', this)">[ 🔬 Research Online ]</button>
+            </div>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:14px; padding-top:10px; border-top:1px solid rgba(48,54,61,0.5);">
+            <div style="font-family:var(--font-mono); font-size:11px; color:var(--text-muted);">
+              Verdict: <strong id="v-badge-t12" style="color:var(--text-muted);">PENDING</strong>
+            </div>
+            <div style="display:flex; gap:6px;">
+              <button class="interactive-btn" style="color:var(--accent-green); border-color:var(--accent-green);" onclick="setAuditVerdict('t12', 'APPROVED', this)">[ ✅ APPROVE Option B ]</button>
+              <button class="interactive-btn amber" onclick="setAuditVerdict('t12', 'TABLED', this)">[ ⏳ TABLE ]</button>
+              <button class="interactive-btn" style="color:var(--accent-red); border-color:var(--accent-red);" onclick="setAuditVerdict('t12', 'KILLED', this)">[ 💀 REJECT ]</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Topic 6.13: Universal AI Harness Portability -->
+        <div class="section-card" id="sec-audit-t13">
+          <div class="section-title">
+            <span>6.13 Universal AI Harness Portability (Claude Code, Codex, Cursor, Antigravity)</span>
+            <span class="badge badge-blue">Cross-Platform Runtime</span>
+          </div>
+          <p style="font-size: 12px; line-height: 1.6; color: var(--text-main);">
+            <strong>The Question:</strong> How do we ensure N'kai's asymmetric sidecar pattern, decision composer, and skills operate seamlessly across popular AI coding harnesses beyond Antigravity (such as Claude Code CLI, OpenAI Codex / ChatGPT developer harnesses, Cursor, and Windsurf)?
+          </p>
+
+          <div class="grid-3" style="margin-top: 12px;">
+            <div class="pill-card">
+              <div class="pill-title">Option A: Antigravity-Only Lock-in</div>
+              <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Target strictly Antigravity's proprietary Sidecar SDK. Breaks or requires major re-writes if developing in Claude Code or Cursor.</p>
+            </div>
+            <div class="pill-card" style="border: 1px solid var(--accent-green);">
+              <div class="pill-title" style="color:var(--accent-green);">Option B: Standalone File + Localhost Adapter (Recommended)</div>
+              <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Keep zero-dependency standalone HTML (<code>file:///</code>) for IDE webviews (Cursor, VS Code, AGY), and provide a tiny 30-line localhost server (<code>npx nkai serve</code>) that auto-opens a browser tab for terminal CLIs (Claude Code, Codex).</p>
+            </div>
+            <div class="pill-card">
+              <div class="pill-title">Option C: Markdown-Only Fallback</div>
+              <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">If not in Antigravity, completely disable sidecars and dump massive text tables directly into chat. Defeats the asymmetric split.</p>
+            </div>
+          </div>
+
+          <div style="margin-top: 14px; background: rgba(0,0,0,0.3); border: 1px solid rgba(48,54,61,0.6); border-radius: 6px; padding: 12px;">
+            <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option B: Standalone File + Localhost Adapter)</div>
+            <ul style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin: 0; padding-left: 18px;">
+              <li><strong>🌍 Real-World Ergonomics:</strong> Works seamlessly regardless of environment. In GUI IDEs it renders in the side panel; in terminal CLIs it opens in Chrome/Edge instantly.</li>
+              <li><strong>🏛️ Wider SOTA:</strong> Matches how modern developer tools operate across CLIs and IDEs (Playwright UI, Vitest UI, Storybook, Astro).</li>
+              <li><strong>🏆 Best Practices:</strong> Zero vendor lock-in. 100% standard web technologies (HTML5/CSS/ES Modules) with zero heavyweight runtime dependencies.</li>
+            </ul>
+            <div style="margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" onclick="copyPromptToChat('pros and cons for Universal AI Harness Portability across the 4 Lenses', this)">[ ⚖️ Request Pros &amp; Cons ]</button>
+              <button class="interactive-btn purple" onclick="copyPromptToChat('research online cross-harness compatibility for Claude Code Cursor Windsurf sidecar tools', this)">[ 🔬 Research Online ]</button>
+            </div>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:14px; padding-top:10px; border-top:1px solid rgba(48,54,61,0.5);">
+            <div style="font-family:var(--font-mono); font-size:11px; color:var(--text-muted);">
+              Verdict: <strong id="v-badge-t13" style="color:var(--text-muted);">PENDING</strong>
+            </div>
+            <div style="display:flex; gap:6px;">
+              <button class="interactive-btn" style="color:var(--accent-green); border-color:var(--accent-green);" onclick="setAuditVerdict('t13', 'APPROVED', this)">[ ✅ APPROVE Option B ]</button>
+              <button class="interactive-btn amber" onclick="setAuditVerdict('t13', 'TABLED', this)">[ ⏳ TABLE ]</button>
+              <button class="interactive-btn" style="color:var(--accent-red); border-color:var(--accent-red);" onclick="setAuditVerdict('t13', 'KILLED', this)">[ 💀 REJECT ]</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Topic 6.14: N'kai-First Skill Default & --chat Flag -->
+        <div class="section-card" id="sec-audit-t14">
+          <div class="section-title">
+            <span>6.14 N'kai-First Skill Default &amp; <code>--chat</code> Fallback Flag</span>
+            <span class="badge badge-amber">Workflow Ergonomics</span>
+          </div>
+          <p style="font-size: 12px; line-height: 1.6; color: var(--text-main);">
+            <strong>The Question:</strong> Should relevant interactive skills (like <code>/grill-me</code>, <code>/deep-research</code>, <code>/postmortem</code>, <code>/triage</code>, <code>/inbox</code>) default to generating an interactive N'kai sidecar canvas automatically, unless the user explicitly passes the <code>--chat</code> (or <code>-chat</code>) flag or specifies "in chat" in natural language?
+          </p>
+
+          <div class="grid-3" style="margin-top: 12px;">
+            <div class="pill-card">
+              <div class="pill-title">Option A: Separate Command Fork</div>
+              <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Keep separate commands for text vs sidecar (e.g. <code>/grill-me</code> text vs <code>/visual-grill-me</code>). Higher cognitive burden remembering command variants.</p>
+            </div>
+            <div class="pill-card" style="border: 1px solid var(--accent-green);">
+              <div class="pill-title" style="color:var(--accent-green);">Option B: N'kai-First with --chat Flag (Recommended)</div>
+              <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">All visual/interview skills default to generating the rich N'kai sidecar canvas. Passing <code>--chat</code> or saying "in chat" falls back cleanly to inline chat. Officially unifies Grill Lab into standard grill-me.</p>
+            </div>
+            <div class="pill-card">
+              <div class="pill-title">Option C: Strict Sidecar Only</div>
+              <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Forbid text mode entirely for these skills. Creates friction when working on mobile or headless environments where a browser isn't desired.</p>
+            </div>
+          </div>
+
+          <div style="margin-top: 14px; background: rgba(0,0,0,0.3); border: 1px solid rgba(48,54,61,0.6); border-radius: 6px; padding: 12px;">
+            <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option B: N'kai-First with --chat Flag)</div>
+            <ul style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin: 0; padding-left: 18px;">
+              <li><strong>🌍 Real-World Ergonomics:</strong> Effortless consistency. You just run <code>/grill-me</code> or ask for research, and the gorgeous visual board appears automatically. No more remembering 5 command aliases.</li>
+              <li><strong>🏛️ Wider SOTA:</strong> Standard CLI design pattern (GUI by default, with <code>--headless</code> or <code>--cli</code> override flag).</li>
+              <li><strong>🏆 Best Practices:</strong> Protects chat context window by default while providing a clean, accessible escape hatch for low-bandwidth sessions.</li>
+            </ul>
+            <div style="margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" onclick="copyPromptToChat('pros and cons for Nkai-First Skill Default across the 4 Lenses', this)">[ ⚖️ Request Pros &amp; Cons ]</button>
+              <button class="interactive-btn purple" onclick="copyPromptToChat('research online CLI flag conventions GUI default vs headless chat fallback in developer tools', this)">[ 🔬 Research Online ]</button>
+            </div>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:14px; padding-top:10px; border-top:1px solid rgba(48,54,61,0.5);">
+            <div style="font-family:var(--font-mono); font-size:11px; color:var(--text-muted);">
+              Verdict: <strong id="v-badge-t14" style="color:var(--text-muted);">PENDING</strong>
+            </div>
+            <div style="display:flex; gap:6px;">
+              <button class="interactive-btn" style="color:var(--accent-green); border-color:var(--accent-green);" onclick="setAuditVerdict('t14', 'APPROVED', this)">[ ✅ APPROVE Option B ]</button>
+              <button class="interactive-btn amber" onclick="setAuditVerdict('t14', 'TABLED', this)">[ ⏳ TABLE ]</button>
+              <button class="interactive-btn" style="color:var(--accent-red); border-color:var(--accent-red);" onclick="setAuditVerdict('t14', 'KILLED', this)">[ 💀 REJECT ]</button>
+            </div>
+          </div>
+        </div>
+
       </div>
 
     </main>
@@ -2411,7 +2567,10 @@ function toggleDrawer(drawerId) {
       t8: { title: '6.8 Ongoing Autopsy', verdict: 'PENDING' },
       t9: { title: '6.9 Header Layout & Utility Cluster', verdict: 'PENDING' },
       t10: { title: '6.10 Tab Header Density', verdict: 'PENDING' },
-      t11: { title: '6.11 "Check the Mail" Workflow', verdict: 'PENDING' }
+      t11: { title: '6.11 "Check the Mail" Workflow', verdict: 'PENDING' },
+      t12: { title: '6.12 All-in-One Distribution Bundle', verdict: 'PENDING' },
+      t13: { title: '6.13 Universal AI Harness Portability', verdict: 'PENDING' },
+      t14: { title: '6.14 Nkai-First Skill Default', verdict: 'PENDING' }
     };
 
     let auditVerdicts = { ...defaultAuditVerdicts };
@@ -2746,6 +2905,96 @@ function toggleDrawer(drawerId) {
           { label: '⚖️ Request Pros & Cons', prompt: 'pros and cons for Nkai Inbox Board Default across the 4 Lenses' },
           { label: '🔬 Research Online', prompt: 'research online Inbox Zero triage workflows for AI engineering' }
         ]
+      },
+      t12: {
+        title: '6.12 The "All-in-One" N\'kai Distribution Bundle',
+        badge: 'Ecosystem Packaging',
+        desc: '<strong>The Question:</strong> Should we compile and bundle the agent tools, custom skills (deep-research, post-mortem, web-qa, audiothread-guard), guardrails (<code>GEMINI.md</code> rules), and sidecar templates directly into the <code>nkai</code> repository so anyone who wants to use this harness gets the complete "shebang" out-of-the-box?',
+        optionsHtml: `
+          <div class="pill-card">
+            <div class="pill-title">Option A: Dispersed Across Repos</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Keep skills in TheKlangSuite, tracker specs in ToadTracker, and sidecar in nkai. New users or fresh repos must cherry-pick files across multiple repositories.</p>
+          </div>
+          <div class="pill-card" style="border: 1px solid var(--accent-green);">
+            <div class="pill-title" style="color:var(--accent-green);">Option B: Monolithic All-in-One Bundle (Recommended)</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Bundle canonical skills, templates, guardrail rules, and sidecar runner inside <code>nkai/bundle/</code> with a 1-command installer script (<code>npx nkai init</code> or <code>./install_nkai_bundle.ps1</code>).</p>
+          </div>
+          <div class="pill-card">
+            <div class="pill-title">Option C: Multi-Package Monorepo</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Split into <code>@nkai/core</code>, <code>@nkai/skills</code>, and <code>@nkai/guardrails</code> with separate versioning. Higher coordination overhead for small teams.</p>
+          </div>`,
+        evalHtml: `
+          <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option B: Monolithic All-in-One Bundle)</div>
+          <ul style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin: 0; padding-left: 18px;">
+            <li><strong>🌍 Real-World Ergonomics:</strong> Instant onboarding. 1-click clone or install gives any developer the full pair-programming superpower without configuring 16 disconnected components.</li>
+            <li><strong>🏛️ Wider SOTA:</strong> Matches how leading agent harnesses distribute starter kits (e.g. Cline bundles, OpenDevin packages, Cursor rules templates).</li>
+            <li><strong>🏆 Best Practices:</strong> Single source of truth for agent behaviors and sidecar templates, versioned together cleanly.</li>
+          </ul>`,
+        recommendation: 'APPROVE Option B',
+        chips: [
+          { label: '⚖️ Request Pros & Cons', prompt: 'pros and cons for All-in-One Nkai Bundle across the 4 Lenses' },
+          { label: '🔬 Research Online', prompt: 'research online best practices for distributing AI agent skills and guardrails bundles' }
+        ]
+      },
+      t13: {
+        title: '6.13 Universal AI Harness Portability (Claude Code, Codex, Cursor, Antigravity)',
+        badge: 'Cross-Platform Runtime',
+        desc: '<strong>The Question:</strong> How do we ensure N\'kai\'s asymmetric sidecar pattern, decision composer, and skills operate seamlessly across popular AI coding harnesses beyond Antigravity (such as Claude Code CLI, OpenAI Codex / ChatGPT developer harnesses, Cursor, and Windsurf)?',
+        optionsHtml: `
+          <div class="pill-card">
+            <div class="pill-title">Option A: Antigravity-Only Lock-in</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Target strictly Antigravity's proprietary Sidecar SDK. Breaks or requires major re-writes if developing in Claude Code or Cursor.</p>
+          </div>
+          <div class="pill-card" style="border: 1px solid var(--accent-green);">
+            <div class="pill-title" style="color:var(--accent-green);">Option B: Standalone File + Localhost Adapter (Recommended)</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Keep zero-dependency standalone HTML (<code>file:///</code>) for IDE webviews (Cursor, VS Code, AGY), and provide a tiny 30-line localhost server (<code>npx nkai serve</code>) that auto-opens a browser tab for terminal CLIs (Claude Code, Codex).</p>
+          </div>
+          <div class="pill-card">
+            <div class="pill-title">Option C: Markdown-Only Fallback</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">If not in Antigravity, completely disable sidecars and dump massive text tables directly into chat. Defeats the asymmetric split.</p>
+          </div>`,
+        evalHtml: `
+          <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option B: Standalone File + Localhost Adapter)</div>
+          <ul style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin: 0; padding-left: 18px;">
+            <li><strong>🌍 Real-World Ergonomics:</strong> Works seamlessly regardless of environment. In GUI IDEs it renders in the side panel; in terminal CLIs it opens in Chrome/Edge instantly.</li>
+            <li><strong>🏛️ Wider SOTA:</strong> Matches how modern developer tools operate across CLIs and IDEs (Playwright UI, Vitest UI, Storybook, Astro).</li>
+            <li><strong>🏆 Best Practices:</strong> Zero vendor lock-in. 100% standard web technologies (HTML5/CSS/ES Modules) with zero heavyweight runtime dependencies.</li>
+          </ul>`,
+        recommendation: 'APPROVE Option B',
+        chips: [
+          { label: '⚖️ Request Pros & Cons', prompt: 'pros and cons for Universal AI Harness Portability across the 4 Lenses' },
+          { label: '🔬 Research Online', prompt: 'research online cross-harness compatibility for Claude Code Cursor Windsurf sidecar tools' }
+        ]
+      },
+      t14: {
+        title: '6.14 N\'kai-First Skill Default & --chat Fallback Flag',
+        badge: 'Workflow Ergonomics',
+        desc: '<strong>The Question:</strong> Should relevant interactive skills (like <code>/grill-me</code>, <code>/deep-research</code>, <code>/postmortem</code>, <code>/triage</code>, <code>/inbox</code>) default to generating an interactive N\'kai sidecar canvas automatically, unless the user explicitly passes the <code>--chat</code> (or <code>-chat</code>) flag or specifies "in chat" in natural language?',
+        optionsHtml: `
+          <div class="pill-card">
+            <div class="pill-title">Option A: Separate Command Fork</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Keep separate commands for text vs sidecar (e.g. <code>/grill-me</code> text vs <code>/visual-grill-me</code>). Higher cognitive burden remembering command variants.</p>
+          </div>
+          <div class="pill-card" style="border: 1px solid var(--accent-green);">
+            <div class="pill-title" style="color:var(--accent-green);">Option B: N'kai-First with --chat Flag (Recommended)</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">All visual/interview skills default to generating the rich N'kai sidecar canvas. Passing <code>--chat</code> or saying "in chat" falls back cleanly to inline chat. Officially unifies Grill Lab into standard grill-me.</p>
+          </div>
+          <div class="pill-card">
+            <div class="pill-title">Option C: Strict Sidecar Only</div>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Forbid text mode entirely for these skills. Creates friction when working on mobile or headless environments where a browser isn't desired.</p>
+          </div>`,
+        evalHtml: `
+          <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option B: N'kai-First with --chat Flag)</div>
+          <ul style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin: 0; padding-left: 18px;">
+            <li><strong>🌍 Real-World Ergonomics:</strong> Effortless consistency. You just run <code>/grill-me</code> or ask for research, and the gorgeous visual board appears automatically. No more remembering 5 command aliases.</li>
+            <li><strong>🏛️ Wider SOTA:</strong> Standard CLI design pattern (GUI by default, with <code>--headless</code> or <code>--cli</code> override flag).</li>
+            <li><strong>🏆 Best Practices:</strong> Protects chat context window by default while providing a clean, accessible escape hatch for low-bandwidth sessions.</li>
+          </ul>`,
+        recommendation: 'APPROVE Option B',
+        chips: [
+          { label: '⚖️ Request Pros & Cons', prompt: 'pros and cons for Nkai-First Skill Default across the 4 Lenses' },
+          { label: '🔬 Research Online', prompt: 'research online CLI flag conventions GUI default vs headless chat fallback in developer tools' }
+        ]
       }
     };
 
@@ -2757,7 +3006,7 @@ function toggleDrawer(drawerId) {
       const titleEl = document.getElementById('ws-hero-title');
       if (titleEl) titleEl.innerText = data.title;
 
-      for (let i = 1; i <= 11; i++) {
+      for (let i = 1; i <= 14; i++) {
         const btn = document.getElementById('btn-ws-t' + i);
         if (btn) {
           if ('t' + i === topicId) {
