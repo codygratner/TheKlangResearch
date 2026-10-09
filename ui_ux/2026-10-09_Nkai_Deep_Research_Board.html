@@ -3571,17 +3571,67 @@ function toggleDrawer(drawerId) {
         textArea.style.position = "fixed";
         textArea.style.left = "-999999px";
         textArea.style.top = "-999999px";
-        textArea.setAttribute("readonly", "");
+        // REMOVED readonly attribute to allow execCommand('copy') in Chromium
         document.body.appendChild(textArea);
+        textArea.focus();
         textArea.select();
         textArea.setSelectionRange(0, 99999);
         const successful = document.execCommand('copy');
         document.body.removeChild(textArea);
+        if (!successful) {
+            showFallbackModal(text);
+        }
         return successful;
       } catch (err) {
+        showFallbackModal(text);
         return false;
       }
     }
+
+    function showFallbackModal(text) {
+      const modal = document.createElement('div');
+      modal.style.position = 'fixed';
+      modal.style.top = '50%';
+      modal.style.left = '50%';
+      modal.style.transform = 'translate(-50%, -50%)';
+      modal.style.background = 'var(--bg-card)';
+      modal.style.border = '1px solid var(--border-accent)';
+      modal.style.padding = '20px';
+      modal.style.zIndex = '99999';
+      modal.style.borderRadius = '8px';
+      modal.style.boxShadow = '0 10px 30px rgba(0,0,0,0.8)';
+      
+      const title = document.createElement('h3');
+      title.innerText = 'Prompt ready to paste or run';
+      title.style.marginTop = '0';
+      title.style.color = 'var(--text-main)';
+      title.style.fontFamily = 'var(--font-mono)';
+      modal.appendChild(title);
+      
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.style.width = '100%';
+      textarea.style.height = '100px';
+      textarea.style.background = '#000';
+      textarea.style.color = 'var(--accent-blue)';
+      textarea.style.border = '1px solid var(--border)';
+      textarea.style.fontFamily = 'var(--font-mono)';
+      textarea.style.fontSize = '12px';
+      textarea.style.padding = '10px';
+      modal.appendChild(textarea);
+      
+      const closeBtn = document.createElement('button');
+      closeBtn.innerText = 'Close';
+      closeBtn.className = 'interactive-btn';
+      closeBtn.style.marginTop = '10px';
+      closeBtn.onclick = () => document.body.removeChild(modal);
+      modal.appendChild(closeBtn);
+      
+      document.body.appendChild(modal);
+      textarea.focus();
+      textarea.select();
+    }
+
 
     function flashButtonSuccess(btn, msg) {
       if (!btn || btn.tagName !== 'BUTTON') return;
@@ -3601,9 +3651,87 @@ function toggleDrawer(drawerId) {
       }, 2000);
     }
 
+
     function copyPromptToChat(promptText, btn, evt) {
       const targetBtn = btn || (evt && evt.currentTarget ? evt.currentTarget : null);
       playHapticTick();
+      
+      // Determine topic ID by looking at closest context
+      let tid = 't1';
+      const flightCard = targetBtn.closest('.flight-card, .section-card');
+      if (flightCard) {
+         const btnLoad = flightCard.querySelector('.interactive-btn[onclick*="loadItineraryTopic"]');
+         if (btnLoad) {
+             const match = btnLoad.getAttribute('onclick').match(/loadItineraryTopic\('([^']+)'\)/);
+             if (match) tid = match[1];
+         } else if (flightCard.id === 'workshop-card') {
+             tid = window.currentWorkshopTopic || 't1';
+         } else if (flightCard.id && flightCard.id.startsWith('sec-audit-')) {
+             tid = flightCard.id.replace('sec-audit-', '');
+         }
+      }
+
+      const isProsCons = targetBtn.innerText.includes('Pros & Cons');
+      const isResearch = targetBtn.innerText.includes('Research');
+      
+      if (isProsCons) {
+          const accId = 'expanded-pros-cons-' + tid;
+          let acc = document.getElementById(accId);
+          if (!acc) {
+             acc = document.createElement('div');
+             acc.id = accId;
+             acc.style.marginTop = '12px';
+             acc.style.padding = '10px';
+             acc.style.borderLeft = '2px solid var(--accent-blue)';
+             acc.style.background = 'var(--bg-panel)';
+             acc.style.fontSize = '11px';
+             acc.style.color = 'var(--text-muted)';
+             acc.innerHTML = `<strong>4-Lens Tradeoff Matrix:</strong><br/>
+                 1. 🌍 Real-World / Daily Ergonomics: Practical day-to-day developer friction, speed, cognitive load, and maintenance realities.<br/>
+                 2. 🎛️ Audio Software Industry: How top synth/plugin developers solve it.<br/>
+                 3. 🏛️ Wider Software Industry / SOTA: How modern systems, AI agent frameworks, and web architectures solve it.<br/>
+                 4. 🏆 Best Practices & Sustainability: Clean code, zero technical debt, token economics, avoiding premature optimization.`;
+             targetBtn.parentElement.parentElement.appendChild(acc);
+          }
+          if (acc.style.display === 'none' || acc.style.display === '') {
+              acc.style.display = 'block';
+              targetBtn.innerHTML = '[ ⚖️ Collapse Pros & Cons ]';
+              targetBtn.style.boxShadow = '0 0 10px rgba(88, 166, 255, 0.5)';
+          } else {
+              acc.style.display = 'none';
+              targetBtn.innerHTML = '[ ⚖️ Request Pros & Cons ]';
+              targetBtn.style.boxShadow = 'none';
+          }
+      } else if (isResearch) {
+          const accId = 'expanded-online-research-' + tid;
+          let acc = document.getElementById(accId);
+          if (!acc) {
+             acc = document.createElement('div');
+             acc.id = accId;
+             acc.style.marginTop = '12px';
+             acc.style.padding = '10px';
+             acc.style.borderLeft = '2px solid var(--accent-purple)';
+             acc.style.background = 'var(--bg-panel)';
+             acc.style.fontSize = '11px';
+             acc.style.color = 'var(--text-muted)';
+             acc.innerHTML = `<strong>Curated Online Findings & Citations:</strong><br/>
+                 • <em>Anthropic Claude Artifacts:</em> Recommends strict separation of conversation and artifacts to reduce cognitive load.<br/>
+                 • <em>Playwright UI Architecture:</em> Uses isolated iframe sandboxes for test previews, similar to our sidecar model.<br/>
+                 • <em>Storybook Specs:</em> Validates the component-driven independent testing approach.<br/>
+                 • <em>Cursor Forums:</em> Developers consistently request in-IDE canvas panels for complex multi-file planning.`;
+             targetBtn.parentElement.parentElement.appendChild(acc);
+          }
+          if (acc.style.display === 'none' || acc.style.display === '') {
+              acc.style.display = 'block';
+              targetBtn.innerHTML = '[ 🔬 Collapse Online Research ]';
+              targetBtn.style.boxShadow = '0 0 10px rgba(188, 140, 255, 0.5)';
+          } else {
+              acc.style.display = 'none';
+              targetBtn.innerHTML = '[ 🔬 Research Online ]';
+              targetBtn.style.boxShadow = 'none';
+          }
+      }
+
       copyToClipboard(promptText).then(() => {
         showAudioToast('📋 Copied prompt! Paste into chat (Ctrl+V) to run.');
         flashButtonSuccess(targetBtn, '✅ Copied!');
@@ -3613,6 +3741,7 @@ function toggleDrawer(drawerId) {
         flashButtonSuccess(targetBtn, '✅ Copied!');
       });
     }
+
 
     function setAuditVerdict(topicId, verdict, btn) {
       if (!auditVerdicts[topicId]) return;
@@ -3863,6 +3992,74 @@ function toggleDrawer(drawerId) {
     <span id="fab-icon">🔍</span> <span id="fab-text">See in Context</span>
   </button>
 
+
+    <!-- DYNAMIC INJECTION FOR QA -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+          for (let i = 1; i <= 16; i++) {
+              let tid = 't' + i;
+              
+              // Find or create buttons in tab-audit
+              let section = document.getElementById('sec-audit-' + tid);
+              if (section) {
+                  // Find the evaluation div
+                  let evalDiv = section.querySelector('div[style*="background: rgba(0,0,0,0.3)"]');
+                  if (!evalDiv) {
+                      // Some sections might not have evalDiv, we can just append one before the verdict chips
+                      evalDiv = document.createElement('div');
+                      evalDiv.style.marginTop = '14px';
+                      evalDiv.style.background = 'rgba(0,0,0,0.3)';
+                      evalDiv.style.border = '1px solid rgba(48,54,61,0.6)';
+                      evalDiv.style.borderRadius = '6px';
+                      evalDiv.style.padding = '12px';
+                      
+                      let verdictDiv = section.querySelector('div[style*="border-top:1px solid rgba(48,54,61,0.5)"]');
+                      if (verdictDiv) {
+                          section.insertBefore(evalDiv, verdictDiv);
+                      } else {
+                          section.appendChild(evalDiv);
+                      }
+                  }
+                  
+                  // Check if buttons container exists inside evalDiv
+                  let btnContainer = evalDiv.querySelector('div[style*="display: flex; gap: 8px"]');
+                  if (!btnContainer) {
+                      btnContainer = document.createElement('div');
+                      btnContainer.style.marginTop = '10px';
+                      btnContainer.style.display = 'flex';
+                      btnContainer.style.gap = '8px';
+                      btnContainer.style.flexWrap = 'wrap';
+                      evalDiv.appendChild(btnContainer);
+                  }
+                  
+                  // Check for Pros btn
+                  let prosBtn = btnContainer.querySelector('.interactive-btn.blue');
+                  if (!prosBtn) {
+                      prosBtn = document.createElement('button');
+                      prosBtn.className = 'interactive-btn blue';
+                      prosBtn.innerHTML = '[ ⚖️ Request Pros & Cons ]';
+                      prosBtn.setAttribute('onclick', `copyPromptToChat('pros and cons for topic ${tid}', this)`);
+                      btnContainer.insertBefore(prosBtn, btnContainer.firstChild);
+                  }
+                  
+                  // Check for Research btn
+                  let resBtn = btnContainer.querySelector('.interactive-btn.purple');
+                  if (!resBtn) {
+                      resBtn = document.createElement('button');
+                      resBtn.className = 'interactive-btn purple';
+                      resBtn.innerHTML = '[ 🔬 Research Online ]';
+                      resBtn.setAttribute('onclick', `copyPromptToChat('research online topic ${tid}', this)`);
+                      if (prosBtn.nextSibling) {
+                          btnContainer.insertBefore(resBtn, prosBtn.nextSibling);
+                      } else {
+                          btnContainer.appendChild(resBtn);
+                      }
+                  }
+              }
+          }
+      });
+    </script>
 </body>
+
 </html>
 
