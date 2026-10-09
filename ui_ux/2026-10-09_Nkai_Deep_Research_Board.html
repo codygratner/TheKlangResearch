@@ -981,7 +981,7 @@
       <a class="sidebar-item" href="#sec-upgrade">5.0 Upgrade Path &amp; Migration</a>
 
             <div class="sidebar-section-title">Active Focus</div>
-      <a class="sidebar-item active" id="side-item-workshop" href="#tab-workshop">🛠️ Active Workshop (<span id="side-active-topic-num">⚡ 6.17 Bridge</span>)</a>
+      <a class="sidebar-item active" id="side-item-workshop" href="#tab-workshop">🛠️ Active Workshop (<span id="side-active-topic-num">F1: 6.15</span>)</a>
 
       <div class="sidebar-section-title">Audit Navigation</div>
       <button id="toggleItineraryBtn" class="interactive-btn purple" style="width: 100%; margin: 4px 0 10px 0; font-weight: 600; display: flex; align-items: center; justify-content: space-between; padding: 7px 10px; font-size: 11px;" onclick="toggleItineraryDrawer()">
@@ -990,8 +990,8 @@
       </button>
 
       <div class="sidebar-section-title">Sequenced Flight Plan</div>
-      <a class="sidebar-item active" href="#sec-audit-t17"><span>⚡ 6.17 Click-to-Agent Bridge</span> <span id="side-v-t17" class="badge badge-green">ACTIVE</span></a>
-      <a class="sidebar-item" href="#sec-audit-t15"><span>F1. 6.15 Industry Precedents</span> <span id="side-v-t15" class="badge badge-blue">ACTIVE</span></a>
+      <a class="sidebar-item" href="#sec-audit-t17"><span>⚡ 6.17 Click-to-Agent Bridge</span> <span id="side-v-t17" class="badge badge-green">✓</span></a>
+      <a class="sidebar-item active" href="#sec-audit-t15"><span>F1. 6.15 Industry Precedents</span> <span id="side-v-t15" class="badge badge-amber">ACTIVE</span></a>
       <a class="sidebar-item" href="#sec-audit-t13"><span>F2. 6.13 Host Portability</span> <span id="side-v-t13" class="badge">PENDING</span></a>
       <a class="sidebar-item" href="#sec-audit-t12"><span>F3. 6.12 All-in-One Bundle</span> <span id="side-v-t12" class="badge">PENDING</span></a>
       <a class="sidebar-item" href="#sec-audit-t16"><span>F4. 6.16 Backend Persistence</span> <span id="side-v-t16" class="badge">PENDING</span></a>
@@ -2988,20 +2988,27 @@ function toggleDrawer(drawerId) {
       const ports = [4040, 4041];
       for (const p of ports) {
         try {
-          const res = await fetch(`http://127.0.0.1:${p}/api/status`, { mode: 'cors' });
+          const ctrl = new AbortController();
+          const timer = setTimeout(() => ctrl.abort(), 600);
+          const res = await fetch(`http://127.0.0.1:${p}/api/status`, {
+            mode: 'cors',
+            signal: ctrl.signal
+          });
+          clearTimeout(timer);
           if (res.ok) {
             const data = await res.json();
             window.nkaiBridgeOnline = true;
             window.nkaiBridgePort = p;
             const pill = document.getElementById('bridge-status-pill');
             if (pill) {
-              pill.innerText = `⚡ Bridge: Online (:${p})`;
+              pill.innerText = `⚡ Bridge: Connected (Direct to Agent)`;
+              pill.title = `Actions send directly to AI agent via port ${p} without copy/pasting`;
               pill.style.color = 'var(--accent-neon)';
               pill.style.borderColor = 'rgba(126,231,135,0.4)';
               pill.style.background = 'rgba(126,231,135,0.15)';
               pill.style.boxShadow = '0 0 10px rgba(126,231,135,0.2)';
             }
-            console.log(`[Nkai] Connected to local bridge on port ${p}`);
+            console.log(`[Nkai Bridge] Connected to local bridge on port ${p}`);
             return true;
           }
         } catch (e) {
@@ -3011,7 +3018,8 @@ function toggleDrawer(drawerId) {
       window.nkaiBridgeOnline = false;
       const pill = document.getElementById('bridge-status-pill');
       if (pill) {
-        pill.innerText = '🔌 Bridge: Standalone (Offline)';
+        pill.innerText = '🔌 Bridge: Offline (Copy Mode)';
+        pill.title = 'Local bridge server not detected. Buttons will open copy-paste modal.';
         pill.style.color = 'var(--text-muted)';
         pill.style.borderColor = 'var(--border)';
         pill.style.background = 'rgba(255,255,255,0.02)';
@@ -3027,39 +3035,48 @@ function toggleDrawer(drawerId) {
           await window.sidecar.sendAction(actionData);
           showAudioToast(`⚡ Dispatched: ${actionData.action} directly via Native SDK!`);
           flashButtonSuccess(btn, '⚡ Dispatched!');
+          playHapticChime();
+          copyToClipboardSilently(actionData.prompt);
           return true;
         } catch (err) {
-          console.warn('[Nkai] Native sidecar sendAction failed, trying local bridge:', err);
+          console.warn('[Nkai Bridge] Native sidecar sendAction failed, trying local bridge:', err);
         }
       }
 
       // 2. Check local loopback micro-bridge (http://127.0.0.1:4040 or 4041)
       if (window.nkaiBridgeOnline || await checkBridgeStatus()) {
         try {
+          const ctrl = new AbortController();
+          const timer = setTimeout(() => ctrl.abort(), 1500);
           const res = await fetch(`http://127.0.0.1:${window.nkaiBridgePort}/api/action`, {
             method: 'POST',
             mode: 'cors',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(actionData)
+            body: JSON.stringify(actionData),
+            signal: ctrl.signal
           });
+          clearTimeout(timer);
           if (res.ok) {
             showAudioToast(`⚡ Dispatched directly to AI agent via Bridge (: ${window.nkaiBridgePort})!`);
             flashButtonSuccess(btn, '⚡ Dispatched!');
+            playHapticChime();
+            // Silent background copy for user convenience, but NO MODAL POPUP!
+            copyToClipboardSilently(actionData.prompt);
             return true;
           }
         } catch (err) {
-          console.warn('[Nkai] Local bridge dispatch failed:', err);
+          console.warn('[Nkai Bridge] Local bridge dispatch failed, falling back to copy modal:', err);
+          window.nkaiBridgeOnline = false;
         }
       }
 
-      // 3. Fallback: Copy to clipboard and show toast
+      // 3. BRIDGE IS OFFLINE: Always pop up the copy paste box!
       if (actionData.prompt) {
-        copyToClipboard(actionData.prompt).then(() => {
-          showAudioToast('📋 Bridge Offline: Action prompt copied to clipboard!');
-          flashButtonSuccess(btn, '✅ Copied!');
-        }).catch(() => {
-          showFallbackModal(actionData.prompt);
-        });
+        copyToClipboardSilently(actionData.prompt);
+        showFallbackModal(actionData.prompt);
+        showAudioToast('📋 Bridge Offline: Opened prompt copy box');
+        flashButtonSuccess(btn, '📋 Copy Box');
+        playHapticTick();
       }
       return false;
     }
@@ -3083,127 +3100,7 @@ function toggleDrawer(drawerId) {
       t11: { title: '6.11 "Check the Mail" Workflow', verdict: 'PENDING' },
       t12: { title: '6.12 All-in-One Distribution Bundle', verdict: 'PENDING' },
       t13: { title: '6.13 Universal AI Harness Portability', verdict: 'PENDING' },
-      t17: {
-        title: '6.17 The Bidirectional Click-to-Agent Bridge (Zero-Copy Sidecar IPC)',
-        badge: 'Ergonomics Leap',
-        desc: '<strong>The Question:</strong> How do we build a direct, zero-copy communication bridge so that clicking buttons in N\'kai (like \'Approve\', \'Request Pros &amp; Cons\', or \'Run Online Research\') immediately dispatches actions directly to the AI agent, eliminating the need to manually copy-paste into chat or prod the model?',
-        optionsHtml: `
-          <div class="pill-card">
-            <div class="pill-title">Option A: Native Antigravity Plugin (Sidecar SDK / MCP)</div>
-            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Run N\'kai as an installed IDE extension (<code>nkai/plugin/</code>). Buttons call <code>window.sidecar.sendAction()</code>, which routes directly through Antigravity\'s MCP server into the agent conversation. 100% native, zero terminal daemons, but requires installing the plugin.</p>
-          </div>
-          <div class="pill-card">
-            <div class="pill-title">Option B: Universal Localhost Loopback Micro-Server (npx nkai serve)</div>
-            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">A lightweight 40-line Node or Python daemon on <code>localhost:4040</code>. Buttons call <code>fetch(\'http://localhost:4040/action\')</code>, writing to <code>.agents/pipeline/actions.json</code> which triggers an agent notification. Works across ALL harnesses (AGY, Claude Code, Cursor, Chrome).</p>
-          </div>
-          <div class="pill-card" style="border: 1px solid var(--accent-green);">
-            <div class="pill-title" style="color:var(--accent-green);">Option C: Hybrid Resilient Adapter (Plugin SDK + Localhost + Clipboard Fallback) [Recommended]</div>
-            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Checks for <code>window.sidecar</code> first (native AGY plugin mode). If absent, attempts loopback <code>fetch(\'localhost:4040\')</code>. If offline, gracefully falls back to the hardened in-canvas expansion and clipboard modal. Guarantees zero broken clicks anywhere.</p>
-          </div>`,
-        evalHtml: `
-          <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option C: Hybrid Resilient Adapter)</div>
-          <ul style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin: 0; padding-left: 18px;">
-            <li><strong>🌍 Real-World Ergonomics:</strong> The holy grail of pair-programming. You click \'Approve Option B\' or \'Request Pros &amp; Cons\', and the agent immediately receives the signal and starts working—zero manual copy-paste friction.</li>
-            <li><strong>🏛️ Wider SOTA:</strong> Matches how Playwright UI, Vitest UI, and Storybook bridge interactive webviews back to CLI test runners and daemons.</li>
-            <li><strong>🏆 Best Practices:</strong> Multi-tiered graceful degradation ensures that if the server isn\'t running, the user never gets an unhandled crash or stalled click.</li>
-          </ul>`,
-        recommendation: 'APPROVE Option C (Hybrid Adapter)',
-        chips: [
-          { label: '⚖️ Request Pros & Cons', prompt: 'pros and cons for Native Plugin MCP vs Localhost Loopback vs Hybrid Adapter across the 4 Lenses' },
-          { label: '🔬 Research Online', prompt: 'research online webview to AI agent IPC patterns in Claude Cursor and Antigravity' }
-        ]
-      },
-      t15: {
-        title: '6.15 Industry Workflow Precedents & Competitive Teardowns',
-        badge: 'Industry Benchmarking',
-        desc: '<strong>The Question:</strong> Are there existing major developer or AI tools that use N\'kai\'s asymmetric sidecar workflow (chat in one panel, live rich interactive visual canvas in the other), and what architectural patterns, micro-interactions, or ergonomics can we adopt from them?',
-        optionsHtml: `
-          <div class="pill-card">
-            <div class="pill-title">Option A: The Static Artifact Model (Claude Artifacts)</div>
-            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Isolated iframe rendered purely from agent markdown file output. Clean side-by-side view, but primarily a read-only preview with minimal bidirectional interaction or live workspace controls.</p>
-          </div>
-          <div class="pill-card">
-            <div class="pill-title">Option B: The Local WebSocket Server Model (Playwright/Vitest UI)</div>
-            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Spins up a local background HTTP/WebSocket server streaming real-time JSON-RPC to a heavy SPA. Highly interactive, but introduces brittle daemon lifecycle management, port conflicts, and battery/CPU drain.</p>
-          </div>
-          <div class="pill-card" style="border: 1px solid var(--accent-green);">
-            <div class="pill-title" style="color:var(--accent-green);">Option C: The Hybrid File-URI Model (Recommended)</div>
-            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Leverage IDE webview interception via <code>file:///</code> URI to artifact directories. Zero background server daemons. Uses Web Workers, <code>localStorage</code>, and 1-click prompt-to-clipboard action chips for instant pairing with chat at zero token burn.</p>
-          </div>`,
-        evalHtml: `
-          <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option C: Hybrid File-URI Model)</div>
-          <ul style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin: 0; padding-left: 18px;">
-            <li><strong>🌍 Real-World Ergonomics:</strong> Zero setup. Click the link and the canvas renders instantly in the IDE side panel with persistent zoom, theme, and tab state. No server to crash or leave running.</li>
-            <li><strong>🏛️ Wider SOTA:</strong> Combines the lightweight elegance of Claude Artifacts with the interactive power of Storybook and Vitest UI without their heavy daemon baggage.</li>
-            <li><strong>🏆 Best Practices:</strong> Zero external dependencies. Indestructible offline portability with instant 100% testable DOM.</li>
-          </ul>`,
-        recommendation: 'APPROVE Option C',
-        chips: [
-          { label: '⚖️ Request Pros & Cons', prompt: 'pros and cons for SOTA Sidecar Architectures (Claude vs Playwright vs Nkai) across the 4 Lenses' },
-          { label: '🔬 Research Online', prompt: 'research online developer ergonomics of webview sidecars and canvas interfaces in AI IDEs' }
-        ]
-      },
-      t16: {
-        title: '6.16 Backend Persistence & State Management Architecture',
-        badge: 'Data Architecture',
-        desc: '<strong>The Question:</strong> How should N\'kai handle all data behind the scenes (audit verdicts, triage packages, roadmap milestones, session history, notes) for maximum usability, maximum stability, lowest CPU overhead, and lowest LLM token burn?',
-        optionsHtml: `
-          <div class="pill-card">
-            <div class="pill-title">Option A: Pure JSON Monoliths</div>
-            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Store all data in raw JSON files in <code>.agents/sidecar/</code>. Easy for machine parsing, but causes painful Git merge conflicts for human teams and large token burn when read by agents.</p>
-          </div>
-          <div class="pill-card">
-            <div class="pill-title">Option B: Embedded SQLite Database</div>
-            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Store data in an embedded SQLite database (<code>.agents/nkai.db</code>). Instant relational queries and ACID safety, but opaque binary format completely breaks Git line-diffs and PR review history.</p>
-          </div>
-          <div class="pill-card" style="border: 1px solid var(--accent-green);">
-            <div class="pill-title" style="color:var(--accent-green);">Option C: Hybrid Markdown + LocalStorage + JSON Catalog (Recommended)</div>
-            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Markdown files with YAML frontmatter for human-readable, Git-friendly logs and notes. A lightweight <code>catalog.json</code> for agent lookups. Browser <code>localStorage</code> for transient UI state (zoom, tabs, drafts), keeping token burn near zero.</p>
-          </div>`,
-        evalHtml: `
-          <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option C: Hybrid Markdown + LocalStorage + JSON Catalog)</div>
-          <ul style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin: 0; padding-left: 18px;">
-            <li><strong>🌍 Real-World Ergonomics:</strong> Humans and Obsidian can edit notes and logs directly in plain Markdown. Git diffs are crystal clean.</li>
-            <li><strong>🏛️ Wider SOTA:</strong> Follows modern static-site generation (Astro content collections, Hugo, VitePress) and headless CMS architecture.</li>
-            <li><strong>🏆 Best Practices:</strong> Zero database overhead, zero CPU daemon, and slashes agent token burn by avoiding repetitive full-state re-reads.</li>
-          </ul>`,
-        recommendation: 'APPROVE Option C',
-        chips: [
-          { label: '⚖️ Request Pros & Cons', prompt: 'pros and cons for Markdown Frontmatter vs SQLite vs JSON for AI state persistence across the 4 Lenses' },
-          { label: '🔬 Research Online', prompt: 'research online git-friendly local-first persistence patterns for AI agent tooling' }
-        ]
-      },
       t14: { title: '6.14 Nkai-First Skill Default', verdict: 'PENDING' },
-      t17: {
-        title: '6.17 The Bidirectional Click-to-Agent Bridge (Zero-Copy Sidecar IPC)',
-        badge: 'Ergonomics Leap',
-        desc: '<strong>The Question:</strong> How do we build a direct, zero-copy communication bridge so that clicking buttons in N\'kai (like \'Approve\', \'Request Pros &amp; Cons\', or \'Run Online Research\') immediately dispatches actions directly to the AI agent, eliminating the need to manually copy-paste into chat or prod the model?',
-        optionsHtml: `
-          <div class="pill-card">
-            <div class="pill-title">Option A: Native Antigravity Plugin (Sidecar SDK / MCP)</div>
-            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Run N\'kai as an installed IDE extension (<code>nkai/plugin/</code>). Buttons call <code>window.sidecar.sendAction()</code>, which routes directly through Antigravity\'s MCP server into the agent conversation. 100% native, zero terminal daemons, but requires installing the plugin.</p>
-          </div>
-          <div class="pill-card">
-            <div class="pill-title">Option B: Universal Localhost Loopback Micro-Server (npx nkai serve)</div>
-            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">A lightweight 40-line Node or Python daemon on <code>localhost:4040</code>. Buttons call <code>fetch(\'http://localhost:4040/action\')</code>, writing to <code>.agents/pipeline/actions.json</code> which triggers an agent notification. Works across ALL harnesses (AGY, Claude Code, Cursor, Chrome).</p>
-          </div>
-          <div class="pill-card" style="border: 1px solid var(--accent-green);">
-            <div class="pill-title" style="color:var(--accent-green);">Option C: Hybrid Resilient Adapter (Plugin SDK + Localhost + Clipboard Fallback) [Recommended]</div>
-            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">Checks for <code>window.sidecar</code> first (native AGY plugin mode). If absent, attempts loopback <code>fetch(\'localhost:4040\')</code>. If offline, gracefully falls back to the hardened in-canvas expansion and clipboard modal. Guarantees zero broken clicks anywhere.</p>
-          </div>`,
-        evalHtml: `
-          <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option C: Hybrid Resilient Adapter)</div>
-          <ul style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin: 0; padding-left: 18px;">
-            <li><strong>🌍 Real-World Ergonomics:</strong> The holy grail of pair-programming. You click \'Approve Option B\' or \'Request Pros &amp; Cons\', and the agent immediately receives the signal and starts working—zero manual copy-paste friction.</li>
-            <li><strong>🏛️ Wider SOTA:</strong> Matches how Playwright UI, Vitest UI, and Storybook bridge interactive webviews back to CLI test runners and daemons.</li>
-            <li><strong>🏆 Best Practices:</strong> Multi-tiered graceful degradation ensures that if the server isn\'t running, the user never gets an unhandled crash or stalled click.</li>
-          </ul>`,
-        recommendation: 'APPROVE Option C (Hybrid Adapter)',
-        chips: [
-          { label: '⚖️ Request Pros & Cons', prompt: 'pros and cons for Native Plugin MCP vs Localhost Loopback vs Hybrid Adapter across the 4 Lenses' },
-          { label: '🔬 Research Online', prompt: 'research online webview to AI agent IPC patterns in Claude Cursor and Antigravity' }
-        ]
-      },
       t15: { title: '6.15 Industry Workflow Precedents', verdict: 'PENDING' },
       t16: { title: '6.16 Backend Persistence & State', verdict: 'PENDING' },
       t17: { title: '6.17 Bidirectional Click-to-Agent Bridge', verdict: 'APPROVED' }
@@ -3805,6 +3702,26 @@ function toggleDrawer(drawerId) {
       return Promise.reject(new Error('Clipboard copy not supported'));
     }
 
+    function copyToClipboardSilently(text) {
+      if (!text) return;
+      try {
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+        textArea.style.position = "fixed";
+        textArea.style.left = "-999999px";
+        textArea.style.top = "-999999px";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        textArea.setSelectionRange(0, 99999);
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+      } catch (e) {}
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).catch(() => {});
+      }
+    }
+
     function fallbackCopy(text) {
       try {
         const textArea = document.createElement("textarea");
@@ -3812,67 +3729,96 @@ function toggleDrawer(drawerId) {
         textArea.style.position = "fixed";
         textArea.style.left = "-999999px";
         textArea.style.top = "-999999px";
-        // REMOVED readonly attribute to allow execCommand('copy') in Chromium
         document.body.appendChild(textArea);
         textArea.focus();
         textArea.select();
         textArea.setSelectionRange(0, 99999);
         const successful = document.execCommand('copy');
         document.body.removeChild(textArea);
-        if (!successful) {
-            showFallbackModal(text);
-        }
         return successful;
       } catch (err) {
-        showFallbackModal(text);
         return false;
       }
     }
 
     function showFallbackModal(text) {
+      const existing = document.getElementById('nkai-copy-modal');
+      if (existing) existing.remove();
+
       const modal = document.createElement('div');
+      modal.id = 'nkai-copy-modal';
       modal.style.position = 'fixed';
       modal.style.top = '50%';
       modal.style.left = '50%';
       modal.style.transform = 'translate(-50%, -50%)';
-      modal.style.background = 'var(--bg-card)';
-      modal.style.border = '1px solid var(--border-accent)';
-      modal.style.padding = '20px';
+      modal.style.background = 'var(--bg-panel)';
+      modal.style.border = '2px solid var(--accent-amber)';
+      modal.style.padding = '22px';
       modal.style.zIndex = '99999';
-      modal.style.borderRadius = '8px';
-      modal.style.boxShadow = '0 10px 30px rgba(0,0,0,0.8)';
+      modal.style.borderRadius = '10px';
+      modal.style.boxShadow = '0 16px 48px rgba(0,0,0,0.9)';
+      modal.style.width = '480px';
+      modal.style.maxWidth = '90vw';
       
       const title = document.createElement('h3');
-      title.innerText = 'Prompt ready to paste or run';
+      title.innerText = '📋 Prompt Ready to Paste into Chat';
       title.style.marginTop = '0';
-      title.style.color = 'var(--text-main)';
+      title.style.marginBottom = '6px';
+      title.style.fontSize = '14px';
+      title.style.color = 'var(--accent-amber)';
       title.style.fontFamily = 'var(--font-mono)';
       modal.appendChild(title);
+
+      const subtitle = document.createElement('p');
+      subtitle.innerText = '🔌 Local bridge server is offline. Click below to copy and paste directly into chat:';
+      subtitle.style.fontSize = '11px';
+      subtitle.style.color = 'var(--text-muted)';
+      subtitle.style.marginTop = '0';
+      subtitle.style.marginBottom = '12px';
+      modal.appendChild(subtitle);
       
       const textarea = document.createElement('textarea');
       textarea.value = text;
       textarea.style.width = '100%';
-      textarea.style.height = '100px';
-      textarea.style.background = '#000';
+      textarea.style.height = '110px';
+      textarea.style.background = 'rgba(0,0,0,0.6)';
       textarea.style.color = 'var(--accent-blue)';
       textarea.style.border = '1px solid var(--border)';
+      textarea.style.borderRadius = '6px';
       textarea.style.fontFamily = 'var(--font-mono)';
-      textarea.style.fontSize = '12px';
+      textarea.style.fontSize = '11px';
       textarea.style.padding = '10px';
+      textarea.style.boxSizing = 'border-box';
+      textarea.style.resize = 'vertical';
       modal.appendChild(textarea);
       
+      const btnRow = document.createElement('div');
+      btnRow.style.display = 'flex';
+      btnRow.style.justifyContent = 'space-between';
+      btnRow.style.marginTop = '14px';
+
+      const copyBtn = document.createElement('button');
+      copyBtn.innerText = '📋 Copy & Close';
+      copyBtn.className = 'interactive-btn green';
+      copyBtn.onclick = () => {
+        copyToClipboardSilently(text);
+        showAudioToast('📋 Copied to clipboard! Ready to paste into chat.');
+        modal.remove();
+      };
+      btnRow.appendChild(copyBtn);
+
       const closeBtn = document.createElement('button');
-      closeBtn.innerText = 'Close';
+      closeBtn.innerText = '✕ Dismiss';
       closeBtn.className = 'interactive-btn';
-      closeBtn.style.marginTop = '10px';
-      closeBtn.onclick = () => document.body.removeChild(modal);
-      modal.appendChild(closeBtn);
+      closeBtn.onclick = () => modal.remove();
+      btnRow.appendChild(closeBtn);
+
+      modal.appendChild(btnRow);
       
       document.body.appendChild(modal);
       textarea.focus();
       textarea.select();
     }
-
 
     function flashButtonSuccess(btn, msg) {
       if (!btn || btn.tagName !== 'BUTTON') return;
@@ -3892,24 +3838,15 @@ function toggleDrawer(drawerId) {
       }, 2000);
     }
 
-
-        function copyPromptToChat(promptText, btn, evt) {
+    function copyPromptToChat(promptText, btn, evt) {
       const targetBtn = btn || (evt && evt.currentTarget ? evt.currentTarget : null);
       playHapticTick();
 
-      // ⚡ Attempt direct dispatch to agent via Bridge
+      // Dispatch to bridge if online, or show fallback modal if offline!
       dispatchNkaiAction({
         action: 'requestPrompt',
         prompt: promptText
       }, targetBtn);
-
-      copyToClipboard(promptText).then(() => {
-        showAudioToast('📋 Action active! Copied to clipboard for instant chat paste.');
-        flashButtonSuccess(targetBtn, '⚡ Active!');
-      }).catch((err) => {
-        showFallbackModal(promptText);
-        flashButtonSuccess(targetBtn, '⚡ Active!');
-      });
     }
 
 
@@ -4149,11 +4086,12 @@ function toggleDrawer(drawerId) {
         const icon = v.verdict === 'APPROVED' ? '✅' : v.verdict === 'TABLED' ? '⏳' : v.verdict === 'KILLED' ? '💀' : '❓';
         md += '- ' + icon + ' **' + v.title + '**: `' + v.verdict + '`\n';
       });
-      navigator.clipboard.writeText(md).then(() => {
-        showAudioToast('📋 Audit Verdicts copied to clipboard!');
-      }).catch(() => {
-        prompt('Copy verdicts:', md);
-      });
+      const btn = document.querySelector('button[onclick="copyAuditVerdictsToClipboard()"]');
+      dispatchNkaiAction({
+        action: 'submitTriageSummary',
+        summary: md,
+        prompt: `[TRIAGE AUDIT SUMMARY via N'kai Bridge]\n\n${md}`
+      }, btn);
     }
 
     // Kickoff Lifecycle
