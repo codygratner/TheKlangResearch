@@ -1322,7 +1322,7 @@ class SidecarMigrator:
 
           <div class="grid-3" style="margin-top: 12px;">
             <div class="pill-card">
-              <div class="pill-title">Option A: Domain-Based (Current)</div>
+              <div class="pill-title">Option A: Domain-Based (Classic)</div>
               <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
                 Divided by technical stack: Layouts vs DSP vs Blue Sky vs Hardware vs Tooling. Clean separation of concerns, but separates items bound for the same release.
               </p>
@@ -1334,21 +1334,35 @@ class SidecarMigrator:
               </p>
             </div>
             <div class="pill-card" style="border: 1px solid var(--accent-green);">
-              <div class="pill-title" style="color:var(--accent-green);">Option C: Lifecycle Hierarchy (Recommended)</div>
+              <div class="pill-title" style="color:var(--accent-green);">Option C: Lifecycle Hierarchy (Approved)</div>
               <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
-                Tab 1: <em>Active Workshop</em> (the immediate focus item) $	o$ Tabs 2–N: <em>Domain Deep Dives</em> with target milestone badges $	o$ Final Tab: <em>Executive Decision Ledger</em>.
+                Tab 1: <em>Active Workshop</em> (the immediate focus item) &rarr; Tabs 2–N: <em>Domain Deep Dives</em> with target milestone badges &rarr; Final Tab: <em>Executive Decision Ledger</em>.
               </p>
+            </div>
+          </div>
+
+          <!-- 3-Lens Pros & Cons -->
+          <div style="margin-top: 14px; background: rgba(0,0,0,0.3); border: 1px solid rgba(48,54,61,0.6); border-radius: 6px; padding: 12px;">
+            <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option C: Lifecycle Hierarchy)</div>
+            <ul style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin: 0; padding-left: 18px;">
+              <li><strong>🌍 Real-World Ergonomics:</strong> Best of both worlds. Tab 1 eliminates distraction when making active decisions, Domain tabs keep related C++ and UX designs coherent, and milestone badges make release readiness instantly visible.</li>
+              <li><strong>🏛️ Wider SOTA Industry:</strong> Matches Linear, GitHub Projects, and Jira best practices—engineering components are grouped by domain architecture, tagged with release milestones, and surfaced through focused active sprint views.</li>
+              <li><strong>🏆 Best Practices &amp; Token Economics:</strong> Scales effortlessly from 5 cards to 50 cards without layout bloat, preserving the Asymmetric Sidecar Split (<em>terse chat, rich sidecar</em>).</li>
+            </ul>
+            <div style="margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" onclick="copyPromptToChat('pros and cons for Lifecycle Hierarchy across the 4 Lenses')">[ ⚖️ Request Pros &amp; Cons ]</button>
+              <button class="interactive-btn purple" onclick="copyPromptToChat('research online lifecycle vs milestone vs domain topic organization with citations')">[ 🔬 Research Online ]</button>
             </div>
           </div>
 
           <div style="display:flex; justify-content:space-between; align-items:center; margin-top:14px; padding-top:10px; border-top:1px solid rgba(48,54,61,0.5);">
             <div style="font-family:var(--font-mono); font-size:11px; color:var(--text-muted);">
-              Verdict: <strong id="v-badge-t3" style="color:var(--text-muted);">PENDING</strong>
+              Verdict: <strong id="v-badge-t3" style="color:var(--accent-green);">APPROVED (Option C: Lifecycle Hierarchy)</strong>
             </div>
             <div style="display:flex; gap:6px;">
-              <button class="interactive-btn" style="color:var(--accent-green); border-color:var(--accent-green);" onclick="setAuditVerdict('t3', 'APPROVED', this)">[ ✅ APPROVE Option C ]</button>
-              <button class="interactive-btn amber" onclick="setAuditVerdict('t3', 'TABLED', this)">[ ⏳ TABLE ]</button>
-              <button class="interactive-btn" style="color:var(--accent-red); border-color:var(--accent-red);" onclick="setAuditVerdict('t3', 'KILLED', this)">[ 💀 KEEP Option A ]</button>
+              <button class="interactive-btn" style="color:var(--accent-green); border-color:var(--accent-green); transform:scale(1.05);" onclick="setAuditVerdict('t3', 'APPROVED', this)">[ ✅ APPROVE Option C ]</button>
+              <button class="interactive-btn amber" style="opacity:0.5;" onclick="setAuditVerdict('t3', 'TABLED', this)">[ ⏳ TABLE ]</button>
+              <button class="interactive-btn" style="color:var(--accent-red); border-color:var(--accent-red); opacity:0.5;" onclick="setAuditVerdict('t3', 'KILLED', this)">[ 💀 KEEP Option A ]</button>
             </div>
           </div>
         </div>
@@ -1379,8 +1393,22 @@ class SidecarMigrator:
             <div class="pill-card" style="border: 1px solid var(--accent-green);">
               <div class="pill-title" style="color:var(--accent-green);">Option C: Layered Hybrid (Recommended)</div>
               <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
-                Keep atomic micro-skills as the underlying engine, while macro-commands (like <code>/execute-task</code>) chain them deterministically. Zero loss of composability.
+                Keep atomic micro-skills as the underlying engine, while macro-commands (like <code>/execute-task</code> or unified <code>qa</code>) chain them deterministically. Zero loss of composability.
               </p>
+            </div>
+          </div>
+
+          <!-- 3-Lens Pros & Cons -->
+          <div style="margin-top: 14px; background: rgba(0,0,0,0.3); border: 1px solid rgba(48,54,61,0.6); border-radius: 6px; padding: 12px;">
+            <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option C: Layered Hybrid)</div>
+            <ul style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin: 0; padding-left: 18px;">
+              <li><strong>🌍 Real-World Ergonomics:</strong> You don't have to remember 16 individual command names—you just say <code>qa</code> or <code>/execute-task</code>. But when an isolated test fails, the agent or user can still run <code>audiothread-guard</code> directly.</li>
+              <li><strong>🏛️ Wider SOTA Industry:</strong> Follows standard CLI &amp; API layered architectures (e.g. Git: porcelain vs. plumbing commands, Docker, AWS CLI). High-level intents invoke specialized low-level tools.</li>
+              <li><strong>🏆 Best Practices:</strong> Avoids giant monolithic skill files that burn excessive prompt tokens on every activation. Keeps tool schemas clean and single-purpose.</li>
+            </ul>
+            <div style="margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" onclick="copyPromptToChat('pros and cons for Layered Hybrid Skills across the 4 Lenses')">[ ⚖️ Request Pros &amp; Cons ]</button>
+              <button class="interactive-btn purple" onclick="copyPromptToChat('research online AI agent skills architecture micro vs macro suites')">[ 🔬 Research Online ]</button>
             </div>
           </div>
 
@@ -1396,34 +1424,48 @@ class SidecarMigrator:
           </div>
         </div>
 
-        <!-- Topic 6.5: N'kai View Ergonomics -->
+        <!-- Topic 6.5: N'kai Ergonomics & Asymmetric Split -->
         <div class="section-card" id="sec-audit-t5">
           <div class="section-title">
-            <span>6.5 N'kai View Ergonomics: Narrow IDE Panels vs. Wide Displays</span>
+            <span>6.5 N'kai Ergonomics: Asymmetric Chat Split &amp; Responsive Layout</span>
             <span class="badge badge-green">UI / UX</span>
           </div>
           <p style="font-size: 12px; line-height: 1.6; color: var(--text-main);">
-            <strong>The Question:</strong> On narrow 380px–480px IDE side panels, the 240px left sidebar steals 50% of horizontal space. How should N'kai adapt?
+            <strong>The Question:</strong> How do we balance text density between the chat panel and the sidecar, while ensuring layouts adapt gracefully from narrow 380px IDE panels to wide displays?
           </p>
 
           <div class="grid-3" style="margin-top: 12px;">
             <div class="pill-card">
-              <div class="pill-title">Option A: Fixed 2-Column (Current)</div>
+              <div class="pill-title">Option A: Verbose Chat + Fixed Sidecar</div>
               <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
-                Sidebar remains pinned at 240px. Great on wide monitors, but squishes cards and tables on narrow panels.
+                Detailed tables and prose printed in chat and sidecar. High chat scrollback, cognitive fatigue, and sidebars squishing cards on narrow panels.
               </p>
             </div>
             <div class="pill-card" style="border: 1px solid var(--accent-green);">
-              <div class="pill-title" style="color:var(--accent-green);">Option B: Container Query Auto-Collapse (Recommended)</div>
+              <div class="pill-title" style="color:var(--accent-green);">Option B: Asymmetric Split + Auto-Collapse (Recommended)</div>
               <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
-                When panel width &lt; 650px, the sidebar collapses into a top sticky chip bar or modal drawer trigger. Cards expand to 100% width.
+                <strong>Strict Asymmetry:</strong> 100% of verbose prose, tradeoff tables, and cards live in the sidecar. Chat stream stays ultra-terse (1–3 sentences) and clean. Sidebar collapses into top chip bar on panels &lt; 650px.
               </p>
             </div>
             <div class="pill-card">
               <div class="pill-title">Option C: Draggable Split Pane</div>
               <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5;">
-                Allows user to manually resize the sidebar boundary with a mouse drag handle.
+                Manual drag handle to adjust sidebar width, but requires manual fiddling every time the IDE layout shifts.
               </p>
+            </div>
+          </div>
+
+          <!-- 3-Lens Pros & Cons -->
+          <div style="margin-top: 14px; background: rgba(0,0,0,0.3); border: 1px solid rgba(48,54,61,0.6); border-radius: 6px; padding: 12px;">
+            <div class="pill-title" style="color: var(--accent-neon); margin-bottom: 6px;">3-Lens Evaluation (Option B: Asymmetric Split &amp; Auto-Collapse)</div>
+            <ul style="font-size: 11px; color: var(--text-muted); line-height: 1.6; margin: 0; padding-left: 18px;">
+              <li><strong>🌍 Real-World Ergonomics:</strong> Eliminates reading clutter in chat. Chat is for rapid ping-pong decisions and concise approvals; the sidecar provides rich visuals, sliders, and interactive vote cards.</li>
+              <li><strong>🏛️ Wider SOTA Industry:</strong> Matches modern IDE extension designs (Cursor Composer, Windsurf Cascade, GitHub Copilot Chat). The side-panel is the canvas, chat is the steering wheel.</li>
+              <li><strong>🏆 Best Practices &amp; Token Economics:</strong> Chat context window stays ultra-lean (~80% token savings), preventing context compaction and model amnesia during long architectural sessions.</li>
+            </ul>
+            <div style="margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap;">
+              <button class="interactive-btn blue" onclick="copyPromptToChat('pros and cons for Asymmetric Sidecar Split across the 4 Lenses')">[ ⚖️ Request Pros &amp; Cons ]</button>
+              <button class="interactive-btn purple" onclick="copyPromptToChat('research online AI agent asymmetric sidecar UI patterns')">[ 🔬 Research Online ]</button>
             </div>
           </div>
 
@@ -1922,7 +1964,7 @@ class SidecarMigrator:
     const auditVerdicts = {
       t1: { title: '6.1 Post-Mortem Architecture', verdict: 'APPROVED' },
       t2: { title: '6.2 Pros/Cons: On-Demand vs Always', verdict: 'APPROVED' },
-      t3: { title: '6.3 Topic Organization Strategy', verdict: 'PENDING' },
+      t3: { title: '6.3 Topic Organization Strategy', verdict: 'APPROVED' },
       t4: { title: '6.4 Agent Skills Organization', verdict: 'PENDING' },
       t5: { title: '6.5 N\'kai View Ergonomics', verdict: 'PENDING' },
       t6: { title: '6.6 AGY Keyboard Shortcuts', verdict: 'PENDING' },
