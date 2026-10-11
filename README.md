@@ -26,6 +26,14 @@ TheKlangResearch/
 
 ---
 
+## 📚 Canonical Field Guides & Whitepapers
+
+- [**The Anti-Slop Manifesto**](guides/anti_slop_vibe_coding_manifesto.md) — An SQA-driven methodology for high-velocity, zero-regression AI pair-programming (~3 min read whitepaper).
+- [**The Vibe-Coder's Field Guide**](guides/vibe_coding_field_guide.md) — Universal stack-agnostic manual for autonomous AI pair-programming workflows, multi-agent swarms, and asymmetric sidecar harnesses.
+- [**The Audio DSP & C++ Field Guide**](guides/audio_dsp_field_guide.md) — Comprehensive reference for real-time audio thread invariants, SIMD Padé approximations, filter topologies, and headless C++ testing.
+
+---
+
 ## 🌌 Connected Ecosystem Repositories
 
 1. [**The Klang Suite (`TheKlangSuite`)**](https://github.com/codygratner/TheKlangSuite)
